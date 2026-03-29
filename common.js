@@ -67,15 +67,13 @@ function isFrenchPage() {
 }
 
 function getLangSwitchLink() {
-  const path = window.location.pathname;
+  const base = getBaseUrl();
   if (isFrenchPage()) {
-    // FR → EN: remove /fr/ from path
-    const enPath = path.replace('/fr/', '/');
-    return { label: 'EN', href: enPath || '/', title: 'English version' };
+    // FR → EN: go up from /fr/ to root
+    return { label: 'EN', href: base + '/', title: 'English version' };
   } else {
-    // EN → FR: insert /fr/ after domain root
-    const frPath = '/fr' + (path === '/' ? '/' : path);
-    return { label: 'FR', href: frPath, title: 'Version française' };
+    // EN → FR: relative link to /fr/
+    return { label: 'FR', href: base + '/fr/', title: 'Version française' };
   }
 }
 
@@ -90,7 +88,7 @@ function injectHeader() {
       <a href="${base}/" class="logo">⚡ <span>Tool</span>Pilot</a>
       <div class="header-actions">
         <a href="${base}/#tools" style="font-size:.9rem;color:var(--text-muted)">All Tools</a>
-        <a href="/blog/" style="font-size:.9rem;color:var(--text-muted)">Blog</a>
+        <a href="${base}/blog/" style="font-size:.9rem;color:var(--text-muted)">Blog</a>
         <a href="${lang.href}" style="font-size:.9rem;color:var(--text-muted)" title="${lang.title}">${lang.label}</a>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">${theme === 'dark' ? '☀️' : '🌙'}</button>
       </div>
