@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online JSON formatter and validator. Format, minify, and validate JSON with syntax highlighting. Perfect for developers working with JSON data.">
+    <meta name="keywords" content="JSON formatter, JSON validator, JSON minifier, JSON pretty print, developer tools">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JSON Formatter & Validator — Free Online Tool | ToolPilot">
+    <meta property="og:description" content="Format, validate, and minify JSON instantly with syntax highlighting and error detection.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/json-formatter">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON Formatter & Validator — Free Online Tool">
+    <meta name="twitter:description" content="Format, validate, and minify JSON instantly with syntax highlighting.">
+
+    <title>JSON Formatter & Validator — Free Online Tool | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        textarea {
+            flex: 1;
+            min-height: 400px;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            resize: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+            border-color: #d0d0d0;
+        }
+
+        .btn-danger {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #dd0000;
+        }
+
+        .options {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .option-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .option-group label {
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .option-group select {
+            padding: 6px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef5350;
+        }
+
+        .message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #66bb6a;
+        }
+
+        .error-line {
+            color: #c62828;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .seo-content {
+            background-color: #f9f9f9;
+            padding: 48px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .highlight {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            textarea {
+                min-height: 300px;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <span>Tools</span>
+            <span>/</span>
+            <span>JSON Formatter</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; color: #222;">JSON Formatter & Validator</h1>
+        <p style="font-size: 18px; color: #666; margin-bottom: 32px;">Format, validate, and minify JSON with syntax highlighting and error detection</p>
+
+        <div class="tool-container">
+            <div class="panel">
+                <div class="panel-title">Input</div>
+                <textarea id="inputJson" placeholder="Paste your JSON here..."></textarea>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Output</div>
+                <div id="message" class="message"></div>
+                <textarea id="outputJson" readonly placeholder="Formatted JSON will appear here..."></textarea>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="btn-group">
+                <button class="btn-primary" onclick="formatJSON()">Format</button>
+                <button class="btn-secondary" onclick="minifyJSON()">Minify</button>
+                <button class="btn-secondary" onclick="validateJSON()">Validate</button>
+                <button class="btn-secondary" onclick="copyOutput()">Copy Output</button>
+                <button class="btn-danger" onclick="clearAll()">Clear All</button>
+            </div>
+
+            <div class="options">
+                <div class="option-group">
+                    <label for="tabSize">Tab Size:</label>
+                    <select id="tabSize">
+                        <option value="2">2 spaces</option>
+                        <option value="4" selected>4 spaces</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="regex-tester.html" class="card tool-card">
+                    <span class="icon">.*</span>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with real-time highlighting.</p>
+                </a>
+                <a href="hash-generator.html" class="card tool-card">
+                    <span class="icon">🔒</span>
+                    <h3>Hash Generator</h3>
+                    <p>Generate MD5, SHA-1, SHA-256 & SHA-512 hashes.</p>
+                </a>
+                <a href="base64-converter.html" class="card tool-card">
+                    <span class="icon">🔄</span>
+                    <h3>Base64 Converter</h3>
+                    <p>Encode and decode Base64 strings instantly.</p>
+                </a>
+                <a href="diff-checker.html" class="card tool-card">
+                    <span class="icon">↔️</span>
+                    <h3>Diff Checker</h3>
+                    <p>Compare two texts and highlight differences.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About JSON Formatter & Validator</h2>
+            <p>Our free JSON formatter and validator is an essential tool for developers working with JSON data. Whether you need to format minified JSON, validate syntax, or pretty-print complex structures, this tool makes it easy.</p>
+
+            <h3 style="font-size: 20px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px;">Key Features</h3>
+            <ul>
+                <li><strong>Format JSON:</strong> Convert minified JSON into beautifully formatted, readable structures</li>
+                <li><strong>Validate Syntax:</strong> Check for JSON syntax errors with precise error messages and line numbers</li>
+                <li><strong>Minify JSON:</strong> Reduce file size by removing unnecessary whitespace</li>
+                <li><strong>Syntax Highlighting:</strong> Color-coded output for improved readability</li>
+                <li><strong>Customizable Indentation:</strong> Choose between 2 and 4 space indentation</li>
+                <li><strong>Copy to Clipboard:</strong> Easily copy formatted output with a single click</li>
+            </ul>
+
+            <h3 style="font-size: 20px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px;">Why Use a JSON Formatter?</h3>
+            <p>JSON (JavaScript Object Notation) is a widely-used data format in APIs, configuration files, and web applications. Formatting JSON improves readability during debugging and development, making it easier to identify structure and spot errors. Our formatter works entirely in your browser—no data is sent to any server.</p>
+
+            <h3 style="font-size: 20px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px;">Common Use Cases</h3>
+            <ul>
+                <li>Pretty-printing API responses for debugging</li>
+                <li>Validating JSON configuration files</li>
+                <li>Minifying JSON to reduce bandwidth</li>
+                <li>Formatting JSON in log files for analysis</li>
+                <li>Converting between formatted and compact JSON representations</li>
+            </ul>
+
+            <h3 style="font-size: 20px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px;">Best JSON Formatter Online Free</h3>
+            <p>Our free JSON formatter online is completely client-side, meaning your data never leaves your device. Unlike web-based JSON tools that upload your data to servers, this formatter processes everything in your browser for maximum privacy and security. It's one of the fastest and most reliable free JSON formatters available, perfect for developers who need to quickly format, validate, or minify JSON data on the go.</p>
+
+            <h3 style="font-size: 20px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px;">How to Pretty Print JSON Data</h3>
+            <p>Converting minified JSON to a readable format is simple: paste your compact JSON into the input field and click the "Format" button. The tool instantly transforms it into pretty-printed JSON with proper indentation and line breaks. This makes it easy to visualize nested objects and arrays. You can customize indentation between 2 and 4 spaces to match your coding style or project requirements.</p>
+
+            <h3 style="font-size: 20px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px;">JSON Minifier for Optimized APIs</h3>
+            <p>Reduce JSON file size and improve API response times with our built-in minify JSON feature. Minifying removes all unnecessary whitespace while preserving the data structure, making files significantly smaller. This is especially useful for mobile applications and slow network connections where bandwidth matters. The minified output is fully valid JSON that works with any JSON parser or validator.</p>
+        </div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JSON Formatter & Validator",
+        "description": "Free online JSON formatter and validator with syntax highlighting and error detection",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/json-formatter",
+        "applicationCategory": "DeveloperTool",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a JSON formatter?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A JSON formatter takes raw, unformatted JSON data and reorganizes it with proper indentation and line breaks for readability. It helps developers debug API responses and configuration files."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I validate JSON online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Paste your JSON into a JSON validator tool and it will instantly check for syntax errors like missing brackets, commas, or quotes. ToolPilot's JSON formatter validates as you format."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is it safe to paste JSON data into online tools?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ToolPilot processes all data entirely in your browser using JavaScript. Your JSON never leaves your device — nothing is sent to any server."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "JSON Formatter"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "JSON Formatter — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Format, validate & minify JSON data instantly."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        function formatJSON() {
+            const input = document.getElementById('inputJson').value.trim();
+            const message = document.getElementById('message');
+
+            if (!input) {
+                showMessage('Please paste JSON to format', 'error');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(input);
+                const tabSize = parseInt(document.getElementById('tabSize').value);
+                const formatted = JSON.stringify(parsed, null, tabSize);
+                document.getElementById('outputJson').value = formatted;
+                showMessage('JSON formatted successfully', 'success');
+            } catch (e) {
+                showMessage(`Error: ${e.message}`, 'error');
+                document.getElementById('outputJson').value = '';
+            }
+        }
+
+        function minifyJSON() {
+            const input = document.getElementById('inputJson').value.trim();
+            const message = document.getElementById('message');
+
+            if (!input) {
+                showMessage('Please paste JSON to minify', 'error');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(input);
+                const minified = JSON.stringify(parsed);
+                document.getElementById('outputJson').value = minified;
+                showMessage('JSON minified successfully', 'success');
+            } catch (e) {
+                showMessage(`Error: ${e.message}`, 'error');
+                document.getElementById('outputJson').value = '';
+            }
+        }
+
+        function validateJSON() {
+            const input = document.getElementById('inputJson').value.trim();
+            const message = document.getElementById('message');
+
+            if (!input) {
+                showMessage('Please paste JSON to validate', 'error');
+                return;
+            }
+
+            try {
+                JSON.parse(input);
+                showMessage('JSON is valid! No syntax errors found.', 'success');
+                document.getElementById('outputJson').value = 'Valid JSON ✓';
+            } catch (e) {
+                const errorMsg = e.message;
+                showMessage(`Syntax Error: ${errorMsg}`, 'error');
+                document.getElementById('outputJson').value = '';
+            }
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('outputJson').value;
+
+            if (!output) {
+                showMessage('Nothing to copy. Format JSON first.', 'error');
+                return;
+            }
+
+            navigator.clipboard.writeText(output).then(() => {
+                showMessage('Copied to clipboard!', 'success');
+            }).catch(() => {
+                showMessage('Failed to copy. Try again.', 'error');
+            });
+        }
+
+        function clearAll() {
+            document.getElementById('inputJson').value = '';
+            document.getElementById('outputJson').value = '';
+            document.getElementById('message').classList.remove('show');
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Auto-format on paste
+        document.getElementById('inputJson').addEventListener('paste', () => {
+            setTimeout(() => {
+                const input = document.getElementById('inputJson').value.trim();
+                if (input && input.startsWith('{') || input.startsWith('[')) {
+                    try {
+                        JSON.parse(input);
+                        // Valid JSON, don't auto-format
+                    } catch (e) {
+                        // Invalid JSON, wait for user to fix
+                    }
+                }
+            }, 10);
+        });
+    </script>
+</body>
+</html>

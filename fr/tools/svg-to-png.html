@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convertisseur SVG vers PNG gratuit. Convertissez des fichiers SVG en images PNG avec mise à l'échelle personnalisée.">
+    <meta name="keywords" content="convertisseur svg vers png, svg to png, svg converter, png converter, image converter">
+    <meta name="author" content="ToolPilot">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/svg-to-png.html">
+    <title>Convertisseur SVG vers PNG — Outil Gratuit | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        textarea, input { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-input); color: var(--text); font-family: inherit; box-sizing: border-box; }
+        textarea { min-height: 200px; resize: vertical; }
+        textarea:focus, input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+        .button-group { display: flex; gap: 12px; margin: 20px 0; }
+        button { padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .preview { border: 1px dashed var(--border); padding: 20px; border-radius: 8px; min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); margin-top: 20px; }
+        .preview img { max-width: 100%; max-height: 400px; }
+        .settings { background: var(--bg-card); padding: 20px; border-radius: 8px; margin-top: 20px; }
+        .setting-item { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+        .setting-item label { margin: 0; flex: 0 0 100px; }
+        .setting-item input { margin: 0; flex: 1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Convertisseur SVG vers PNG</h1>
+        <p style="color: var(--text-muted); margin-bottom: 32px;">Convertissez vos fichiers SVG en images PNG</p>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 32px; border-radius: 8px;">
+            <div class="form-group">
+                <label>Collez votre code SVG</label>
+                <textarea id="svgInput" placeholder="&lt;svg ...&gt;...&lt;/svg&gt;"></textarea>
+            </div>
+
+            <div class="settings">
+                <div class="setting-item">
+                    <label>Largeur (px)</label>
+                    <input id="width" type="number" value="800" min="1" />
+                </div>
+                <div class="setting-item">
+                    <label>Hauteur (px)</label>
+                    <input id="height" type="number" value="600" min="1" />
+                </div>
+                <div class="setting-item">
+                    <label><input id="proportional" type="checkbox" checked /> Conserver les proportions</label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="convertSvgToPng()">Convertir en PNG</button>
+                <button onclick="clearAll()">Effacer</button>
+            </div>
+
+            <div class="preview" id="preview">L'aperçu PNG apparaîtra ici</div>
+
+            <div id="downloadSection" style="display: none; margin-top: 20px;">
+                <button class="btn-primary" onclick="downloadPng()">Télécharger PNG</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../common.js"></script>
+    <script>
+        let pngCanvas = null;
+
+        function convertSvgToPng() {
+            const svgInput = document.getElementById('svgInput').value.trim();
+            if (!svgInput) { alert('Veuillez entrer du SVG'); return; }
+
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, width, height);
+
+            const svg = new DOMParser().parseFromString(svgInput, 'image/svg+xml');
+            if (!svg.querySelector('svg')) { alert('SVG invalide'); return; }
+
+            const svgElement = svg.querySelector('svg');
+            const svgString = new XMLSerializer().serializeToString(svgElement);
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, width, height);
+                pngCanvas = canvas;
+                const preview = document.getElementById('preview');
+                preview.innerHTML = '';
+                const previewImg = document.createElement('img');
+                previewImg.src = canvas.toDataURL();
+                preview.appendChild(previewImg);
+                document.getElementById('downloadSection').style.display = 'block';
+            };
+            img.onerror = function() { alert('Erreur lors de la conversion du SVG'); };
+            img.src = 'data:image/svg+xml;base64,' + btoa(svgString);
+        }
+
+        function downloadPng() {
+            if (!pngCanvas) return;
+            const link = document.createElement('a');
+            link.href = pngCanvas.toDataURL();
+            link.download = 'image.png';
+            link.click();
+        }
+
+        function clearAll() {
+            document.getElementById('svgInput').value = '';
+            document.getElementById('preview').innerHTML = 'L\'aperçu PNG apparaîtra ici';
+            document.getElementById('downloadSection').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

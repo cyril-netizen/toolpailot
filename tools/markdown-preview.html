@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert Markdown to HTML in real-time with our free online markdown preview tool. Write markdown and see the live HTML rendering instantly. Perfect for documentation and blogs.">
+    <meta name="keywords" content="markdown preview, markdown to html, markdown converter, markdown editor, live markdown preview, markdown syntax">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/markdown-preview.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/markdown-preview.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/markdown-preview.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Markdown Preview — Convert Markdown to HTML Online | ToolPilot">
+    <meta property="og:description" content="Real-time markdown to HTML converter. Write markdown in the left panel and see the live preview on the right. Free and instant.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/markdown-preview.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Markdown Preview — Convert Markdown to HTML Online | ToolPilot">
+    <meta name="twitter:description" content="Real-time markdown to HTML converter. Write markdown in the left panel and see the live preview on the right.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>Markdown Preview — Convert Markdown to HTML Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .two-panel-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-panel-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .panel-content {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .markdown-input {
+            width: 100%;
+            min-height: 400px;
+            padding: 1rem;
+            border: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: none;
+            background: #fff;
+            color: #333;
+        }
+
+        .markdown-input:focus {
+            outline: none;
+            box-shadow: inset 0 0 0 2px #0066cc;
+        }
+
+        .preview-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f9f9f9;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .preview-content h1 {
+            font-size: 1.8em;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .preview-content h2 {
+            font-size: 1.5em;
+            margin: 0.8rem 0 0.4rem 0;
+        }
+
+        .preview-content h3 {
+            font-size: 1.3em;
+            margin: 0.6rem 0 0.3rem 0;
+        }
+
+        .preview-content h4, .preview-content h5, .preview-content h6 {
+            font-size: 1.1em;
+            margin: 0.5rem 0 0.2rem 0;
+        }
+
+        .preview-content p {
+            margin: 0.8rem 0;
+        }
+
+        .preview-content strong {
+            font-weight: bold;
+        }
+
+        .preview-content em {
+            font-style: italic;
+        }
+
+        .preview-content code {
+            background: #e8e8e8;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .preview-content pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .preview-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .preview-content a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .preview-content a:hover {
+            text-decoration: underline;
+        }
+
+        .preview-content ul, .preview-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .preview-content li {
+            margin: 0.3rem 0;
+        }
+
+        .preview-content blockquote {
+            border-left: 4px solid #0066cc;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        .preview-content hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 1.5rem 0;
+        }
+
+        .preview-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 6px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #0052a3;
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Markdown Preview
+    </div>
+
+    <main class="tool-container">
+        <h1>Markdown Preview</h1>
+        <p class="subtitle">Convert Markdown to HTML with real-time preview</p>
+
+        <div class="two-panel-layout">
+            <div class="panel">
+                <div class="panel-header">Markdown Input</div>
+                <div class="panel-content">
+                    <textarea id="markdown-input" class="markdown-input" placeholder="Enter your markdown here...
+
+# Heading 1
+## Heading 2
+### Heading 3
+
+**Bold text** and *italic text*
+
+[Link text](https://example.com)
+
+- List item 1
+- List item 2
+
+1. Numbered item
+2. Another item
+
+> A blockquote
+
+\`\`\`
+Code block
+\`\`\`
+
+![Alt text](https://example.com/image.jpg)
+
+---"></textarea>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">HTML Preview</div>
+                <div class="panel-content">
+                    <div id="preview-output" class="preview-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="copy-btn" id="copy-html-btn">Copy HTML</button>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="lorem-ipsum.html" class="card tool-card">
+                    <span class="icon">📝</span>
+                    <h3>Lorem Ipsum Generator</h3>
+                    <p>Generate placeholder text for your designs.</p>
+                </a>
+                <a href="word-counter.html" class="card tool-card">
+                    <span class="icon">🔢</span>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters, sentences & reading time.</p>
+                </a>
+                <a href="diff-checker.html" class="card tool-card">
+                    <span class="icon">↔️</span>
+                    <h3>Diff Checker</h3>
+                    <p>Compare two texts and highlight differences.</p>
+                </a>
+                <a href="html-entities.html" class="card tool-card">
+                    <span class="icon">&amp;lt;</span>
+                    <h3>HTML Entities</h3>
+                    <p>Encode and decode HTML entities and special characters.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About Markdown Preview Tool</h2>
+            <p>
+                Our Markdown Preview tool enables writers, developers, and content creators to convert Markdown syntax into HTML with instant real-time visualization. Whether you're writing documentation, blog posts, or technical content, this tool shows exactly how your markdown will render as HTML.
+            </p>
+
+            <h3>Markdown Syntax Guide</h3>
+            <p>
+                <strong>Headings:</strong> Use # for h1, ## for h2, ### for h3, and so on. Markdown automatically converts these to proper HTML heading tags.
+            </p>
+            <p>
+                <strong>Emphasis:</strong> Surround text with *asterisks* or _underscores_ for italic, and **double asterisks** or __double underscores__ for bold formatting.
+            </p>
+            <p>
+                <strong>Links:</strong> Create links using [link text](URL) syntax. Images use ![alt text](image-url) format with an exclamation mark at the start.
+            </p>
+            <p>
+                <strong>Lists:</strong> Use - or * for unordered lists and numbers for ordered lists. Code blocks are created with triple backticks.
+            </p>
+
+            <h3>Free Markdown to HTML Converter</h3>
+            <p>
+                Convert markdown to HTML instantly with our free online converter. No installation needed—write markdown in the left panel and see the live HTML preview on the right panel in real-time. Perfect for developers, technical writers, and content creators who want to visualize their markdown formatting before deployment.
+            </p>
+
+            <h3>Real-Time Markdown Editor with Live Preview</h3>
+            <p>
+                Our markdown editor provides instant visual feedback as you type. Every character you enter is converted to HTML and displayed in the preview panel simultaneously. This real-time markdown preview helps you perfect your formatting, check links, and see how images will render before publishing. Copy the resulting HTML code with a single click.
+            </p>
+
+            <h3>Why Use Markdown Preview Online?</h3>
+            <p>
+                Markdown is the preferred format for documentation, README files, and blog platforms because it's human-readable and easy to write. Our online markdown preview tool eliminates the need to switch between your editor and a browser—see exactly how your content will appear in HTML format instantly.
+            </p>
+
+            <h3>Markdown Support for All Common Syntax</h3>
+            <p>
+                This converter supports all standard markdown syntax including headings, emphasis, links, images, lists (both ordered and unordered), code blocks, blockquotes, and horizontal rules. Use it to convert markdown to HTML for GitHub README files, blog posts, documentation, or any web content.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Markdown Preview",
+        "description": "Real-time markdown to HTML converter with live preview. Write markdown and see instant HTML rendering.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/markdown-preview.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is markdown and how do I convert it to HTML?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Markdown is a lightweight markup language for creating formatted text. To convert markdown to HTML, use our free online tool. Simply write markdown syntax in the left panel and view the rendered HTML on the right panel in real-time."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What markdown syntax is supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports all common markdown syntax including headings (#, ##, ###), bold (**text**), italic (*text*), links ([text](url)), images (![alt](url)), lists, code blocks, blockquotes (>), and horizontal rules (---)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I copy the HTML output?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Click the 'Copy HTML' button to copy the converted HTML to your clipboard. The button will show 'Copied!' confirmation when successful."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this markdown converter free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our markdown to HTML converter is completely free to use. No account, registration, or payment required. All processing happens in your browser."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Markdown Preview"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Markdown Preview — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/markdown-preview.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Preview Markdown as HTML in real time."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const markdownInput = document.getElementById('markdown-input');
+        const previewOutput = document.getElementById('preview-output');
+        const copyHtmlBtn = document.getElementById('copy-html-btn');
+
+        // Simple markdown parser
+        function parseMarkdown(text) {
+            let html = text;
+
+            // Escape HTML special characters (but preserve newlines)
+            html = html.replace(/&/g, '&amp;')
+                      .replace(/</g, '&lt;')
+                      .replace(/>/g, '&gt;')
+                      .replace(/"/g, '&quot;')
+                      .replace(/'/g, '&#39;');
+
+            // Restore newlines for parsing
+            html = html.replace(/\n/g, '\n');
+
+            // Code blocks (triple backticks)
+            html = html.replace(/```(.*?)```/gs, (match, code) => {
+                const lines = code.trim().split('\n');
+                const language = lines[0] || '';
+                const codeContent = language ? lines.slice(1).join('\n') : code.trim();
+                return `<pre><code>${codeContent}</code></pre>`;
+            });
+
+            // Horizontal rules
+            html = html.replace(/^---+$/gm, '<hr>');
+
+            // Headings
+            html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+
+            // Blockquotes
+            html = html.replace(/^> (.*?)$/gm, '<blockquote><p>$1</p></blockquote>');
+
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
+
+            // Italic
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+
+            // Images
+            html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
+
+            // Links
+            html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+            // Inline code
+            html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+            // Ordered lists
+            html = html.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, (match) => {
+                if (!match.includes('<ol>')) {
+                    return '<ol>' + match + '</ol>';
+                }
+                return match;
+            });
+
+            // Unordered lists
+            html = html.replace(/^[*\-] (.*?)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, (match) => {
+                if (!match.includes('<ul>') && !match.includes('<ol>')) {
+                    return '<ul>' + match + '</ul>';
+                }
+                return match;
+            });
+
+            // Paragraphs (wrap text blocks that aren't already wrapped)
+            const lines = html.split('\n');
+            let result = [];
+            let inBlock = false;
+            for (let line of lines) {
+                if (line.match(/^<[a-z]/i) || line.trim() === '') {
+                    if (inBlock) {
+                        result[result.length - 1] = '<p>' + result[result.length - 1] + '</p>';
+                        inBlock = false;
+                    }
+                    result.push(line);
+                } else {
+                    if (inBlock) {
+                        result[result.length - 1] += ' ' + line;
+                    } else {
+                        result.push(line);
+                        inBlock = true;
+                    }
+                }
+            }
+            if (inBlock && result.length > 0) {
+                result[result.length - 1] = '<p>' + result[result.length - 1] + '</p>';
+            }
+            html = result.join('\n');
+
+            return html;
+        }
+
+        function updatePreview() {
+            const markdown = markdownInput.value;
+            const html = parseMarkdown(markdown);
+            previewOutput.innerHTML = html;
+        }
+
+        markdownInput.addEventListener('input', updatePreview);
+
+        copyHtmlBtn.addEventListener('click', () => {
+            const markdown = markdownInput.value;
+            const html = parseMarkdown(markdown);
+            navigator.clipboard.writeText(html).then(() => {
+                copyHtmlBtn.textContent = 'Copied!';
+                copyHtmlBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyHtmlBtn.textContent = 'Copy HTML';
+                    copyHtmlBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        // Initial preview
+        updatePreview();
+    </script>
+</body>
+</html>

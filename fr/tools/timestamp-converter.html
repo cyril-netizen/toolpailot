@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Convertisseur de Timestamp Unix | ToolPilot</title>
+    <meta name="description" content="Convertissez les timestamps Unix en dates lisibles et vice-versa avec notre outil gratuit en ligne.">
+    <meta name="keywords" content="convertisseur timestamp, timestamp Unix, convertir timestamp, Unix time, timestamp en date">
+    <meta property="og:title" content="Convertisseur de Timestamp Unix | ToolPilot">
+    <meta property="og:description" content="Convertissez les timestamps Unix en dates lisibles en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertisseur de Timestamp Unix | ToolPilot">
+    <meta name="twitter:description" content="Convertissez les timestamps Unix en dates lisibles en ligne.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/timestamp-converter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Convertisseur de Timestamp Unix",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Convertisseur de Timestamp Unix",
+        "description": "Convertissez les timestamps Unix en dates lisibles en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce qu'un timestamp Unix?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Un timestamp Unix est le nombre de secondes écoulées depuis le 1er janvier 1970 à 00:00:00 UTC. C'est un standard utilisé partout en informatique."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment obtenir le timestamp actuel?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "En JavaScript, utilisez Math.floor(Date.now() / 1000) pour obtenir le timestamp Unix actuel en secondes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quel est le timestamp actuel?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vous pouvez cliquer sur le bouton 'Timestamp actuel' dans cet outil pour obtenir le timestamp Unix du moment présent."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Convertisseur de Timestamp Unix</span>
+            </nav>
+
+            <h1>Convertisseur de Timestamp Unix</h1>
+            <p class="tool-subtitle">Convertissez entre timestamps Unix et dates lisibles</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="timestamp-input">Timestamp Unix</label>
+                    <input type="number" id="timestamp-input" placeholder="Entrez un timestamp Unix (en secondes)...">
+                    <div class="button-group">
+                        <button id="convert-from-timestamp-btn" class="btn btn-primary">Convertir</button>
+                        <button id="current-timestamp-btn" class="btn btn-secondary">Timestamp actuel</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <label for="datetime-output">Date et Heure</label>
+                    <input type="text" id="datetime-output" placeholder="La date et l'heure apparaîtront ici..." readonly>
+                    <div class="button-group">
+                        <button id="copy-datetime-btn" class="btn btn-primary">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="datetime-input">Date et Heure</label>
+                    <input type="datetime-local" id="datetime-input">
+                    <div class="button-group">
+                        <button id="convert-from-datetime-btn" class="btn btn-primary">Convertir</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <label for="timestamp-output">Timestamp Unix</label>
+                    <input type="text" id="timestamp-output" placeholder="Le timestamp apparaîtra ici..." readonly>
+                    <div class="button-group">
+                        <button id="copy-timestamp-btn" class="btn btn-primary">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+
+            <section class="seo-content">
+                <h2>À propos de ce convertisseur</h2>
+                <p>Notre <strong>Convertisseur de Timestamp Unix</strong> facilite la conversion entre timestamps Unix (également appelés Unix time ou POSIX time) et dates lisibles en format ISO. Les timestamps Unix sont largement utilisés en programmation, dans les bases de données et dans les systèmes d'exploitation.</p>
+                <p>Un timestamp Unix représente le nombre de secondes écoulées depuis le 1er janvier 1970 à minuit UTC (appelé "l'époque Unix"). Cet outil vous permet de convertir rapidement des timestamps en dates et heures lisibles, ou de convertir une date/heure en timestamp Unix correspondant.</p>
+                <p>Cet outil est particulièrement utile pour les développeurs qui travaillent avec des APIs, des bases de données, des fichiers journaux et d'autres systèmes qui utilisent des timestamps. Tous les calculs se font dans votre navigateur sans envoyer vos données à nos serveurs.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="uuid-generator.html" class="tool-card">
+                        <h3>Générateur UUID</h3>
+                        <p>Créez des UUIDs uniques</p>
+                    </a>
+                    <a href="json-formatter.html" class="tool-card">
+                        <h3>Formateur JSON</h3>
+                        <p>Formatez et validez du JSON</p>
+                    </a>
+                    <a href="hash-generator.html" class="tool-card">
+                        <h3>Générateur de Hash</h3>
+                        <p>Générez des hashs sécurisés</p>
+                    </a>
+                    <a href="line-tools.html" class="tool-card">
+                        <h3>Outils de Lignes</h3>
+                        <p>Manipulez les lignes de texte</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const timestampInput = document.getElementById('timestamp-input');
+        const datetimeOutput = document.getElementById('datetime-output');
+        const datetimeInput = document.getElementById('datetime-input');
+        const timestampOutput = document.getElementById('timestamp-output');
+        const convertFromTimestampBtn = document.getElementById('convert-from-timestamp-btn');
+        const convertFromDatetimeBtn = document.getElementById('convert-from-datetime-btn');
+        const currentTimestampBtn = document.getElementById('current-timestamp-btn');
+        const copyDatetimeBtn = document.getElementById('copy-datetime-btn');
+        const copyTimestampBtn = document.getElementById('copy-timestamp-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'status-message ' + type;
+            setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+        }
+
+        convertFromTimestampBtn.addEventListener('click', () => {
+            try {
+                const timestamp = parseInt(timestampInput.value);
+                if (isNaN(timestamp)) {
+                    showStatus('Veuillez entrer un timestamp valide', 'error');
+                    return;
+                }
+                const date = new Date(timestamp * 1000);
+                datetimeOutput.value = date.toISOString();
+                showStatus('Conversion réussie!', 'success');
+            } catch (error) {
+                showStatus('Erreur: ' + error.message, 'error');
+            }
+        });
+
+        convertFromDatetimeBtn.addEventListener('click', () => {
+            try {
+                if (!datetimeInput.value) {
+                    showStatus('Sélectionnez une date et une heure', 'error');
+                    return;
+                }
+                const date = new Date(datetimeInput.value);
+                const timestamp = Math.floor(date.getTime() / 1000);
+                timestampOutput.value = timestamp;
+                showStatus('Conversion réussie!', 'success');
+            } catch (error) {
+                showStatus('Erreur: ' + error.message, 'error');
+            }
+        });
+
+        currentTimestampBtn.addEventListener('click', () => {
+            const now = Math.floor(Date.now() / 1000);
+            timestampInput.value = now;
+            convertFromTimestampBtn.click();
+        });
+
+        copyDatetimeBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(datetimeOutput.value).then(() => {
+                showStatus('Copié dans le presse-papiers!', 'success');
+            });
+        });
+
+        copyTimestampBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(timestampOutput.value).then(() => {
+                showStatus('Copié dans le presse-papiers!', 'success');
+            });
+        });
+
+        // Set default datetime to now
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        datetimeInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

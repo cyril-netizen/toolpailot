@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Formateur JSON & Validateur | ToolPilot</title>
+    <meta name="description" content="Formatez et validez du JSON en ligne. Convertissez JSON minifié en JSON bien formaté avec notre outil gratuit.">
+    <meta name="keywords" content="formateur JSON, validateur JSON, formatage JSON, JSON minifié, outil JSON gratuit">
+    <meta property="og:title" content="Formateur JSON & Validateur | ToolPilot">
+    <meta property="og:description" content="Formatez et validez du JSON en ligne avec notre outil gratuit.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Formateur JSON & Validateur | ToolPilot">
+    <meta name="twitter:description" content="Formatez et validez du JSON en ligne avec notre outil gratuit.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Formateur JSON & Validateur",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Formateur JSON & Validateur",
+        "description": "Formatez et validez du JSON en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Comment formater du JSON?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Collez votre JSON dans le champ d'entrée et cliquez sur le bouton Formater. L'outil va ajouter des sauts de ligne et des indentations pour rendre le JSON lisible."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment minifier du JSON?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Collez votre JSON et cliquez sur le bouton Minifier pour supprimer tous les espaces inutiles et réduire la taille du fichier."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment valider du JSON?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Utilisez le bouton Valider pour vérifier si votre JSON est syntaxiquement correct. L'outil affichera une erreur si le JSON est invalide."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Formateur JSON & Validateur</span>
+            </nav>
+
+            <h1>Formateur JSON & Validateur</h1>
+            <p class="tool-subtitle">Formatez, validez et minifiez du JSON en ligne</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="json-input">Entrée</label>
+                    <textarea id="json-input" placeholder="Collez votre JSON ici..."></textarea>
+                    <div class="button-group">
+                        <button id="format-btn" class="btn btn-primary">Formater</button>
+                        <button id="minify-btn" class="btn btn-secondary">Minifier</button>
+                        <button id="validate-btn" class="btn btn-secondary">Valider</button>
+                        <button id="clear-input-btn" class="btn btn-light">Tout effacer</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <label for="json-output">Sortie</label>
+                    <textarea id="json-output" placeholder="Résultat..." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copy-btn" class="btn btn-primary">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options-section">
+                <label for="indent-size">Taille des tabulations:</label>
+                <select id="indent-size">
+                    <option value="2">2 espaces</option>
+                    <option value="4" selected>4 espaces</option>
+                    <option value="8">8 espaces</option>
+                    <option value="tab">Tabulation</option>
+                </select>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+
+            <section class="seo-content">
+                <h2>À propos de cet outil</h2>
+                <p>Notre <strong>Formateur JSON & Validateur</strong> est un outil en ligne gratuit qui vous permet de formater, valider et minifier du JSON rapidement et facilement. Que vous soyez développeur, data scientist ou simplement quelqu'un qui travaille avec des API, cet outil vous aidera à mieux comprendre et manipuler vos données JSON.</p>
+                <p>Le JSON (JavaScript Object Notation) est l'un des formats de données les plus populaires sur le web. Avec cet outil, vous pouvez convertir du JSON minifié en JSON bien formaté pour une meilleure lisibilité, ou inversement pour réduire la taille de vos fichiers. Vous pouvez également valider votre JSON pour détecter les erreurs de syntaxe.</p>
+                <p>Utilisez notre outil pour déboguer vos données JSON, vérifier la validité de vos API responses, ou simplement formater vos données pour une meilleure compréhension. L'outil fonctionne entièrement en ligne et vos données ne sont jamais stockées sur nos serveurs.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="regex-tester.html" class="tool-card">
+                        <h3>Testeur d'Expressions Régulières</h3>
+                        <p>Testez et validez vos regex</p>
+                    </a>
+                    <a href="hash-generator.html" class="tool-card">
+                        <h3>Générateur de Hash</h3>
+                        <p>Générez des hashs MD5, SHA1, SHA256</p>
+                    </a>
+                    <a href="base64-converter.html" class="tool-card">
+                        <h3>Convertisseur Base64</h3>
+                        <p>Encodez et décodez du Base64</p>
+                    </a>
+                    <a href="diff-checker.html" class="tool-card">
+                        <h3>Comparateur de Texte</h3>
+                        <p>Comparez deux textes et trouvez les différences</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const jsonInput = document.getElementById('json-input');
+        const jsonOutput = document.getElementById('json-output');
+        const formatBtn = document.getElementById('format-btn');
+        const minifyBtn = document.getElementById('minify-btn');
+        const validateBtn = document.getElementById('validate-btn');
+        const clearInputBtn = document.getElementById('clear-input-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const indentSize = document.getElementById('indent-size');
+        const statusMessage = document.getElementById('status-message');
+
+        function getIndentString() {
+            const size = indentSize.value;
+            return size === 'tab' ? '\t' : ' '.repeat(parseInt(size));
+        }
+
+        function formatJSON() {
+            try {
+                const json = JSON.parse(jsonInput.value);
+                const indent = getIndentString();
+                jsonOutput.value = JSON.stringify(json, null, indent);
+                statusMessage.textContent = 'JSON formaté avec succès!';
+                statusMessage.className = 'status-message success';
+            } catch (error) {
+                statusMessage.textContent = `Erreur: ${error.message}`;
+                statusMessage.className = 'status-message error';
+            }
+        }
+
+        function minifyJSON() {
+            try {
+                const json = JSON.parse(jsonInput.value);
+                jsonOutput.value = JSON.stringify(json);
+                statusMessage.textContent = 'JSON minifié avec succès!';
+                statusMessage.className = 'status-message success';
+            } catch (error) {
+                statusMessage.textContent = `Erreur: ${error.message}`;
+                statusMessage.className = 'status-message error';
+            }
+        }
+
+        function validateJSON() {
+            try {
+                JSON.parse(jsonInput.value);
+                statusMessage.textContent = 'JSON valide!';
+                statusMessage.className = 'status-message success';
+            } catch (error) {
+                statusMessage.textContent = `JSON invalide: ${error.message}`;
+                statusMessage.className = 'status-message error';
+            }
+        }
+
+        function clearInput() {
+            jsonInput.value = '';
+            jsonOutput.value = '';
+            statusMessage.textContent = '';
+        }
+
+        function copyOutput() {
+            navigator.clipboard.writeText(jsonOutput.value).then(() => {
+                statusMessage.textContent = 'Copié dans le presse-papiers!';
+                statusMessage.className = 'status-message success';
+                setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+            });
+        }
+
+        formatBtn.addEventListener('click', formatJSON);
+        minifyBtn.addEventListener('click', minifyJSON);
+        validateBtn.addEventListener('click', validateJSON);
+        clearInputBtn.addEventListener('click', clearInput);
+        copyBtn.addEventListener('click', copyOutput);
+
+        // Auto-format on paste
+        jsonInput.addEventListener('paste', () => {
+            setTimeout(formatJSON, 10);
+        });
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online meta tag generator for SEO. Generate meta tags, Open Graph tags, and Twitter cards. SEO meta tags generator with live Google SERP preview.">
+    <meta name="keywords" content="meta tag generator, seo meta tags, og tag generator, meta tags, google meta tags, open graph generator, twitter card generator">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/meta-tag-generator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Meta Tag Generator — SEO Meta Tags & OG Tags | ToolPilot">
+    <meta property="og:description" content="Free SEO meta tag generator. Generate meta tags, Open Graph tags, Twitter cards, and more for better SEO and social sharing.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Meta Tag Generator — Free SEO Tool">
+    <meta name="twitter:description" content="Generate SEO meta tags and Open Graph tags for better search results and social sharing.">
+
+    <title>Meta Tag Generator — SEO Meta Tags & OG Tags | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .generator-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .form-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-input);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 13px;
+            transition: border-color var(--transition);
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .preview-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .serp-preview {
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .serp-preview-title {
+            color: #1a0dff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .serp-preview-url {
+            color: #006621;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .serp-preview-description {
+            color: #4f4f4f;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .code-panel {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .code-panel label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        #metaTagsCode {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--text);
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-copy {
+            background: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .btn-copy:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-copy.copied {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .seo-content {
+            background: var(--bg-input);
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .seo-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .seo-content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .seo-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .ad-slot {
+            background: var(--bg-input);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 24px 0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all var(--transition);
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .tool-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tool-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .generator-card {
+                padding: 20px;
+            }
+
+            .generator-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .seo-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <a href="https://cyril-netizen.github.io/toolpailot#tools">Tools</a>
+            <span>/</span>
+            <span>Meta Tag Generator</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; color: var(--text);">Meta Tag Generator</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 32px;">Generate SEO meta tags and Open Graph tags with live Google SERP preview</p>
+
+        <div id="message" class="message"></div>
+
+        <div class="generator-card">
+            <div class="generator-layout">
+                <div class="form-panel">
+                    <h3 style="color: var(--text); margin-bottom: 12px;">SEO & Meta Information</h3>
+
+                    <div class="form-group">
+                        <label>Page Title *</label>
+                        <input type="text" id="pageTitle" placeholder="Enter your page title (50-60 chars)" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Meta Description *</label>
+                        <textarea id="pageDescription" placeholder="Enter meta description (150-160 chars)" oninput="updatePreview()"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Keywords (comma-separated)</label>
+                        <input type="text" id="pageKeywords" placeholder="keyword1, keyword2, keyword3" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" id="pageAuthor" placeholder="Your name or company" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Canonical URL</label>
+                        <input type="url" id="canonicalUrl" placeholder="https://example.com/page" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Robots Meta Tag</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="robotsIndex" checked oninput="updatePreview()">
+                                <label for="robotsIndex">Index</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="robotsFollow" checked oninput="updatePreview()">
+                                <label for="robotsFollow">Follow</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--text); margin-top: 24px; margin-bottom: 12px;">Open Graph Tags</h3>
+
+                    <div class="form-group">
+                        <label>OG Title</label>
+                        <input type="text" id="ogTitle" placeholder="Title for social sharing" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>OG Description</label>
+                        <textarea id="ogDescription" placeholder="Description for social sharing"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>OG Image URL</label>
+                        <input type="url" id="ogImage" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <div class="form-group">
+                        <label>OG Type</label>
+                        <select id="ogType" oninput="updatePreview()">
+                            <option value="website">Website</option>
+                            <option value="article">Article</option>
+                            <option value="product">Product</option>
+                            <option value="video">Video</option>
+                        </select>
+                    </div>
+
+                    <h3 style="color: var(--text); margin-top: 24px; margin-bottom: 12px;">Twitter Card</h3>
+
+                    <div class="form-group">
+                        <label>Twitter Card Type</label>
+                        <select id="twitterCardType">
+                            <option value="summary">Summary</option>
+                            <option value="summary_large_image">Summary Large Image</option>
+                            <option value="app">App</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="preview-panel">
+                    <h3 style="color: var(--text); margin-bottom: 12px;">Google Search Result Preview</h3>
+
+                    <div class="serp-preview">
+                        <div class="serp-preview-title" id="previewTitle">Your Page Title Here</div>
+                        <div class="serp-preview-url" id="previewUrl">example.com › page</div>
+                        <div class="serp-preview-description" id="previewDesc">Your meta description will appear here...</div>
+                    </div>
+
+                    <div class="code-panel">
+                        <label>Generated HTML Meta Tags</label>
+                        <div id="metaTagsCode"></div>
+                        <button class="btn-copy" onclick="copyCode()">Copy Code</button>
+                    </div>
+
+                    <button class="btn-primary" style="width: 100%;" onclick="generateMetaTags()">Generate Meta Tags</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About Meta Tag Generator</h2>
+            <p>Our free online meta tag generator helps you create SEO-optimized meta tags and Open Graph tags for better search engine rankings and social media sharing. Generate complete HTML meta tags with live Google search result preview to ensure your content looks perfect in search results and when shared on social platforms.</p>
+
+            <h3>Understanding Meta Tags</h3>
+            <p>Meta tags are HTML elements that provide information about a web page to search engines and social media platforms. They don't appear on the page itself but are crucial for SEO, social sharing, and user experience. Meta tags help search engines understand your content and determine how to display your page in search results.</p>
+
+            <h3>Key Meta Tags</h3>
+            <ul>
+                <li><strong>Title Tag:</strong> The main heading displayed in search results (50-60 characters recommended)</li>
+                <li><strong>Meta Description:</strong> Summary of page content (150-160 characters recommended)</li>
+                <li><strong>Meta Keywords:</strong> Relevant keywords for the page (less important for modern SEO)</li>
+                <li><strong>Robots Meta Tag:</strong> Instructions for search engine crawlers (index, follow, noindex, nofollow)</li>
+                <li><strong>Canonical Tag:</strong> Specifies the preferred version of a page (prevents duplicate content issues)</li>
+                <li><strong>Author Tag:</strong> Identifies the content creator or organization</li>
+            </ul>
+
+            <h3>Open Graph Tags for Social Sharing</h3>
+            <p>Open Graph (OG) tags control how your content appears when shared on social media platforms like Facebook, LinkedIn, and Twitter. They allow you to specify custom titles, descriptions, images, and content types for social sharing, creating a better user experience and increasing click-through rates.</p>
+
+            <ul>
+                <li><strong>og:title:</strong> Custom title for social sharing</li>
+                <li><strong>og:description:</strong> Custom description for social platforms</li>
+                <li><strong>og:image:</strong> Image displayed when content is shared (1200x630px recommended)</li>
+                <li><strong>og:type:</strong> Type of content (website, article, product, video, etc.)</li>
+                <li><strong>og:url:</strong> Canonical URL of the page</li>
+            </ul>
+
+            <h3>Best Practices for Meta Tags</h3>
+            <ul>
+                <li><strong>Title Tags:</strong> Keep them 50-60 characters, include your main keyword, make them unique</li>
+                <li><strong>Meta Descriptions:</strong> Write 150-160 characters, include the main keyword naturally, make them compelling</li>
+                <li><strong>Keywords:</strong> Focus on 3-5 main keywords, avoid keyword stuffing</li>
+                <li><strong>Open Graph Images:</strong> Use high-quality images (1200x630px), test on social platforms</li>
+                <li><strong>Canonical URLs:</strong> Use for duplicate content, pagination, and session parameters</li>
+                <li><strong>Mobile Optimization:</strong> Ensure titles and descriptions render well on mobile devices</li>
+            </ul>
+
+            <h3>Impact on SEO and Click-Through Rates</h3>
+            <p>Well-crafted meta tags directly impact your website's search engine rankings and click-through rates. An engaging title tag and compelling meta description can significantly increase the number of people who click your result in search results. Additionally, optimized Open Graph tags improve sharing and engagement on social media platforms, driving more traffic to your website.</p>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- Related Tools -->
+        <div style="margin-top: 40px;">
+            <h2 style="font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 20px;">Related Tools</h2>
+            <div class="tool-grid">
+                <a href="schema-markup-generator.html" class="tool-card">
+                    <h3>Schema Markup Generator</h3>
+                    <p>Generate JSON-LD structured data for SEO.</p>
+                </a>
+                <a href="sitemap-generator.html" class="tool-card">
+                    <h3>Sitemap Generator</h3>
+                    <p>Create XML sitemaps for your website.</p>
+                </a>
+                <a href="robots-txt-generator.html" class="tool-card">
+                    <h3>Robots.txt Generator</h3>
+                    <p>Generate robots.txt files for SEO.</p>
+                </a>
+                <a href="keyword-density-checker.html" class="tool-card">
+                    <h3>Keyword Density Checker</h3>
+                    <p>Analyze keyword density in your content.</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Meta Tag Generator",
+        "description": "Free online meta tag generator for SEO with Open Graph and Twitter card support",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Meta Tag Generator"}
+        ]
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        function updatePreview() {
+            const title = document.getElementById('pageTitle').value || 'Your Page Title Here';
+            const description = document.getElementById('pageDescription').value || 'Your meta description will appear here...';
+
+            document.getElementById('previewTitle').textContent = title.substring(0, 60);
+            document.getElementById('previewDesc').textContent = description.substring(0, 160);
+        }
+
+        function generateMetaTags() {
+            const title = document.getElementById('pageTitle').value;
+            const description = document.getElementById('pageDescription').value;
+            const keywords = document.getElementById('pageKeywords').value;
+            const author = document.getElementById('pageAuthor').value;
+            const canonical = document.getElementById('canonicalUrl').value;
+            const ogTitle = document.getElementById('ogTitle').value;
+            const ogDesc = document.getElementById('ogDescription').value;
+            const ogImage = document.getElementById('ogImage').value;
+            const ogType = document.getElementById('ogType').value;
+            const twitterType = document.getElementById('twitterCardType').value;
+
+            const robotsIndex = document.getElementById('robotsIndex').checked ? 'index' : 'noindex';
+            const robotsFollow = document.getElementById('robotsFollow').checked ? 'follow' : 'nofollow';
+
+            if (!title || !description) {
+                showMessage('Please fill in at least title and description', 'error');
+                return;
+            }
+
+            let metaTags = `<!-- SEO Meta Tags -->
+<meta name="title" content="${escapeHtml(title)}">
+<meta name="description" content="${escapeHtml(description)}">`;
+
+            if (keywords) metaTags += `\n<meta name="keywords" content="${escapeHtml(keywords)}">`;
+            if (author) metaTags += `\n<meta name="author" content="${escapeHtml(author)}">`;
+            metaTags += `\n<meta name="robots" content="${robotsIndex}, ${robotsFollow}">`;
+            if (canonical) metaTags += `\n<link rel="canonical" href="${escapeHtml(canonical)}">`;
+
+            metaTags += `\n\n<!-- Open Graph / Facebook -->
+<meta property="og:type" content="${ogType}">
+<meta property="og:title" content="${escapeHtml(ogTitle || title)}">
+<meta property="og:description" content="${escapeHtml(ogDesc || description)}">
+<meta property="og:url" content="${escapeHtml(canonical || '')}">`;
+            if (ogImage) metaTags += `\n<meta property="og:image" content="${escapeHtml(ogImage)}">`;
+
+            metaTags += `\n\n<!-- Twitter -->
+<meta name="twitter:card" content="${twitterType}">
+<meta name="twitter:title" content="${escapeHtml(ogTitle || title)}">
+<meta name="twitter:description" content="${escapeHtml(ogDesc || description)}">`;
+            if (ogImage) metaTags += `\n<meta name="twitter:image" content="${escapeHtml(ogImage)}">`;
+
+            document.getElementById('metaTagsCode').textContent = metaTags;
+            showMessage('Meta tags generated successfully', 'success');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function copyCode() {
+            const code = document.getElementById('metaTagsCode').textContent;
+            if (!code) {
+                showMessage('No code to copy. Generate meta tags first', 'error');
+                return;
+            }
+
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.classList.remove('copied');
+                }, 1500);
+            }).catch(() => {
+                showMessage('Failed to copy', 'error');
+            });
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message show ${type}`;
+            if (type === 'success') {
+                setTimeout(() => msg.classList.remove('show'), 2000);
+            }
+        }
+    </script>
+</body>
+</html>

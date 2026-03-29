@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ToolPilot blog — Expert guides on developer tools, password security, SEO, JSON, regex, Linux permissions and more. Practical tips to boost your workflow.">
+    <meta name="keywords" content="developer tools blog, web development guides, JSON formatter, password security, regex guide, SEO tips, Linux permissions">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ToolPilot Blog — Developer Tools, Tips & Guides">
+    <meta property="og:description" content="Practical guides on web development tools, security best practices, and online utilities to enhance your workflow.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/">
+    <meta property="og:site_name" content="ToolPilot">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ToolPilot Blog — Developer Tools, Tips & Guides">
+    <meta name="twitter:description" content="Practical guides on web development tools, security and online utilities.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/">
+    <link rel="alternate" type="application/rss+xml" title="ToolPilot Blog RSS" href="https://cyril-netizen.github.io/toolpailot/blog/feed.xml">
+    <title>Blog | ToolPilot — Free Developer Tools & Guides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .breadcrumb { display:flex; align-items:center; gap:.5rem; margin-bottom:2rem; font-size:.95rem; color:var(--text-muted); }
+        .breadcrumb a { color:var(--primary); text-decoration:none; }
+        .breadcrumb a:hover { color:var(--primary-light); text-decoration:underline; }
+        .blog-header { margin-bottom:2.5rem; text-align:center; }
+        .blog-header h1 { font-size:2.5rem; margin-bottom:.5rem; color:var(--text); }
+        .blog-header p { font-size:1.1rem; color:var(--text-muted); max-width:600px; margin:0 auto; }
+        .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:2rem; margin-bottom:3rem; }
+        .blog-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:all .3s ease; display:flex; flex-direction:column; }
+        .blog-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-4px); border-color:var(--primary); }
+        .blog-card-header { padding:1.5rem; background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%); color:white; min-height:80px; display:flex; flex-direction:column; justify-content:center; }
+        .blog-card-header h3 { margin:0; font-size:1.2rem; line-height:1.4; }
+        .blog-card-body { padding:1.5rem; flex-grow:1; display:flex; flex-direction:column; }
+        .blog-meta { display:flex; gap:1rem; margin-bottom:1rem; font-size:.9rem; color:var(--text-muted); }
+        .blog-meta span { display:flex; align-items:center; gap:.3rem; }
+        .blog-excerpt { color:var(--text-muted); line-height:1.6; margin-bottom:1rem; flex-grow:1; font-size:.95rem; }
+        .blog-card-footer { padding:0 1.5rem 1.5rem; }
+        .read-more { color:var(--primary); text-decoration:none; font-weight:600; }
+        .read-more:hover { color:var(--primary-light); text-decoration:underline; }
+        .article-count { text-align:center; color:var(--text-muted); font-size:.9rem; margin-bottom:1.5rem; }
+        @media (max-width:768px) { .blog-grid { grid-template-columns:1fr; } .blog-header h1 { font-size:2rem; } }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a> <span>›</span> <span>Blog</span>
+        </div>
+        <div class="blog-header">
+            <h1>ToolPilot Blog</h1>
+            <p>Expert guides on developer tools, security best practices, and web development tips</p>
+        </div>
+        <p class="article-count" id="article-count"></p>
+        <div class="blog-grid" id="blog-grid"></div>
+    </main>
+
+    <script>
+    // All articles with future dates — JS reveals them progressively
+    const ARTICLES = [
+      // Original 5
+      { slug:'best-json-formatters-2026', title:'Best JSON Formatters 2026', date:'2026-03-20', time:'5 min', desc:'Compare the top JSON formatting tools available online. Find the right one for your development workflow.' },
+      { slug:'how-to-create-strong-passwords', title:'How to Create Strong Passwords', date:'2026-03-18', time:'5 min', desc:'Master password security with actionable tips and best practices for creating unbreakable passwords.' },
+      { slug:'developer-tools-every-web-dev-needs', title:'Developer Tools Every Web Dev Needs', date:'2026-03-16', time:'6 min', desc:'The essential developer tools every web developer should have in their toolkit in 2026.' },
+      { slug:'understanding-base64-encoding', title:'Understanding Base64 Encoding', date:'2026-03-14', time:'5 min', desc:'Learn what Base64 encoding is, how it works, and when to use it in your projects.' },
+      { slug:'unix-timestamp-guide', title:'Unix Timestamp & Epoch Time Explained', date:'2026-03-12', time:'5 min', desc:'Understand Unix timestamps and learn to convert between human-readable dates and epoch time.' },
+      // New batch 1 — staggered every 3-4 days
+      { slug:'how-to-generate-qr-codes', title:'How to Generate QR Codes for Free', date:'2026-03-28', time:'5 min', desc:'Complete guide to creating QR codes for URLs, WiFi, contact info and more — for free.' },
+      { slug:'json-to-csv-guide', title:'How to Convert JSON to CSV', date:'2026-03-31', time:'5 min', desc:'Step-by-step guide to converting JSON data to CSV format with practical examples.' },
+      { slug:'jwt-tokens-explained', title:'JWT Tokens Explained: Decode & Understand', date:'2026-04-03', time:'7 min', desc:'Deep dive into JWT token structure, decoding, and security best practices.' },
+      { slug:'cron-expressions-guide', title:'Cron Expressions: Beginner\'s Guide', date:'2026-04-07', time:'6 min', desc:'Master cron syntax for task scheduling with examples and common patterns.' },
+      { slug:'css-gradients-examples', title:'CSS Gradient Examples & Tutorial', date:'2026-04-10', time:'7 min', desc:'Create stunning CSS gradients: linear, radial, and conic — with live examples and code.' },
+      { slug:'yaml-vs-json-vs-toml', title:'JSON vs YAML vs TOML: Which to Choose?', date:'2026-04-14', time:'6 min', desc:'Configuration format comparison: strengths, weaknesses, and use cases for each format.' },
+      { slug:'linux-file-permissions-explained', title:'Linux File Permissions & chmod Guide', date:'2026-04-17', time:'6 min', desc:'Master Linux permissions: read, write, execute, chmod numbers, and security best practices.' },
+      { slug:'seo-meta-tags-guide', title:'How to Write SEO Meta Tags That Rank', date:'2026-04-21', time:'7 min', desc:'Generate optimized meta tags for better search rankings. Title, description, OG tags explained.' },
+      { slug:'best-free-developer-tools-2026', title:'Best Free Online Developer Tools 2026', date:'2026-04-24', time:'7 min', desc:'Curated collection of the best free online tools for web developers in 2026.' },
+      { slug:'best-qr-code-generators', title:'Best Free QR Code Generators Compared', date:'2026-04-28', time:'5 min', desc:'Side-by-side comparison of top QR code generators: features, limits, and recommendations.' },
+      // New batch 2
+      { slug:'best-password-managers-2026', title:'Best Password Managers 2026', date:'2026-05-01', time:'6 min', desc:'Compare 1Password, Bitwarden, Dashlane and more. Find the best password manager for your needs.' },
+      { slug:'best-regex-testers-online', title:'Best Online Regex Testers & Debuggers', date:'2026-05-05', time:'6 min', desc:'Evaluate the top regex testing tools with live matching, syntax highlighting and documentation.' },
+      { slug:'what-is-uuid', title:'What Is a UUID and When to Use One?', date:'2026-05-08', time:'5 min', desc:'UUID versions explained: v1, v4, v7. When to use UUIDs vs auto-increment IDs in your projects.' },
+      { slug:'url-encoding-explained', title:'URL Encoding Explained: Why & How', date:'2026-05-12', time:'5 min', desc:'Understand percent-encoding, reserved characters, and how URL encoding works in practice.' },
+      { slug:'css-minification-guide', title:'Complete Guide to CSS Minification', date:'2026-05-15', time:'5 min', desc:'Reduce CSS file sizes and improve page speed with minification techniques and tools.' },
+      { slug:'regex-cheat-sheet', title:'Regular Expressions Cheat Sheet 2026', date:'2026-05-19', time:'8 min', desc:'Comprehensive regex reference: character classes, quantifiers, assertions, lookaheads and more.' },
+      { slug:'color-theory-hex-rgb-hsl', title:'Color Models Explained: Hex, RGB, HSL', date:'2026-05-22', time:'7 min', desc:'Understand color formats and conversions. When to use Hex, RGB, or HSL in web design.' },
+      { slug:'web-security-basics', title:'Web Security Basics for Developers', date:'2026-05-26', time:'7 min', desc:'HTTPS, XSS, CSRF, SQL injection — essential security knowledge for every web developer.' },
+      { slug:'javascript-minification-guide', title:'JavaScript Minification & Bundling Guide', date:'2026-05-29', time:'6 min', desc:'Minify and bundle JS for production: Terser, esbuild, tree-shaking and source maps explained.' },
+      { slug:'html-to-markdown-guide', title:'How to Convert HTML to Markdown', date:'2026-06-02', time:'5 min', desc:'Methods and tools to transform HTML documents into clean, readable Markdown syntax.' },
+    ];
+
+    function renderBlog() {
+      const today = new Date().toISOString().split('T')[0];
+      const published = ARTICLES.filter(a => a.date <= today);
+      published.sort((a, b) => b.date.localeCompare(a.date)); // newest first
+
+      const grid = document.getElementById('blog-grid');
+      const count = document.getElementById('article-count');
+      count.textContent = published.length + ' article' + (published.length > 1 ? 's' : '') + ' published';
+
+      grid.innerHTML = published.map(a => `
+        <article class="blog-card">
+          <div class="blog-card-header"><h3>${a.title}</h3></div>
+          <div class="blog-card-body">
+            <div class="blog-meta">
+              <span>📅 ${new Date(a.date+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})}</span>
+              <span>⏱️ ${a.time} read</span>
+            </div>
+            <p class="blog-excerpt">${a.desc}</p>
+          </div>
+          <div class="blog-card-footer">
+            <a href="${a.slug}.html" class="read-more">Read Article →</a>
+          </div>
+        </article>
+      `).join('');
+    }
+    renderBlog();
+    </script>
+
+    <script>
+    const blogSchema = {
+      "@context":"https://schema.org",
+      "@type":"Blog",
+      "name":"ToolPilot Blog",
+      "description":"Expert guides on developer tools, security best practices, and web development tips",
+      "url":"https://cyril-netizen.github.io/toolpailot/blog/",
+      "publisher":{"@type":"Organization","name":"ToolPilot"}
+    };
+    document.head.appendChild(Object.assign(document.createElement('script'),{type:'application/ld+json',textContent:JSON.stringify(blogSchema)}));
+    </script>
+    <script src="../common.js"></script>
+</body>
+</html>

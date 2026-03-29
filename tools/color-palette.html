@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate beautiful, harmonious color palettes. Create color schemes for design projects with random, analogous, complementary, and triadic modes.">
+    <meta name="keywords" content="color palette, color generator, color scheme, hex colors, design colors, color harmony">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/color-palette.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/color-palette.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/color-palette.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Color Palette Generator — Beautiful Color Schemes | ToolPilot">
+    <meta property="og:description" content="Generate beautiful, harmonious color palettes for your design projects. Choose from random, analogous, complementary, and triadic color schemes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/color-palette.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Color Palette Generator — Beautiful Color Schemes | ToolPilot">
+    <meta name="twitter:description" content="Generate beautiful color palettes for design with multiple harmony modes and customization options.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>Color Palette Generator — Beautiful Color Schemes | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .controls-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .mode-selector label {
+            font-weight: 600;
+            margin: 0;
+            margin-right: 0.5rem;
+        }
+
+        .mode-selector select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .buttons-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #0052a3;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .palette-section {
+            margin-bottom: 2rem;
+        }
+
+        .palette-label {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .color-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 150px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .color-card:hover .color-swatch {
+            filter: brightness(0.95);
+        }
+
+        .lock-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .lock-btn:hover {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .lock-btn.locked {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        .color-info {
+            padding: 1rem;
+        }
+
+        .color-value {
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            user-select: all;
+        }
+
+        .color-formats {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .format-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .format-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .format-value {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            user-select: all;
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #28a745;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Color Palette Generator
+    </div>
+
+    <main class="tool-container">
+        <h1>Color Palette Generator</h1>
+        <p class="subtitle">Create beautiful, harmonious color schemes for your design projects</p>
+
+        <div class="controls-section">
+            <div class="mode-selector">
+                <label for="palette-mode">Palette Mode:</label>
+                <select id="palette-mode">
+                    <option value="random">Random</option>
+                    <option value="analogous">Analogous</option>
+                    <option value="complementary">Complementary</option>
+                    <option value="triadic">Triadic</option>
+                </select>
+            </div>
+            <div class="buttons-group">
+                <button class="btn" id="generate-btn">Generate New Palette</button>
+            </div>
+        </div>
+
+        <div class="palette-section">
+            <div class="palette-label">Color Palette (Click to copy, click lock to lock colors):</div>
+            <div class="palette-grid" id="palette-grid"></div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="hex-rgb-converter.html" class="card tool-card">
+                    <span class="icon">🌈</span>
+                    <h3>Hex/RGB Converter</h3>
+                    <p>Convert between Hex, RGB, and HSL color formats.</p>
+                </a>
+                <a href="css-minifier.html" class="card tool-card">
+                    <span class="icon">🎯</span>
+                    <h3>CSS Minifier</h3>
+                    <p>Minify and beautify CSS code instantly.</p>
+                </a>
+                <a href="password-generator.html" class="card tool-card">
+                    <span class="icon">🔐</span>
+                    <h3>Password Generator</h3>
+                    <p>Generate strong, random passwords with custom rules.</p>
+                </a>
+                <a href="lorem-ipsum.html" class="card tool-card">
+                    <span class="icon">📝</span>
+                    <h3>Lorem Ipsum Generator</h3>
+                    <p>Generate placeholder text for your designs.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About Color Palette Generator</h2>
+            <p>
+                Create stunning color palettes instantly with our Color Palette Generator. Perfect for designers, developers, and creative professionals who need harmonious color schemes for their projects.
+            </p>
+
+            <h3>Palette Modes Explained</h3>
+            <p>
+                <strong>Random:</strong> Generates completely random colors without any specific relationship. Great for exploring unexpected combinations.
+            </p>
+            <p>
+                <strong>Analogous:</strong> Creates colors that sit next to each other on the color wheel. These palettes are harmonious and pleasant to the eye.
+            </p>
+            <p>
+                <strong>Complementary:</strong> Generates colors that are opposite on the color wheel. These create high contrast and vibrant designs.
+            </p>
+            <p>
+                <strong>Triadic:</strong> Produces three colors equally spaced on the color wheel. Triadic palettes are vibrant yet balanced.
+            </p>
+
+            <h3>Color Formats</h3>
+            <p>
+                Each color is displayed in multiple formats for maximum compatibility:
+            </p>
+            <p>
+                <strong>HEX:</strong> Hexadecimal color codes, standard for web design and CSS. Example: #FF5733
+            </p>
+            <p>
+                <strong>RGB:</strong> Red, Green, Blue values for digital display. Example: rgb(255, 87, 51)
+            </p>
+            <p>
+                <strong>HSL:</strong> Hue, Saturation, Lightness values useful for color theory work. Example: hsl(9, 100%, 60%)
+            </p>
+
+            <h3>How to Use</h3>
+            <p>
+                Select your preferred palette mode from the dropdown. Click "Generate New Palette" to create a fresh set of five harmonious colors. Click on any color card to copy its hex value to your clipboard. Use the lock icon to lock specific colors in place while regenerating others.
+            </p>
+
+            <h3>Why Color Harmony Matters</h3>
+            <p>
+                Using harmonious color schemes creates visually pleasing designs that engage users. Our generator ensures colors work well together, whether you're designing websites, creating graphics, or developing applications.
+            </p>
+
+            <h3>Color Palette Generator for Designers</h3>
+            <p>
+                Our free color palette generator creates beautiful, harmonious color schemes instantly. Whether you're a UX designer, graphic designer, or web developer, this color scheme generator helps you explore color combinations without manual trial and error. Generate unlimited palettes with just one click, and lock your favorite colors to explore variations.</p>
+
+            <h3>Random Color Palette and Color Scheme Generator</h3>
+            <p>
+                Create random color palettes using our intelligent generator that understands color theory. The random color palette mode produces visually distinct colors, while complementary and triadic modes ensure professional-looking color schemes based on color wheel relationships. Each color palette is generated with multiple format options including HEX, RGB, and HSL codes.</p>
+
+            <h3>Complementary Colors and Color Harmony Tools</h3>
+            <p>
+                Discover complementary colors that create striking contrast and visual interest. Our complementary color generator uses color wheel theory to identify colors opposite each other, producing vibrant combinations perfect for bold designs. The triadic color mode generates three equally-spaced colors for balanced yet dynamic palettes ideal for complex design systems.</p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Color Palette Generator",
+        "description": "Generate beautiful, harmonious color palettes for design projects with multiple harmony modes.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/color-palette.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I generate a color palette?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use a color palette generator to create harmonious color combinations. ToolPilot offers complementary, analogous, triadic, and random palette modes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is a complementary color scheme?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A complementary color scheme uses colors opposite each other on the color wheel. These combinations create high contrast and visual impact, making them popular in design."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I convert HEX to RGB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A HEX color like #FF5733 converts to RGB(255, 87, 51). ToolPilot's color palette shows both formats for each generated color."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Color Palette"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Color Palette — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/color-palette.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Generate beautiful color palettes for your projects."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const modeSelect = document.getElementById('palette-mode');
+        const generateBtn = document.getElementById('generate-btn');
+        const paletteGrid = document.getElementById('palette-grid');
+
+        let lockedColors = {};
+
+        function hslToHex(h, s, l) {
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+        }
+
+        function hslToRgb(h, s, l) {
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color);
+            };
+            return `rgb(${f(0)}, ${f(8)}, ${f(4)})`;
+        }
+
+        function hexToHsl(hex) {
+            let r = parseInt(hex.slice(1, 3), 16) / 255;
+            let g = parseInt(hex.slice(3, 5), 16) / 255;
+            let b = parseInt(hex.slice(5, 7), 16) / 255;
+
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+
+        function generateColor() {
+            const h = Math.floor(Math.random() * 360);
+            const s = Math.floor(Math.random() * 30) + 50;
+            const l = Math.floor(Math.random() * 20) + 45;
+            return { h, s, l, hex: hslToHex(h, s, l) };
+        }
+
+        function generatePalette(mode) {
+            const colors = [];
+
+            if (mode === 'random') {
+                for (let i = 0; i < 5; i++) {
+                    const color = generateColor();
+                    colors.push(color);
+                }
+            } else if (mode === 'analogous') {
+                const baseH = Math.floor(Math.random() * 360);
+                for (let i = 0; i < 5; i++) {
+                    const h = (baseH + (i - 2) * 30) % 360;
+                    const s = 60 + Math.random() * 30;
+                    const l = 50 + Math.random() * 15;
+                    colors.push({ h, s: Math.round(s), l: Math.round(l), hex: hslToHex(h, s, l) });
+                }
+            } else if (mode === 'complementary') {
+                const baseH = Math.floor(Math.random() * 360);
+                for (let i = 0; i < 5; i++) {
+                    const h = i < 3 ? baseH + Math.random() * 30 - 15 : (baseH + 180) + Math.random() * 30 - 15;
+                    const s = 60 + Math.random() * 30;
+                    const l = 50 + Math.random() * 15;
+                    colors.push({ h: (h + 360) % 360, s: Math.round(s), l: Math.round(l), hex: hslToHex((h + 360) % 360, s, l) });
+                }
+            } else if (mode === 'triadic') {
+                const baseH = Math.floor(Math.random() * 360);
+                for (let i = 0; i < 5; i++) {
+                    const h = (baseH + Math.floor(i / 2) * 120 + Math.random() * 30 - 15) % 360;
+                    const s = 60 + Math.random() * 30;
+                    const l = 50 + Math.random() * 15;
+                    colors.push({ h, s: Math.round(s), l: Math.round(l), hex: hslToHex(h, s, l) });
+                }
+            }
+
+            return colors;
+        }
+
+        function renderPalette(colors) {
+            paletteGrid.innerHTML = '';
+
+            colors.forEach((color, index) => {
+                const isLocked = lockedColors[index];
+                const card = document.createElement('div');
+                card.className = 'color-card';
+                card.innerHTML = `
+                    <div class="color-swatch" style="background-color: ${color.hex}">
+                        <button class="lock-btn ${isLocked ? 'locked' : ''}" data-index="${index}" title="Lock this color">
+                            ${isLocked ? '🔒' : '🔓'}
+                        </button>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-value">${color.hex}</div>
+                        <div class="color-formats">
+                            <div class="format-row">
+                                <span class="format-label">RGB:</span>
+                                <span class="format-value">${hslToRgb(color.h, color.s, color.l)}</span>
+                            </div>
+                            <div class="format-row">
+                                <span class="format-label">HSL:</span>
+                                <span class="format-value">hsl(${color.h}, ${color.s}%, ${color.l}%)</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.lock-btn')) return;
+                    copyToClipboard(color.hex);
+                });
+
+                const lockBtn = card.querySelector('.lock-btn');
+                lockBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lockedColors[index] = !lockedColors[index];
+                    lockBtn.classList.toggle('locked');
+                    lockBtn.textContent = lockedColors[index] ? '🔒' : '🔓';
+                });
+
+                paletteGrid.appendChild(card);
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const notification = document.createElement('div');
+                notification.className = 'copy-notification';
+                notification.textContent = `Copied: ${text}`;
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 2000);
+            });
+        }
+
+        let currentPalette = [];
+
+        function generate() {
+            const mode = modeSelect.value;
+            let newPalette = generatePalette(mode);
+
+            // Keep locked colors
+            Object.keys(lockedColors).forEach(index => {
+                if (lockedColors[index] && currentPalette[index]) {
+                    newPalette[index] = currentPalette[index];
+                }
+            });
+
+            currentPalette = newPalette;
+            renderPalette(currentPalette);
+        }
+
+        generateBtn.addEventListener('click', generate);
+        modeSelect.addEventListener('change', generate);
+
+        // Initial generation
+        generate();
+    </script>
+</body>
+</html>

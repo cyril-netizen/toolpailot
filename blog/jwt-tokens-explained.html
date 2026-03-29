@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how JWT tokens work, how to read and decode them. Complete guide to JSON Web Tokens for developers.">
+    <meta name="keywords" content="what is jwt token, how to decode jwt, jwt explained">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JWT Tokens Explained: How to Read and Decode Them">
+    <meta property="og:description" content="Comprehensive guide to understanding JWT tokens, their structure, and how to decode and validate them in your applications.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/jwt-tokens-explained.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JWT Tokens Explained: How to Read and Decode Them">
+    <meta name="twitter:description" content="Learn about JWT tokens, their structure, and how to decode them for authentication.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/jwt-tokens-explained.html">
+
+    <title>JWT Tokens Explained | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .tip-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-example {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .recommended-tools {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .recommended-tools h3 {
+            color: var(--text);
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .recommended-tools ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recommended-tools li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .recommended-tools li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recommended-tools a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .recommended-tools a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .recommended-tools .tool-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .disclaimer {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>JWT Tokens Explained</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">JWT Tokens Explained: How to Read and Decode Them</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-04-03">April 3, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 7 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>JWT (JSON Web Token) tokens have become the standard for modern authentication and authorization in web applications. Despite their apparent complexity, understanding JWT tokens is essential for any developer working with APIs, microservices, or modern single-page applications. JWTs enable stateless authentication, eliminate the need for server-side session storage, and provide a secure, standardized way to transmit information between parties. This comprehensive guide demystifies JWT tokens and teaches you how to read, decode, and work with them effectively in your applications.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>What Is a JWT Token?</h2>
+
+                <p>A JWT is a self-contained token that holds information about a user or application in a compact, URL-safe format. It's encoded and optionally signed and encrypted, making it secure for transmission between parties. Unlike traditional session tokens that require server-side storage, JWTs contain all necessary information within themselves. This makes them ideal for distributed systems where different servers shouldn't need to share session data.</p>
+
+                <p>JWTs are widely used in modern authentication flows, OAuth 2.0 implementations, and API security. They solve the problem of stateless authentication—the server doesn't need to remember sessions because all relevant information is contained in the token itself. This makes JWTs scalable and perfect for microservices architectures where multiple services need to verify the same user without shared session storage.</p>
+
+                <h2>The Three Parts of a JWT Token</h2>
+
+                <p>Every JWT consists of three parts separated by dots: header.payload.signature. Understanding each part is crucial for working with tokens effectively.</p>
+
+                <h3>Part 1: The Header</h3>
+
+                <p>The header contains metadata about the token, typically including the token type (JWT) and the signing algorithm used (HS256, RS256, etc.). The header is a JSON object encoded in Base64URL format. When decoded, a typical header looks like this:</p>
+
+                <div class="code-example">
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+                </div>
+
+                <p>The "alg" field specifies which algorithm was used to sign the token. Common algorithms include HS256 (HMAC SHA-256), RS256 (RSA SHA-256), and ES256 (ECDSA SHA-256). This tells the server how to verify the signature.</p>
+
+                <h3>Part 2: The Payload</h3>
+
+                <p>The payload contains the actual data or claims. Claims are statements about the user or application. The payload is also Base64URL encoded JSON. A typical payload looks like:</p>
+
+                <div class="code-example">
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022,
+  "exp": 1516242622
+}
+                </div>
+
+                <p>Standard claims include "sub" (subject, usually user ID), "iat" (issued at timestamp), and "exp" (expiration timestamp). You can add custom claims containing application-specific information. The payload is visible to anyone with the token—never store sensitive information like passwords here.</p>
+
+                <h3>Part 3: The Signature</h3>
+
+                <p>The signature proves the token hasn't been tampered with. It's created by encoding the header and payload, then signing them with a secret key or private key using the algorithm specified in the header. Only the server with the secret key can create or verify valid signatures. The signature ensures integrity—if someone modifies the payload, the signature becomes invalid.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>How to Decode a JWT Token</h2>
+
+                <h3>Using an Online JWT Decoder</h3>
+
+                <p>The simplest way to decode and inspect a JWT is using an online tool like <a href="../tools/jwt-decoder.html">ToolPilot's JWT Decoder</a>. Simply paste your token, and it immediately decodes all three parts into readable JSON. This is perfect for debugging and understanding what information a token contains. However, never use public online decoders for tokens containing sensitive information—the website operator could see your data.</p>
+
+                <h3>Decoding Manually</h3>
+
+                <p>You can decode a JWT manually by splitting it at the dots and Base64URL decoding each part. In JavaScript:</p>
+
+                <div class="code-example">
+const token = "eyJhbGc...";
+const [headerEncoded, payloadEncoded, signature] = token.split('.');
+
+const header = JSON.parse(atob(headerEncoded));
+const payload = JSON.parse(atob(payloadEncoded));
+
+console.log(header);
+console.log(payload);
+                </div>
+
+                <p>The key difference from standard Base64 is that JWT uses Base64URL encoding, replacing special characters (+/ with -_). Most programming languages provide libraries that handle this automatically.</p>
+
+                <h3>Decoding in Your Application</h3>
+
+                <p>In production applications, use language-specific libraries. Most frameworks include JWT support. For Node.js, the jsonwebtoken library is standard. Python developers use PyJWT. For Go, jwt-go is popular. These libraries handle both decoding and signature verification automatically. Always verify the signature when decoding—never trust a token just because you can read it.</p>
+
+                <div class="tip-box">
+                    <strong>Pro Tip:</strong> Always verify JWT signatures in your application. Decoding without verification proves nothing—anyone can create a token with any payload. Signature verification ensures the token came from a trusted source.
+                </div>
+
+                <h2>Understanding JWT Claims</h2>
+
+                <p>Standard registered claims are defined by JWT specifications. "iss" (issuer) identifies who created the token. "sub" (subject) identifies the user. "aud" (audience) specifies intended recipients. "exp" (expiration time) is a timestamp when the token becomes invalid. "nbf" (not before) specifies when the token becomes valid. "iat" (issued at) shows when the token was created.</p>
+
+                <p>Custom claims allow you to include application-specific information. Common custom claims include user roles, permissions, email, and user ID. Be careful with custom claims—they're visible to anyone with the token and could expose information if the token is compromised.</p>
+
+                <h2>JWT Security Best Practices</h2>
+
+                <p>Always transmit JWTs over HTTPS to prevent interception. Include expiration times in your tokens to limit the window if a token is compromised. Use appropriate signing algorithms—RS256 is more secure than HS256 for distributed systems. Verify signatures on every token usage—never skip verification. Store tokens securely in your application, typically in secure HTTP-only cookies rather than localStorage which is vulnerable to XSS attacks.</p>
+
+                <p>Implement token refresh mechanisms where short-lived access tokens are paired with longer-lived refresh tokens. This allows users to stay logged in while limiting exposure from compromised access tokens. Never store sensitive information like passwords or payment details in JWT payloads.</p>
+
+                <h2>Common JWT Use Cases</h2>
+
+                <p>API authentication is the most common use case—clients send JWTs in Authorization headers. Single sign-on systems use JWTs to allow users to log in once across multiple applications. Microservices use JWTs to pass user context between services without sharing session storage. Mobile applications use JWTs because they're stateless and work well with REST APIs. Progressive web applications use JWTs for persistent authentication across page refreshes.</p>
+
+                <div class="cta-box">
+                    <h3>Decode Your JWT Tokens</h3>
+                    <p>Use ToolPilot's free JWT decoder to inspect and understand your tokens instantly.</p>
+                    <a href="../tools/jwt-decoder.html" class="cta-button">Decode JWT Token</a>
+                </div>
+
+                <div class="recommended-tools">
+                    <h3>JWT Tools and Libraries</h3>
+                    <ul>
+                        <li>
+                            <a href="../tools/jwt-decoder.html">ToolPilot JWT Decoder</a>
+                            <div class="tool-desc">Free online JWT decoder for instantly viewing token contents with detailed formatting.</div>
+                        </li>
+                        <li>
+                            <a href="https://jwt.io/" target="_blank" rel="noopener noreferrer">JWT.io</a>
+                            <div class="tool-desc">Official JWT reference site with decoder and library recommendations for all languages.</div>
+                        </li>
+                        <li>
+                            <a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noopener noreferrer">jsonwebtoken NPM</a>
+                            <div class="tool-desc">Standard Node.js JWT library for creating, verifying, and working with tokens.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="disclaimer">
+                    Disclaimer: Some links in this article may be affiliate links. We earn a small commission if you choose to use these services, at no cost to you. Our recommendations are based on product quality and value.
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Is a JWT token encrypted?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">JWTs are encoded (Base64), not encrypted by default. The payload is readable to anyone with the token. Encryption is available through JWE (JSON Web Encryption) if needed, but standard JWTs with just signatures don't encrypt the payload. Never store sensitive passwords or payment details in JWT claims.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">How long are JWT tokens valid?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Validity depends on the "exp" (expiration) claim set when creating the token. Common patterns include 15-minute expiration for access tokens paired with longer-lived refresh tokens. Access tokens for less secure contexts might expire in hours, while refresh tokens can last days or weeks.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Can JWT tokens be revoked?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Standard JWTs cannot be revoked until expiration. To enable revocation, maintain a blacklist or token database. Alternatively, use short expiration times and pair with refresh tokens, allowing you to deny refresh requests when revocation is needed. Some systems use token version numbers within claims.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="best-free-developer-tools-2026.html" class="related-link">
+                        <strong>Best Free Developer Tools 2026</strong>
+                        <p>Discover tools that complement JWT handling in your development workflow.</p>
+                    </a>
+                    <a href="yaml-vs-json-vs-toml.html" class="related-link">
+                        <strong>JSON vs YAML vs TOML: Format Comparison</strong>
+                        <p>Learn about data formats including JSON that underlies JWT tokens.</p>
+                    </a>
+                    <a href="json-to-csv-guide.html" class="related-link">
+                        <strong>JSON to CSV Conversion Guide</strong>
+                        <p>Understand JSON format better for working with structured data.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-04-03">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+    <script src="../common.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "JWT Tokens Explained: How to Read and Decode Them",
+        "description": "Comprehensive guide to understanding JWT tokens, their structure, how to decode them, and best practices for using them in your applications.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-04-03T08:00:00Z",
+        "dateModified": "2026-04-03T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+</body>
+</html>

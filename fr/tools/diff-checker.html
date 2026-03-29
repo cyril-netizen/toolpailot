@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Comparateur de Texte | ToolPilot</title>
+    <meta name="description" content="Comparez deux textes et trouvez les différences en ligne. Visualisez les additions et suppressions avec notre outil gratuit.">
+    <meta name="keywords" content="comparateur de texte, diff checker, comparaison de texte, différences de texte, comparer des textes">
+    <meta property="og:title" content="Comparateur de Texte | ToolPilot">
+    <meta property="og:description" content="Comparez deux textes et trouvez les différences en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Comparateur de Texte | ToolPilot">
+    <meta name="twitter:description" content="Comparez deux textes et trouvez les différences en ligne.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html">
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .diff-added { color: #2e7d32; background: rgba(46, 125, 50, 0.15); }
+        .diff-removed { color: #c62828; background: rgba(198, 40, 40, 0.15); }
+        .diff-line { display: block; padding: 4px 8px; margin: 2px 0; border-radius: 3px; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Comparateur de Texte",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Comparateur de Texte",
+        "description": "Comparez deux textes et trouvez les différences en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Comment utiliser le comparateur de texte?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Collez le texte original dans le premier champ et le texte modifié dans le second champ, puis cliquez sur Comparer pour voir les différences."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quelles différences sont mises en évidence?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Les lignes ajoutées sont affichées en vert et les lignes supprimées en rouge. Cela vous permet de voir facilement ce qui a changé."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Puis-je comparer des fichiers volumineux?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Oui, l'outil fonctionne avec des textes de n'importe quelle taille. Plus le texte est volumineux, plus le traitement peut prendre du temps."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Comparateur de Texte</span>
+            </nav>
+
+            <h1>Comparateur de Texte</h1>
+            <p class="tool-subtitle">Comparez deux textes et visualisez les différences</p>
+
+            <div class="tool-container comparison-tool">
+                <div class="comparison-section">
+                    <div class="input-section">
+                        <label for="original-text">Texte original</label>
+                        <textarea id="original-text" placeholder="Collez votre texte original ici..."></textarea>
+                    </div>
+                </div>
+
+                <div class="comparison-section">
+                    <div class="input-section">
+                        <label for="modified-text">Texte modifié</label>
+                        <textarea id="modified-text" placeholder="Collez votre texte modifié ici..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group" style="margin: 20px 0;">
+                <button id="compare-btn" class="btn btn-primary">Comparer</button>
+                <button id="clear-btn" class="btn btn-secondary">Tout effacer</button>
+            </div>
+
+            <div class="results-section" id="results-section" style="display:none;">
+                <h2>Résultats</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="added-count">0</div>
+                        <div class="stat-label">Lignes ajoutées</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="removed-count">0</div>
+                        <div class="stat-label">Lignes supprimées</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="unchanged-count">0</div>
+                        <div class="stat-label">Lignes inchangées</div>
+                    </div>
+                </div>
+
+                <div id="diff-output" class="diff-output"></div>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+
+            <section class="seo-content">
+                <h2>À propos de ce comparateur</h2>
+                <p>Notre <strong>Comparateur de Texte</strong> vous permet de voir rapidement les différences entre deux versions d'un texte. C'est un outil essentiel pour les développeurs, les rédacteurs et tous ceux qui ont besoin de suivre les modifications apportées aux documents.</p>
+                <p>L'outil effectue une comparaison ligne par ligne et met en évidence les lignes ajoutées en vert et les lignes supprimées en rouge. Vous obtiendrez également des statistiques sur le nombre de lignes ajoutées, supprimées et inchangées, ce qui vous donne une vue d'ensemble des modifications.</p>
+                <p>Utilisez cet outil pour vérifier les modifications de code, comparer différentes versions de documents, ou identifier exactement ce qui a changé entre deux textes. Tous les traitements se font dans votre navigateur sans envoyer vos données à nos serveurs.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="json-formatter.html" class="tool-card">
+                        <h3>Formateur JSON</h3>
+                        <p>Formatez et validez du JSON</p>
+                    </a>
+                    <a href="css-minifier.html" class="tool-card">
+                        <h3>Minifiant CSS</h3>
+                        <p>Minifiez votre CSS</p>
+                    </a>
+                    <a href="js-minifier.html" class="tool-card">
+                        <h3>Minifiant JavaScript</h3>
+                        <p>Minifiez votre JavaScript</p>
+                    </a>
+                    <a href="regex-tester.html" class="tool-card">
+                        <h3>Testeur de Regex</h3>
+                        <p>Testez des expressions régulières</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const originalText = document.getElementById('original-text');
+        const modifiedText = document.getElementById('modified-text');
+        const compareBtn = document.getElementById('compare-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const resultsSection = document.getElementById('results-section');
+        const diffOutput = document.getElementById('diff-output');
+        const statusMessage = document.getElementById('status-message');
+        const addedCount = document.getElementById('added-count');
+        const removedCount = document.getElementById('removed-count');
+        const unChangedCount = document.getElementById('unchanged-count');
+
+        function computeDiff(original, modified) {
+            const origLines = original.split('\n');
+            const modLines = modified.split('\n');
+
+            const result = [];
+            let i = 0, j = 0;
+
+            while (i < origLines.length || j < modLines.length) {
+                if (i < origLines.length && j < modLines.length && origLines[i] === modLines[j]) {
+                    result.push({ type: 'unchanged', content: origLines[i] });
+                    i++;
+                    j++;
+                } else if (i < origLines.length && (j >= modLines.length || modLines.indexOf(origLines[i]) === -1)) {
+                    result.push({ type: 'removed', content: origLines[i] });
+                    i++;
+                } else if (j < modLines.length) {
+                    result.push({ type: 'added', content: modLines[j] });
+                    j++;
+                }
+            }
+
+            return result;
+        }
+
+        compareBtn.addEventListener('click', () => {
+            try {
+                const orig = originalText.value;
+                const mod = modifiedText.value;
+
+                const diff = computeDiff(orig, mod);
+
+                let added = 0, removed = 0, unchanged = 0;
+                let html = '';
+
+                diff.forEach(line => {
+                    if (line.type === 'added') {
+                        added++;
+                        html += `<div class="diff-line diff-added">+ ${line.content}</div>`;
+                    } else if (line.type === 'removed') {
+                        removed++;
+                        html += `<div class="diff-line diff-removed">- ${line.content}</div>`;
+                    } else {
+                        unchanged++;
+                        html += `<div class="diff-line">  ${line.content}</div>`;
+                    }
+                });
+
+                addedCount.textContent = added;
+                removedCount.textContent = removed;
+                unChangedCount.textContent = unchanged;
+
+                diffOutput.innerHTML = html;
+                resultsSection.style.display = 'block';
+                statusMessage.textContent = 'Comparaison terminée!';
+                statusMessage.className = 'status-message success';
+                setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+            } catch (error) {
+                statusMessage.textContent = 'Erreur: ' + error.message;
+                statusMessage.className = 'status-message error';
+            }
+        });
+
+        clearBtn.addEventListener('click', () => {
+            originalText.value = '';
+            modifiedText.value = '';
+            resultsSection.style.display = 'none';
+            diffOutput.innerHTML = '';
+        });
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

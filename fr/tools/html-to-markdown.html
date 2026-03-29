@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convertisseur HTML vers Markdown gratuit en ligne. Convertissez le code HTML en format Markdown propre instantanément. Parfait pour les blogueurs, développeurs et créateurs de contenu.">
+    <meta name="keywords" content="convertisseur html vers markdown, convertir html en md, html markdown en ligne, convertisseur html vers md, convertisseur markdown">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/html-to-markdown.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Convertisseur HTML vers Markdown — Convertir HTML vers MD en Ligne | ToolPilot">
+    <meta property="og:description" content="Convertisseur gratuit en ligne HTML vers Markdown. Transformez instantanément le code HTML en format Markdown propre.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertisseur HTML vers Markdown — Outil Gratuit en Ligne">
+    <meta name="twitter:description" content="Convertissez HTML en Markdown instantanément en ligne.">
+
+    <title>Convertisseur HTML vers Markdown — Convertir HTML vers MD en Ligne | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb { display: flex; gap: 8px; margin-bottom: 32px; font-size: 14px; color: var(--text-muted); }
+        .breadcrumb a { color: var(--primary); text-decoration: none; transition: color var(--transition); }
+        .breadcrumb a:hover { color: var(--primary-light); text-decoration: underline; }
+        .converter-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 32px; }
+        .converter-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .converter-panel { display: flex; flex-direction: column; gap: 12px; }
+        .panel-label { font-size: 14px; font-weight: 600; color: var(--text); display: flex; justify-content: space-between; }
+        .panel-label .format { font-size: 12px; color: var(--text-muted); background: var(--bg-input); padding: 4px 8px; border-radius: 4px; }
+        textarea { width: 100%; min-height: 300px; padding: 16px; border: 1px solid var(--border); border-radius: 8px; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.6; background: var(--bg-input); color: var(--text); transition: border-color var(--transition); box-sizing: border-box; }
+        textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+        .button-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
+        button { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all var(--transition); }
+        .btn-convert { background: var(--primary); color: white; }
+        .btn-convert:hover { background: var(--primary-dark); transform: translateY(-1px); }
+        .btn-copy { background: var(--bg-input); color: var(--text); border: 1px solid var(--border); padding: 8px 16px; font-size: 12px; }
+        .btn-copy:hover { border-color: var(--primary); color: var(--primary); }
+        .message { padding: 12px 16px; border-radius: 6px; font-size: 13px; margin-bottom: 16px; display: none; }
+        .message.show { display: block; }
+        .message.success { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .message.error { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .seo-content { background: var(--bg-input); padding: 32px; border-radius: 8px; margin-bottom: 32px; }
+        .seo-content h2 { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+        .seo-content h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-top: 24px; margin-bottom: 12px; }
+        .seo-content p { font-size: 15px; line-height: 1.7; color: var(--text-muted); margin-bottom: 12px; }
+        .seo-content ul { margin: 16px 0; padding-left: 24px; }
+        .seo-content li { margin-bottom: 8px; color: var(--text-muted); font-size: 15px; }
+        .ad-slot { background: var(--bg-input); border: 1px dashed var(--border); padding: 32px; text-align: center; color: var(--text-muted); margin: 24px 0; }
+        .related-tools { margin-top: 40px; }
+        .related-tools h2 { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+        .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-decoration: none; color: var(--text); transition: all var(--transition); }
+        .tool-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .tool-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .tool-card p { font-size: 13px; color: var(--text-muted); }
+        @media (max-width: 768px) { .converter-layout { grid-template-columns: 1fr; } textarea { min-height: 200px; } button { width: 100%; } }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot/fr">Accueil</a> <span>/</span> <span>Outils</span> <span>/</span> <span>HTML vers Markdown</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px;">Convertisseur HTML vers Markdown</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 32px;">Convertissez le code HTML en format Markdown propre instantanément</p>
+
+        <div id="message" class="message"></div>
+
+        <div class="converter-card">
+            <div class="converter-layout">
+                <div class="converter-panel">
+                    <div class="panel-label"><span>Entrée HTML</span><span class="format">HTML</span></div>
+                    <textarea id="htmlInput" placeholder="Collez votre HTML ici..."></textarea>
+                    <button class="btn-copy" onclick="copyToClipboard('htmlInput')">Copier HTML</button>
+                </div>
+
+                <div class="converter-panel">
+                    <div class="panel-label"><span>Résultat Markdown</span><span class="format">MD</span></div>
+                    <textarea id="markdownOutput" readonly placeholder="La sortie Markdown apparaîtra ici..." style="background: var(--bg-input); color: var(--text-muted);"></textarea>
+                    <button class="btn-copy" onclick="copyToClipboard('markdownOutput')">Copier Markdown</button>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-convert" onclick="convertHtmlToMarkdown()">Convertir en Markdown</button>
+                <button class="btn-convert" style="background: var(--bg-input); color: var(--text); border: 1px solid var(--border);" onclick="clearAll()">Effacer Tout</button>
+            </div>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <div class="seo-content">
+            <h2>À Propos du Convertisseur HTML vers Markdown</h2>
+            <p>Notre convertisseur gratuit en ligne HTML vers Markdown transforme le code HTML en format Markdown propre et lisible. Parfait pour les blogueurs, développeurs et créateurs de contenu qui ont besoin de convertir des contenus HTML existants en Markdown pour une meilleure compatibilité et lisibilité.</p>
+
+            <h3>Qu'est-ce que Markdown ?</h3>
+            <p>Markdown est un langage de balisage léger qui se concentre sur la lisibilité du texte brut. Il est largement utilisé pour la documentation, les blogs, les fichiers README et les plateformes comme GitHub.</p>
+
+            <h3>Conversion HTML vers Markdown</h3>
+            <ul>
+                <li><strong>Conversion rapide :</strong> Convertissez votre HTML en Markdown en secondes</li>
+                <li><strong>Support complet :</strong> Gère les en-têtes, paragraphes, listes, liens et plus</li>
+                <li><strong>Résultat propre :</strong> Le Markdown généré est optimisé et facile à lire</li>
+                <li><strong>100% privé :</strong> Aucune donnée envoyée au serveur</li>
+            </ul>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <div class="related-tools">
+            <h2>Outils Associés</h2>
+            <div class="tool-grid">
+                <a href="markdown-to-html.html" class="tool-card"><h3>Markdown vers HTML</h3><p>Convertissez Markdown en HTML.</p></a>
+                <a href="json-formatter.html" class="tool-card"><h3>Formateur JSON</h3><p>Formatez et validez JSON.</p></a>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Convertisseur HTML vers Markdown", "description": "Convertisseur gratuit en ligne HTML vers Markdown", "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html", "applicationCategory": "UtilityApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+    </script>
+
+    <script src="../../common.js"></script>
+    <script>
+        function convertHtmlToMarkdown() {
+            const htmlInput = document.getElementById('htmlInput').value;
+            if (!htmlInput.trim()) { showMessage('Veuillez entrer du HTML', 'error'); return; }
+            
+            let markdown = htmlInput
+                .replace(/<h1[^>]*>(.*?)<\/h1>/gi, '# $1\n')
+                .replace(/<h2[^>]*>(.*?)<\/h2>/gi, '## $1\n')
+                .replace(/<h3[^>]*>(.*?)<\/h3>/gi, '### $1\n')
+                .replace(/<h4[^>]*>(.*?)<\/h4>/gi, '#### $1\n')
+                .replace(/<h5[^>]*>(.*?)<\/h5>/gi, '##### $1\n')
+                .replace(/<h6[^>]*>(.*?)<\/h6>/gi, '###### $1\n')
+                .replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**')
+                .replace(/<b[^>]*>(.*?)<\/b>/gi, '**$1**')
+                .replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*')
+                .replace(/<i[^>]*>(.*?)<\/i>/gi, '*$1*')
+                .replace(/<a[^>]*href=["']([^"']+)["'][^>]*>(.*?)<\/a>/gi, '[$2]($1)')
+                .replace(/<p[^>]*>(.*?)<\/p>/gi, '$1\n\n')
+                .replace(/<br\s*\/?>/gi, '\n')
+                .replace(/<li[^>]*>(.*?)<\/li>/gi, '- $1\n')
+                .replace(/<\/?ul[^>]*>/gi, '')
+                .replace(/<\/?ol[^>]*>/gi, '')
+                .replace(/<code[^>]*>(.*?)<\/code>/gi, '`$1`')
+                .replace(/<pre[^>]*>(.*?)<\/pre>/gi, '```\n$1\n```')
+                .replace(/<[^>]+>/g, '')
+                .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+                .trim();
+
+            document.getElementById('markdownOutput').value = markdown;
+            showMessage('HTML converti en Markdown avec succès', 'success');
+        }
+
+        function copyToClipboard(elementId) {
+            const elem = document.getElementById(elementId);
+            if (!elem.value.trim()) { showMessage('Rien à copier', 'error'); return; }
+            navigator.clipboard.writeText(elem.value).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = 'Copié !';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+            }).catch(() => { showMessage('Échec de la copie', 'error'); });
+        }
+
+        function clearAll() {
+            document.getElementById('htmlInput').value = '';
+            document.getElementById('markdownOutput').value = '';
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message show ${type}`;
+            if (type === 'success') { setTimeout(() => msg.classList.remove('show'), 2000); }
+        }
+    </script>
+</body>
+</html>

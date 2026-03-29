@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Testeur d'Expressions Régulières | ToolPilot</title>
+    <meta name="description" content="Testez et validez vos expressions régulières en ligne. Visualisez les correspondances avec notre outil de regex interactif.">
+    <meta name="keywords" content="testeur regex, expression régulière, regex en ligne, validateur regex, testeur d'expressions">
+    <meta property="og:title" content="Testeur d'Expressions Régulières | ToolPilot">
+    <meta property="og:description" content="Testez vos expressions régulières en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Testeur d'Expressions Régulières | ToolPilot">
+    <meta name="twitter:description" content="Testez vos expressions régulières en ligne.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Testeur d'Expressions Régulières",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Testeur d'Expressions Régulières",
+        "description": "Testez et validez vos expressions régulières en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce qu'une expression régulière?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Une expression régulière (regex) est un motif de recherche utilisé pour trouver, valider et remplacer du texte dans des chaînes de caractères."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "À quoi servent les drapeaux regex?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Les drapeaux modifient le comportement des regex: g (global) trouve tous les correspondances, i (ignoreCase) ignore la casse, m (multiline) traite les sauts de ligne comme des limites de ligne."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment tester une regex?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Entrez votre pattern regex dans le champ Expression régulière, entrez le texte à tester, ajoutez les drapeaux si nécessaire, et cliquez sur Tester pour voir les correspondances."
+                }
+            }
+        ]
+    }
+    </script>
+    <style>
+        .regex-result { color: #2196F3; background: rgba(33, 150, 243, 0.1); padding: 4px 2px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Testeur d'Expressions Régulières</span>
+            </nav>
+
+            <h1>Testeur d'Expressions Régulières</h1>
+            <p class="tool-subtitle">Testez et validez vos expressions régulières en ligne</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="regex-pattern">Expression régulière</label>
+                    <input type="text" id="regex-pattern" placeholder="Entrez votre regex ici..." value="">
+                </div>
+
+                <div class="input-section">
+                    <label for="test-text">Texte de test</label>
+                    <textarea id="test-text" placeholder="Entrez le texte à tester..."></textarea>
+                </div>
+
+                <div class="input-section">
+                    <label for="flags">Drapeaux</label>
+                    <div class="flags-group">
+                        <label>
+                            <input type="checkbox" id="flag-g"> g (global)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="flag-i"> i (ignoreCase)
+                        </label>
+                        <label>
+                            <input type="checkbox" id="flag-m"> m (multiline)
+                        </label>
+                    </div>
+                </div>
+
+                <button id="test-btn" class="btn btn-primary">Tester</button>
+            </div>
+
+            <div class="results-section">
+                <div class="status-message" id="status-message"></div>
+                <div class="results-container" id="results-container"></div>
+                <label>Correspondances</label>
+                <textarea id="matches-output" placeholder="Les correspondances apparaîtront ici..." readonly></textarea>
+            </div>
+
+            <section class="seo-content">
+                <h2>À propos de ce testeur</h2>
+                <p>Notre <strong>Testeur d'Expressions Régulières</strong> vous aide à créer, tester et déboguer vos regex en temps réel. Les expressions régulières sont des outils puissants pour la validation de texte, la recherche et la manipulation de chaînes de caractères, mais elles peuvent être complexes à maîtriser.</p>
+                <p>Cet outil vous permet d'écrire une regex et de la tester immédiatement sur un texte de test pour voir quelles parties correspondent. Vous pouvez ajouter des drapeaux comme 'global' pour trouver tous les correspondances, 'ignoreCase' pour ignorer la casse, et 'multiline' pour traiter les sauts de ligne comme des limites.</p>
+                <p>Utilisez cet outil pour apprendre les regex, valider des formats de données, tester des patterns de recherche et bien plus. Tous les calculs se font dans votre navigateur sans envoyer vos données à nos serveurs.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="json-formatter.html" class="tool-card">
+                        <h3>Formateur JSON</h3>
+                        <p>Formatez et validez du JSON</p>
+                    </a>
+                    <a href="diff-checker.html" class="tool-card">
+                        <h3>Comparateur de Texte</h3>
+                        <p>Comparez deux textes</p>
+                    </a>
+                    <a href="slug-generator.html" class="tool-card">
+                        <h3>Générateur de Slug</h3>
+                        <p>Créez des slugs URL</p>
+                    </a>
+                    <a href="hash-generator.html" class="tool-card">
+                        <h3>Générateur de Hash</h3>
+                        <p>Générez des hashs</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const regexPattern = document.getElementById('regex-pattern');
+        const testText = document.getElementById('test-text');
+        const flagG = document.getElementById('flag-g');
+        const flagI = document.getElementById('flag-i');
+        const flagM = document.getElementById('flag-m');
+        const testBtn = document.getElementById('test-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const matchesOutput = document.getElementById('matches-output');
+        const statusMessage = document.getElementById('status-message');
+
+        testBtn.addEventListener('click', () => {
+            try {
+                let flags = '';
+                if (flagG.checked) flags += 'g';
+                if (flagI.checked) flags += 'i';
+                if (flagM.checked) flags += 'm';
+
+                const regex = new RegExp(regexPattern.value, flags);
+                const text = testText.value;
+                const matches = [];
+                let match;
+
+                resultsContainer.innerHTML = '';
+
+                if (flagG.checked) {
+                    while ((match = regex.exec(text)) !== null) {
+                        matches.push(match[0]);
+                    }
+                } else {
+                    match = regex.exec(text);
+                    if (match) matches.push(match[0]);
+                }
+
+                matchesOutput.value = matches.join('\n');
+
+                if (matches.length > 0) {
+                    statusMessage.textContent = `${matches.length} correspondance(s) trouvée(s)`;
+                    statusMessage.className = 'status-message success';
+                } else {
+                    statusMessage.textContent = 'Aucune correspondance trouvée';
+                    statusMessage.className = 'status-message info';
+                }
+
+                // Highlight matches
+                let highlightedText = text;
+                matches.forEach(m => {
+                    highlightedText = highlightedText.replace(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), `<span class="regex-result">${m}</span>`);
+                });
+                resultsContainer.innerHTML = '<p><strong>Texte avec surbrillance:</strong></p><div style="padding: 10px; background: var(--bg-color); border-radius: 4px; word-wrap: break-word;">' + highlightedText + '</div>';
+
+            } catch (error) {
+                statusMessage.textContent = `Erreur: ${error.message}`;
+                statusMessage.className = 'status-message error';
+                resultsContainer.innerHTML = '';
+                matchesOutput.value = '';
+            }
+        });
+
+        // Test on input change
+        regexPattern.addEventListener('input', () => {
+            if (regexPattern.value && testText.value) {
+                setTimeout(() => testBtn.click(), 100);
+            }
+        });
+
+        testText.addEventListener('input', () => {
+            if (regexPattern.value && testText.value) {
+                setTimeout(() => testBtn.click(), 100);
+            }
+        });
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

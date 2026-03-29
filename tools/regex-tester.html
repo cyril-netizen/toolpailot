@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online regex tester and debugger. Test regular expressions, highlight matches, view capture groups. Perfect for developers validating patterns and debugging regex.">
+    <meta name="keywords" content="regex tester, regex debugger, regular expression tester, pattern matcher, regex online, test regex">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Regex Tester & Debugger — Free Pattern Testing Tool | ToolPilot">
+    <meta property="og:description" content="Test regular expressions with real-time matching, capture groups, and pattern highlighting. Free online regex debugger for developers.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/regex-tester">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Regex Tester & Debugger — Free Pattern Testing">
+    <meta name="twitter:description" content="Test and debug regular expressions with real-time highlighting.">
+
+    <title>Regex Tester & Debugger — Free Pattern Testing Tool | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .panel-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        textarea {
+            flex: 1;
+            min-height: 300px;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            resize: none;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .regex-input-group {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .regex-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .flags-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .flag-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #0066cc;
+        }
+
+        .flag-checkbox label {
+            cursor: pointer;
+            font-size: 13px;
+            color: #666;
+            user-select: none;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+            border-color: #d0d0d0;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+            margin-bottom: 16px;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef5350;
+        }
+
+        .message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #66bb6a;
+        }
+
+        .message.info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #42a5f5;
+        }
+
+        .results-panel {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .results-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .match-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-box {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0066cc;
+        }
+
+        .matches-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .match-item {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+        }
+
+        .match-item.header {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+        .quick-patterns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .quick-pattern-btn {
+            padding: 8px 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .quick-pattern-btn:hover {
+            background-color: #e8e8e8;
+            border-color: #0066cc;
+        }
+
+        .seo-content {
+            background-color: #f9f9f9;
+            padding: 48px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .seo-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background-color: #fff59d;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+
+            textarea {
+                min-height: 200px;
+            }
+
+            .regex-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .quick-patterns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <span>Tools</span>
+            <span>/</span>
+            <span>Regex Tester</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; color: #222;">Regex Tester & Debugger</h1>
+        <p style="font-size: 18px; color: #666; margin-bottom: 32px;">Test regular expressions with real-time matching and capture group analysis</p>
+
+        <div id="message" class="message"></div>
+
+        <div class="panel" style="margin-bottom: 32px;">
+            <div class="regex-input-group">
+                <div class="regex-field">
+                    <label class="input-label">Regular Expression Pattern</label>
+                    <input type="text" id="regexPattern" placeholder="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/" onkeyup="testRegex()">
+                </div>
+            </div>
+
+            <div class="flags-group" style="margin-top: 12px;">
+                <div class="flag-checkbox">
+                    <input type="checkbox" id="flagG" checked onchange="testRegex()">
+                    <label for="flagG">Global (g)</label>
+                </div>
+                <div class="flag-checkbox">
+                    <input type="checkbox" id="flagI" onchange="testRegex()">
+                    <label for="flagI">Case-Insensitive (i)</label>
+                </div>
+                <div class="flag-checkbox">
+                    <input type="checkbox" id="flagM" onchange="testRegex()">
+                    <label for="flagM">Multiline (m)</label>
+                </div>
+                <div class="flag-checkbox">
+                    <input type="checkbox" id="flagS" onchange="testRegex()">
+                    <label for="flagS">Dotall (s)</label>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 32px;">
+            <div style="margin-bottom: 12px;">
+                <h3 style="font-size: 14px; font-weight: 600; color: #333; margin-bottom: 12px;">Quick Patterns</h3>
+                <div class="quick-patterns">
+                    <button class="quick-pattern-btn" onclick="insertPattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}')">Email Address</button>
+                    <button class="quick-pattern-btn" onclick="insertPattern('https?://[^\\s]+')">URL</button>
+                    <button class="quick-pattern-btn" onclick="insertPattern('^(?:\\+\\d{1,3}|\\d{1,3})?[-.\\s]?\\(?\\d{1,4}\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$')">Phone Number</button>
+                    <button class="quick-pattern-btn" onclick="insertPattern('^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')">IP Address</button>
+                    <button class="quick-pattern-btn" onclick="insertPattern('^\\d{4}-\\d{2}-\\d{2}$')">Date (YYYY-MM-DD)</button>
+                    <button class="quick-pattern-btn" onclick="insertPattern('^[a-zA-Z0-9_]{3,16}$')">Username</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-container">
+            <div class="panel">
+                <div class="panel-title">Test String</div>
+                <textarea id="testString" placeholder="Enter text to test against the regex pattern..." onkeyup="testRegex()">Enter your test text here...</textarea>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Matches & Results</div>
+                <div class="results-panel">
+                    <div class="results-title">Match Statistics</div>
+                    <div class="match-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">Total Matches</div>
+                            <div class="stat-value" id="matchCount">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">First Match At</div>
+                            <div class="stat-value" id="firstMatchIndex" style="font-size: 16px;">-</div>
+                        </div>
+                    </div>
+
+                    <div class="results-title" style="margin-top: 16px;">Matches Found</div>
+                    <div class="matches-list" id="matchesList">
+                        <div class="match-item header">No matches</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls" style="margin-bottom: 24px;">
+            <div class="btn-group">
+                <button class="btn-secondary" onclick="clearAll()">Clear All</button>
+                <button class="btn-secondary" onclick="copyMatches()">Copy Matches</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="json-formatter.html" class="card tool-card">
+                    <span class="icon">{ }</span>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate & minify JSON data instantly.</p>
+                </a>
+                <a href="diff-checker.html" class="card tool-card">
+                    <span class="icon">↔️</span>
+                    <h3>Diff Checker</h3>
+                    <p>Compare two texts and highlight differences.</p>
+                </a>
+                <a href="slug-generator.html" class="card tool-card">
+                    <span class="icon">🔗</span>
+                    <h3>Slug Generator</h3>
+                    <p>Generate SEO-friendly URL slugs from text.</p>
+                </a>
+                <a href="hash-generator.html" class="card tool-card">
+                    <span class="icon">🔒</span>
+                    <h3>Hash Generator</h3>
+                    <p>Generate MD5, SHA-1, SHA-256 & SHA-512 hashes.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About Regex Tester & Debugger</h2>
+            <p>Our free online regex tester and debugger helps developers test, validate, and refine regular expression patterns with real-time feedback. Whether you're validating email addresses, extracting phone numbers, or building complex pattern matching logic, this tool provides instant visual feedback to debug your regex quickly and efficiently.</p>
+
+            <h3>What is Regular Expression?</h3>
+            <p>A regular expression (regex or regexp) is a sequence of characters that defines a search pattern. It's a powerful tool used in programming and text processing to match, validate, and extract specific text patterns. Regular expressions are used for email validation, phone number extraction, URL parsing, data validation, and countless other text processing tasks.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Real-Time Testing:</strong> See matches as you type your regex pattern</li>
+                <li><strong>Regex Flags Support:</strong> Use global (g), case-insensitive (i), multiline (m), and dotall (s) flags</li>
+                <li><strong>Capture Groups:</strong> View captured groups from your regex matches</li>
+                <li><strong>Match Highlighting:</strong> Visual highlighting of all matches in test string</li>
+                <li><strong>Quick Patterns:</strong> Pre-built regex patterns for email, URL, phone, IP address, and more</li>
+                <li><strong>Match Statistics:</strong> Count total matches and find first match position</li>
+                <li><strong>Copy Results:</strong> Easy copying of matched results</li>
+                <li><strong>Error Detection:</strong> Clear error messages for invalid regex patterns</li>
+            </ul>
+
+            <h3>Understanding Regex Flags</h3>
+            <p><strong>Global (g):</strong> Matches all occurrences of the pattern, not just the first one. <strong>Case-Insensitive (i):</strong> Makes the pattern match both uppercase and lowercase letters. <strong>Multiline (m):</strong> Treats the beginning and end anchors (^ and $) as line boundaries, not just string boundaries. <strong>Dotall (s):</strong> Makes the dot (.) match newline characters as well as all other characters.</p>
+
+            <h3>Common Regex Patterns for Validation</h3>
+            <p>Email validation, phone number formatting, URL extraction, and IP address validation are among the most common regex use cases. This regex tester includes quick-insert buttons for these popular patterns so you can test immediately without needing to memorize the exact syntax. Each pattern is optimized to handle the most common formats while remaining flexible enough for variations.</p>
+
+            <h3>Testing Regex Patterns Online</h3>
+            <p>Our online regex tester makes it easy to validate your patterns before using them in production code. The real-time matching feature shows you exactly what your pattern will match, helping you catch edge cases and unexpected results. This prevents bugs in your code by allowing you to test thoroughly before implementation. The visual feedback makes it simple to refine patterns until they work exactly as intended.</p>
+
+            <h3>Debugging Regex Errors</h3>
+            <p>When your regex doesn't work as expected, our debugger provides clear error messages and match statistics to help identify the problem. The capture groups display shows exactly what each part of your pattern is capturing, making it easy to diagnose issues with complex expressions. Test different variations of your pattern and see the results instantly.</p>
+        </div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Regex Tester & Debugger",
+        "description": "Free online regex tester and debugger with real-time matching, capture groups, and pattern highlighting",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/regex-tester",
+        "applicationCategory": "DeveloperTool",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a regex tester used for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A regex tester helps developers validate regular expressions before using them in code. It provides real-time matching feedback, shows capture groups, and helps debug pattern matching logic for email validation, URL extraction, and other text processing tasks."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are regex flags?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Regex flags modify how the pattern matching works. Global (g) finds all matches, case-insensitive (i) ignores letter case, multiline (m) treats line breaks as boundaries, and dotall (s) makes dot match newlines."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I test a regex pattern?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Enter your regex pattern in the pattern field, select desired flags, and type or paste text to test in the test string field. The tester shows all matches in real-time with match count and position information."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are capture groups in regex?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Capture groups are parts of a regex pattern enclosed in parentheses. They allow you to extract specific portions of matched text. For example, in email validation, capture groups can extract the username and domain separately."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Regex Tester"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Regex Tester — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Test and debug regular expressions with real-time highlighting."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        function testRegex() {
+            const patternInput = document.getElementById('regexPattern').value.trim();
+            const testString = document.getElementById('testString').value;
+            const flagG = document.getElementById('flagG').checked;
+            const flagI = document.getElementById('flagI').checked;
+            const flagM = document.getElementById('flagM').checked;
+            const flagS = document.getElementById('flagS').checked;
+
+            if (!patternInput) {
+                showMessage('Enter a regex pattern', 'info');
+                resetResults();
+                return;
+            }
+
+            try {
+                let pattern = patternInput;
+                if (pattern.startsWith('/') && pattern.lastIndexOf('/') > 0) {
+                    pattern = pattern.substring(1, pattern.lastIndexOf('/'));
+                }
+
+                let flags = '';
+                if (flagG) flags += 'g';
+                if (flagI) flags += 'i';
+                if (flagM) flags += 'm';
+                if (flagS) flags += 's';
+
+                const regex = new RegExp(pattern, flags);
+                const matches = [];
+                let match;
+
+                if (flagG) {
+                    while ((match = regex.exec(testString)) !== null) {
+                        matches.push({
+                            text: match[0],
+                            index: match.index,
+                            groups: match.slice(1)
+                        });
+                    }
+                } else {
+                    match = regex.exec(testString);
+                    if (match) {
+                        matches.push({
+                            text: match[0],
+                            index: match.index,
+                            groups: match.slice(1)
+                        });
+                    }
+                }
+
+                displayMatches(matches, testString);
+                showMessage(`Found ${matches.length} match${matches.length !== 1 ? 'es' : ''}`, 'success');
+            } catch (e) {
+                showMessage('Invalid regex: ' + e.message, 'error');
+                resetResults();
+            }
+        }
+
+        function displayMatches(matches, testString) {
+            const matchCount = document.getElementById('matchCount');
+            const firstMatchIndex = document.getElementById('firstMatchIndex');
+            const matchesList = document.getElementById('matchesList');
+
+            matchCount.textContent = matches.length;
+
+            if (matches.length > 0) {
+                firstMatchIndex.textContent = matches[0].index;
+                let html = '<div class="match-item header">Match #</div>';
+                matches.forEach((m, i) => {
+                    html += `<div class="match-item"><strong>${i + 1}:</strong> "${m.text}" @ index ${m.index}${m.groups.length ? ` | Groups: ${m.groups.map(g => `"${g || ''}"`).join(', ')}` : ''}</div>`;
+                });
+                matchesList.innerHTML = html;
+            } else {
+                firstMatchIndex.textContent = '-';
+                matchesList.innerHTML = '<div class="match-item header">No matches found</div>';
+            }
+        }
+
+        function resetResults() {
+            document.getElementById('matchCount').textContent = '0';
+            document.getElementById('firstMatchIndex').textContent = '-';
+            document.getElementById('matchesList').innerHTML = '<div class="match-item header">No matches</div>';
+        }
+
+        function insertPattern(pattern) {
+            document.getElementById('regexPattern').value = pattern;
+            testRegex();
+        }
+
+        function copyMatches() {
+            const matchesList = document.getElementById('matchesList').textContent;
+            navigator.clipboard.writeText(matchesList).then(() => {
+                showMessage('Matches copied to clipboard!', 'success');
+            }).catch(() => {
+                showMessage('Failed to copy', 'error');
+            });
+        }
+
+        function clearAll() {
+            document.getElementById('regexPattern').value = '';
+            document.getElementById('testString').value = '';
+            resetResults();
+            document.getElementById('message').classList.remove('show');
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Initialize
+        testRegex();
+    </script>
+</body>
+</html>

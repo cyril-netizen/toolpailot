@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Outils de Lignes de Texte - Triez, déduquez, inversez et comptez les lignes de texte facilement avec nos outils en ligne.">
+    <meta name="keywords" content="outils texte, tri lignes, déduplication texte, manipulation lignes">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Outils de Lignes de Texte">
+    <meta property="og:description" content="Manipulez les lignes de texte avec nos outils gratuits.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/line-tools.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Outils de Lignes de Texte">
+    <meta name="twitter:description" content="Triez et manipulez les lignes de texte.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/line-tools.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/line-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/line-tools.html">
+    <title>Outils de Lignes de Texte - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        .btn {
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            grid-column: span 2;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .stats {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .stat-item {
+            padding: 0.5rem;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+            textarea {
+                height: 300px;
+            }
+            .btn-primary {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Outils de Lignes de Texte</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Outils de Lignes de Texte</h1>
+        <p>Un ensemble d'outils pratiques pour manipuler le texte ligne par ligne. Triez, déduquez, inversez et comptez les lignes facilement.</p>
+
+        <div class="tool-container">
+            <div class="pane">
+                <h3>Texte en entrée</h3>
+                <textarea id="input" placeholder="Entrez votre texte ici...
+Une ligne par texte
+Deuxième ligne
+Troisième ligne"></textarea>
+            </div>
+
+            <div class="pane">
+                <h3>Résultat</h3>
+                <textarea id="output" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Lignes en entrée</div>
+                <div class="stat-value" id="inputLines">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Lignes en sortie</div>
+                <div class="stat-value" id="outputLines">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Caractères en entrée</div>
+                <div class="stat-value" id="inputChars">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Caractères en sortie</div>
+                <div class="stat-value" id="outputChars">0</div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-secondary" onclick="sortAZ()">Trier A→Z</button>
+            <button class="btn btn-secondary" onclick="sortZA()">Trier Z→A</button>
+            <button class="btn btn-secondary" onclick="deduplicate()">Dédupliquer</button>
+            <button class="btn btn-secondary" onclick="reverse()">Inverser</button>
+            <button class="btn btn-secondary" onclick="removeEmpty()">Supprimer vides</button>
+            <button class="btn btn-secondary" onclick="removeSpaces()">Supprimer espaces</button>
+            <button class="btn btn-secondary" onclick="copyOutput()">Copier</button>
+            <button class="btn btn-secondary" onclick="clearAll()">Effacer</button>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="word-counter.html" class="tool-card">Compteur de Mots</a>
+                <a href="case-converter.html" class="tool-card">Convertisseur de Casse</a>
+                <a href="diff-checker.html" class="tool-card">Vérificateur de Différences</a>
+                <a href="slug-generator.html" class="tool-card">Générateur de Slug</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>À quoi servent ces outils de lignes?</h3>
+                <p>Ces outils sont utiles pour traiter rapidement du texte. Vous pouvez trier une liste, éliminer les doublons, inverser l'ordre ou compter les éléments sans effort.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Quelle est la différence entre "Dédupliquer" et "Supprimer doublons"?</h3>
+                <p>"Dédupliquer" supprime les lignes exactement identiques et dupliquées. Les lignes uniques sont conservées une seule fois.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Puis-je combiner plusieurs opérations?</h3>
+                <p>Oui, vous pouvez appliquer plusieurs opérations successivement. Par exemple, triez A→Z, puis déduquez. Le résultat de la première opération devient l'entrée de la suivante.</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos des Outils de Lignes de Texte</h2>
+            <p>Manipuler du texte ligne par ligne est une tâche commune en programmation et en traitement de données. Que vous ayez une liste à trier, des données à nettoyer ou un texte à réorganiser, ces outils vous font gagner du temps.</p>
+            <p>Notre suite d'outils offre les opérations les plus courantes : tri alphabétique, suppression des doublons, inversion de l'ordre et suppression des lignes vides. Chaque opération est appliquée instantanément, vous permettant de voir le résultat en temps réel.</p>
+            <p>Utilisez ces outils pour nettoyer des données CSV, organiser des listes, éliminer les doublons et transformer votre texte selon vos besoins.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Outils de Lignes de Texte",
+        "description": "Manipulez les lignes de texte avec tri, déduplication et inversion",
+        "url": "https://toolpilot.netlify.app/fr/tools/line-tools.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        function getLines() {
+            return document.getElementById('input').value.split('\n');
+        }
+
+        function setOutput(lines) {
+            document.getElementById('output').value = lines.join('\n');
+            updateStats();
+        }
+
+        function updateStats() {
+            const input = document.getElementById('input').value;
+            const output = document.getElementById('output').value;
+            const inputLines = input.split('\n').filter(l => l.trim()).length;
+            const outputLines = output.split('\n').filter(l => l.trim()).length;
+
+            document.getElementById('inputLines').textContent = inputLines;
+            document.getElementById('outputLines').textContent = outputLines;
+            document.getElementById('inputChars').textContent = input.length;
+            document.getElementById('outputChars').textContent = output.length;
+        }
+
+        function sortAZ() {
+            const lines = getLines().sort();
+            setOutput(lines);
+        }
+
+        function sortZA() {
+            const lines = getLines().sort().reverse();
+            setOutput(lines);
+        }
+
+        function deduplicate() {
+            const lines = getLines();
+            const unique = [...new Set(lines)];
+            setOutput(unique);
+        }
+
+        function reverse() {
+            const lines = getLines().reverse();
+            setOutput(lines);
+        }
+
+        function removeEmpty() {
+            const lines = getLines().filter(l => l.trim() !== '');
+            setOutput(lines);
+        }
+
+        function removeSpaces() {
+            const lines = getLines().map(l => l.trim()).filter(l => l !== '');
+            setOutput(lines);
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('output');
+            output.select();
+            document.execCommand('copy');
+            alert('Résultat copié!');
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+            updateStats();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        document.getElementById('input').addEventListener('input', updateStats);
+        window.addEventListener('load', updateStats);
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Générateur de Slug URL - Convertissez du texte en slugs URL optimisés pour le SEO avec gestion des accents français.">
+    <meta name="keywords" content="slug URL, générateur URL, optimisation URL, SEO slug, accent français">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Générateur de Slug URL">
+    <meta property="og:description" content="Générez des slugs URL optimisés pour le SEO.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/slug-generator.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Générateur de Slug URL">
+    <meta name="twitter:description" content="Créez des slugs URL optimisés.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/slug-generator.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/slug-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/slug-generator.html">
+    <title>Générateur de Slug URL - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .option-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        .option-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .separator-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .separator-group label {
+            flex-shrink: 0;
+        }
+        .separator-group input[type="text"] {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .result-box {
+            background: #f0f8ff;
+            padding: 1rem;
+            border-radius: 4px;
+            border-left: 4px solid #667eea;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Générateur de Slug URL</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Générateur de Slug URL</h1>
+        <p>Convertissez du texte en slugs URL optimisés pour le SEO. Gère automatiquement les accents français et autres caractères spéciaux.</p>
+
+        <div class="tool-container">
+            <div class="pane">
+                <h3>Texte original</h3>
+                <textarea id="inputText" placeholder="Entrez votre texte ici...
+Exemple: Pourquoi j'aime les écrevisses"></textarea>
+
+                <div class="options">
+                    <div class="option-group">
+                        <label>
+                            <input type="checkbox" id="lowercase" checked> Minuscules
+                        </label>
+                    </div>
+                    <div class="option-group">
+                        <label>
+                            <input type="checkbox" id="removeAccents" checked> Supprimer les accents
+                        </label>
+                    </div>
+                    <div class="separator-group">
+                        <label>Séparateur:</label>
+                        <input type="text" id="separator" value="-" maxlength="3">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="generateSlug()">Générer</button>
+                </div>
+            </div>
+
+            <div class="pane">
+                <h3>Slug généré</h3>
+                <div class="result-box" id="output">-</div>
+                <button class="btn btn-secondary" onclick="copySlug()">Copier</button>
+            </div>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="url-encoder.html" class="tool-card">Encodeur URL</a>
+                <a href="case-converter.html" class="tool-card">Convertisseur de Casse</a>
+                <a href="word-counter.html" class="tool-card">Compteur de Mots</a>
+                <a href="regex-tester.html" class="tool-card">Testeur Regex</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>Qu'est-ce qu'un slug URL?</h3>
+                <p>Un slug URL est la partie lisible d'une URL qui décrit le contenu de la page. Par exemple, dans "blog.com/mon-super-article", "mon-super-article" est le slug. Les slugs doivent être courts, descriptifs et optimisés pour le SEO.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Pourquoi supprimer les accents?</h3>
+                <p>Supprimer les accents rend les URLs plus compatibles avec tous les systèmes et navigateurs. Une URL sans accents est aussi plus lisible et facile à partager. Par exemple, "été" devient "ete".</p>
+            </div>
+            <div class="faq-item">
+                <h3>Puis-je utiliser un séparateur personnalisé?</h3>
+                <p>Oui, vous pouvez utiliser n'importe quel séparateur. Le trait d'union (-) est le plus courant et recommandé pour le SEO, mais vous pouvez aussi utiliser un tiret bas (_) ou un point (.).</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos du Générateur de Slug URL</h2>
+            <p>Les slugs URL jouent un rôle important dans l'optimisation SEO de votre site web. Un bon slug est court, descriptif, et contient des mots-clés pertinents. Notre générateur simplifie la création de slugs optimisés.</p>
+            <p>Spécialement conçu pour les contenus français, notre outil gère correctement les accents. Il peut convertir "écrevisses" en "ecrevisses" ou garder "café" selon vos préférences. Vous avez aussi le contrôle total sur le séparateur utilisé.</p>
+            <p>Que vous créiez un article de blog, une page de produit ou toute autre page web, utilisez cet outil pour générer des slugs SEO-friendly qui amélioreront votre classement dans les moteurs de recherche.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Générateur de Slug URL",
+        "description": "Générez des slugs URL optimisés pour le SEO avec gestion des accents français",
+        "url": "https://toolpilot.netlify.app/fr/tools/slug-generator.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        function removeAccents(text) {
+            const accents = {
+                'á': 'a', 'à': 'a', 'ä': 'a', 'â': 'a', 'ã': 'a', 'å': 'a',
+                'é': 'e', 'è': 'e', 'ë': 'e', 'ê': 'e',
+                'í': 'i', 'ì': 'i', 'ï': 'i', 'î': 'i',
+                'ó': 'o', 'ò': 'o', 'ö': 'o', 'ô': 'o', 'õ': 'o',
+                'ú': 'u', 'ù': 'u', 'ü': 'u', 'û': 'u',
+                'ç': 'c', 'ñ': 'n',
+                'Á': 'a', 'À': 'a', 'Ä': 'a', 'Â': 'a', 'Ã': 'a', 'Å': 'a',
+                'É': 'e', 'È': 'e', 'Ë': 'e', 'Ê': 'e',
+                'Í': 'i', 'Ì': 'i', 'Ï': 'i', 'Î': 'i',
+                'Ó': 'o', 'Ò': 'o', 'Ö': 'o', 'Ô': 'o', 'Õ': 'o',
+                'Ú': 'u', 'Ù': 'u', 'Ü': 'u', 'Û': 'u',
+                'Ç': 'c', 'Ñ': 'n'
+            };
+
+            return text.split('').map(char => accents[char] || char).join('');
+        }
+
+        function generateSlug() {
+            const text = document.getElementById('inputText').value;
+            const removeAcc = document.getElementById('removeAccents').checked;
+            const lowercase = document.getElementById('lowercase').checked;
+            const separator = document.getElementById('separator').value || '-';
+
+            let slug = text;
+
+            // Remove accents if checked
+            if (removeAcc) {
+                slug = removeAccents(slug);
+            }
+
+            // Convert to lowercase if checked
+            if (lowercase) {
+                slug = slug.toLowerCase();
+            }
+
+            // Replace spaces and hyphens with separator
+            slug = slug.replace(/[\s_-]+/g, separator);
+
+            // Remove non-alphanumeric characters except separator
+            slug = slug.replace(new RegExp('[^a-z0-9' + separator.replace(/[-[\]{}()*+?.\\^$|#\s]/g, '\\$&') + ']', 'gi'), '');
+
+            // Remove separator from beginning and end
+            slug = slug.replace(new RegExp('^' + separator.replace(/[-[\]{}()*+?.\\^$|#\s]/g, '\\$&') + '+|' + separator.replace(/[-[\]{}()*+?.\\^$|#\s]/g, '\\$&') + '+$', 'g'), '');
+
+            // Replace multiple consecutive separators with single
+            slug = slug.replace(new RegExp(separator.replace(/[-[\]{}()*+?.\\^$|#\s]/g, '\\$&') + '+', 'g'), separator);
+
+            document.getElementById('output').textContent = slug || '-';
+        }
+
+        function copySlug() {
+            const slug = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(slug).then(() => {
+                alert('Slug copié: ' + slug);
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Real-time generation
+        document.getElementById('inputText').addEventListener('input', generateSlug);
+        document.getElementById('removeAccents').addEventListener('change', generateSlug);
+        document.getElementById('lowercase').addEventListener('change', generateSlug);
+        document.getElementById('separator').addEventListener('input', generateSlug);
+
+        // Initial generation
+        generateSlug();
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

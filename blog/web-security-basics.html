@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web security basics every developer should know. Learn about HTTPS, password security, CSRF protection, XSS prevention, and essential security practices.">
+    <meta name="keywords" content="web security basics, web application security, developer security guide, HTTPS SSL, CSRF XSS">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Web Security Basics Every Developer Should Know">
+    <meta property="og:description" content="Essential security practices for web developers: HTTPS, authentication, CSRF, XSS, password security, and more.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/web-security-basics.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Web Security Basics for Developers">
+    <meta name="twitter:description" content="Learn essential web security practices and common vulnerabilities to avoid.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/web-security-basics.html">
+
+    <title>Web Security Basics | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .code-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .security-checklist {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+        }
+
+        .security-checklist h3 {
+            margin-top: 0;
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>Web Security Basics</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">Web Security Basics Every Developer Should Know</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-05-26">May 26, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 8 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>Web application security is not optional—it's fundamental to building trustworthy software. Every day, web applications are compromised, user data is stolen, and passwords are leaked because developers lack basic security knowledge. Yet web security doesn't require expertise in cryptography or network protocols. Most vulnerabilities stem from preventable mistakes: improper input validation, missing HTTPS, insecure password handling, and inadequate CSRF protection. This guide covers the essential security practices every web developer must understand to build secure applications.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>HTTPS and Encryption</h2>
+
+                <p>HTTPS encrypts all communication between your browser and the server. Without HTTPS, attackers on the same network can see everything: passwords, form data, session tokens, and private information. HTTPS is now essential and not optional. Modern browsers warn users accessing HTTP-only sites, and search engines penalize non-HTTPS websites.</p>
+
+                <p>Implementing HTTPS requires an SSL/TLS certificate from a trusted Certificate Authority. Let's Encrypt provides free certificates with automatic renewal. Once deployed, all data transmitted between client and server is encrypted. This protects against eavesdropping on public WiFi networks, corporate networks, and ISP-level attacks.</p>
+
+                <p>Always redirect HTTP to HTTPS. Use HSTS (HTTP Strict Transport Security) headers to tell browsers to never access your site via HTTP. This prevents attackers from downgrading connections to unencrypted HTTP.</p>
+
+                <h2>Password Security</h2>
+
+                <p>Never store plaintext passwords. Hash passwords using strong algorithms like bcrypt, scrypt, or Argon2. These algorithms are deliberately slow, making password cracking computationally expensive. Store the hash, not the password. When users log in, hash their input and compare with the stored hash.</p>
+
+                <p>Salting further protects passwords. A salt is random data added to the password before hashing, ensuring identical passwords produce different hashes. Modern algorithms like bcrypt incorporate salting automatically. Never implement custom password hashing—use well-tested libraries. They handle complexity correctly.</p>
+
+                <p>Enforce strong password requirements: minimum length (at least 12 characters), complexity, and no simple patterns. Better yet, use passphrase-based passwords (multiple words) which are both stronger and more memorable than complex symbol strings.</p>
+
+                <h2>Cross-Site Scripting (XSS) Prevention</h2>
+
+                <p>XSS attacks occur when attacker-controlled code runs in users' browsers. If your site takes user input and displays it without sanitization, attackers can inject JavaScript that steals session tokens or performs actions on behalf of users. For example, if a comment system displays user input directly in HTML, an attacker could inject <script>steal_tokens()</script>.</p>
+
+                <p>Prevent XSS by escaping user input before rendering. Modern frameworks like React automatically escape by default, providing protection without extra effort. If using raw HTML, escape HTML special characters: < becomes &lt;, > becomes &gt;, and " becomes &quot;. Content Security Policy (CSP) headers further restrict which scripts can execute, limiting XSS damage.</p>
+
+                <div class="code-example">
+// Vulnerable (DO NOT DO THIS)
+let comment = getUserInput();
+element.innerHTML = comment; // Dangerous!
+
+// Safe
+element.textContent = comment; // Escaped safely
+
+// Or escape manually
+let escaped = comment.replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;');
+element.innerHTML = escaped;
+                </div>
+
+                <h2>CSRF Protection</h2>
+
+                <p>CSRF (Cross-Site Request Forgery) attacks trick users into making unwanted requests on trusted sites. If you're logged into your bank and visit an attacker's site, that site could make requests to your bank if CSRF protection is missing. Your browser automatically includes your session cookie, so the bank thinks you authorized the request.</p>
+
+                <p>Prevent CSRF using tokens. Your application generates a unique token for each user session. Forms include this token, and the server validates it before processing requests. Attackers can't forge valid tokens, so their requests fail. Modern frameworks like Django and Express include CSRF protection built-in.</p>
+
+                <p>Additionally, use SameSite cookie attributes. Setting SameSite=Strict prevents cookies from being sent on cross-site requests entirely. This is the most effective CSRF protection.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Input Validation and SQL Injection Prevention</h2>
+
+                <p>Never trust user input. Always validate and sanitize. SQL injection occurs when attacker-controlled input reaches database queries. If your code concatenates user input into SQL queries, attackers can inject SQL commands. For example, a login form with vulnerable code might construct: "SELECT * FROM users WHERE username='" + username + "'" + "'. If the attacker enters ' OR '1'='1, the query becomes "SELECT * FROM users WHERE username='' OR '1'='1'" which returns all users.</p>
+
+                <p>Use parameterized queries (prepared statements). These separate SQL code from data, preventing injection. All modern database libraries support parameterized queries. Use them exclusively. Never concatenate user input into SQL.</p>
+
+                <p>Validate input format, length, and type. Use whitelisting: only allow known-good patterns. Reject anything unexpected. This prevents many attack vectors including SQL injection, command injection, and path traversal.</p>
+
+                <h2>Security Checklist for Web Developers</h2>
+
+                <div class="security-checklist">
+                    <h3>Essential Security Practices</h3>
+                    <ul>
+                        <li>Use HTTPS on all endpoints with valid SSL certificates</li>
+                        <li>Hash and salt all passwords with strong algorithms (bcrypt, Argon2)</li>
+                        <li>Escape user input when rendering HTML</li>
+                        <li>Implement CSRF protection with tokens and SameSite cookies</li>
+                        <li>Use parameterized queries to prevent SQL injection</li>
+                        <li>Validate and sanitize all user input</li>
+                        <li>Keep dependencies updated for security patches</li>
+                        <li>Implement rate limiting to prevent brute force attacks</li>
+                        <li>Use security headers (HSTS, X-Frame-Options, CSP)</li>
+                        <li>Never log sensitive data (passwords, credit cards, tokens)</li>
+                        <li>Implement proper access control and authorization</li>
+                        <li>Audit code regularly for vulnerabilities</li>
+                    </ul>
+                </div>
+
+                <h2>Authentication and Authorization</h2>
+
+                <p>Authentication verifies who users are (login). Authorization determines what they can do (permissions). Both are essential. Use established authentication methods: passwords with hashing, multi-factor authentication (MFA), or OAuth/OpenID Connect. Don't implement custom authentication—use proven libraries.</p>
+
+                <p>Authorization requires checking permissions before granting access. Always verify on the backend. Never rely on client-side checks alone. Just because a button is hidden doesn't mean users can't access functionality—they can bypass client-side restrictions with browser tools.</p>
+
+                <div class="cta-box">
+                    <h3>Generate Secure Passwords and Hashes</h3>
+                    <p>Use ToolPilot's password generator and hash tools for testing and learning.</p>
+                    <a href="../tools/password-generator.html" class="cta-button">Use Security Tools</a>
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Is HTTPS necessary for my small site?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Yes. Even small sites should use HTTPS. Modern browsers treat HTTP as insecure. HTTPS is free through Let's Encrypt and available on all hosting platforms. If your site collects any user data—even just emails—HTTPS is essential for security and legal compliance.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Should users create strong passwords or passphrases?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Passphrases are more secure and memorable. A 4-word passphrase like "correct-horse-battery-staple" is stronger than most symbol-filled passwords and far easier to remember. Encourage passphrases over complex passwords. For accounts users access frequently, passphrases improve security without sacrificing usability.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What's the difference between authentication and authorization?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Authentication answers "Who are you?" through login. Authorization answers "What can you do?" through permissions. You authenticate once (login), then authorization is checked for every action. Both are essential: authentication without authorization means authenticated users can access everything. Authorization without authentication means anyone can access everything.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Can I implement security myself or should I use libraries?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Always use well-tested libraries for security features. Don't implement custom encryption, password hashing, CSRF protection, or authentication. Even small mistakes in these implementations can compromise security. Security libraries are reviewed by experts and updated for discovered vulnerabilities. Your code reviewing security is unlikely to catch all issues.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="best-password-managers-2026.html" class="related-link">
+                        <strong>Best Password Managers 2026</strong>
+                        <p>Users should use password managers for strong, unique passwords. Learn about password manager options.</p>
+                    </a>
+                    <a href="url-encoding-explained.html" class="related-link">
+                        <strong>URL Encoding Explained</strong>
+                        <p>URL encoding prevents certain attacks. Understand encoding and how it relates to security.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-05-26">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Web Security Basics Every Developer Should Know",
+        "description": "Essential security practices for web developers: HTTPS, authentication, CSRF, XSS, password security, and more.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-05-26T08:00:00Z",
+        "dateModified": "2026-05-26T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+    <script src="../common.js"></script>
+</body>
+</html>

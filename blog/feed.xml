@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ToolPilot Blog</title>
+    <link>https://cyril-netizen.github.io/toolpailot/blog/</link>
+    <description>Tips, guides and tutorials about online developer tools, password security, encoding, and more.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://cyril-netizen.github.io/toolpailot/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Best JSON Formatters in 2026</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/best-json-formatters-2026.html</link>
+      <description>Compare the top JSON formatting tools available online. Learn what makes a great JSON formatter and how to choose the right one for your workflow.</description>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/best-json-formatters-2026.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>How to Create Strong Passwords in 2026</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/how-to-create-strong-passwords.html</link>
+      <description>Master password security with actionable tips and best practices. Discover the essential strategies for creating and managing strong passwords in 2026.</description>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/how-to-create-strong-passwords.html</guid>
+      <category>Security</category>
+    </item>
+
+    <item>
+      <title>Developer Tools Every Web Dev Needs in 2026</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/developer-tools-every-web-dev-needs.html</link>
+      <description>Explore the essential developer tools that every web developer should have in their toolkit. From JSON formatting to regex testing, we cover it all.</description>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/developer-tools-every-web-dev-needs.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>Understanding Base64 Encoding: A Complete Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/understanding-base64-encoding.html</link>
+      <description>Learn what Base64 encoding is, how it works, and why it matters. This beginner-friendly guide explains the fundamentals of data encoding.</description>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/understanding-base64-encoding.html</guid>
+      <category>Encoding</category>
+    </item>
+
+    <item>
+      <title>Unix Timestamps Explained: Complete Developer Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/unix-timestamp-guide.html</link>
+      <description>Understand Unix timestamps and epoch time. Learn how to convert between human-readable dates and Unix timestamps in seconds.</description>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/unix-timestamp-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>Best Free Developer Tools in 2026</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/best-free-developer-tools-2026.html</link>
+      <description>The ultimate collection of free developer tools for 2026. Discover tools that streamline your development workflow.</description>
+      <pubDate>Sun, 10 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/best-free-developer-tools-2026.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>Best Password Managers 2026</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/best-password-managers-2026.html</link>
+      <description>Review the top password managers for 2026. Compare security features, pricing, and usability.</description>
+      <pubDate>Sat, 08 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/best-password-managers-2026.html</guid>
+      <category>Security</category>
+    </item>
+
+    <item>
+      <title>Best QR Code Generators Online</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/best-qr-code-generators.html</link>
+      <description>Compare top QR code generators and learn which tools offer the best features.</description>
+      <pubDate>Thu, 06 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/best-qr-code-generators.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>Best Regex Testers Online</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/best-regex-testers-online.html</link>
+      <description>Evaluate the best regex testers available online with live matching and syntax highlighting.</description>
+      <pubDate>Tue, 04 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/best-regex-testers-online.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>Color Theory: Hex, RGB, and HSL</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/color-theory-hex-rgb-hsl.html</link>
+      <description>Master color formats and theory. Understand Hex, RGB, and HSL color models for web design.</description>
+      <pubDate>Sun, 02 Mar 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/color-theory-hex-rgb-hsl.html</guid>
+      <category>Design</category>
+    </item>
+
+    <item>
+      <title>Cron Expressions: Complete Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/cron-expressions-guide.html</link>
+      <description>Master cron expressions for task scheduling. Learn syntax and common patterns for automation.</description>
+      <pubDate>Fri, 28 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/cron-expressions-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>CSS Gradients: Complete Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/css-gradients-examples.html</link>
+      <description>Create stunning CSS gradients with examples. Learn linear, radial, and conic gradients.</description>
+      <pubDate>Wed, 26 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/css-gradients-examples.html</guid>
+      <category>Design</category>
+    </item>
+
+    <item>
+      <title>CSS Minification Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/css-minification-guide.html</link>
+      <description>Optimize CSS with minification. Learn best practices and tools to reduce file sizes.</description>
+      <pubDate>Mon, 24 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/css-minification-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>How to Generate QR Codes</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/how-to-generate-qr-codes.html</link>
+      <description>Generate QR codes for any purpose. Learn how to create QR codes for URLs, contact info, and more.</description>
+      <pubDate>Sat, 22 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/how-to-generate-qr-codes.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>HTML to Markdown Conversion</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/html-to-markdown-guide.html</link>
+      <description>Convert HTML to Markdown format. Learn techniques and tools for transformation.</description>
+      <pubDate>Thu, 20 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/html-to-markdown-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>JavaScript Minification Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/javascript-minification-guide.html</link>
+      <description>Minify JavaScript for better performance. Learn techniques and tools to reduce file sizes.</description>
+      <pubDate>Tue, 18 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/javascript-minification-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>JSON to CSV Conversion Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/json-to-csv-guide.html</link>
+      <description>Convert JSON data to CSV format. Learn how to transform structured JSON into spreadsheet-friendly files.</description>
+      <pubDate>Sun, 16 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/json-to-csv-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>JWT Tokens Explained</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/jwt-tokens-explained.html</link>
+      <description>Understand JWT tokens and their structure. Learn how to decode and use JWTs in authentication.</description>
+      <pubDate>Fri, 14 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/jwt-tokens-explained.html</guid>
+      <category>Security</category>
+    </item>
+
+    <item>
+      <title>Linux File Permissions Explained</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/linux-file-permissions-explained.html</link>
+      <description>Master Linux file permissions and chmod. Learn to calculate and secure files properly.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/linux-file-permissions-explained.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>Meta Tags and SEO Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/meta-tags-seo-guide.html</link>
+      <description>Optimize your site with meta tags. Learn which tags matter for SEO and best practices.</description>
+      <pubDate>Mon, 10 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/meta-tags-seo-guide.html</guid>
+      <category>SEO</category>
+    </item>
+
+    <item>
+      <title>SVG to Image Conversion</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/svg-to-image-conversion.html</link>
+      <description>Convert SVG to PNG and other formats. Learn how to export vector graphics to raster formats.</description>
+      <pubDate>Sat, 08 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/svg-to-image-conversion.html</guid>
+      <category>Design</category>
+    </item>
+
+    <item>
+      <title>UUID Generation Guide</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/uuid-generation-guide.html</link>
+      <description>Generate unique identifiers with UUIDs. Learn about UUID versions and bulk generation.</description>
+      <pubDate>Thu, 06 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/uuid-generation-guide.html</guid>
+      <category>Developer Tools</category>
+    </item>
+
+    <item>
+      <title>YAML vs JSON</title>
+      <link>https://cyril-netizen.github.io/toolpailot/blog/yaml-vs-json.html</link>
+      <description>Compare YAML and JSON formats. Understand differences and when to use each format.</description>
+      <pubDate>Tue, 04 Feb 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://cyril-netizen.github.io/toolpailot/blog/yaml-vs-json.html</guid>
+      <category>Developer Tools</category>
+    </item>
+  </channel>
+</rss>

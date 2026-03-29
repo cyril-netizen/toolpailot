@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aperçu Markdown - Convertissez et prévisualisez votre Markdown en HTML en temps réel avec notre outil en ligne.">
+    <meta name="keywords" content="markdown, aperçu markdown, convertisseur markdown, editeur markdown">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Aperçu Markdown">
+    <meta property="og:description" content="Prévisualisez votre Markdown en HTML.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/markdown-preview.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aperçu Markdown">
+    <meta name="twitter:description" content="Convertissez Markdown en HTML.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/markdown-preview.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/markdown-preview.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/markdown-preview.html">
+    <title>Aperçu Markdown - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .editor-pane, .preview-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .editor-pane h3, .preview-pane h3 {
+            margin: 0;
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .preview {
+            width: 100%;
+            height: 400px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow-y: auto;
+            background: #fafafa;
+        }
+        .preview h1, .preview h2, .preview h3, .preview h4, .preview h5, .preview h6 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .preview p {
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+        .preview ul, .preview ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .preview li {
+            margin: 0.5rem 0;
+        }
+        .preview blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #666;
+        }
+        .preview code {
+            background: #f0f0f0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .preview pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .preview pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        .preview a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .preview a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        @media (max-width: 768px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+            textarea, .preview {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Aperçu Markdown</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Aperçu Markdown</h1>
+        <p>Écrivez en Markdown et prévisualisez le résultat HTML en temps réel. Un outil parfait pour les rédacteurs et développeurs.</p>
+
+        <div class="editor-container">
+            <div class="editor-pane">
+                <h3>Écrire en Markdown</h3>
+                <textarea id="markdown" placeholder="Écrivez votre Markdown ici...
+# Titre Principal
+## Sous-titre
+**Texte en gras** et *texte en italique*
+- Élément de liste
+- Autre élément
+1. Élément numéroté
+2. Autre élément
+
+[Lien](https://example.com)
+`code en ligne`"></textarea>
+            </div>
+
+            <div class="preview-pane">
+                <h3>Aperçu HTML</h3>
+                <div class="preview" id="preview"></div>
+                <button class="btn btn-secondary" onclick="copyHTMLCode()">Copier le HTML</button>
+            </div>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="lorem-ipsum.html" class="tool-card">Lorem Ipsum</a>
+                <a href="word-counter.html" class="tool-card">Compteur de Mots</a>
+                <a href="diff-checker.html" class="tool-card">Vérificateur de Différences</a>
+                <a href="html-entities.html" class="tool-card">Entités HTML</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>Qu'est-ce que Markdown?</h3>
+                <p>Markdown est un langage de balisage léger qui permet de formater du texte de manière simple et lisible. Il est largement utilisé pour les documentations, les blogs et les fichiers README.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Quels éléments Markdown sont supportés?</h3>
+                <p>Notre aperçu supporte les titres, le texte gras et italique, les listes, les blocs de code, les citations, les liens et les images.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Puis-je exporter le HTML généré?</h3>
+                <p>Oui, vous pouvez copier le HTML généré directement avec le bouton "Copier le HTML" et l'utiliser dans vos projets web.</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos de l'Aperçu Markdown</h2>
+            <p>Markdown est devenu la lingua franca de la rédaction technique. Des développeurs aux rédacteurs de documentation, tout le monde utilise Markdown pour sa simplicité et sa lisibilité. Notre aperçu Markdown vous permet de voir instantanément comment votre texte sera rendu en HTML.</p>
+            <p>Avec notre outil, vous pouvez écrire du Markdown dans le volet de gauche et voir l'aperçu HTML correspondant dans le volet de droite en temps réel. Cela vous aide à formater votre contenu correctement avant de le publier.</p>
+            <p>Que vous écriviez une documentation, un article de blog ou un README pour un projet GitHub, cet outil vous aide à maîtriser Markdown et à créer du contenu bien formaté.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Aperçu Markdown",
+        "description": "Convertissez et prévisualisez votre Markdown en HTML en temps réel",
+        "url": "https://toolpilot.netlify.app/fr/tools/markdown-preview.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        function parseMarkdown(text) {
+            let html = text;
+
+            // Escape HTML special characters
+            html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+            // Code blocks
+            html = html.replace(/```(.*?)\n([\s\S]*?)```/g, '<pre><code class="$1">$2</code></pre>');
+
+            // Headings
+            html = html.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+
+            // Blockquotes
+            html = html.replace(/^&gt; (.*?)$/gm, '<blockquote>$1</blockquote>');
+
+            // Bold and Italic
+            html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+
+            // Links
+            html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+            // Inline code
+            html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+            // Unordered lists
+            html = html.replace(/^\* (.*?)$/gm, '<li>$1</li>');
+            html = html.replace(/^\- (.*?)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+
+            // Ordered lists
+            html = html.replace(/^\d+\. (.*?)$/gm, '<li>$1</li>');
+
+            // Paragraphs
+            html = html.split('\n\n').map(para => {
+                if (!para.match(/^<[hpuol]/)) {
+                    return '<p>' + para + '</p>';
+                }
+                return para;
+            }).join('\n');
+
+            return html;
+        }
+
+        function updatePreview() {
+            const markdown = document.getElementById('markdown').value;
+            const html = parseMarkdown(markdown);
+            document.getElementById('preview').innerHTML = html;
+        }
+
+        function copyHTMLCode() {
+            const markdown = document.getElementById('markdown').value;
+            const html = parseMarkdown(markdown);
+            navigator.clipboard.writeText(html).then(() => {
+                alert('Code HTML copié!');
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Update preview on input
+        document.getElementById('markdown').addEventListener('input', updatePreview);
+
+        // Initial preview
+        window.addEventListener('load', updatePreview);
+
+        // Load theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculatrice Chmod gratuite. Convertissez entre notation octale et textuelle pour les permissions Unix/Linux fichiers.">
+    <meta name="keywords" content="calculatrice chmod, chmod tool, permissions linux, unix permissions, chmod calculator">
+    <meta name="author" content="ToolPilot">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/chmod-calculator.html">
+    <title>Calculatrice Chmod — Outil Permissions Linux Gratuit | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
+        .permission-section { margin-bottom: 20px; }
+        .permission-section h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+        .checkbox-group { display: flex; gap: 16px; flex-wrap: wrap; }
+        label { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-muted); }
+        input[type="checkbox"] { cursor: pointer; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        input[type="text"] { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-input); color: var(--text); font-family: monospace; font-size: 16px; }
+        .result { background: var(--bg-input); padding: 16px; border-radius: 6px; margin-top: 12px; font-family: monospace; color: var(--primary); font-weight: 600; }
+        button { padding: 12px 24px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        button:hover { background: var(--primary-dark); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculatrice Chmod</h1>
+        <p style="color: var(--text-muted); margin-bottom: 32px;">Calculez et convertissez les permissions Linux/Unix</p>
+
+        <div class="grid">
+            <div class="card">
+                <h2 style="margin-bottom: 20px;">Permissions</h2>
+                <div class="permission-section">
+                    <h3>Propriétaire</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="owner" data-perm="read"> Lecture</label>
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="owner" data-perm="write"> Écriture</label>
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="owner" data-perm="execute"> Exécution</label>
+                    </div>
+                </div>
+                <div class="permission-section">
+                    <h3>Groupe</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="group" data-perm="read"> Lecture</label>
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="group" data-perm="write"> Écriture</label>
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="group" data-perm="execute"> Exécution</label>
+                    </div>
+                </div>
+                <div class="permission-section">
+                    <h3>Autres</h3>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="other" data-perm="read"> Lecture</label>
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="other" data-perm="write"> Écriture</label>
+                        <label><input type="checkbox" onchange="updateChmod()" data-role="other" data-perm="execute"> Exécution</label>
+                    </div>
+                </div>
+                <button onclick="resetChmod()">Réinitialiser</button>
+            </div>
+
+            <div class="card">
+                <div class="input-group">
+                    <label>Notation Octale</label>
+                    <input id="octalInput" type="text" placeholder="755" onchange="parseOctal()" />
+                    <div class="result" id="octalResult">0755</div>
+                </div>
+                <div class="input-group">
+                    <label>Notation Textuelle</label>
+                    <input id="textInput" type="text" placeholder="rwxr-xr-x" readonly />
+                    <div class="result" id="textResult">-rwxr-xr-x</div>
+                </div>
+                <button onclick="copyResult()">Copier Résultat</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../common.js"></script>
+    <script>
+        function updateChmod() {
+            let octal = 0;
+            ['owner', 'group', 'other'].forEach((role, idx) => {
+                let val = 0;
+                if (document.querySelector(`[data-role="${role}"][data-perm="read"]:checked`)) val += 4;
+                if (document.querySelector(`[data-role="${role}"][data-perm="write"]:checked`)) val += 2;
+                if (document.querySelector(`[data-role="${role}"][data-perm="execute"]:checked`)) val += 1;
+                octal += val * Math.pow(10, 2 - idx);
+            });
+            document.getElementById('octalInput').value = octal;
+            document.getElementById('octalResult').textContent = '0' + octal;
+            updateTextNotation(octal);
+        }
+
+        function updateTextNotation(octal) {
+            let text = '-';
+            const digits = octal.toString().split('');
+            const perms = ['read', 'write', 'execute'];
+            const roles = ['owner', 'group', 'other'];
+            roles.forEach((role, idx) => {
+                const digit = parseInt(digits[idx] || 0);
+                perms.forEach(perm => {
+                    if (perm === 'read' && digit >= 4) { text += 'r'; digit -= 4; }
+                    else if (perm === 'write' && digit >= 2) { text += 'w'; digit -= 2; }
+                    else if (perm === 'execute' && digit >= 1) { text += 'x'; digit -= 1; }
+                    else text += '-';
+                });
+            });
+            document.getElementById('textInput').value = text;
+            document.getElementById('textResult').textContent = text;
+        }
+
+        function parseOctal() {
+            const val = document.getElementById('octalInput').value.replace(/^0/, '');
+            if (!val) return;
+            const digits = val.padStart(3, '0').split('');
+            ['owner', 'group', 'other'].forEach((role, idx) => {
+                const d = parseInt(digits[idx] || 0);
+                document.querySelector(`[data-role="${role}"][data-perm="read"]`).checked = d >= 4;
+                document.querySelector(`[data-role="${role}"][data-perm="write"]`).checked = (d % 4) >= 2;
+                document.querySelector(`[data-role="${role}"][data-perm="execute"]`).checked = (d % 2) >= 1;
+            });
+            updateTextNotation(val.padStart(3, '0'));
+        }
+
+        function resetChmod() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+            document.getElementById('octalInput').value = '';
+            updateChmod();
+        }
+
+        function copyResult() {
+            const text = document.getElementById('octalResult').textContent;
+            navigator.clipboard.writeText(text).then(() => alert('Copié !'));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="URL encoding explained: learn why URL encoding is necessary, how percent encoding works, and how to encode/decode URLs correctly in web development.">
+    <meta name="keywords" content="url encoding explained, what is url encoding, percent encoding guide, url encoding online">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="URL Encoding Explained: Why and How It Works">
+    <meta property="og:description" content="Complete guide to URL encoding and percent encoding. Learn why it's necessary and how to encode/decode URLs properly.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/url-encoding-explained.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="URL Encoding Explained">
+    <meta name="twitter:description" content="Learn why URLs need encoding and how percent encoding works in web development.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/url-encoding-explained.html">
+
+    <title>URL Encoding Explained | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .code-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: var(--bg-input);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: var(--text-muted);
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>URL Encoding Explained</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">URL Encoding Explained: Why and How It Works</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-05-12">May 12, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 7 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>URL encoding, also called percent encoding, is the process of converting special characters into a format that can be safely transmitted over the internet. If you've ever noticed URLs containing %20 instead of spaces, %3D instead of equals signs, or other percent-enclosed characters, you've witnessed URL encoding in action. URL encoding is fundamental to how the web works, yet many developers don't understand why it's necessary or how it functions. This comprehensive guide explains URL encoding from the ground up and teaches you how to use it correctly in your applications.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>Why URL Encoding Is Necessary</h2>
+
+                <p>URLs follow a strict syntax where certain characters have special meanings. The question mark (?) separates the base URL from query parameters. The ampersand (&) separates multiple query parameters. The equals sign (=) separates parameter names from values. The hash (#) marks the URL fragment. The forward slash (/) separates path segments.</p>
+
+                <p>What happens if you want to include a literal question mark as part of a parameter value? Or an ampersand as data? The URL parser would misinterpret these characters, breaking your URLs. URL encoding solves this by replacing special characters with safe representations that the URL parser won't misinterpret.</p>
+
+                <p>Beyond syntax conflicts, URLs are transmitted over HTTP, which uses ASCII text. If you need to include non-ASCII characters like é, ñ, or Chinese characters in URLs, encoding converts these to ASCII-safe representations that survive transmission unchanged.</p>
+
+                <h2>How URL Encoding Works</h2>
+
+                <p>URL encoding replaces special characters with a percent sign followed by the character's hexadecimal ASCII value. A space becomes %20 (space is ASCII 32, which is 20 in hexadecimal). A question mark becomes %3F (question mark is ASCII 63, which is 3F in hex). An equals sign becomes %3D.</p>
+
+                <p>Unreserved characters—letters, digits, hyphens, underscores, periods, and tildes—don't need encoding. These characters can appear literally in URLs without confusion. Reserved characters—those with special meaning in URLs—must be encoded when used as literal data. Characters outside the ASCII range must be encoded.</p>
+
+                <div class="code-example">
+Unencoded: "What is this?"
+Encoded: "What%20is%20this%3F"
+
+Unencoded: user@example.com
+Encoded: user%40example.com
+
+Unencoded: path/to/file
+Encoded: path%2Fto%2Ffile (if slash should be literal, not a path separator)
+                </div>
+
+                <p>The process is straightforward: take each special character, find its decimal ASCII value, convert to hexadecimal, and prepend a percent sign. Modern languages handle this automatically through built-in encoding functions, so you rarely encode manually.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Reserved vs. Unreserved Characters</h2>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Category</th>
+                        <th>Characters</th>
+                        <th>Examples</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Reserved</strong></td>
+                        <td>: / ? # [ ] @ ! $ & ' ( ) * + , ; =</td>
+                        <td>Must encode if literal value needed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unreserved</strong></td>
+                        <td>A-Z a-z 0-9 - _ . ~</td>
+                        <td>Never need encoding</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unsafe</strong></td>
+                        <td>Space " < > % { } | \ ^ `</td>
+                        <td>Always encode</td>
+                    </tr>
+                </table>
+
+                <h2>URL Encoding in Different Contexts</h2>
+
+                <p>Query string encoding requires encoding spaces and special characters but typically preserves slashes in path components. Form data encoding (application/x-www-form-urlencoded) is similar but sometimes encodes additional characters. This is important because the same character might be encoded differently depending on context.</p>
+
+                <p>Path component encoding should preserve slashes when they're path separators but encode them when they're literal data. Fragment identifiers follow query string encoding rules. Understanding context prevents common encoding mistakes.</p>
+
+                <h2>Common URL Encoding Examples</h2>
+
+                <p>A space encodes as %20 or sometimes + in form data. A forward slash encodes as %2F. A question mark encodes as %3F. An ampersand encodes as %26. The percent sign itself encodes as %25 (which is why encoding is sometimes called percent-encoding). Non-ASCII characters like é encode as their UTF-8 byte representation in hex, often resulting in multiple percent-encoded bytes for single characters.</p>
+
+                <p>Unicode characters outside the ASCII range require special handling. The character é (Latin small letter e with acute) has Unicode codepoint U+00E9. Its UTF-8 representation is the bytes C3 A9. When URL encoded, it becomes %C3%A9. Multi-byte UTF-8 characters can result in very long encoded strings.</p>
+
+                <h2>URL Encoding in Programming Languages</h2>
+
+                <div class="code-example">
+// JavaScript
+encodeURIComponent("Hello, World!") // "Hello%2C%20World%21"
+
+// Python
+from urllib.parse import quote
+quote("Hello, World!") # "Hello%2C%20World%21"
+
+// Java
+URLEncoder.encode("Hello, World!", "UTF-8")
+
+// Go
+url.QueryEscape("Hello, World!")
+                </div>
+
+                <p>All major programming languages provide built-in encoding functions. Choose the right function for your use case. encodeURIComponent encodes for query parameters. encodeURI is for complete URIs. The differences matter for getting correct results.</p>
+
+                <h2>Decoding URLs</h2>
+
+                <p>Decoding reverses the process. Replace each percent-encoded sequence with its corresponding character. %20 becomes a space. %3F becomes a question mark. Consecutive percent-encoded bytes combine into single characters when representing multi-byte UTF-8 sequences.</p>
+
+                <p>Most web frameworks automatically decode query parameters and form data, so you rarely need to decode manually. However, understanding the process helps when debugging encoding issues or working with raw URL data.</p>
+
+                <h2>Best Practices for URL Encoding</h2>
+
+                <p>Always encode user-provided data in URLs. Never manually construct URLs with concatenation. Use your language's URL encoding functions. When building URLs with JavaScript, use the URL API which handles encoding automatically. In Python, use urllib.parse. In Java, use URLEncoder. These functions handle edge cases and encoding context correctly.</p>
+
+                <p>Be aware of double-encoding mistakes. If data is already encoded and you encode it again, %20 becomes %2520 (the percent sign itself gets encoded). This breaks URLs. Be consistent with encoding standards in your APIs. Document which parameters expect encoded data versus unencoded.</p>
+
+                <div class="cta-box">
+                    <h3>Encode and Decode URLs Instantly</h3>
+                    <p>Use ToolPilot's URL encoder/decoder for quick conversions without writing code.</p>
+                    <a href="../tools/url-encoder.html" class="cta-button">Use URL Encoder</a>
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Why is space encoded as %20 instead of +?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Both %20 and + represent spaces in URLs, but in different contexts. %20 is standard URL encoding and works everywhere. The + convention comes from form data encoding (application/x-www-form-urlencoded) for backward compatibility with older systems. Modern code preferring %20 is more reliable across all contexts. Use %20 unless specifically working with form data.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Do modern browsers automatically encode URLs?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Browsers automatically encode URLs entered in the address bar, but this is for convenience only. Under the hood, the browser sends properly encoded URLs to servers. When building URLs programmatically in JavaScript or other client-side code, you must still encode properly. The browser won't fix poorly-encoded URLs created by JavaScript.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What's the maximum length of an encoded URL?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Browsers typically support URLs up to 2000-8000 characters depending on the browser. Servers often have lower limits, commonly 2048 bytes. Encoding increases URL length because special characters take three bytes (%XX) instead of one. If you're hitting length limits, consider using POST requests instead of query parameters, which can transmit unlimited data.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Is URL encoding a security feature?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">URL encoding is not a security feature—it's purely a syntax mechanism. Anyone can easily decode URLs. Never use URL encoding to hide sensitive data. Always transmit sensitive data over HTTPS encryption instead. URL encoding makes data unreadable only in appearance, not in security.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="understanding-base64-encoding.html" class="related-link">
+                        <strong>Understanding Base64 Encoding</strong>
+                        <p>Base64 is another encoding scheme similar in concept to URL encoding but with different purposes.</p>
+                    </a>
+                    <a href="web-security-basics.html" class="related-link">
+                        <strong>Web Security Basics Every Developer Should Know</strong>
+                        <p>Understanding encoding is important for web security. Learn other critical security concepts.</p>
+                    </a>
+                    <a href="best-json-formatters-2026.html" class="related-link">
+                        <strong>Best JSON Formatters 2026</strong>
+                        <p>JSON APIs frequently use URL encoding in query parameters. Learn to work with JSON effectively.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-05-12">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "URL Encoding Explained: Why and How It Works",
+        "description": "Complete guide to URL encoding and percent encoding. Learn why it's necessary and how to encode/decode URLs properly.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-05-12T08:00:00Z",
+        "dateModified": "2026-05-12T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+    <script src="../common.js"></script>
+</body>
+</html>

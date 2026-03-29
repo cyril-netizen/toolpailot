@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free hex to RGB color converter. Convert between hex color codes, RGB, HSL, and RGBA formats. Live color preview and full color code conversions.">
+    <meta name="keywords" content="hex to rgb converter, rgb to hex, color code converter, hex color, rgb color, color converter">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hex-rgb-converter.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Hex to RGB Color Converter — Convert Color Codes Online | ToolPilot">
+    <meta property="og:description" content="Convert between hex, RGB, RGBA, HSL, and HSLA color formats instantly. Live color preview and support for opacity/alpha channels.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hex to RGB Color Converter — Convert Color Codes Online | ToolPilot">
+    <meta name="twitter:description" content="Convert between hex, RGB, RGBA, HSL, and HSLA color formats instantly. Live color preview and support for opacity/alpha channels.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>Hex to RGB Color Converter — Convert Color Codes Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .converter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .input-section h3 {
+            margin-top: 0;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="range"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .color-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-input-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .color-input-item input[type="number"] {
+            width: 100%;
+        }
+
+        .slider-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .slider-group input[type="range"] {
+            flex: 1;
+            margin: 0;
+        }
+
+        .slider-value {
+            width: 50px;
+            text-align: center;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .preview-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .preview-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .output-formats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .output-item {
+            background: #f9f9f9;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .output-label {
+            font-weight: 600;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .output-value {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .copy-icon {
+            cursor: pointer;
+            color: #0066cc;
+            font-weight: bold;
+            padding: 0.25rem 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .copy-icon:hover {
+            color: #0052a3;
+        }
+
+        .copy-icon.copied {
+            color: #28a745;
+        }
+
+        .opacity-group {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+
+        .color-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .color-table thead {
+            background: #f0f0f0;
+        }
+
+        .color-table th,
+        .color-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .color-table th {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .color-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Color Converter
+    </div>
+
+    <main class="tool-container">
+        <h1>Hex to RGB Color Converter</h1>
+        <p class="subtitle">Convert between hex, RGB, HSL, and other color formats with live preview</p>
+
+        <div class="converter-grid">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h3>Hex Input</h3>
+                <div class="input-group">
+                    <label for="hex-input">Hex Color Code:</label>
+                    <input type="text" id="hex-input" placeholder="#FF5733" />
+                </div>
+
+                <h3 style="margin-top: 1.5rem;">RGB Input</h3>
+                <div class="input-group">
+                    <label>RGB Values:</label>
+                    <div class="color-inputs">
+                        <div class="color-input-item">
+                            <label style="margin-bottom: 0.25rem; font-size: 0.8rem;">Red</label>
+                            <input type="number" id="rgb-r" min="0" max="255" value="255" />
+                        </div>
+                        <div class="color-input-item">
+                            <label style="margin-bottom: 0.25rem; font-size: 0.8rem;">Green</label>
+                            <input type="number" id="rgb-g" min="0" max="255" value="87" />
+                        </div>
+                        <div class="color-input-item">
+                            <label style="margin-bottom: 0.25rem; font-size: 0.8rem;">Blue</label>
+                            <input type="number" id="rgb-b" min="0" max="255" value="51" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="opacity-group">
+                    <div class="input-group">
+                        <label>Opacity (Alpha):</label>
+                        <div class="slider-group">
+                            <input type="range" id="alpha" min="0" max="100" value="100" />
+                            <span class="slider-value"><span id="alpha-value">100</span>%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview and Output Section -->
+            <div>
+                <div class="preview-section">
+                    <div class="preview-label">Color Preview</div>
+                    <div class="color-preview" id="color-preview"></div>
+
+                    <div class="output-formats">
+                        <div class="output-item">
+                            <div>
+                                <div class="output-label">Hex (6-digit)</div>
+                                <div class="output-value" id="output-hex-6">#FF5733</div>
+                            </div>
+                            <span class="copy-icon" data-target="output-hex-6">📋</span>
+                        </div>
+
+                        <div class="output-item">
+                            <div>
+                                <div class="output-label">Hex (8-digit ARGB)</div>
+                                <div class="output-value" id="output-hex-8">#FFFF5733</div>
+                            </div>
+                            <span class="copy-icon" data-target="output-hex-8">📋</span>
+                        </div>
+
+                        <div class="output-item">
+                            <div>
+                                <div class="output-label">RGB</div>
+                                <div class="output-value" id="output-rgb">rgb(255, 87, 51)</div>
+                            </div>
+                            <span class="copy-icon" data-target="output-rgb">📋</span>
+                        </div>
+
+                        <div class="output-item">
+                            <div>
+                                <div class="output-label">RGBA</div>
+                                <div class="output-value" id="output-rgba">rgba(255, 87, 51, 1)</div>
+                            </div>
+                            <span class="copy-icon" data-target="output-rgba">📋</span>
+                        </div>
+
+                        <div class="output-item">
+                            <div>
+                                <div class="output-label">HSL</div>
+                                <div class="output-value" id="output-hsl">hsl(9, 100%, 60%)</div>
+                            </div>
+                            <span class="copy-icon" data-target="output-hsl">📋</span>
+                        </div>
+
+                        <div class="output-item">
+                            <div>
+                                <div class="output-label">HSLA</div>
+                                <div class="output-value" id="output-hsla">hsla(9, 100%, 60%, 1)</div>
+                            </div>
+                            <span class="copy-icon" data-target="output-hsla">📋</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="color-palette.html" class="card tool-card">
+                    <span class="icon">🎨</span>
+                    <h3>Color Palette</h3>
+                    <p>Generate beautiful color palettes for your projects.</p>
+                </a>
+                <a href="css-minifier.html" class="card tool-card">
+                    <span class="icon">🎯</span>
+                    <h3>CSS Minifier</h3>
+                    <p>Minify and beautify CSS code instantly.</p>
+                </a>
+                <a href="slug-generator.html" class="card tool-card">
+                    <span class="icon">🔗</span>
+                    <h3>Slug Generator</h3>
+                    <p>Generate SEO-friendly URL slugs from text.</p>
+                </a>
+                <a href="html-entities.html" class="card tool-card">
+                    <span class="icon">&amp;lt;</span>
+                    <h3>HTML Entities</h3>
+                    <p>Encode and decode HTML entities and special characters.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About Color Converter</h2>
+            <p>
+                The Hex to RGB color converter tool enables seamless conversion between different color formats used in web design, graphic design, and development. Whether you're working with hex codes from a design tool or need RGB values for CSS styling, this comprehensive converter handles all color format transformations instantly.
+            </p>
+
+            <h3>Understanding Color Formats</h3>
+            <p>
+                Different applications and technologies use different color formats. Hex color codes (like #FF5733) are widely used in web design and CSS. RGB (Red, Green, Blue) values are fundamental to digital displays. HSL (Hue, Saturation, Lightness) provides a more intuitive color selection method. RGBA and HSLA add an alpha channel for transparency. Our converter supports all these formats and can transform between them instantly with accurate calculations.
+            </p>
+
+            <h3>Common Color Formats Explained</h3>
+            <table class="color-table">
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Example</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hex (6-digit)</td>
+                        <td><code>#FF5733</code></td>
+                        <td>Hexadecimal representation of RGB, most common in web design</td>
+                    </tr>
+                    <tr>
+                        <td>Hex (8-digit)</td>
+                        <td><code>#FFFF5733</code></td>
+                        <td>Hexadecimal with alpha channel for transparency</td>
+                    </tr>
+                    <tr>
+                        <td>RGB</td>
+                        <td><code>rgb(255, 87, 51)</code></td>
+                        <td>Red, Green, Blue values (0-255 each)</td>
+                    </tr>
+                    <tr>
+                        <td>RGBA</td>
+                        <td><code>rgba(255, 87, 51, 1)</code></td>
+                        <td>RGB with alpha channel (0-1 opacity)</td>
+                    </tr>
+                    <tr>
+                        <td>HSL</td>
+                        <td><code>hsl(9, 100%, 60%)</code></td>
+                        <td>Hue, Saturation, Lightness for intuitive color selection</td>
+                    </tr>
+                    <tr>
+                        <td>HSLA</td>
+                        <td><code>hsla(9, 100%, 60%, 1)</code></td>
+                        <td>HSL with alpha channel for transparency</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>How to Use the Color Converter</h3>
+            <p>
+                Enter any color value—hex code, RGB values, or use the opacity slider—and watch all color formats update instantly. The live color preview shows exactly how your selected color appears. Copy any format with a single click. Whether you're a web designer converting design tool colors to CSS, a developer working with different color formats, or a creative professional needing color code conversions, this tool handles all transformations accurately and efficiently.
+            </p>
+
+            <h3>Color Conversion for Web Design and Development</h3>
+            <p>
+                Web designers and developers constantly work with color conversions. Design tools like Figma and Adobe XD export hex codes, while CSS often requires RGB or HSL values. Our hex to RGB converter and color format translator solves these conversion challenges instantly. Support for alpha channels (RGBA, HSLA) enables transparent color handling for modern web applications. The tool's accuracy ensures that colors display exactly as intended across different platforms and devices.
+            </p>
+
+            <h3>Accessibility and Color Standards</h3>
+            <p>
+                Understanding color values is crucial for web accessibility. Our color converter helps developers select compliant colors and verify contrast ratios for accessible design. By providing instant access to multiple color format representations, you can ensure your color choices meet accessibility standards while maintaining visual appeal and brand consistency.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Hex to RGB Color Converter",
+        "description": "Free online color converter for hex, RGB, RGBA, HSL, and HSLA formats. Convert color codes instantly with live preview and full transparency support.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a hex color code?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A hex color code is a six-digit hexadecimal representation of a color, such as #FF5733. The first two digits represent red, the next two represent green, and the last two represent blue. Hex codes are widely used in web design and CSS."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I convert hex to RGB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "To convert hex to RGB, divide the hex code into three two-digit pairs and convert each from hexadecimal to decimal. For example, #FF5733 becomes RGB(255, 87, 51). Our converter does this automatically and instantly."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between RGB and RGBA?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "RGB (Red, Green, Blue) specifies color with three values from 0-255. RGBA adds an alpha channel (fourth value 0-1) for transparency. rgba(255, 87, 51, 0.5) is 50% transparent red-orange."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When should I use HSL instead of RGB?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "HSL is more intuitive for color selection because it separates hue (color), saturation (intensity), and lightness (brightness). It's easier to create color variations and matches how humans perceive color better than RGB."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Hex/RGB Converter"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Hex/RGB Converter — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Convert between Hex, RGB, and HSL color formats."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const hexInput = document.getElementById('hex-input');
+        const rgbR = document.getElementById('rgb-r');
+        const rgbG = document.getElementById('rgb-g');
+        const rgbB = document.getElementById('rgb-b');
+        const alphaSlider = document.getElementById('alpha');
+        const alphaValue = document.getElementById('alpha-value');
+        const colorPreview = document.getElementById('color-preview');
+        const copyIcons = document.querySelectorAll('.copy-icon');
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+
+        function updateDisplay() {
+            const r = parseInt(rgbR.value);
+            const g = parseInt(rgbG.value);
+            const b = parseInt(rgbB.value);
+            const alpha = parseInt(alphaSlider.value) / 100;
+
+            const hex6 = rgbToHex(r, g, b);
+            const hex8 = '#' + Math.round(alpha * 255).toString(16).padStart(2, '0').toUpperCase() + hex6.slice(1);
+            const rgb = `rgb(${r}, ${g}, ${b})`;
+            const rgba = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(2)})`;
+            const hsl = rgbToHsl(r, g, b);
+            const hslStr = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+            const hsla = `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${alpha.toFixed(2)})`;
+
+            document.getElementById('output-hex-6').textContent = hex6;
+            document.getElementById('output-hex-8').textContent = hex8;
+            document.getElementById('output-rgb').textContent = rgb;
+            document.getElementById('output-rgba').textContent = rgba;
+            document.getElementById('output-hsl').textContent = hslStr;
+            document.getElementById('output-hsla').textContent = hsla;
+
+            colorPreview.style.backgroundColor = rgba;
+        }
+
+        hexInput.addEventListener('input', () => {
+            const color = hexToRgb(hexInput.value);
+            if (color) {
+                rgbR.value = color.r;
+                rgbG.value = color.g;
+                rgbB.value = color.b;
+                updateDisplay();
+            }
+        });
+
+        rgbR.addEventListener('input', () => {
+            hexInput.value = rgbToHex(parseInt(rgbR.value), parseInt(rgbG.value), parseInt(rgbB.value));
+            updateDisplay();
+        });
+
+        rgbG.addEventListener('input', () => {
+            hexInput.value = rgbToHex(parseInt(rgbR.value), parseInt(rgbG.value), parseInt(rgbB.value));
+            updateDisplay();
+        });
+
+        rgbB.addEventListener('input', () => {
+            hexInput.value = rgbToHex(parseInt(rgbR.value), parseInt(rgbG.value), parseInt(rgbB.value));
+            updateDisplay();
+        });
+
+        alphaSlider.addEventListener('input', () => {
+            alphaValue.textContent = alphaSlider.value;
+            updateDisplay();
+        });
+
+        copyIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                const targetId = icon.dataset.target;
+                const text = document.getElementById(targetId).textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    icon.textContent = '✓';
+                    setTimeout(() => {
+                        icon.textContent = '📋';
+                    }, 2000);
+                });
+            });
+        });
+
+        // Initialize
+        hexInput.value = '#FF5733';
+        updateDisplay();
+    </script>
+</body>
+</html>

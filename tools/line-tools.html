@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online line sorter and text utility tool. Sort lines alphabetically, remove duplicates, count lines, reverse order, and more. Perfect for data processing.">
+    <meta name="keywords" content="line sorter, remove duplicate lines, sort lines alphabetically, line counter, text sorter, deduplicate lines">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/line-tools.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/line-tools.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/line-tools.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Line Sorter, Deduplicator & Counter — Text Line Tools | ToolPilot">
+    <meta property="og:description" content="Sort lines alphabetically, remove duplicates, count unique lines, and perform text manipulation. Powerful online line processing tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/line-tools.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Line Sorter, Deduplicator & Counter — Text Line Tools | ToolPilot">
+    <meta name="twitter:description" content="Sort lines alphabetically, remove duplicates, count unique lines, and perform text manipulation. Powerful online line processing tools.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>Line Sorter, Deduplicator & Counter — Text Line Tools | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-section,
+        .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textarea-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            flex: 1;
+            min-height: 300px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .actions-section {
+            margin: 2rem 0;
+        }
+
+        .action-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        button {
+            padding: 0.75rem 1rem;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background: #e0e0e0;
+            border-color: #999;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .primary-btn {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        .primary-btn:hover {
+            background: #0052a3;
+            border-color: #0052a3;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .copy-btn.copied {
+            background: #1e7e34;
+        }
+
+        .output-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 300px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Line Tools
+    </div>
+
+    <main class="tool-container">
+        <h1>Line Sorter, Deduplicator & Counter</h1>
+        <p class="subtitle">Sort, clean, and analyze text data with powerful line manipulation tools</p>
+
+        <div class="content-grid">
+            <!-- Input Column -->
+            <div class="input-section">
+                <div class="textarea-wrapper">
+                    <label for="input-text">Input Text (one item per line):</label>
+                    <textarea id="input-text" placeholder="Paste your list here...&#10;One item per line&#10;Duplicates are fine"></textarea>
+                </div>
+            </div>
+
+            <!-- Output Column -->
+            <div class="output-section">
+                <div class="textarea-wrapper">
+                    <label for="output-text">Output:</label>
+                    <div class="output-box" id="output-text"></div>
+                </div>
+                <div class="output-actions">
+                    <button class="copy-btn" id="copy-btn" style="display: none;">Copy to Clipboard</button>
+                    <button class="copy-btn" style="background: #6c757d;" id="download-btn">Download as .txt</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats" id="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Lines</div>
+                <div class="stat-value" id="total-lines">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Unique Lines</div>
+                <div class="stat-value" id="unique-lines">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Empty Lines</div>
+                <div class="stat-value" id="empty-lines">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Duplicates</div>
+                <div class="stat-value" id="duplicate-count">0</div>
+            </div>
+        </div>
+
+        <!-- Actions Section -->
+        <div class="actions-section">
+            <div class="action-label">Sort & Transform Options:</div>
+            <div class="buttons-grid">
+                <button id="sort-az">Sort A-Z</button>
+                <button id="sort-za">Sort Z-A</button>
+                <button id="sort-length">Sort by Length</button>
+                <button id="reverse">Reverse Order</button>
+                <button id="dedupe">Remove Duplicates</button>
+                <button id="remove-empty">Remove Empty Lines</button>
+                <button id="trim-whitespace">Trim Whitespace</button>
+                <button id="number-lines">Number Lines</button>
+                <button class="primary-btn" id="clear-all">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="word-counter.html" class="card tool-card">
+                    <span class="icon">🔢</span>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters, sentences & reading time.</p>
+                </a>
+                <a href="case-converter.html" class="card tool-card">
+                    <span class="icon">Aa</span>
+                    <h3>Case Converter</h3>
+                    <p>Convert text between uppercase, lowercase, title case & more.</p>
+                </a>
+                <a href="diff-checker.html" class="card tool-card">
+                    <span class="icon">↔️</span>
+                    <h3>Diff Checker</h3>
+                    <p>Compare two texts and highlight differences.</p>
+                </a>
+                <a href="slug-generator.html" class="card tool-card">
+                    <span class="icon">🔗</span>
+                    <h3>Slug Generator</h3>
+                    <p>Generate SEO-friendly URL slugs from text.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About Line Tools</h2>
+            <p>
+                The Line Sorter, Deduplicator, and Counter tool is a powerful utility for processing text data with multiple lines. Whether you're working with lists, data imports, or text processing tasks, this tool provides essential features for cleaning, organizing, and analyzing line-based data instantly.
+            </p>
+
+            <h3>Features & Capabilities</h3>
+            <ul class="feature-list">
+                <li>Sort lines alphabetically (A-Z) or reverse (Z-A)</li>
+                <li>Sort lines by their length (shortest to longest)</li>
+                <li>Remove duplicate lines while preserving order</li>
+                <li>Remove empty lines and blank entries</li>
+                <li>Reverse line order</li>
+                <li>Trim leading and trailing whitespace</li>
+                <li>Add line numbers for reference</li>
+                <li>Real-time statistics (total, unique, empty, duplicates)</li>
+                <li>Copy results to clipboard instantly</li>
+                <li>Download processed text as .txt file</li>
+            </ul>
+
+            <h3>Common Use Cases</h3>
+            <p>
+                <strong>Data Cleaning:</strong> Remove duplicates and empty lines from imported data, spreadsheets, or databases. The deduplicator ensures each entry appears only once while preserving the original order.
+            </p>
+            <p>
+                <strong>List Organization:</strong> Sort to-do lists, inventory lists, or any line-based data alphabetically or by other criteria. Quickly identify duplicates in customer lists, email databases, or product catalogs.
+            </p>
+            <p>
+                <strong>Text Analysis:</strong> Count unique items, identify most frequent entries, and understand data composition. The statistics panel shows total lines, unique entries, empty lines, and duplicate count at a glance.
+            </p>
+            <p>
+                <strong>Web Development:</strong> Process URL lists, API endpoints, domain lists, or configuration data. Sort and deduplicate URLs, organize API endpoints, or clean configuration files with ease.
+            </p>
+
+            <h3>How to Use Line Tools</h3>
+            <p>
+                Paste or type your list into the input area (one item per line). The tool instantly analyzes your data and displays statistics. Click any action button to transform your data—sort alphabetically, remove duplicates, trim whitespace, or apply any combination of operations. Watch the statistics update in real-time as you process your data. Copy the output to your clipboard or download as a text file.
+            </p>
+
+            <h3>Data Processing & List Management</h3>
+            <p>
+                Efficient text processing is essential for many tasks. Our line tools eliminate manual list organization, duplicate removal, and sorting. Process thousands of lines instantly without manual work. The algorithm efficiently handles large datasets while maintaining accuracy. Whether you're managing customer databases, organizing product lists, or processing research data, these tools streamline your workflow and save valuable time.
+            </p>
+
+            <h3>Why Choose This Line Tools?</h3>
+            <p>
+                Unlike spreadsheet software that requires file uploads or complex formulas, this line tools works directly in your browser with no installation needed. It's completely free, fast, and private—all processing happens locally on your device. The intuitive interface makes it accessible to everyone, while advanced features like custom sorting and line numbering serve power users. Copy or download results instantly, making it perfect for quick data processing tasks or workflows that require text export.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Line Sorter, Deduplicator & Counter",
+        "description": "Free online tool to sort lines, remove duplicates, count unique lines, and perform text line processing. Supports sorting, deduplication, trimming, and more.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/line-tools.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I remove duplicate lines from a list?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Paste your list into the input area (one item per line) and click the 'Remove Duplicates' button. The tool instantly removes all duplicate entries while preserving the order of the remaining items."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I sort lines by length?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Click the 'Sort by Length' button to arrange lines from shortest to longest. This is useful for organizing data based on string length or finding the most concise entries."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What does the 'Remove Empty Lines' feature do?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This feature deletes all blank lines (lines containing only whitespace) from your text. It's perfect for cleaning up imported data or removing formatting gaps from lists."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How can I count unique lines in my text?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The statistics panel automatically shows the count of unique lines. You can also use 'Remove Duplicates' to see exactly how many unique items are in your list."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Line Tools"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Line Tools — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/line-tools.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Sort, deduplicate, reverse & count lines of text."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const inputText = document.getElementById('input-text');
+        const outputText = document.getElementById('output-text');
+        const copyBtn = document.getElementById('copy-btn');
+        const downloadBtn = document.getElementById('download-btn');
+        const actionButtons = document.querySelectorAll('.buttons-grid button');
+
+        function getLines() {
+            return inputText.value.split('\n');
+        }
+
+        function setOutput(lines) {
+            const text = lines.join('\n');
+            outputText.textContent = text;
+            copyBtn.style.display = 'inline-block';
+            updateStats(lines);
+        }
+
+        function updateStats(lines) {
+            const nonEmpty = lines.filter(line => line.trim() !== '');
+            const unique = new Set(lines.map(line => line.trim()));
+            const uniqueCount = unique.size;
+            const emptyCount = lines.filter(line => line.trim() === '').length;
+            const duplicateCount = nonEmpty.length - unique.size;
+
+            document.getElementById('total-lines').textContent = lines.length;
+            document.getElementById('unique-lines').textContent = uniqueCount;
+            document.getElementById('empty-lines').textContent = emptyCount;
+            document.getElementById('duplicate-count').textContent = Math.max(0, duplicateCount);
+        }
+
+        function sortAZ() {
+            const lines = getLines();
+            lines.sort((a, b) => a.localeCompare(b));
+            setOutput(lines);
+        }
+
+        function sortZA() {
+            const lines = getLines();
+            lines.sort((a, b) => b.localeCompare(a));
+            setOutput(lines);
+        }
+
+        function sortByLength() {
+            const lines = getLines();
+            lines.sort((a, b) => a.length - b.length);
+            setOutput(lines);
+        }
+
+        function reverse() {
+            const lines = getLines();
+            lines.reverse();
+            setOutput(lines);
+        }
+
+        function removeDuplicates() {
+            const lines = getLines();
+            const seen = new Set();
+            const unique = lines.filter(line => {
+                if (seen.has(line)) return false;
+                seen.add(line);
+                return true;
+            });
+            setOutput(unique);
+        }
+
+        function removeEmpty() {
+            const lines = getLines();
+            const filtered = lines.filter(line => line.trim() !== '');
+            setOutput(filtered);
+        }
+
+        function trimWhitespace() {
+            const lines = getLines();
+            const trimmed = lines.map(line => line.trim());
+            setOutput(trimmed);
+        }
+
+        function numberLines() {
+            const lines = getLines();
+            const numbered = lines.map((line, index) => `${index + 1}. ${line}`);
+            setOutput(numbered);
+        }
+
+        function clearAll() {
+            inputText.value = '';
+            outputText.textContent = '';
+            copyBtn.style.display = 'none';
+            document.getElementById('total-lines').textContent = '0';
+            document.getElementById('unique-lines').textContent = '0';
+            document.getElementById('empty-lines').textContent = '0';
+            document.getElementById('duplicate-count').textContent = '0';
+        }
+
+        document.getElementById('sort-az').addEventListener('click', sortAZ);
+        document.getElementById('sort-za').addEventListener('click', sortZA);
+        document.getElementById('sort-length').addEventListener('click', sortByLength);
+        document.getElementById('reverse').addEventListener('click', reverse);
+        document.getElementById('dedupe').addEventListener('click', removeDuplicates);
+        document.getElementById('remove-empty').addEventListener('click', removeEmpty);
+        document.getElementById('trim-whitespace').addEventListener('click', trimWhitespace);
+        document.getElementById('number-lines').addEventListener('click', numberLines);
+        document.getElementById('clear-all').addEventListener('click', clearAll);
+
+        copyBtn.addEventListener('click', () => {
+            const text = outputText.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.style.background = '#28a745';
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy to Clipboard';
+                    copyBtn.style.background = '#28a745';
+                }, 2000);
+            });
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            const text = outputText.textContent;
+            if (!text.trim()) {
+                alert('No output to download');
+                return;
+            }
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'lines.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        inputText.addEventListener('input', () => {
+            const lines = getLines();
+            if (lines.some(line => line.trim())) {
+                updateStats(lines);
+            }
+        });
+    </script>
+</body>
+</html>

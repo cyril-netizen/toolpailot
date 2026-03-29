@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /fr/
+Sitemap: https://cyril-netizen.github.io/toolpailot/sitemap.xml
+Feed: https://cyril-netizen.github.io/toolpailot/blog/feed.xml

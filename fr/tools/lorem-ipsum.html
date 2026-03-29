@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Générateur Lorem Ipsum - Générez du texte placeholder en Latin pour vos projets de design et développement web.">
+    <meta name="keywords" content="lorem ipsum, générateur texte, placeholder, design, web">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Générateur Lorem Ipsum">
+    <meta property="og:description" content="Générez du texte Lorem Ipsum pour vos maquettes et prototypes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/lorem-ipsum.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Générateur Lorem Ipsum">
+    <meta name="twitter:description" content="Générez du texte Lorem Ipsum pour vos projets web.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/lorem-ipsum.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/lorem-ipsum.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/lorem-ipsum.html">
+    <title>Générateur Lorem Ipsum - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .control-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .control-group input {
+            flex: 1;
+            min-width: 100px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Générateur Lorem Ipsum</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Générateur Lorem Ipsum</h1>
+        <p>Générez du texte Lorem Ipsum pour vos maquettes, prototypes et projets web. Parfait pour les designers et développeurs.</p>
+
+        <div class="tool-container">
+            <div class="input-group">
+                <h3>Paramètres</h3>
+                <div class="control-group">
+                    <label>
+                        Paragraphes:
+                        <input type="number" id="paragraphCount" min="1" max="100" value="5">
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label>
+                        Phrases:
+                        <input type="number" id="sentenceCount" min="1" max="50" value="3">
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label>
+                        Mots:
+                        <input type="number" id="wordCount" min="1" max="500" value="10">
+                    </label>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="generateLoremIpsum()">Générer</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <h3>Résultat</h3>
+                <textarea id="output" readonly></textarea>
+                <button class="btn btn-secondary" onclick="copyToClipboard()">Copier</button>
+            </div>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="word-counter.html" class="tool-card">Compteur de Mots</a>
+                <a href="markdown-preview.html" class="tool-card">Aperçu Markdown</a>
+                <a href="case-converter.html" class="tool-card">Convertisseur de Casse</a>
+                <a href="line-tools.html" class="tool-card">Outils de Lignes</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>Qu'est-ce que Lorem Ipsum?</h3>
+                <p>Lorem Ipsum est du texte fictif standard utilisé en design et en édition depuis le 16e siècle. Il est idéal pour les maquettes et les prototypes car il remplit l'espace sans distraire par un contenu significatif.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Puis-je utiliser ce texte dans mes projets commerciaux?</h3>
+                <p>Oui, Lorem Ipsum est du domaine public et peut être utilisé librement dans tous les projets, commerciaux ou non.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Comment puis-je ajuster la quantité de texte?</h3>
+                <p>Utilisez les champs d'entrée pour définir le nombre de paragraphes, de phrases et de mots. Cliquez sur "Générer" pour créer le texte avec vos paramètres.</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos du Générateur Lorem Ipsum</h2>
+            <p>Notre générateur Lorem Ipsum en ligne vous permet de créer rapidement du texte placeholder pour vos projets de conception et de développement. Que vous travailliez sur une maquette de site web, une application mobile ou un design print, ce générateur vous aide à visualiser votre mise en page avec un texte réaliste.</p>
+            <p>Le Lorem Ipsum est particulièrement utile pour les designers qui souhaitent tester leurs mises en page avant que le contenu réel soit disponible. En utilisant du texte Lorem Ipsum, vous pouvez vous concentrer sur l'aspect visuel et la structure de votre conception sans être distrait par le contenu lui-même.</p>
+            <p>Notre outil est gratuit, rapide et ne nécessite aucune installation. Tout ce que vous avez à faire est de spécifier le nombre de paragraphes, de phrases ou de mots que vous souhaitez, et le générateur créera le texte pour vous. Vous pouvez ensuite copier le texte généré et le coller directement dans votre projet.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Générateur Lorem Ipsum",
+        "description": "Générez du texte Lorem Ipsum pour vos projets de design et développement",
+        "url": "https://toolpilot.netlify.app/fr/tools/lorem-ipsum.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        const loremWords = [
+            'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit',
+            'sed', 'do', 'eiusmod', 'tempor', 'incididunt', 'ut', 'labore', 'et', 'dolore',
+            'magna', 'aliqua', 'enim', 'ad', 'minim', 'veniam', 'quis', 'nostrud', 'exercitation',
+            'ullamco', 'laboris', 'nisi', 'aliquip', 'ex', 'ea', 'commodo', 'consequat', 'duis',
+            'aute', 'irure', 'in', 'reprehenderit', 'voluptate', 'velit', 'esse', 'cillum',
+            'fugiat', 'nulla', 'pariatur', 'excepteur', 'sint', 'occaecat', 'cupidatat', 'non',
+            'proident', 'sunt', 'culpa', 'qui', 'officia', 'deserunt', 'mollit', 'anim', 'id',
+            'est', 'laborum'
+        ];
+
+        function getRandomWord() {
+            return loremWords[Math.floor(Math.random() * loremWords.length)];
+        }
+
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function generateSentence() {
+            const wordCount = document.getElementById('wordCount').value || 10;
+            let words = [];
+            for (let i = 0; i < wordCount; i++) {
+                words.push(getRandomWord());
+            }
+            words[0] = capitalizeFirst(words[0]);
+            return words.join(' ') + '.';
+        }
+
+        function generateParagraph() {
+            const sentenceCount = document.getElementById('sentenceCount').value || 3;
+            let sentences = [];
+            for (let i = 0; i < sentenceCount; i++) {
+                sentences.push(generateSentence());
+            }
+            return sentences.join(' ');
+        }
+
+        function generateLoremIpsum() {
+            const paragraphCount = document.getElementById('paragraphCount').value || 5;
+            let paragraphs = [];
+
+            for (let i = 0; i < paragraphCount; i++) {
+                paragraphs.push(generateParagraph());
+            }
+
+            document.getElementById('output').value = paragraphs.join('\n\n');
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            output.select();
+            document.execCommand('copy');
+            alert('Copié dans le presse-papiers!');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Generate on load
+        window.addEventListener('load', generateLoremIpsum);
+
+        // Load theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

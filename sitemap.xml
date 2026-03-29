@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ==================== ENGLISH ==================== -->
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- EN Tools -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/password-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/password-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/password-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/word-counter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/word-counter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/base64-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/base64-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/base64-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/case-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/case-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/lorem-ipsum.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/lorem-ipsum.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/lorem-ipsum.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/color-palette.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/color-palette.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/color-palette.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/uuid-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/uuid-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/uuid-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/url-encoder.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/url-encoder.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/timestamp-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/timestamp-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/markdown-preview.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/markdown-preview.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/markdown-preview.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/css-minifier.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/css-minifier.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-minifier.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/js-minifier.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/js-minifier.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/js-minifier.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/html-entities.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/html-entities.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/html-entities.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/slug-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/slug-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/slug-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hex-rgb-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/line-tools.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/line-tools.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/line-tools.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/qr-code-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/json-csv-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/json-csv-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-csv-converter.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/jwt-decoder.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/jwt-decoder.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/jwt-decoder.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/cron-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/cron-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-gradient-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/yaml-json-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/yaml-json-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/html-to-markdown.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/html-to-markdown.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/meta-tag-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/chmod-calculator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/chmod-calculator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/chmod-calculator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/tools/svg-to-png.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/svg-to-png.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/svg-to-png.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- EN Categories -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/categories/developer-tools.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/categories/text-tools.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/categories/design-tools.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- EN Privacy Policy -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- EN Blog -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/blog/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/blog/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/best-json-formatters-2026.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/how-to-create-strong-passwords.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/developer-tools-every-web-dev-needs.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/understanding-base64-encoding.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/unix-timestamp-guide.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/best-free-developer-tools-2026.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/best-password-managers-2026.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/best-qr-code-generators.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/best-regex-testers-online.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/color-theory-hex-rgb-hsl.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/cron-expressions-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/css-gradients-examples.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/css-minification-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/how-to-generate-qr-codes.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/html-to-markdown-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/javascript-minification-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/json-to-csv-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/jwt-tokens-explained.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/linux-file-permissions-explained.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/meta-tags-seo-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/svg-to-image-conversion.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/uuid-generation-guide.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/blog/yaml-vs-json.html</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ==================== FRENCH ==================== -->
+
+  <!-- FR Homepage -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- FR Tools -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/json-formatter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-formatter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/password-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/password-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/password-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/word-counter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/base64-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/base64-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/base64-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/case-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/lorem-ipsum.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/lorem-ipsum.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/lorem-ipsum.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/color-palette.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/color-palette.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/color-palette.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/uuid-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/uuid-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/uuid-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/regex-tester.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/regex-tester.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/url-encoder.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/timestamp-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/timestamp-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/markdown-preview.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/markdown-preview.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/markdown-preview.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/css-minifier.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/css-minifier.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-minifier.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/js-minifier.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/js-minifier.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/js-minifier.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/html-entities.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/html-entities.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/html-entities.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/slug-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/slug-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/slug-generator.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/hex-rgb-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hex-rgb-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hex-rgb-converter.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/line-tools.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/line-tools.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/line-tools.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/qr-code-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/qr-code-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/json-csv-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/json-csv-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/json-csv-converter.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/jwt-decoder.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/jwt-decoder.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/jwt-decoder.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/cron-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/css-gradient-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-gradient-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/yaml-json-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/html-to-markdown.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/meta-tag-generator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/meta-tag-generator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/meta-tag-generator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/chmod-calculator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/chmod-calculator.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/chmod-calculator.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/tools/svg-to-png.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/svg-to-png.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/svg-to-png.html"/>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FR Privacy Policy -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/privacy.html"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- FR Blog -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/blog/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/blog/"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

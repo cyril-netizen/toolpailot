@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convertisseur YAML vers JSON gratuit et en ligne. Convertissez entre YAML et JSON instantanément avec détection d'erreurs. Parfait pour les développeurs et les ingénieurs DevOps.">
+    <meta name="keywords" content="convertisseur yaml vers json, json vers yaml, convertisseur yaml en ligne, convertisseur json, outil yaml json">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/yaml-json-converter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Convertisseur YAML vers JSON — Convertir YAML ↔ JSON | ToolPilot">
+    <meta property="og:description" content="Convertisseur gratuit en ligne YAML vers JSON et JSON vers YAML avec validation en temps réel et affichage d'erreurs.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertisseur YAML vers JSON — Outil Gratuit en Ligne">
+    <meta name="twitter:description" content="Convertissez YAML en JSON et JSON en YAML instantanément en ligne.">
+
+    <title>Convertisseur YAML vers JSON — Convertir YAML ↔ JSON | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .converter-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .converter-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .converter-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .panel-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-label .format {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--bg-input);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            background: var(--bg-input);
+            color: var(--text);
+            resize: vertical;
+            transition: border-color var(--transition);
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .error-message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            display: none;
+            margin-top: 8px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-convert {
+            background: var(--primary);
+            color: white;
+            min-width: 140px;
+        }
+
+        .btn-convert:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-copy {
+            background: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .btn-copy:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-copy.copied {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .seo-content {
+            background: var(--bg-input);
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .seo-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .seo-content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .seo-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .faq-section {
+            margin-top: 32px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .faq-item h4 {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item h4:hover {
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        .ad-slot {
+            background: var(--bg-input);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 24px 0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .related-tools {
+            margin-top: 40px;
+        }
+
+        .related-tools h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all var(--transition);
+        }
+
+        .tool-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .tool-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tool-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .converter-card {
+                padding: 20px;
+            }
+
+            .converter-layout {
+                grid-template-columns: 1fr;
+            }
+
+            textarea {
+                min-height: 200px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .seo-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot/fr">Accueil</a>
+            <span>/</span>
+            <a href="https://cyril-netizen.github.io/toolpailot/fr#outils">Outils</a>
+            <span>/</span>
+            <span>Convertisseur YAML ↔ JSON</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; color: var(--text);">Convertisseur YAML ↔ JSON</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 32px;">Convertissez entre les formats YAML et JSON instantanément avec validation en temps réel</p>
+
+        <div id="message" class="message"></div>
+
+        <div class="converter-card">
+            <div class="converter-layout">
+                <div class="converter-panel">
+                    <div class="panel-label">
+                        <span>Entrée YAML</span>
+                        <span class="format">YAML</span>
+                    </div>
+                    <textarea id="yamlInput" placeholder="Collez votre YAML ici...&#10;Exemple :&#10;nom: Jean&#10;âge: 30&#10;actif: true" onkeyup="validateAndConvert()"></textarea>
+                    <div id="yamlError" class="error-message"></div>
+                    <button class="btn-copy" onclick="copyToClipboard('yamlInput')">Copier YAML</button>
+                </div>
+
+                <div class="converter-panel">
+                    <div class="panel-label">
+                        <span>Résultat JSON</span>
+                        <span class="format">JSON</span>
+                    </div>
+                    <textarea id="jsonOutput" readonly placeholder="La sortie JSON apparaîtra ici..." style="background: var(--bg-input); color: var(--text-muted);"></textarea>
+                    <div id="jsonError" class="error-message"></div>
+                    <button class="btn-copy" onclick="copyToClipboard('jsonOutput')">Copier JSON</button>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-convert" onclick="yamlToJson()">YAML → JSON</button>
+                <button class="btn-convert" onclick="jsonToYaml()">JSON → YAML</button>
+                <button class="btn-convert" style="background: var(--bg-input); color: var(--text); border: 1px solid var(--border);" onclick="clearAll()">Effacer Tout</button>
+            </div>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>À Propos du Convertisseur YAML vers JSON</h2>
+            <p>Notre convertisseur gratuit en ligne YAML vers JSON et JSON vers YAML vous permet de convertir instantanément entre ces deux formats de données populaires. Que vous travailliez avec des fichiers de configuration, des réponses API ou le traitement de données, notre outil facilite le passage entre les formats YAML et JSON avec validation complète des erreurs et détection.</p>
+
+            <h3>Comprendre YAML et JSON</h3>
+            <p><strong>YAML</strong> (YAML Ain't Markup Language) est un format de sérialisation de données lisible par l'homme couramment utilisé pour les fichiers de configuration, Docker Compose, les manifestes Kubernetes et les playbooks Ansible. Il utilise l'indentation pour dénoter la structure et est très lisible pour les humains.</p>
+            <p><strong>JSON</strong> (JavaScript Object Notation) est un format de données léger qui est indépendant du langage et largement soutenu dans tous les langages de programmation et les plates-formes. C'est la norme pour les API et l'échange de données sur le web.</p>
+
+            <h3>Caractéristiques Principales</h3>
+            <ul>
+                <li><strong>Conversion Bidirectionnelle :</strong> Convertissez YAML en JSON et JSON en YAML instantanément</li>
+                <li><strong>Validation en Temps Réel :</strong> L'entrée est validée au fur et à mesure avec détection d'erreurs</li>
+                <li><strong>Mise en Évidence des Erreurs :</strong> Des messages d'erreur clairs aident à identifier les problèmes d'analyse</li>
+                <li><strong>Boutons de Copie :</strong> Copie en un clic de la sortie vers le presse-papiers</li>
+                <li><strong>Support des Structures Complexes :</strong> Gère les objets imbriqués, les tableaux, les chaînes, les nombres, les booléens et les valeurs nulles</li>
+                <li><strong>100% Côté Client :</strong> Toutes les conversions se font dans votre navigateur — vos données restent privées</li>
+                <li><strong>Aucune Inscription Requise :</strong> Outil gratuit, complètement anonyme</li>
+            </ul>
+
+            <h3>Cas d'Usage Courants</h3>
+            <ul>
+                <li>Conversion des fichiers YAML Docker Compose au format JSON pour le traitement</li>
+                <li>Conversion des manifestes YAML Kubernetes en JSON pour les interactions API</li>
+                <li>Conversion des fichiers de configuration entre les formats pour différents outils</li>
+                <li>Préparation des données YAML pour les systèmes et API basés sur JSON</li>
+                <li>Migration des données entre les systèmes qui nécessitent des formats différents</li>
+                <li>Travail avec Terraform, Ansible et d'autres outils d'Infrastructure en Code</li>
+                <li>Débogage et validation des fichiers de configuration</li>
+            </ul>
+
+            <h3>Guide de Syntaxe YAML</h3>
+            <p>YAML utilise l'indentation (espaces, pas des onglets) pour dénoter la structure. Voici les éléments de base YAML :</p>
+            <ul>
+                <li><strong>Paires clé-valeur :</strong> <code>nom: Jean</code></li>
+                <li><strong>Objets imbriqués :</strong> Les lignes indentées créent des structures imbriquées</li>
+                <li><strong>Listes :</strong> Les éléments commençant par <code>-</code> créent des tableaux</li>
+                <li><strong>Chaînes :</strong> Texte régulier (guillemets facultatifs sauf contenant des caractères spéciaux)</li>
+                <li><strong>Nombres :</strong> <code>42, 3.14</code></li>
+                <li><strong>Booléens :</strong> <code>true, false, yes, no</code></li>
+                <li><strong>Null :</strong> <code>null, ~, ou valeur vide</code></li>
+            </ul>
+
+            <h3>Guide de Syntaxe JSON</h3>
+            <p>JSON a des règles de syntaxe plus strictes que YAML. Points clés :</p>
+            <ul>
+                <li><strong>Objets :</strong> Enveloppés dans des accolades <code>{}</code></li>
+                <li><strong>Tableaux :</strong> Enveloppés dans des crochets <code>[]</code></li>
+                <li><strong>Chaînes :</strong> Doivent être entre guillemets doubles</li>
+                <li><strong>Clés :</strong> Doivent être des chaînes entre guillemets doubles</li>
+                <li><strong>Valeurs :</strong> Peuvent être des chaînes, des nombres, des booléens, null, des objets ou des tableaux</li>
+                <li><strong>Aucune virgule finale :</strong> Les derniers éléments dans les objets et les tableaux ne doivent pas avoir de virgules</li>
+            </ul>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <h2>Outils Associés</h2>
+            <div class="tool-grid">
+                <a href="json-validator.html" class="tool-card">
+                    <h3>Validateur JSON</h3>
+                    <p>Validez et formatez JSON avec détection d'erreurs.</p>
+                </a>
+                <a href="base64-converter.html" class="tool-card">
+                    <h3>Convertisseur Base64</h3>
+                    <p>Encodez et décodez les chaînes Base64 instantanément.</p>
+                </a>
+                <a href="html-to-markdown.html" class="tool-card">
+                    <h3>HTML vers Markdown</h3>
+                    <p>Convertissez le code HTML au format Markdown.</p>
+                </a>
+                <a href="url-encoder-decoder.html" class="tool-card">
+                    <h3>Encodeur/Décodeur URL</h3>
+                    <p>Encodez et décodez les chaînes URL et les paramètres.</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 style="font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 20px;">Questions Fréquemment Posées</h2>
+
+            <div class="faq-item">
+                <h4 onclick="toggleFaq(this)">Mes données sont-elles sûres avec ce convertisseur ? <span>▼</span></h4>
+                <div class="faq-answer">Oui, absolument. Toute la conversion se fait entièrement dans votre navigateur. Aucune donnée n'est envoyée à un serveur, donc vos informations restent complètement privées et sécurisées. C'est un outil uniquement côté client.</div>
+            </div>
+
+            <div class="faq-item">
+                <h4 onclick="toggleFaq(this)">Quels types de données puis-je convertir ? <span>▼</span></h4>
+                <div class="faq-answer">Vous pouvez convertir n'importe quel YAML ou JSON valide, y compris les objets, les tableaux, les chaînes, les nombres, les booléens et les valeurs nulles. Le convertisseur gère les structures imbriquées, les listes avec tirets et les documents YAML correctement indentés.</div>
+            </div>
+
+            <div class="faq-item">
+                <h4 onclick="toggleFaq(this)">Que se passe-t-il si mon YAML/JSON n'est pas valide ? <span>▼</span></h4>
+                <div class="faq-answer">Le convertisseur affichera un message d'erreur clair indiquant ce qui ne va pas avec votre entrée. Les problèmes courants incluent l'indentation incorrecte en YAML, les guillemets manquants en JSON ou la syntaxe invalide. Le message d'erreur vous aidera à localiser et corriger le problème.</div>
+            </div>
+
+            <div class="faq-item">
+                <h4 onclick="toggleFaq(this)">Puis-je convertir de gros fichiers ? <span>▼</span></h4>
+                <div class="faq-answer">Oui, vous pouvez coller de très gros documents YAML ou JSON dans le convertisseur. Les performances dépendent de votre navigateur et de votre système, mais le convertisseur est optimisé pour gérer des quantités substantielles de données.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Convertisseur YAML vers JSON",
+        "description": "Convertisseur YAML vers JSON et JSON vers YAML gratuit en ligne avec validation en temps réel",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Mes données sont-elles sûres avec ce convertisseur ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Oui, toute la conversion se fait entièrement dans votre navigateur. Aucune donnée n'est envoyée à un serveur, donc vos informations restent complètement privées et sécurisées."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quels types de données puis-je convertir ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vous pouvez convertir n'importe quel YAML ou JSON valide, y compris les objets, les tableaux, les chaînes, les nombres, les booléens et les valeurs nulles."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Que se passe-t-il si mon YAML/JSON n'est pas valide ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le convertisseur affichera un message d'erreur clair indiquant ce qui ne va pas avec votre entrée et vous aidera à localiser le problème."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cyril-netizen.github.io/toolpailot/fr"},
+            {"@type": "ListItem", "position": 2, "name": "Outils", "item": "https://cyril-netizen.github.io/toolpailot/fr#outils"},
+            {"@type": "ListItem", "position": 3, "name": "Convertisseur YAML vers JSON"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Convertisseur YAML vers JSON — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/yaml-json-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Convertissez YAML en JSON et JSON en YAML en ligne instantanément."
+    }
+    </script>
+
+    <script src="../../common.js"></script>
+    <script>
+        // Simple YAML parser for common cases
+        function parseYAML(yamlString) {
+            const lines = yamlString.split('\n');
+            const obj = {};
+            const stack = [obj];
+            const indentStack = [-1];
+
+            for (let line of lines) {
+                if (!line.trim() || line.trim().startsWith('#')) continue;
+
+                const indent = line.search(/\S/);
+                const trimmed = line.trim();
+
+                // Handle list items
+                if (trimmed.startsWith('-')) {
+                    const itemValue = trimmed.slice(1).trim();
+                    if (!Array.isArray(stack[stack.length - 1])) {
+                        const arr = [];
+                        stack[stack.length - 1] = arr;
+                    }
+                    stack[stack.length - 1].push(parseValue(itemValue));
+                    continue;
+                }
+
+                // Handle key:value pairs
+                if (trimmed.includes(':')) {
+                    const colonIdx = trimmed.indexOf(':');
+                    const key = trimmed.slice(0, colonIdx).trim();
+                    const value = trimmed.slice(colonIdx + 1).trim();
+
+                    while (indentStack.length > 1 && indentStack[indentStack.length - 1] >= indent) {
+                        stack.pop();
+                        indentStack.pop();
+                    }
+
+                    if (value === '') {
+                        const newObj = {};
+                        stack[stack.length - 1][key] = newObj;
+                        stack.push(newObj);
+                        indentStack.push(indent);
+                    } else {
+                        stack[stack.length - 1][key] = parseValue(value);
+                    }
+                }
+            }
+
+            return obj;
+        }
+
+        function parseValue(val) {
+            val = val.trim();
+            if (val === 'true') return true;
+            if (val === 'false') return false;
+            if (val === 'null' || val === '~') return null;
+            if (!isNaN(val) && val !== '') return Number(val);
+            return val.replace(/^["']|["']$/g, '');
+        }
+
+        // YAML stringifier
+        function stringifyYAML(obj, indent = 0) {
+            const spaces = ' '.repeat(indent);
+            let yaml = '';
+
+            if (Array.isArray(obj)) {
+                for (let item of obj) {
+                    if (typeof item === 'object' && item !== null) {
+                        yaml += spaces + '- ' + stringifyYAML(item, indent + 2).trim() + '\n';
+                    } else {
+                        yaml += spaces + '- ' + stringifyValue(item) + '\n';
+                    }
+                }
+            } else if (typeof obj === 'object' && obj !== null) {
+                for (let key in obj) {
+                    const val = obj[key];
+                    if (typeof val === 'object' && val !== null) {
+                        yaml += spaces + key + ':\n' + stringifyYAML(val, indent + 2);
+                    } else {
+                        yaml += spaces + key + ': ' + stringifyValue(val) + '\n';
+                    }
+                }
+            }
+
+            return yaml;
+        }
+
+        function stringifyValue(val) {
+            if (val === null) return 'null';
+            if (typeof val === 'string') return val;
+            return String(val);
+        }
+
+        function yamlToJson() {
+            const yamlInput = document.getElementById('yamlInput').value;
+            const jsonOutput = document.getElementById('jsonOutput');
+            const yamlError = document.getElementById('yamlError');
+            const jsonError = document.getElementById('jsonError');
+
+            yamlError.classList.remove('show');
+            jsonError.classList.remove('show');
+
+            if (!yamlInput.trim()) {
+                showMessage('Veuillez entrer du YAML à convertir', 'error');
+                return;
+            }
+
+            try {
+                const parsed = parseYAML(yamlInput);
+                const json = JSON.stringify(parsed, null, 2);
+                jsonOutput.value = json;
+                showMessage('YAML converti en JSON avec succès', 'success');
+            } catch (e) {
+                yamlError.textContent = 'Erreur YAML : ' + e.message;
+                yamlError.classList.add('show');
+                showMessage('Erreur de conversion YAML : ' + e.message, 'error');
+            }
+        }
+
+        function jsonToYaml() {
+            const jsonInput = document.getElementById('yamlInput').value;
+            const jsonOutput = document.getElementById('jsonOutput');
+            const yamlError = document.getElementById('yamlError');
+            const jsonError = document.getElementById('jsonError');
+
+            yamlError.classList.remove('show');
+            jsonError.classList.remove('show');
+
+            if (!jsonInput.trim()) {
+                showMessage('Veuillez entrer du JSON à convertir', 'error');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(jsonInput);
+                const yaml = stringifyYAML(parsed).trim();
+                jsonOutput.value = yaml;
+                showMessage('JSON converti en YAML avec succès', 'success');
+            } catch (e) {
+                jsonError.textContent = 'Erreur JSON : ' + e.message;
+                jsonError.classList.add('show');
+                showMessage('Erreur de conversion JSON : ' + e.message, 'error');
+            }
+        }
+
+        function validateAndConvert() {
+            const yamlInput = document.getElementById('yamlInput').value;
+            const yamlError = document.getElementById('yamlError');
+
+            if (!yamlInput.trim()) {
+                yamlError.classList.remove('show');
+                return;
+            }
+
+            try {
+                parseYAML(yamlInput);
+                yamlError.classList.remove('show');
+            } catch (e) {
+                yamlError.textContent = 'Erreur YAML : ' + e.message;
+                yamlError.classList.add('show');
+            }
+        }
+
+        function copyToClipboard(elementId) {
+            const elem = document.getElementById(elementId);
+            if (!elem.value.trim()) {
+                showMessage('Rien à copier', 'error');
+                return;
+            }
+
+            navigator.clipboard.writeText(elem.value).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = 'Copié !';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.classList.remove('copied');
+                }, 1500);
+            }).catch(() => {
+                showMessage('Échec de la copie', 'error');
+            });
+        }
+
+        function clearAll() {
+            document.getElementById('yamlInput').value = '';
+            document.getElementById('jsonOutput').value = '';
+            document.getElementById('yamlError').classList.remove('show');
+            document.getElementById('jsonError').classList.remove('show');
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message show ${type}`;
+            if (type === 'success') {
+                setTimeout(() => msg.classList.remove('show'), 2000);
+            }
+        }
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

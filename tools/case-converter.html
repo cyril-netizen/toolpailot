@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transform text between different cases: UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, and more. Free online case converter tool.">
+    <meta name="keywords" content="case converter, text case, uppercase, lowercase, camelcase, pascalcase, snake_case, kebab-case">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/case-converter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/case-converter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Case Converter — Transform Text Case Online | ToolPilot">
+    <meta property="og:description" content="Instantly convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/case-converter.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Case Converter — Transform Text Case Online | ToolPilot">
+    <meta name="twitter:description" content="Instantly convert text to UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, and more.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>Case Converter — Transform Text Case Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .textarea-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .case-btn {
+            padding: 0.75rem 1rem;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .case-btn:hover {
+            background: #e0e0e0;
+            border-color: #999;
+        }
+
+        .case-btn:active {
+            transform: scale(0.98);
+        }
+
+        .output-section {
+            margin-bottom: 2rem;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .output-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 100px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #0052a3;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .copy-btn.copied {
+            background: #28a745;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Case Converter
+    </div>
+
+    <main class="tool-container">
+        <h1>Case Converter</h1>
+        <p class="subtitle">Transform text between different case formats instantly</p>
+
+        <div class="input-section">
+            <div class="textarea-wrapper">
+                <label for="input-text">Enter your text:</label>
+                <textarea id="input-text" placeholder="Type or paste your text here..." spellcheck="false"></textarea>
+            </div>
+
+            <div class="buttons-grid">
+                <button class="case-btn" data-case="uppercase">UPPERCASE</button>
+                <button class="case-btn" data-case="lowercase">lowercase</button>
+                <button class="case-btn" data-case="titlecase">Title Case</button>
+                <button class="case-btn" data-case="sentencecase">Sentence case</button>
+                <button class="case-btn" data-case="camelcase">camelCase</button>
+                <button class="case-btn" data-case="pascalcase">PascalCase</button>
+                <button class="case-btn" data-case="snakecase">snake_case</button>
+                <button class="case-btn" data-case="kebabcase">kebab-case</button>
+            </div>
+        </div>
+
+        <div class="output-section">
+            <div class="output-label">Output:</div>
+            <div class="output-box" id="output-box"></div>
+            <div class="output-actions">
+                <button class="copy-btn" id="copy-btn" style="display: none;">Copy to Clipboard</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="word-counter.html" class="card tool-card">
+                    <span class="icon">🔢</span>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters, sentences & reading time.</p>
+                </a>
+                <a href="slug-generator.html" class="card tool-card">
+                    <span class="icon">🔗</span>
+                    <h3>Slug Generator</h3>
+                    <p>Generate SEO-friendly URL slugs from text.</p>
+                </a>
+                <a href="line-tools.html" class="card tool-card">
+                    <span class="icon">📋</span>
+                    <h3>Line Tools</h3>
+                    <p>Sort, deduplicate, reverse & count lines of text.</p>
+                </a>
+                <a href="html-entities.html" class="card tool-card">
+                    <span class="icon">&amp;lt;</span>
+                    <h3>HTML Entities</h3>
+                    <p>Encode and decode HTML entities and special characters.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About Case Converter</h2>
+            <p>
+                Our Case Converter tool helps developers, writers, and content creators instantly transform text between different case formats. Whether you need to convert text for coding, documentation, or styling purposes, this tool makes it effortless.
+            </p>
+
+            <h3>Supported Case Formats</h3>
+            <p>
+                <strong>UPPERCASE:</strong> Converts all characters to capital letters. Commonly used for constants and emphasis.
+            </p>
+            <p>
+                <strong>lowercase:</strong> Converts all characters to small letters. Used for general text normalization.
+            </p>
+            <p>
+                <strong>Title Case:</strong> Capitalizes the first letter of each word. Perfect for headings and titles.
+            </p>
+            <p>
+                <strong>Sentence case:</strong> Capitalizes only the first letter. Used in standard sentence writing.
+            </p>
+            <p>
+                <strong>camelCase:</strong> First word lowercase, subsequent words capitalized without spaces. Standard in JavaScript and Java.
+            </p>
+            <p>
+                <strong>PascalCase:</strong> Each word capitalized, no spaces. Used for class names and type definitions.
+            </p>
+            <p>
+                <strong>snake_case:</strong> Words separated by underscores, all lowercase. Common in Python and databases.
+            </p>
+            <p>
+                <strong>kebab-case:</strong> Words separated by hyphens, all lowercase. Used in URLs and CSS class names.
+            </p>
+
+            <h3>Why Use a Case Converter?</h3>
+            <p>
+                Different programming languages and contexts require different naming conventions. Our tool eliminates the need to manually reformat text, saving time and ensuring consistency across your projects.
+            </p>
+
+            <h3>How to Use</h3>
+            <p>
+                Simply paste or type your text into the input box, then click any of the case format buttons. The converted text will appear instantly in the output box. Use the Copy button to save the result to your clipboard.
+            </p>
+
+            <h3>Text Case Converter Online Free</h3>
+            <p>
+                Our free online text case converter handles all common case transformations instantly. Whether you need to change uppercase to lowercase, apply title case formatting, or convert to specialized programming cases like camelCase and snake_case, this tool delivers perfect results in seconds. No installation required—just paste your text and select your desired case format.
+            </p>
+
+            <h3>Uppercase to Lowercase Converter</h3>
+            <p>
+                Convert uppercase text to lowercase or vice versa with a single click. This uppercase to lowercase converter is perfect for standardizing text formatting across documents. The tool preserves all special characters and spacing while transforming letter cases, making it ideal for preparing content for different contexts or coding conventions.
+            </p>
+
+            <h3>Title Case Converter and Programming Case Formats</h3>
+            <p>
+                Beyond simple case conversion, this tool supports specialized formats for programmers and developers. Transform text to camelCase for JavaScript variables, PascalCase for class names, snake_case for Python conventions, and kebab-case for URLs and CSS classes. The title case converter is perfect for headlines and document titles, capitalizing the first letter of each word automatically.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Case Converter",
+        "description": "Transform text between different case formats: UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, and more.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/case-converter.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I convert text to uppercase online?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Paste your text into a case converter tool and click the uppercase button. ToolPilot instantly converts your text and lets you copy the result."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is title case?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Title case capitalizes the first letter of each word in a sentence. It is commonly used for headings, titles, and proper nouns."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between camelCase and PascalCase?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "In camelCase, the first word is lowercase and subsequent words start with uppercase (e.g., myVariableName). In PascalCase, every word starts with uppercase (e.g., MyVariableName)."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Case Converter"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Case Converter — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/case-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Convert text between uppercase, lowercase, title case & more."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const inputText = document.getElementById('input-text');
+        const outputBox = document.getElementById('output-box');
+        const copyBtn = document.getElementById('copy-btn');
+        const caseButtons = document.querySelectorAll('.case-btn');
+
+        function toTitleCase(str) {
+            return str.replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase());
+        }
+
+        function toSentenceCase(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+
+        function toCamelCase(str) {
+            return str
+                .toLowerCase()
+                .replace(/[^\w\s]/g, '')
+                .replace(/\s+/g, ' ')
+                .split(' ')
+                .map((word, index) => {
+                    if (index === 0) return word;
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                })
+                .join('');
+        }
+
+        function toPascalCase(str) {
+            return str
+                .toLowerCase()
+                .replace(/[^\w\s]/g, '')
+                .replace(/\s+/g, ' ')
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('');
+        }
+
+        function toSnakeCase(str) {
+            return str
+                .toLowerCase()
+                .replace(/[^\w\s]/g, '')
+                .replace(/\s+/g, '_');
+        }
+
+        function toKebabCase(str) {
+            return str
+                .toLowerCase()
+                .replace(/[^\w\s]/g, '')
+                .replace(/\s+/g, '-');
+        }
+
+        function convertText(caseType) {
+            const text = inputText.value;
+            if (!text.trim()) {
+                outputBox.textContent = '';
+                copyBtn.style.display = 'none';
+                return;
+            }
+
+            let converted;
+            switch (caseType) {
+                case 'uppercase':
+                    converted = text.toUpperCase();
+                    break;
+                case 'lowercase':
+                    converted = text.toLowerCase();
+                    break;
+                case 'titlecase':
+                    converted = toTitleCase(text);
+                    break;
+                case 'sentencecase':
+                    converted = toSentenceCase(text);
+                    break;
+                case 'camelcase':
+                    converted = toCamelCase(text);
+                    break;
+                case 'pascalcase':
+                    converted = toPascalCase(text);
+                    break;
+                case 'snakecase':
+                    converted = toSnakeCase(text);
+                    break;
+                case 'kebabcase':
+                    converted = toKebabCase(text);
+                    break;
+                default:
+                    converted = text;
+            }
+
+            outputBox.textContent = converted;
+            copyBtn.style.display = 'inline-block';
+        }
+
+        caseButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                convertText(btn.dataset.case);
+            });
+        });
+
+        copyBtn.addEventListener('click', () => {
+            const text = outputBox.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy to Clipboard';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        inputText.addEventListener('input', () => {
+            if (inputText.value.trim()) {
+                convertText('lowercase');
+            }
+        });
+    </script>
+</body>
+</html>

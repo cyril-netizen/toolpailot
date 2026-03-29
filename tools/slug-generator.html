@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free URL slug generator. Create SEO-friendly slugs from any text. Supports multiple separators, stop word removal, bulk generation, and more. Perfect for blog posts and URLs.">
+    <meta name="keywords" content="slug generator, url slug maker, seo friendly url generator, url slug converter, create slugs online">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/slug-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/slug-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/slug-generator.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="URL Slug Generator — Create SEO-Friendly Slugs Online | ToolPilot">
+    <meta property="og:description" content="Generate clean, SEO-optimized URL slugs instantly. Support for multiple separators, stop word removal, and bulk slug generation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/slug-generator.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="URL Slug Generator — Create SEO-Friendly Slugs Online | ToolPilot">
+    <meta name="twitter:description" content="Generate clean, SEO-optimized URL slugs instantly. Support for multiple separators, stop word removal, and bulk slug generation.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>URL Slug Generator — Create SEO-Friendly Slugs Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 0.75rem 1.5rem;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+
+        .mode-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .mode-btn.active:hover {
+            background: #0052a3;
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .textarea-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .option-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-item label {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .option-item select,
+        .option-item input[type="number"],
+        .option-item input[type="text"] {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .output-section {
+            margin-bottom: 2rem;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .output-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 100px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #0052a3;
+        }
+
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        .action-btn.copied {
+            background: #28a745;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Slug Generator
+    </div>
+
+    <main class="tool-container">
+        <h1>URL Slug Generator</h1>
+        <p class="subtitle">Create clean, SEO-friendly URL slugs instantly</p>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="single">Single Slug</button>
+            <button class="mode-btn" data-mode="bulk">Bulk Generate</button>
+        </div>
+
+        <div class="input-section">
+            <div class="textarea-wrapper" id="single-input-wrapper">
+                <label for="single-input">Enter text to create slug:</label>
+                <input type="text" id="single-input" placeholder="e.g., How to Build a Website in 2024" />
+            </div>
+            <div class="textarea-wrapper hidden" id="bulk-input-wrapper">
+                <label for="bulk-input">Enter one text per line:</label>
+                <textarea id="bulk-input" placeholder="Line 1&#10;Line 2&#10;Line 3..."></textarea>
+            </div>
+
+            <div class="options-grid">
+                <div class="option-item">
+                    <label for="separator">Separator:</label>
+                    <select id="separator">
+                        <option value="-">Hyphen (-)</option>
+                        <option value="_">Underscore (_)</option>
+                        <option value="">No separator</option>
+                    </select>
+                </div>
+                <div class="option-item">
+                    <label for="max-length">Max length:</label>
+                    <input type="number" id="max-length" value="75" min="1" max="200" />
+                </div>
+                <div class="option-item">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="remove-stopwords" checked />
+                        Remove stop words
+                    </label>
+                </div>
+                <div class="option-item">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="trim-separators" checked />
+                        Trim separators at start/end
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Slug Length</div>
+                <div class="stat-value" id="slug-length">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Words Removed</div>
+                <div class="stat-value" id="words-removed">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Total Generated</div>
+                <div class="stat-value" id="total-slugs">0</div>
+            </div>
+        </div>
+
+        <div class="output-section">
+            <div class="output-label">Generated Slug(s):</div>
+            <div class="output-box" id="output-box"></div>
+            <div class="output-actions">
+                <button class="action-btn" id="copy-btn" style="display: none;">Copy to Clipboard</button>
+                <button class="action-btn" id="clear-btn">Clear</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="url-encoder.html" class="card tool-card">
+                    <span class="icon">%</span>
+                    <h3>URL Encoder/Decoder</h3>
+                    <p>Encode and decode URLs and query strings instantly.</p>
+                </a>
+                <a href="case-converter.html" class="card tool-card">
+                    <span class="icon">Aa</span>
+                    <h3>Case Converter</h3>
+                    <p>Convert text between uppercase, lowercase, title case & more.</p>
+                </a>
+                <a href="word-counter.html" class="card tool-card">
+                    <span class="icon">🔢</span>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters, sentences & reading time.</p>
+                </a>
+                <a href="regex-tester.html" class="card tool-card">
+                    <span class="icon">.*</span>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with real-time highlighting.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About URL Slug Generator</h2>
+            <p>
+                A URL slug is the part of a web address that identifies a specific page on your site in human-readable form. Our free URL slug generator creates clean, SEO-optimized slugs instantly from any text. Whether you're creating blog post URLs, page titles, or product names, this tool ensures your URLs are search-engine friendly and properly formatted.
+            </p>
+
+            <h3>What Makes a Good URL Slug?</h3>
+            <p>
+                An effective URL slug is concise, descriptive, and keyword-rich. It should contain relevant words that describe the page content, use hyphens to separate words (not underscores), and avoid special characters. Good slugs are lowercase, contain no spaces, and are short enough to be memorable. For example, a blog post about website design should have a slug like "how-to-design-professional-website" rather than "article123" or an extremely long slug with every word. Our slug generator automatically handles all these requirements, producing URLs that rank better in search results and are more user-friendly.
+            </p>
+
+            <h3>How to Use the URL Slug Generator</h3>
+            <p>
+                Simply enter your text in the input field and watch the slug preview update in real-time. You can customize your slugs with several options: choose your preferred separator (hyphen or underscore), set maximum length, remove stop words like "the" and "and" to keep slugs short, and control whether separators appear at the start or end. For bulk generation, switch to the bulk mode, enter multiple texts (one per line), and generate all slugs at once. Copy any slug with a single click and use it in your website URLs.
+            </p>
+
+            <h3>SEO-Friendly URL Slug Best Practices</h3>
+            <p>
+                Search engines like Google use URL structure as a ranking factor. SEO professionals recommend including target keywords in your URL slugs, keeping them short and descriptive, and using hyphens (not underscores) as word separators. Avoid stuffing keywords or making slugs excessively long—a slug between 3-5 words is optimal. Remove unnecessary articles and prepositions like "the," "a," and "for" to focus on important words. Our URL slug generator implements all these best practices automatically, ensuring your URLs are optimized for search engine visibility and user experience.
+            </p>
+
+            <h3>Bulk Slug Generation for Websites</h3>
+            <p>
+                If you're building a large website or blog with many pages, our bulk slug generator saves time and ensures consistency. Paste all your page titles or content descriptions into the bulk input field, and the tool generates clean slugs for every line instantly. This is particularly useful when migrating content from other platforms, reorganizing URL structure, or preparing content for a content management system. All generated slugs follow the same formatting rules, maintaining consistency across your entire site.
+            </p>
+
+            <h3>URL Slug Generator for Different Platforms</h3>
+            <p>
+                Whether you're using WordPress, Shopify, custom web applications, or static site generators, this tool generates slugs that work everywhere. WordPress blog posts, e-commerce product pages, documentation sites, and portfolio websites all benefit from properly formatted URL slugs. The generator produces slugs compatible with all platforms, supporting various separator preferences and formatting options to match your specific requirements.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "URL Slug Generator",
+        "description": "Free online URL slug generator. Create SEO-friendly slugs from any text with support for multiple separators, stop word removal, and bulk generation.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/slug-generator.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a URL slug?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A URL slug is the human-readable part of a web address that comes after the domain. For example, in 'example.com/how-to-build-a-website', the slug is 'how-to-build-a-website'. Good slugs are SEO-friendly, descriptive, and contain relevant keywords."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why should I use hyphens instead of underscores in URL slugs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Search engines like Google treat hyphens as word separators, so 'my-awesome-page' is recognized as three separate words. Underscores are not recognized as separators, so 'my_awesome_page' may be treated as a single word. This makes hyphens better for SEO."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How long should a URL slug be?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ideal URL slugs are short and descriptive, typically 3-5 words and 50-75 characters long. Shorter slugs are easier to remember, share, and rank better in search results. Very long slugs can be confusing and dilute keyword relevance."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I remove stop words from my URL slug?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, removing stop words like 'the', 'a', 'and', and 'for' from slugs makes them more concise and keyword-focused. This improves SEO performance and makes URLs shorter and more user-friendly while maintaining meaning."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Slug Generator"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Slug Generator — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/slug-generator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Generate SEO-friendly URL slugs from text."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const singleInput = document.getElementById('single-input');
+        const bulkInput = document.getElementById('bulk-input');
+        const outputBox = document.getElementById('output-box');
+        const copyBtn = document.getElementById('copy-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const singleInputWrapper = document.getElementById('single-input-wrapper');
+        const bulkInputWrapper = document.getElementById('bulk-input-wrapper');
+        const separatorSelect = document.getElementById('separator');
+        const maxLengthInput = document.getElementById('max-length');
+        const removeStopwordsCheckbox = document.getElementById('remove-stopwords');
+        const trimSeparatorsCheckbox = document.getElementById('trim-separators');
+
+        let currentMode = 'single';
+
+        const stopwords = new Set([
+            'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from',
+            'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on', 'or', 'that',
+            'the', 'to', 'was', 'will', 'with', 'as', 'if', 'in', 'into'
+        ]);
+
+        function generateSlug(text) {
+            let slug = text
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, '') // Remove special chars
+                .replace(/\s+/g, ' ') // Normalize spaces
+                .split(' ')
+                .filter(word => !removeStopwordsCheckbox.checked || !stopwords.has(word))
+                .join(' ');
+
+            const separator = separatorSelect.value;
+            slug = slug.replace(/\s+/g, separator);
+
+            // Trim separators at start/end
+            if (trimSeparatorsCheckbox.checked && separator) {
+                slug = slug.replace(new RegExp(`^${separator}+|${separator}+$`, 'g'), '');
+            }
+
+            // Trim to max length
+            const maxLength = parseInt(maxLengthInput.value);
+            if (slug.length > maxLength && separator) {
+                // Try to trim at last separator
+                slug = slug.substring(0, maxLength);
+                slug = slug.replace(new RegExp(`${separator}+$`), '');
+            } else if (slug.length > maxLength) {
+                slug = slug.substring(0, maxLength);
+            }
+
+            return slug;
+        }
+
+        function updateStats(originalText, slug, totalCount = 1) {
+            const wordsRemoved = removeStopwordsCheckbox.checked
+                ? originalText.toLowerCase().split(/\s+/).filter(w => stopwords.has(w)).length
+                : 0;
+            document.getElementById('slug-length').textContent = slug.length;
+            document.getElementById('words-removed').textContent = wordsRemoved;
+            document.getElementById('total-slugs').textContent = totalCount;
+        }
+
+        function convertSingle() {
+            const text = singleInput.value;
+            if (!text.trim()) {
+                outputBox.textContent = '';
+                copyBtn.style.display = 'none';
+                return;
+            }
+
+            const slug = generateSlug(text);
+            outputBox.textContent = slug;
+            copyBtn.style.display = 'inline-block';
+            updateStats(text, slug, 1);
+        }
+
+        function convertBulk() {
+            const text = bulkInput.value;
+            if (!text.trim()) {
+                outputBox.textContent = '';
+                copyBtn.style.display = 'none';
+                return;
+            }
+
+            const lines = text.split('\n').filter(line => line.trim());
+            const slugs = lines.map(line => generateSlug(line));
+            outputBox.textContent = slugs.join('\n');
+            copyBtn.style.display = 'inline-block';
+            updateStats(text, slugs[0], slugs.length);
+        }
+
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMode = btn.dataset.mode;
+
+                if (currentMode === 'single') {
+                    singleInputWrapper.classList.remove('hidden');
+                    bulkInputWrapper.classList.add('hidden');
+                    convertSingle();
+                } else {
+                    singleInputWrapper.classList.add('hidden');
+                    bulkInputWrapper.classList.remove('hidden');
+                    convertBulk();
+                }
+            });
+        });
+
+        copyBtn.addEventListener('click', () => {
+            const text = outputBox.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy to Clipboard';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        clearBtn.addEventListener('click', () => {
+            singleInput.value = '';
+            bulkInput.value = '';
+            outputBox.textContent = '';
+            copyBtn.style.display = 'none';
+            document.getElementById('slug-length').textContent = '0';
+            document.getElementById('words-removed').textContent = '0';
+            document.getElementById('total-slugs').textContent = '0';
+        });
+
+        singleInput.addEventListener('input', convertSingle);
+        bulkInput.addEventListener('input', convertBulk);
+        separatorSelect.addEventListener('change', () => currentMode === 'single' ? convertSingle() : convertBulk());
+        maxLengthInput.addEventListener('change', () => currentMode === 'single' ? convertSingle() : convertBulk());
+        removeStopwordsCheckbox.addEventListener('change', () => currentMode === 'single' ? convertSingle() : convertBulk());
+        trimSeparatorsCheckbox.addEventListener('change', () => currentMode === 'single' ? convertSingle() : convertBulk());
+    </script>
+</body>
+</html>

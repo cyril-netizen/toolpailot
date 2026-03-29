@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete guide to Unix timestamps and epoch time. Learn how to convert between human-readable dates and Unix timestamps for web development.">
+    <meta name="keywords" content="what is unix timestamp, epoch time explained, unix time converter, how to convert unix timestamp">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Unix Timestamp & Epoch Time Explained - Complete Guide">
+    <meta property="og:description" content="Understand Unix timestamps and epoch time. Learn how to work with Unix timestamps in web development and data storage.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/unix-timestamp-guide.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Unix Timestamp & Epoch Time Explained">
+    <meta name="twitter:description" content="Learn how Unix timestamps work and how to convert them in your applications.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/unix-timestamp-guide.html">
+
+    <title>Unix Timestamp & Epoch Time Guide | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .code-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+
+            .code-example {
+                font-size: 0.85rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>Unix Timestamp & Epoch Time Explained</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">Unix Timestamp & Epoch Time Explained: Complete Developer Guide</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-03-12">March 12, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 5 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>Unix timestamps are everywhere in software development. Every log entry, database record, and API response contains them. Yet many developers treat them as mysterious numbers without understanding what they represent or how to work with them. Understanding Unix timestamps is essential for debugging, working with databases, and handling time-based operations in applications. This guide explains Unix timestamps from first principles, ensuring you understand this fundamental concept that powers modern computing.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>What Is a Unix Timestamp?</h2>
+
+                <p>A Unix timestamp, also called Unix time or epoch time, is a single number representing a specific moment in time. Specifically, it counts the number of seconds that have elapsed since the Unix epoch. The Unix epoch is January 1, 1970 at 00:00:00 UTC (Coordinated Universal Time, also known as Greenwich Mean Time or GMT).</p>
+
+                <p>For example, the timestamp 1704067200 represents January 1, 2024 at 00:00:00 UTC. The timestamp 1704153600 represents January 2, 2024 at 00:00:00 UTC. Each second that passes increments the timestamp by one. This simple approach to representing time is brilliant because it's a single number that's language-agnostic and timezone-independent.</p>
+
+                <h2>Why Does the Epoch Start at January 1, 1970?</h2>
+
+                <p>The choice of January 1, 1970 as the epoch is somewhat arbitrary but practical. Early Unix systems needed a reference point for timekeeping. 1970 was chosen as a recent but past date when Unix was being developed. It wasn't a round number like 1900 because it had to be late enough to handle past times while using 32-bit integers. The Unix developers didn't anticipate computers would still exist in their current form by 2038, when 32-bit timestamps would overflow. This oversight created the "Year 2038 problem," which we'll discuss later.</p>
+
+                <h2>Understanding Timestamp Precision</h2>
+
+                <h3>Seconds vs. Milliseconds vs. Microseconds</h3>
+
+                <p>Traditional Unix timestamps measure time in seconds. This is sufficient for most applications. However, modern systems often need greater precision. JavaScript uses milliseconds since epoch. For example, 1704067200000 represents the same moment as the Unix timestamp 1704067200 but with millisecond precision. Python can work with both seconds and microseconds (millionths of a second).</p>
+
+                <p>When working with timestamps, always verify what unit you're using. Is it seconds, milliseconds, or microseconds? Confusing these units causes bugs that can be difficult to diagnose. A timestamp in milliseconds will be about 1000 times larger than the same moment in seconds.</p>
+
+                <div class="code-example">
+Unix Timestamp (seconds): 1704067200
+JavaScript Timestamp (milliseconds): 1704067200000
+Python Timestamp (microseconds): 1704067200000000
+                </div>
+
+                <h3>Conversion Between Units</h3>
+
+                <p>Converting between units is simple multiplication and division. To convert from seconds to milliseconds, multiply by 1000. To convert from milliseconds to seconds, divide by 1000. To convert from seconds to microseconds, multiply by 1,000,000. These conversions happen automatically in most programming language libraries, but understanding them helps prevent mistakes.</p>
+
+                <h2>Representing Time with Timestamps</h2>
+
+                <h3>Time Zone Independence</h3>
+
+                <p>Unix timestamps are always in UTC. This is their superpower. A Unix timestamp represents the same moment everywhere on Earth. January 1, 2024 at 00:00:00 UTC is the same instant whether you're in New York, Tokyo, or Sydney. The UTC time is the same; only the local representation differs. This makes timestamps perfect for database storage and logging.</p>
+
+                <h3>Daylight Saving Time Independence</h3>
+
+                <p>Because timestamps represent UTC moments, daylight saving time doesn't affect them. DST is a local convention that affects how clocks are set in specific regions at specific times. Timestamps ignore DST entirely. When converting a timestamp to local time, your system handles DST rules automatically. This elegance is why timestamps are preferred for data storage.</p>
+
+                <h2>Practical Applications of Unix Timestamps</h2>
+
+                <h3>Database Storage</h3>
+
+                <p>Databases store timestamps as integers, making them efficient and sortable. You can query "all events after timestamp X" by simple numerical comparison. Timestamps support range queries, aggregations, and sorting without conversion. This makes them ideal for audit logs, event tracking, and time-series data.</p>
+
+                <h3>API Responses</h3>
+
+                <p>REST APIs frequently include timestamps for resource creation, modification, and expiration. A JSON API response might include created_at: 1704067200 and updated_at: 1704153600. This provides precise time information in a format that's easily parsed and stored. Clients convert timestamps to local time for display.</p>
+
+                <h3>Caching and Expiration</h3>
+
+                <p>Cache systems use timestamps to track when items were created and when they should expire. A cache entry with expires_at: 1704240000 will be considered invalid at that timestamp. Servers efficiently determine which cache entries are stale by comparing current time with expiration timestamps.</p>
+
+                <h3>Authentication and Session Management</h3>
+
+                <p>JWTs (JSON Web Tokens) include issued_at and expires_at timestamps. Servers verify tokens haven't expired by comparing current timestamp with the expires_at value. Session systems use timestamps to track when sessions were created and should be invalidated.</p>
+
+                <h3>Logging and Debugging</h3>
+
+                <p>Every log entry includes a timestamp. These allow you to order events chronologically and find when specific issues occurred. Searching logs for events between two timestamps helps diagnose problems that occurred at specific times.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Working with Timestamps in Code</h2>
+
+                <h3>Getting Current Timestamp</h3>
+
+                <p>Most languages provide simple ways to get the current timestamp. JavaScript: Math.floor(Date.now() / 1000) for seconds, or Date.now() for milliseconds. Python: import time; int(time.time()) for seconds. These return the current Unix timestamp representing right now.</p>
+
+                <h3>Converting Timestamp to Human-Readable Time</h3>
+
+                <p>Use date-time libraries in your language. JavaScript: new Date(timestamp * 1000).toISOString(). Python: datetime.fromtimestamp(timestamp). These convert timestamps to readable formats. Use <a href="../tools/timestamp-converter.html">ToolPilot's Timestamp Converter</a> for quick conversions without writing code.</p>
+
+                <h3>Converting Human-Readable Time to Timestamp</h3>
+
+                <p>Given a date like "2024-01-01", convert it to a timestamp using date libraries. JavaScript: Math.floor(new Date('2024-01-01').getTime() / 1000). Python: int(datetime.strptime('2024-01-01', '%Y-%m-%d').timestamp()). These conversions are timezone-dependent, so specify your timezone explicitly.</p>
+
+                <h2>The Year 2038 Problem</h2>
+
+                <p>32-bit signed integers can represent numbers from approximately -2.1 billion to +2.1 billion. The Unix epoch started at 1970, so 32-bit systems can represent times until 1970 + 2,147,483,647 seconds ≈ 2038. At 03:14:07 UTC on January 19, 2038, 32-bit Unix timestamps will overflow. Systems still using 32-bit timestamps will experience errors, displaying dates in 1901 or crashing entirely.</p>
+
+                <p>Most modern systems have migrated to 64-bit timestamps, pushing the overflow date billions of years into the future. However, legacy systems and embedded devices still running on 32-bit architectures remain vulnerable. If you work on systems that might be in use in 2038, ensure they use 64-bit timestamps.</p>
+
+                <h2>Timestamp Best Practices</h2>
+
+                <p>Always store timestamps in UTC. Convert to local time only for display. Use 64-bit timestamps to avoid 2038 problems. Document whether your timestamps are in seconds, milliseconds, or microseconds. When writing APIs, include timezone information in timestamps or clearly specify UTC. Use standard formats like ISO 8601 for human-readable dates. When comparing timestamps, remember earlier moments have smaller values. Sort timestamps in ascending order for chronological sequence. Use timestamp ranges for efficient queries. Include timestamps in all audit logs and database records.</p>
+
+                <div class="cta-box">
+                    <h3>Need to Convert a Timestamp?</h3>
+                    <p>Use ToolPilot's Timestamp Converter for instant conversions between Unix time and human-readable dates.</p>
+                    <a href="../tools/timestamp-converter.html" class="cta-button">Convert Timestamps Now</a>
+                </div>
+
+                <h2>Advanced Timestamp Concepts</h2>
+
+                <p>For advanced needs, consider TAI (International Atomic Time), which provides absolute time independent of Earth's rotation. However, most applications use UTC for simplicity. Leap seconds occasionally add an extra second to keep UTC aligned with Earth's rotation. These are complex edge cases most developers don't need to handle. Understanding basic timestamps is sufficient for the vast majority of applications.</p>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What's the difference between Unix timestamp and ISO 8601?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Unix timestamp is a single number representing seconds since epoch. ISO 8601 is a human-readable format like "2024-01-01T00:00:00Z". Use timestamps for storage and computation; use ISO 8601 for APIs and display. They represent the same moment in different formats. Converting between them is straightforward using date libraries.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">How do I convert a timestamp to local time?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Use your language's date-time library. JavaScript: new Date(timestamp * 1000).toLocaleString(). Python: datetime.fromtimestamp(timestamp). These automatically apply your system's timezone rules. For specific timezones, libraries like moment.js or pytz provide timezone support. Remember that timestamps themselves are always UTC; only the conversion adds timezone handling.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Can timestamps represent past dates?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Yes. Timestamps before January 1, 1970 are represented as negative numbers. For example, January 1, 1960 is represented as a negative timestamp. However, 32-bit systems can only represent dates from 1901 to 2038. 64-bit systems can represent dates billions of years in the past and future. For historical dates before 1901, use specialized date libraries or store dates as strings.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Why do APIs sometimes include millisecond precision?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Millisecond precision allows distinguishing events that occur within the same second. When processing thousands of events per second, second-level precision isn't sufficient. Milliseconds provide reasonable precision without excessive overhead. Some systems use microseconds for even finer granularity. Always check API documentation to understand the precision your timestamps provide.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="developer-tools-every-web-dev-needs.html" class="related-link">
+                        <strong>Developer Tools Every Web Dev Needs</strong>
+                        <p>Timestamp converters are one of many essential tools for developers working with time data.</p>
+                    </a>
+                    <a href="best-json-formatters-2026.html" class="related-link">
+                        <strong>Best JSON Formatters 2026</strong>
+                        <p>JSON APIs frequently include timestamps; learn how to format and validate this data.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-03-12">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Unix Timestamp & Epoch Time Explained: Complete Developer Guide",
+        "description": "Comprehensive guide to understanding Unix timestamps, epoch time, and how to work with them in modern applications.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-03-12T08:00:00Z",
+        "dateModified": "2026-03-12T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+    <script src="../common.js"></script>
+</body>
+</html>

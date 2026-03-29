@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn CSS gradients with practical examples. Master linear, radial, and conic gradients for modern web design.">
+    <meta name="keywords" content="css gradient examples, css gradient tutorial, gradient css code">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CSS Gradient Examples and How to Create Them">
+    <meta property="og:description" content="Master CSS gradients with practical examples and tutorials. Learn linear, radial, and advanced gradient techniques.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/css-gradients-examples.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CSS Gradient Examples and How to Create Them">
+    <meta name="twitter:description" content="Learn to create beautiful CSS gradients with practical examples and code snippets.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/css-gradients-examples.html">
+
+    <title>CSS Gradients Guide | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .tip-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-example {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .recommended-tools {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .recommended-tools h3 {
+            color: var(--text);
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .recommended-tools ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recommended-tools li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .recommended-tools li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recommended-tools a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .recommended-tools a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .recommended-tools .tool-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .disclaimer {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>CSS Gradients Examples</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">CSS Gradient Examples and How to Create Them</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-04-10">April 10, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 6 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>CSS gradients are one of the most powerful yet underutilized tools in modern web design. They allow you to create smooth color transitions without images, reducing file sizes and improving performance. From subtle background effects to striking visual features, gradients enhance user experience and elevate design quality. Whether you're a beginner just learning CSS or an experienced developer looking to master advanced techniques, understanding CSS gradients unlocks countless design possibilities. This comprehensive guide teaches you everything you need to know about creating stunning gradients.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>Why Use CSS Gradients?</h2>
+
+                <p>CSS gradients eliminate the need for background images, reducing HTTP requests and improving page load performance. They scale perfectly to any screen size without pixelation or quality loss. Gradients are lightweight—a few lines of CSS code replace image files that could be dozens of kilobytes. They're responsive by default, adapting to different screen sizes without additional work. CSS gradients also improve accessibility by allowing you to control contrast ratios directly in code. Most importantly, they give designers and developers complete control over color transitions with minimal effort.</p>
+
+                <h2>Understanding Linear Gradients</h2>
+
+                <p>Linear gradients create smooth color transitions along a straight line. The basic syntax starts with the direction, then lists color stops. A simple horizontal gradient from left to right looks like this:</p>
+
+                <div class="code-example">
+background: linear-gradient(to right, #ff0000, #00ff00);
+                </div>
+
+                <p>This creates a gradient starting with red on the left, transitioning smoothly to green on the right. You can specify any two or more colors. Direction can be "to right," "to bottom," "to top left," or angles like "45deg" for precise control over the gradient angle.</p>
+
+                <h3>Direction Keywords</h3>
+
+                <p>Direction keywords make gradients intuitive. "to right" flows left to right. "to bottom" flows top to bottom. "to bottom right" flows diagonally. You can also use angles—"0deg" is to top, "90deg" is to right, "180deg" is to bottom, "270deg" is to left. Angles greater than 360 wrap around, so "450deg" equals "90deg."</p>
+
+                <h3>Color Stops</h3>
+
+                <p>Color stops define where colors are placed along the gradient. By default, colors are evenly spaced, but you can specify exact positions. "linear-gradient(to right, red 0%, blue 50%, green 100%)" creates a gradient where blue is exactly in the middle. Positions can be percentages or pixel values. More stops create more complex, interesting gradients.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Radial Gradients</h2>
+
+                <p>Radial gradients create color transitions radiating from a center point, perfect for spotlight effects or circular designs. The basic syntax is:</p>
+
+                <div class="code-example">
+background: radial-gradient(circle, #ff0000, #00ff00);
+                </div>
+
+                <p>This creates a circular gradient starting with red at the center, transitioning to green at the edges. You can use "ellipse" for oval shapes, or specify size with "closest-side," "farthest-side," "closest-corner," or "farthest-corner." Position can be specified, allowing you to place the gradient center anywhere.</p>
+
+                <h2>Conic Gradients</h2>
+
+                <p>Conic gradients rotate colors around a center point, like a pie chart. They're perfect for color wheels or circular design elements:</p>
+
+                <div class="code-example">
+background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+                </div>
+
+                <p>This creates a full spectrum color wheel. Conic gradients are less common than linear or radial, but incredibly powerful for specific design needs. Position the center point using "from" keyword for starting angle.</p>
+
+                <h2>Advanced Gradient Techniques</h2>
+
+                <h3>Multiple Backgrounds</h3>
+
+                <p>Combine multiple gradients by comma-separating them. You can layer gradients to create complex effects. This technique allows you to build intricate patterns without images.</p>
+
+                <h3>Transparent Gradients</h3>
+
+                <p>Use "rgba" colors with alpha transparency to create fading effects. A gradient from "rgba(255,0,0,1)" to "rgba(255,0,0,0)" fades a color out completely.</p>
+
+                <h3>Animated Gradients</h3>
+
+                <p>CSS animations can shift gradient positions or colors, creating dynamic, eye-catching effects. Combine gradients with CSS transitions for smooth interactive effects.</p>
+
+                <div class="tip-box">
+                    <strong>Pro Tip:</strong> Use tools like <a href="../tools/css-gradient-generator.html">ToolPilot's CSS Gradient Generator</a> to visually design gradients before copying code into your projects.
+                </div>
+
+                <h2>Gradient Performance Tips</h2>
+
+                <p>Gradients are incredibly fast compared to images, but extreme complexity can impact performance. Limit the number of color stops—more than 10 is rarely necessary. Avoid animating gradients on large elements or frequently. Use hardware acceleration by combining gradients with transform properties. Test on real devices to ensure smooth performance on older browsers.</p>
+
+                <div class="cta-box">
+                    <h3>Create Beautiful Gradients Instantly</h3>
+                    <p>Use ToolPilot's CSS Gradient Generator to design and export gradients with preview.</p>
+                    <a href="../tools/css-gradient-generator.html" class="cta-button">Generate CSS Gradient</a>
+                </div>
+
+                <h2>Browser Support and Compatibility</h2>
+
+                <p>Linear and radial gradients enjoy excellent browser support across modern browsers. Conic gradients are more recent but supported in all modern browsers. Older Internet Explorer versions don't support CSS gradients—provide fallback solid colors for older browsers. Test your designs across browsers to ensure acceptable appearance everywhere.</p>
+
+                <div class="recommended-tools">
+                    <h3>CSS Gradient Tools</h3>
+                    <ul>
+                        <li>
+                            <a href="../tools/css-gradient-generator.html">ToolPilot CSS Gradient Generator</a>
+                            <div class="tool-desc">Visual gradient builder with live preview and instant code generation.</div>
+                        </li>
+                        <li>
+                            <a href="https://cssgradient.io/" target="_blank" rel="noopener noreferrer">CSS Gradient</a>
+                            <div class="tool-desc">Powerful gradient generator with advanced options and animation support.</div>
+                        </li>
+                        <li>
+                            <a href="https://www.colordot.it/" target="_blank" rel="noopener noreferrer">ColorDot</a>
+                            <div class="tool-desc">Color palette and gradient tool for finding complementary colors.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="disclaimer">
+                    Disclaimer: Some links in this article may be affiliate links. We earn a small commission if you choose to use these services, at no cost to you. Our recommendations are based on product quality and value.
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Can I use gradients on text?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Yes, using "background-clip: text" and "color: transparent" on text elements. Create a gradient on the background, then clip it to the text shape. This technique works well for headings and decorative text.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">How do I make smooth color transitions?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Choose colors with similar saturation and brightness levels for smoother transitions. Avoid extreme contrast between adjacent colors. Add intermediate color stops between very different colors. Test on actual devices to see how colors blend.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Do gradients work on all browsers?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Linear and radial gradients work in all modern browsers. Conic gradients work everywhere except older Edge and Internet Explorer. Always provide solid color fallbacks for older browsers to ensure acceptable appearance.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="best-free-developer-tools-2026.html" class="related-link">
+                        <strong>Best Free Developer Tools 2026</strong>
+                        <p>Discover more CSS and design tools for modern development.</p>
+                    </a>
+                    <a href="seo-meta-tags-guide.html" class="related-link">
+                        <strong>SEO Meta Tags Guide</strong>
+                        <p>Learn about metadata that complements CSS styling for complete web pages.</p>
+                    </a>
+                    <a href="how-to-create-strong-passwords.html" class="related-link">
+                        <strong>Web Development Essentials</strong>
+                        <p>Build secure, attractive web applications with proper design practices.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-04-10">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+    <script src="../common.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CSS Gradient Examples and How to Create Them",
+        "description": "Master CSS gradients with practical examples covering linear, radial, and conic gradients for stunning web design.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-04-10T08:00:00Z",
+        "dateModified": "2026-04-10T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+</body>
+</html>

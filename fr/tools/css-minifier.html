@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minifieur CSS - Compressez votre CSS pour réduire la taille de fichier et améliorer les performances de votre site web.">
+    <meta name="keywords" content="minifieur CSS, compresseur CSS, optimisation CSS, CSS minify">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Minifieur CSS">
+    <meta property="og:description" content="Minifiez votre CSS pour une meilleure performance.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/css-minifier.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Minifieur CSS">
+    <meta name="twitter:description" content="Compressez votre CSS en ligne.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/css-minifier.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/css-minifier.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/css-minifier.html">
+    <title>Minifieur CSS - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .stats {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .stat-item {
+            padding: 0.5rem;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+            textarea {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Minifieur CSS</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Minifieur CSS</h1>
+        <p>Compressez votre code CSS pour réduire la taille des fichiers et améliorer les performances de votre site web. Supportez aussi l'embellissement de CSS.</p>
+
+        <div class="tool-container">
+            <div class="pane">
+                <h3>CSS en entrée</h3>
+                <textarea id="input" placeholder="Coller votre CSS ici..."></textarea>
+            </div>
+
+            <div class="pane">
+                <h3>CSS en sortie</h3>
+                <textarea id="output" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="minifyCSS()">Minifier</button>
+            <button class="btn btn-secondary" onclick="beautifyCSS()">Embellir</button>
+            <button class="btn btn-secondary" onclick="copyOutput()">Copier</button>
+            <button class="btn btn-secondary" onclick="clearAll()">Effacer</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Taille de l'entrée</div>
+                <div class="stat-value" id="inputSize">0 B</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Taille de la sortie</div>
+                <div class="stat-value" id="outputSize">0 B</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Réduction</div>
+                <div class="stat-value" id="reduction">0%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Économies</div>
+                <div class="stat-value" id="savings">0 B</div>
+            </div>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="js-minifier.html" class="tool-card">Minifieur JavaScript</a>
+                <a href="diff-checker.html" class="tool-card">Vérificateur de Différences</a>
+                <a href="json-formatter.html" class="tool-card">Formateur JSON</a>
+                <a href="html-entities.html" class="tool-card">Entités HTML</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>Pourquoi minifier le CSS?</h3>
+                <p>La minification réduit la taille du fichier CSS en supprimant les espaces inutiles, les commentaires et les retours à la ligne. Cela améliore la vitesse de chargement de votre site web.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Le CSS minifié fonctionne-t-il de la même manière?</h3>
+                <p>Oui, le CSS minifié fonctionne exactement de la même manière que le CSS original. Seule la formatage change, pas la fonctionnalité.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Puis-je utiliser le CSS minifié en production?</h3>
+                <p>Absolument! Le CSS minifié est recommandé pour les sites en production. C'est une pratique standard pour optimiser les performances.</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos du Minifieur CSS</h2>
+            <p>La minification CSS est une technique d'optimisation essentielle pour tous les développeurs web. En réduisant la taille de vos fichiers CSS, vous améliorez directement les temps de chargement de vos pages, ce qui a un impact positif sur l'expérience utilisateur et le référencement SEO.</p>
+            <p>Notre minifieur CSS en ligne supprime tous les éléments inutiles : commentaires, espaces blancs, retours à la ligne et autres caractères non-essentiels. Le résultat est un fichier CSS comprimé qui fonctionne exactement comme l'original.</p>
+            <p>Si vous avez besoin de revoir ou modifier votre CSS minifié, vous pouvez utiliser la fonction "Embellir" pour restaurer la lisibilité et la structure du code.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Minifieur CSS",
+        "description": "Compressez votre CSS pour améliorer les performances",
+        "url": "https://toolpilot.netlify.app/fr/tools/css-minifier.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        function updateStats() {
+            const input = document.getElementById('input').value;
+            const output = document.getElementById('output').value;
+            const inputSize = new Blob([input]).size;
+            const outputSize = new Blob([output]).size;
+            const reduction = inputSize > 0 ? Math.round((1 - outputSize / inputSize) * 100) : 0;
+            const savings = inputSize - outputSize;
+
+            document.getElementById('inputSize').textContent = formatFileSize(inputSize);
+            document.getElementById('outputSize').textContent = formatFileSize(outputSize);
+            document.getElementById('reduction').textContent = reduction + '%';
+            document.getElementById('savings').textContent = formatFileSize(savings);
+        }
+
+        function minifyCSS() {
+            let css = document.getElementById('input').value;
+
+            // Remove comments
+            css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+
+            // Remove whitespace
+            css = css.replace(/\s+/g, ' ');
+
+            // Remove spaces around special characters
+            css = css.replace(/\s*([{}:;,>+~])\s*/g, '$1');
+
+            // Remove semicolon before closing brace
+            css = css.replace(/;}/g, '}');
+
+            // Remove leading/trailing spaces
+            css = css.trim();
+
+            document.getElementById('output').value = css;
+            updateStats();
+        }
+
+        function beautifyCSS() {
+            let css = document.getElementById('input').value;
+
+            // Remove comments
+            css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+
+            // Add newlines after closing braces
+            css = css.replace(/}\s*/g, '}\n\n');
+
+            // Add newlines and indentation after semicolons
+            css = css.replace(/;/g, ';\n');
+
+            // Add newlines after opening braces
+            css = css.replace(/{/g, ' {\n\t');
+
+            // Clean up extra whitespace
+            css = css.replace(/\n\s*\n/g, '\n');
+            css = css.replace(/\n\t\n/g, '\n');
+
+            // Indent properties
+            css = css.split('\n').map(line => {
+                if (line.trim() && !line.trim().match(/^[{}]/)) {
+                    return '\t' + line.trim();
+                }
+                return line.trim();
+            }).join('\n');
+
+            css = css.trim();
+            document.getElementById('output').value = css;
+            updateStats();
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('output');
+            output.select();
+            document.execCommand('copy');
+            alert('CSS copié!');
+        }
+
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').value = '';
+            updateStats();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        document.getElementById('input').addEventListener('input', updateStats);
+        document.getElementById('output').addEventListener('input', updateStats);
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Compteur de Mots & Caractères | ToolPilot</title>
+    <meta name="description" content="Comptez les mots, caractères, phrases et paragraphes de votre texte. Calculez le temps de lecture estimé avec notre outil gratuit.">
+    <meta name="keywords" content="compteur de mots, compteur de caractères, compteur de phrases, temps de lecture, analyse de texte">
+    <meta property="og:title" content="Compteur de Mots & Caractères | ToolPilot">
+    <meta property="og:description" content="Comptez les mots, caractères et analysez votre texte en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Compteur de Mots & Caractères | ToolPilot">
+    <meta name="twitter:description" content="Comptez les mots, caractères et analysez votre texte en ligne.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/word-counter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Compteur de Mots & Caractères",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Compteur de Mots & Caractères",
+        "description": "Comptez les mots, caractères et analysez votre texte en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Quelle est la différence entre mots et caractères?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Les mots sont des séquences de lettres séparées par des espaces. Les caractères incluent les lettres, les espaces, les nombres et les signes de ponctuation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment est calculé le temps de lecture?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le temps de lecture est basé sur une moyenne de 200 mots par minute pour un lecteur moyen en français."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Mes données sont-elles sauvegardées?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Non, tout traitement est effectué localement dans votre navigateur. Aucune donnée n'est stockée ou envoyée à nos serveurs."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Compteur de Mots & Caractères</span>
+            </nav>
+
+            <h1>Compteur de Mots & Caractères</h1>
+            <p class="tool-subtitle">Analysez votre texte et obtenez des statistiques détaillées</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="text-input">Collez ou écrivez votre texte:</label>
+                    <textarea id="text-input" placeholder="Entrez votre texte ici..."></textarea>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="word-count">0</div>
+                        <div class="stat-label">Mots</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="char-count">0</div>
+                        <div class="stat-label">Caractères</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="char-no-space-count">0</div>
+                        <div class="stat-label">Caractères (sans espaces)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="sentence-count">0</div>
+                        <div class="stat-label">Phrases</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="paragraph-count">0</div>
+                        <div class="stat-label">Paragraphes</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="reading-time">0 min</div>
+                        <div class="stat-label">Temps de lecture</div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="clear-btn" class="btn btn-secondary">Tout effacer</button>
+                </div>
+            </div>
+
+            <section class="seo-content">
+                <h2>À propos de ce compteur</h2>
+                <p>Notre <strong>Compteur de Mots & Caractères</strong> est un outil en ligne gratuit qui vous aide à analyser le contenu de votre texte. Qu'il s'agisse d'un article de blog, d'un essai scolaire ou d'une présentation professionnelle, cet outil vous fournit des statistiques détaillées sur votre texte.</p>
+                <p>Vous obtiendrez des informations précises sur le nombre de mots, caractères, phrases et paragraphes de votre texte. De plus, l'outil calcule un temps de lecture estimé basé sur une vitesse de lecture moyenne, ce qui est particulièrement utile pour les rédacteurs de contenu web qui souhaitent optimiser l'engagement des lecteurs.</p>
+                <p>Utilisez cet outil pour vérifier que vos textes respectent les exigences de longueur, évaluer la densité de votre contenu ou simplement comprendre les statistiques de votre rédaction. Le traitement se fait entièrement en ligne sans aucun stockage de vos données.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="case-converter.html" class="tool-card">
+                        <h3>Convertisseur de Casse</h3>
+                        <p>Convertissez la casse de votre texte</p>
+                    </a>
+                    <a href="lorem-ipsum.html" class="tool-card">
+                        <h3>Générateur Lorem Ipsum</h3>
+                        <p>Générez du texte de placeholder</p>
+                    </a>
+                    <a href="line-tools.html" class="tool-card">
+                        <h3>Outils de Lignes</h3>
+                        <p>Manipulez les lignes de texte</p>
+                    </a>
+                    <a href="slug-generator.html" class="tool-card">
+                        <h3>Générateur de Slug</h3>
+                        <p>Créez des slugs URL</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const textInput = document.getElementById('text-input');
+        const wordCount = document.getElementById('word-count');
+        const charCount = document.getElementById('char-count');
+        const charNoSpaceCount = document.getElementById('char-no-space-count');
+        const sentenceCount = document.getElementById('sentence-count');
+        const paragraphCount = document.getElementById('paragraph-count');
+        const readingTime = document.getElementById('reading-time');
+        const clearBtn = document.getElementById('clear-btn');
+
+        function updateStats() {
+            const text = textInput.value;
+
+            // Count words
+            const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+            wordCount.textContent = text.length === 0 ? 0 : words;
+
+            // Count characters
+            charCount.textContent = text.length;
+            charNoSpaceCount.textContent = text.replace(/\s/g, '').length;
+
+            // Count sentences
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            sentenceCount.textContent = text.length === 0 ? 0 : sentences;
+
+            // Count paragraphs
+            const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0).length;
+            paragraphCount.textContent = text.length === 0 ? 0 : paragraphs;
+
+            // Calculate reading time (200 words per minute)
+            const minutes = Math.ceil(words / 200);
+            readingTime.textContent = minutes + ' min';
+        }
+
+        textInput.addEventListener('input', updateStats);
+        textInput.addEventListener('change', updateStats);
+
+        clearBtn.addEventListener('click', () => {
+            textInput.value = '';
+            updateStats();
+        });
+
+        updateStats();
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

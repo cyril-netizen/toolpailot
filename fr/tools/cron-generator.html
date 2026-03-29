@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Générateur d'expressions cron gratuit. Créez des planifications cron avec des menus déroulants interactifs et décoder les expressions cron. Visualisez les heures d'exécution suivantes.">
+    <meta name="keywords" content="générateur cron, crontab guru, expression cron, calendrier cron, créateur cron gratuit">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/cron-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Générateur d'Expression Cron — Outil Gratuit en Ligne | ToolPilot">
+    <meta property="og:description" content="Créez et décodez les expressions cron avec interface interactive et prédictions d'exécution suivante.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Générateur d'Expression Cron — Outil Gratuit en Ligne">
+    <meta name="twitter:description" content="Générez les expressions cron avec interface visuelle.">
+
+    <title>Générateur d'Expression Cron — Outil Gratuit en Ligne | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+        }
+
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-item label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select, input[type="text"] {
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-input);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color var(--transition);
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .presets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .preset-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-muted);
+        }
+
+        .preset-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--bg-card);
+        }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .description-box {
+            background: var(--bg-input);
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .expression-box {
+            background: var(--bg-input);
+            padding: 16px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 600;
+            word-break: break-all;
+            margin-bottom: 16px;
+        }
+
+        .execution-times {
+            background: var(--bg-input);
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            font-family: monospace;
+            line-height: 1.8;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .message.error {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        .seo-content {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: var(--radius);
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .seo-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .ad-slot {
+            background: var(--bg-input);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .controls-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .seo-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot/fr">Accueil</a>
+            <span>/</span>
+            <span>Outils</span>
+            <span>/</span>
+            <span>Générateur Cron</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px;">Générateur d'Expression Cron</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 32px;">Créez et décodez les expressions cron avec menus déroulants interactifs et prédictions d'exécution suivante</p>
+
+        <div class="tool-container">
+            <!-- Presets -->
+            <div class="section">
+                <div class="section-title">Présets Rapides</div>
+                <div class="presets">
+                    <button class="preset-btn" onclick="setPreset('* * * * *')">Chaque Minute</button>
+                    <button class="preset-btn" onclick="setPreset('0 * * * *')">Chaque Heure</button>
+                    <button class="preset-btn" onclick="setPreset('0 0 * * *')">Quotidien (Minuit)</button>
+                    <button class="preset-btn" onclick="setPreset('0 9 * * *')">Quotidien (9h)</button>
+                    <button class="preset-btn" onclick="setPreset('0 0 * * 1')">Hebdomadaire (Lundi)</button>
+                    <button class="preset-btn" onclick="setPreset('0 0 1 * *')">Mensuel (1er)</button>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="section">
+                <div class="section-title">Construire l'Expression Cron</div>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <label>Minute</label>
+                        <select id="minute" onchange="updateCron()">
+                            <option value="*">Chaque</option>
+                            <option value="0">0</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Heure</label>
+                        <select id="hour" onchange="updateCron()">
+                            <option value="*">Chaque</option>
+                            <option value="0">Minuit</option>
+                            <option value="6">6h</option>
+                            <option value="9">9h</option>
+                            <option value="12">Midi</option>
+                            <option value="18">18h</option>
+                        </select>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Jour du Mois</label>
+                        <select id="day" onchange="updateCron()">
+                            <option value="*">Chaque</option>
+                            <option value="1">1er</option>
+                            <option value="15">15</option>
+                            <option value="L">Dernier</option>
+                        </select>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Mois</label>
+                        <select id="month" onchange="updateCron()">
+                            <option value="*">Chaque</option>
+                            <option value="1">Janvier</option>
+                            <option value="6">Juin</option>
+                            <option value="12">Décembre</option>
+                        </select>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Jour de la Semaine</label>
+                        <select id="dow" onchange="updateCron()">
+                            <option value="*">Chaque</option>
+                            <option value="1">Lundi</option>
+                            <option value="2">Mardi</option>
+                            <option value="3">Mercredi</option>
+                            <option value="4">Jeudi</option>
+                            <option value="5">Vendredi</option>
+                            <option value="6">Samedi</option>
+                            <option value="0">Dimanche</option>
+                        </select>
+                    </div>
+
+                    <div class="control-item">
+                        <label>Personnalisé</label>
+                        <input type="text" id="customCron" placeholder="Ou collez ici..." onchange="parseCronInput()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result -->
+            <div class="section">
+                <div class="section-title">Expression Cron</div>
+                <div class="expression-box" id="cronExpression">* * * * *</div>
+                <div id="cronDescription" class="description-box">Chaque minute, chaque heure, chaque jour</div>
+                <div class="controls">
+                    <button class="btn-primary" onclick="copyCron()">Copier l'Expression</button>
+                    <button class="btn-secondary" onclick="generateNextTimes()">Afficher les 5 Prochaines Exécutions</button>
+                </div>
+                <div id="message" class="message"></div>
+            </div>
+
+            <!-- Next Executions -->
+            <div class="section" id="nextExecutions" style="display: none;">
+                <div class="section-title">5 Prochains Temps d'Exécution</div>
+                <div id="executionTimes" class="execution-times"></div>
+            </div>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <!-- Related Tools -->
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 24px; margin-bottom: 16px;">Outils Associés</h2>
+            <div class="tool-grid">
+                <a href="time-converter.html" class="card tool-card">
+                    <span class="icon">⏰</span>
+                    <h3>Convertisseur de Temps</h3>
+                    <p>Convertissez entre les fuseaux horaires et les formats.</p>
+                </a>
+                <a href="json-formatter.html" class="card tool-card">
+                    <span class="icon">{ }</span>
+                    <h3>Formateur JSON</h3>
+                    <p>Formatez, validez et minifiez les données JSON.</p>
+                </a>
+                <a href="hash-generator.html" class="card tool-card">
+                    <span class="icon">🔒</span>
+                    <h3>Générateur de Hash</h3>
+                    <p>Générez les hash MD5, SHA-1, SHA-256 et SHA-512.</p>
+                </a>
+                <a href="regex-tester.html" class="card tool-card">
+                    <span class="icon">.*</span>
+                    <h3>Testeur d'Expression Régulière</h3>
+                    <p>Testez et déboguez les expressions régulières.</p>
+                </a>
+            </div>
+        </section>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>À Propos du Générateur d'Expression Cron</h2>
+            <p>Notre générateur d'expression cron gratuit vous aide à créer et comprendre les planifications cron pour l'automatisation des tâches. Que vous ayez besoin de planifier des tâches avec des travaux cron, des pipelines CI/CD ou des fonctions sans serveur, cet outil rend la construction des expressions cron facile avec une interface intuitive.</p>
+
+            <h3>Qu'est-ce que Cron ?</h3>
+            <p>Cron est un planificateur de travaux basé sur le temps utilisé dans les systèmes d'exploitation de type Unix. Les expressions cron décrivent quand les travaux doivent s'exécuter en utilisant un format simple à cinq champs : minute, heure, jour du mois, mois et jour de la semaine.</p>
+
+            <h3>Format d'Expression Cron</h3>
+            <ul>
+                <li><strong>Champ 1 (Minute) :</strong> 0-59, ou * pour chaque minute</li>
+                <li><strong>Champ 2 (Heure) :</strong> 0-23 (0 = minuit), ou * pour chaque heure</li>
+                <li><strong>Champ 3 (Jour du Mois) :</strong> 1-31, ou * pour chaque jour</li>
+                <li><strong>Champ 4 (Mois) :</strong> 1-12 (1 = janvier), ou * pour chaque mois</li>
+                <li><strong>Champ 5 (Jour de la Semaine) :</strong> 0-7 (0/7 = dimanche), ou * pour chaque jour</li>
+            </ul>
+
+            <h3>Modèles Cron Courants</h3>
+            <ul>
+                <li><strong>0 0 * * *</strong> — S'exécute chaque jour à minuit</li>
+                <li><strong>0 * * * *</strong> — S'exécute chaque heure au début de l'heure</li>
+                <li><strong>*/15 * * * *</strong> — S'exécute chaque 15 minutes</li>
+                <li><strong>0 0 1 * *</strong> — S'exécute le premier jour de chaque mois</li>
+                <li><strong>0 0 * * 1</strong> — S'exécute chaque lundi à minuit</li>
+                <li><strong>0 9,17 * * *</strong> — S'exécute à 9h et 17h chaque jour</li>
+            </ul>
+
+            <h3>Cas d'Usage pour Cron</h3>
+            <ul>
+                <li>Planification des sauvegardes de base de données</li>
+                <li>Exécution de tâches de maintenance système périodiques</li>
+                <li>Déclenchement des appels API à des heures spécifiques</li>
+                <li>Envoi d'e-mails ou de notifications automatisés</li>
+                <li>Nettoyage des journaux et des fichiers temporaires</li>
+                <li>Exécution des pipelines CI/CD et des déploiements</li>
+            </ul>
+
+            <h3>Comment Utiliser ce Générateur</h3>
+            <p>Utilisez les menus déroulants pour construire votre expression cron, ou collez une expression existante pour la décoder. Le générateur affichera une description lisible par l'homme et affichera les 5 prochains temps d'exécution programmés. Vous pouvez rapidement appliquer les présets courants pour les planifications quotidiennes, hebdomadaires ou mensuelles.</p>
+
+            <h3>Conseils Avancés</h3>
+            <ul>
+                <li>Utilisez <strong>*/N</strong> pour exécuter tous les N intervalles (par exemple, */5 pour chaque 5 minutes)</li>
+                <li>Utilisez <strong>a-b</strong> pour spécifier des plages (par exemple, 9-17 pour 9h à 17h)</li>
+                <li>Utilisez <strong>a,b,c</strong> pour spécifier plusieurs valeurs (par exemple, 1,15 pour 1er et 15)</li>
+                <li>Souvenez-vous : Cron utilise le format 24 heures (13 = 13h, 0 = minuit)</li>
+            </ul>
+        </div>
+
+        <div class="ad-slot">Espace Publicitaire</div>
+
+        <!-- FAQ -->
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Questions Fréquemment Posées</h2>
+            <div style="display: grid; gap: 16px;">
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Que signifie * dans cron ?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Un astérisque (*) signifie « chaque » dans ce champ. Par exemple, * dans le champ d'heure signifie « chaque heure ».</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Comment planifier une tâche toutes les 30 minutes ?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Utilisez <strong>*/30 * * * *</strong> pour exécuter chaque 30 minutes. La syntaxe */N signifie « tous les N intervalles ».</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Quel fuseau horaire cron utilise-t-il ?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Les tâches cron s'exécutent généralement dans le fuseau horaire local du serveur. Vérifiez vos paramètres système pour confirmer.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Puis-je utiliser à la fois le jour du mois ET le jour de la semaine ?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Si les deux sont spécifiés (pas *), le travail s'exécute quand L'UN correspond. Généralement, définissez l'un à * et l'autre à une valeur spécifique.</p>
+                </details>
+            </div>
+        </section>
+    </div>
+
+    <!-- Schemas -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Générateur d'Expression Cron",
+        "description": "Générateur d'expression cron gratuit avec interface interactive et prédictions d'exécution suivante",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/cron-generator.html",
+        "applicationCategory": "DeveloperTool",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://cyril-netizen.github.io/toolpailot/fr"},
+            {"@type": "ListItem", "position": 2, "name": "Outils", "item": "https://cyril-netizen.github.io/toolpailot/fr#outils"},
+            {"@type": "ListItem", "position": 3, "name": "Générateur Cron"}
+        ]
+    }
+    </script>
+
+    <script src="../../common.js"></script>
+    <script>
+        function updateCron() {
+            const minute = document.getElementById('minute').value;
+            const hour = document.getElementById('hour').value;
+            const day = document.getElementById('day').value;
+            const month = document.getElementById('month').value;
+            const dow = document.getElementById('dow').value;
+
+            const cron = `${minute} ${hour} ${day} ${month} ${dow}`;
+            document.getElementById('cronExpression').textContent = cron;
+            document.getElementById('customCron').value = '';
+
+            updateDescription(cron);
+        }
+
+        function setPreset(cron) {
+            const parts = cron.split(' ');
+            document.getElementById('minute').value = parts[0];
+            document.getElementById('hour').value = parts[1];
+            document.getElementById('day').value = parts[2];
+            document.getElementById('month').value = parts[3];
+            document.getElementById('dow').value = parts[4];
+            document.getElementById('customCron').value = '';
+
+            document.getElementById('cronExpression').textContent = cron;
+            updateDescription(cron);
+        }
+
+        function parseCronInput() {
+            const input = document.getElementById('customCron').value.trim();
+            if (!input) {
+                updateCron();
+                return;
+            }
+
+            const parts = input.split(' ');
+            if (parts.length !== 5) {
+                showMessage('Cron invalide : doit avoir 5 champs', 'error');
+                return;
+            }
+
+            document.getElementById('minute').value = '*';
+            document.getElementById('hour').value = '*';
+            document.getElementById('day').value = '*';
+            document.getElementById('month').value = '*';
+            document.getElementById('dow').value = '*';
+
+            document.getElementById('cronExpression').textContent = input;
+            updateDescription(input);
+            showMessage('Expression cron analysée !', 'success');
+        }
+
+        function updateDescription(cron) {
+            const parts = cron.split(' ');
+            if (parts.length !== 5) return;
+
+            const [minute, hour, day, month, dow] = parts;
+
+            let desc = '';
+
+            // Minute
+            if (minute === '*') desc += 'chaque minute';
+            else if (minute.startsWith('*/')) desc += `chaque ${minute.slice(2)} minutes`;
+            else desc += `à la minute ${minute}`;
+
+            // Hour
+            if (hour === '*') desc += ', chaque heure';
+            else desc += `, à ${hour}:00`;
+
+            // Day
+            if (day !== '*') desc += `, le jour ${day}`;
+
+            // Month
+            if (month !== '*') desc += `, au mois ${month}`;
+
+            // DOW
+            const dowMap = { 0: 'Dimanche', 1: 'Lundi', 2: 'Mardi', 3: 'Mercredi', 4: 'Jeudi', 5: 'Vendredi', 6: 'Samedi', 7: 'Dimanche' };
+            if (dow !== '*' && dowMap[dow]) desc += `, le ${dowMap[dow].toLowerCase()}`;
+
+            document.getElementById('cronDescription').textContent = desc.charAt(0).toUpperCase() + desc.slice(1);
+        }
+
+        function copyCron() {
+            const cron = document.getElementById('cronExpression').textContent;
+            navigator.clipboard.writeText(cron).then(() => {
+                showMessage('Expression cron copiée !', 'success');
+            }).catch(() => {
+                showMessage('Échec de la copie', 'error');
+            });
+        }
+
+        function generateNextTimes() {
+            const cron = document.getElementById('cronExpression').textContent;
+            const parts = cron.split(' ');
+            if (parts.length !== 5) {
+                showMessage('Expression cron invalide', 'error');
+                return;
+            }
+
+            const times = [];
+            const now = new Date();
+            let current = new Date(now);
+
+            for (let i = 0; i < 5; i++) {
+                current = getNextExecution(current, parts);
+                if (!current) break;
+                times.push(current.toISOString());
+            }
+
+            if (times.length === 0) {
+                showMessage('Impossible de calculer les prochains temps d\'exécution', 'error');
+                return;
+            }
+
+            const html = times.map(t => {
+                const d = new Date(t);
+                return d.toLocaleString();
+            }).join('\n');
+
+            document.getElementById('executionTimes').textContent = html;
+            document.getElementById('nextExecutions').style.display = 'block';
+            showMessage('Prochains temps d\'exécution calculés !', 'success');
+        }
+
+        function getNextExecution(after, parts) {
+            const [minute, hour, day, month, dow] = parts.map(p => p === '*' ? null : p);
+            let next = new Date(after.getTime() + 60000); // Add 1 minute
+
+            for (let i = 0; i < 366 * 24 * 60; i++) {
+                if (matchesCron(next, { minute, hour, day, month, dow })) {
+                    return next;
+                }
+                next.setMinutes(next.getMinutes() + 1);
+            }
+            return null;
+        }
+
+        function matchesCron(date, pattern) {
+            const m = date.getMinutes();
+            const h = date.getHours();
+            const d = date.getDate();
+            const mo = date.getMonth() + 1;
+            const dow = date.getDay();
+
+            if (pattern.minute && !matchValue(m, pattern.minute)) return false;
+            if (pattern.hour && !matchValue(h, pattern.hour)) return false;
+            if (pattern.day && !matchValue(d, pattern.day)) return false;
+            if (pattern.month && !matchValue(mo, pattern.month)) return false;
+            if (pattern.dow && !matchValue(dow, pattern.dow) && !(pattern.dow === '0' && dow === 0)) return false;
+
+            return true;
+        }
+
+        function matchValue(val, pattern) {
+            if (pattern.startsWith('*/')) {
+                const interval = parseInt(pattern.slice(2));
+                return val % interval === 0;
+            }
+            return parseInt(pattern) === val;
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Initialize
+        updateCron();
+    </script>
+</body>
+</html>

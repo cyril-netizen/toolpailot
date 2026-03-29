@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encodeur/Décodeur d'Entités HTML - Convertissez du texte en entités HTML et vice-versa instantanément.">
+    <meta name="keywords" content="entités HTML, encodeur HTML, décodeur HTML, HTML entities">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Encodeur/Décodeur d'Entités HTML">
+    <meta property="og:description" content="Encodez et décodez les entités HTML facilement.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/html-entities.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Encodeur/Décodeur d'Entités HTML">
+    <meta name="twitter:description" content="Convertissez les entités HTML.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/html-entities.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/html-entities.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/html-entities.html">
+    <title>Encodeur/Décodeur d'Entités HTML - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .character-reference {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .reference-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 16px;
+        }
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .reference-item {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Encodeur/Décodeur d'Entités HTML</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Encodeur/Décodeur d'Entités HTML</h1>
+        <p>Convertissez du texte brut en entités HTML et inversement. Parfait pour les développeurs et éditeurs web qui travaillent avec du HTML.</p>
+
+        <div class="tool-container">
+            <div class="pane">
+                <h3>Texte</h3>
+                <textarea id="plainText" placeholder="Entrez votre texte brut ici..."></textarea>
+            </div>
+
+            <div class="pane">
+                <h3>Entités HTML</h3>
+                <textarea id="htmlEntities" readonly></textarea>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="encodeToHTML()">Encoder</button>
+            <button class="btn btn-primary" onclick="decodeFromHTML()">Décoder</button>
+            <button class="btn btn-secondary" onclick="copyEntities()">Copier</button>
+            <button class="btn btn-secondary" onclick="clearAll()">Effacer</button>
+        </div>
+
+        <!-- Character Reference -->
+        <div class="character-reference">
+            <div class="reference-title">Référence d'Entités HTML Communes</div>
+            <div class="reference-grid">
+                <div class="reference-item">
+                    <strong>&lt;</strong><br>
+                    &lt;
+                </div>
+                <div class="reference-item">
+                    <strong>&gt;</strong><br>
+                    &gt;
+                </div>
+                <div class="reference-item">
+                    <strong>&amp;</strong><br>
+                    &amp;
+                </div>
+                <div class="reference-item">
+                    <strong>&quot;</strong><br>
+                    &quot;
+                </div>
+                <div class="reference-item">
+                    <strong>&apos;</strong><br>
+                    &#x27;
+                </div>
+                <div class="reference-item">
+                    <strong>&nbsp;</strong><br>
+                    &nbsp;
+                </div>
+                <div class="reference-item">
+                    <strong>&copy;</strong><br>
+                    &copy;
+                </div>
+                <div class="reference-item">
+                    <strong>&reg;</strong><br>
+                    &reg;
+                </div>
+                <div class="reference-item">
+                    <strong>&euro;</strong><br>
+                    &euro;
+                </div>
+                <div class="reference-item">
+                    <strong>&pound;</strong><br>
+                    &pound;
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="url-encoder.html" class="tool-card">Encodeur URL</a>
+                <a href="base64-converter.html" class="tool-card">Convertisseur Base64</a>
+                <a href="css-minifier.html" class="tool-card">Minifieur CSS</a>
+                <a href="case-converter.html" class="tool-card">Convertisseur de Casse</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>Pourquoi avoir besoin d'encoder en entités HTML?</h3>
+                <p>L'encodage HTML est nécessaire pour afficher correctement les caractères spéciaux dans les pages web. Par exemple, le symbole "&lt;" doit être encoded en "&amp;lt;" pour s'afficher correctement.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Quand dois-je utiliser l'encodage HTML?</h3>
+                <p>Utilisez l'encodage HTML quand vous avez besoin d'afficher du contenu dynamique dans une page web qui contient des caractères spéciaux comme &lt;, &gt;, &amp;, etc.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Quelle est la différence entre &amp;nbsp; et un espace normal?</h3>
+                <p>&amp;nbsp; est une entité HTML qui représente un espace insécable. Contrairement à un espace normal, il ne sera jamais utilisé comme point de rupture de ligne par le navigateur.</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos de l'Encodeur/Décodeur d'Entités HTML</h2>
+            <p>Les entités HTML sont des constructions spéciales qui permettent de représenter des caractères spéciaux et des symboles dans le contenu HTML. Elles sont essentielles pour que les navigateurs web affichent correctement votre contenu.</p>
+            <p>Notre outil simplifie la conversion entre texte brut et entités HTML. Qu'il s'agisse de caractères réservés comme &lt;, &gt;, ou &amp;, ou de symboles spéciaux comme &copy;, notre encodeur/décodeur gère tous les cas courants.</p>
+            <p>Utilisez cet outil lors du développement web, de la maintenance de contenu HTML, ou quand vous devez préparer du contenu pour affichage sur une page web. C'est un outil indispensable pour les développeurs et éditeurs web.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Encodeur/Décodeur d'Entités HTML",
+        "description": "Convertissez du texte en entités HTML et vice-versa",
+        "url": "https://toolpilot.netlify.app/fr/tools/html-entities.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        function encodeToHTML() {
+            const text = document.getElementById('plainText').value;
+            const textarea = document.createElement('textarea');
+            textarea.textContent = text;
+            const encoded = textarea.innerHTML
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;');
+            document.getElementById('htmlEntities').value = encoded;
+        }
+
+        function decodeFromHTML() {
+            const encoded = document.getElementById('htmlEntities').value;
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = encoded;
+            document.getElementById('plainText').value = textarea.textContent || textarea.innerText || '';
+        }
+
+        function copyEntities() {
+            const output = document.getElementById('htmlEntities');
+            output.select();
+            document.execCommand('copy');
+            alert('Entités HTML copiées!');
+        }
+
+        function clearAll() {
+            document.getElementById('plainText').value = '';
+            document.getElementById('htmlEntities').value = '';
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Auto-encode when plain text changes
+        document.getElementById('plainText').addEventListener('input', encodeToHTML);
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

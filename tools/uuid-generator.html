@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate random UUID v4 identifiers instantly. Bulk generation with customizable format options. Free online UUID generator tool.">
+    <meta name="keywords" content="UUID generator, UUID v4, random UUID, unique identifier, guid generator, bulk UUID">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/uuid-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/uuid-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/uuid-generator.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="UUID Generator — Generate Random UUIDs Online | ToolPilot">
+    <meta property="og:description" content="Generate random UUID v4 identifiers instantly. Create single or bulk UUIDs with customizable format options.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/uuid-generator.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UUID Generator — Generate Random UUIDs Online | ToolPilot">
+    <meta name="twitter:description" content="Generate random UUID v4 identifiers instantly with customizable options.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>UUID Generator — Generate Random UUIDs Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .controls-section {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .control-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="number"] {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .buttons-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #0052a3;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .output-section {
+            margin-bottom: 2rem;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .output-count {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .output-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .uuid-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .uuid-item:hover {
+            border-color: #0066cc;
+            background: #f0f5ff;
+        }
+
+        .uuid-value {
+            user-select: all;
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .uuid-copy-btn {
+            padding: 0.4rem 0.8rem;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .uuid-copy-btn:hover {
+            background: #0066cc;
+            color: white;
+        }
+
+        .uuid-copy-btn.copied {
+            background: #28a745;
+            color: white;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .copy-all-btn {
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .copy-all-btn:hover {
+            background: #218838;
+        }
+
+        .copy-all-btn:active {
+            transform: scale(0.98);
+        }
+
+        .copy-all-btn.copied {
+            background: #17a2b8;
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #28a745;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / UUID Generator
+    </div>
+
+    <main class="tool-container">
+        <h1>UUID Generator</h1>
+        <p class="subtitle">Generate random UUID v4 identifiers for your applications and databases</p>
+
+        <div class="controls-section">
+            <div class="control-row">
+                <div class="control-group">
+                    <label for="quantity">Number of UUIDs:</label>
+                    <input type="number" id="quantity" min="1" max="1000" value="1">
+                </div>
+
+                <div class="control-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="uppercase" checked>
+                        <label for="uppercase">Uppercase</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="hyphens" checked>
+                        <label for="hyphens">Include Hyphens</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons-group">
+                <button class="btn" id="generate-btn">Generate UUIDs</button>
+            </div>
+        </div>
+
+        <div class="output-section">
+            <div class="output-label">
+                <span>Generated UUIDs:</span>
+                <span class="output-count" id="output-count"></span>
+            </div>
+            <div class="output-box" id="output-box">
+                <div class="empty-state">Click "Generate UUIDs" to create new identifiers</div>
+            </div>
+            <div class="output-actions">
+                <button class="copy-all-btn" id="copy-all-btn" style="display: none;">Copy All to Clipboard</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="hash-generator.html" class="card tool-card">
+                    <span class="icon">🔒</span>
+                    <h3>Hash Generator</h3>
+                    <p>Generate MD5, SHA-1, SHA-256 & SHA-512 hashes.</p>
+                </a>
+                <a href="password-generator.html" class="card tool-card">
+                    <span class="icon">🔐</span>
+                    <h3>Password Generator</h3>
+                    <p>Generate strong, random passwords with custom rules.</p>
+                </a>
+                <a href="timestamp-converter.html" class="card tool-card">
+                    <span class="icon">⏱️</span>
+                    <h3>Timestamp Converter</h3>
+                    <p>Convert between Unix timestamps and human-readable dates.</p>
+                </a>
+                <a href="slug-generator.html" class="card tool-card">
+                    <span class="icon">🔗</span>
+                    <h3>Slug Generator</h3>
+                    <p>Generate SEO-friendly URL slugs from text.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About UUID Generator</h2>
+            <p>
+                Our UUID Generator creates random UUID v4 (Universally Unique Identifier) values instantly. Perfect for developers, database administrators, and application architects who need unique identifiers.
+            </p>
+
+            <h3>What is a UUID?</h3>
+            <p>
+                A UUID is a 128-bit number used to uniquely identify information in systems. UUID v4 is a randomly generated identifier that has virtually zero chance of collision with another UUID. The standard UUID format is a 32-character hexadecimal string divided into five groups separated by hyphens: 8-4-4-4-12 characters.
+            </p>
+
+            <h3>UUID v4 Format</h3>
+            <p>
+                UUID v4 generates completely random identifiers, making them ideal for distributed systems. An example UUID v4 looks like: 550e8400-e29b-41d4-a716-446655440000. The format is human-readable and widely compatible across all major platforms and databases.
+            </p>
+
+            <h3>Use Cases</h3>
+            <p>
+                <strong>Database Primary Keys:</strong> UUIDs are ideal for distributed databases where auto-incrementing integers may conflict. Use them as primary keys to ensure global uniqueness.
+            </p>
+            <p>
+                <strong>User IDs:</strong> Generate unique identifiers for users in web applications, protecting privacy compared to sequential IDs.
+            </p>
+            <p>
+                <strong>API Requests:</strong> Create unique request identifiers for tracking, logging, and debugging API calls.
+            </p>
+            <p>
+                <strong>Session Tokens:</strong> Generate secure, random session identifiers for authentication and authorization.
+            </p>
+            <p>
+                <strong>File Names:</strong> Create unique file identifiers to avoid naming collisions in file systems.
+            </p>
+
+            <h3>Customization Options</h3>
+            <p>
+                Generate single or bulk UUIDs (up to 1000 at once). Toggle uppercase formatting for compatibility with specific systems. Include or exclude hyphens depending on your format requirements. All UUIDs are generated client-side in your browser with no server communication.
+            </p>
+
+            <h3>Benefits of UUID v4</h3>
+            <p>
+                UUID v4 offers superior advantages for modern applications: globally unique across all systems, no coordination needed for distributed environments, cryptographically random for security, and compatible with all major programming languages and databases.
+            </p>
+
+            <h3>UUID Generator Online for Developers</h3>
+            <p>
+                Our free UUID generator online creates random UUID v4 identifiers instantly without requiring any server calls. Perfect for developers building applications that need unique identifiers, this generator produces cryptographically secure UUIDs that work across all platforms. Generate single or bulk UUIDs up to 1000 at once for batch processing.</p>
+
+            <h3>Generate UUID V4 with Customizable Formats</h3>
+            <p>
+                Our generate UUID tool offers flexible formatting options. Toggle between uppercase and lowercase letters, and choose whether to include or exclude hyphens for different system requirements. These customization options let you generate UUIDs that match your specific technical specifications without post-processing.</p>
+
+            <h3>Bulk UUID Generator for Large-Scale Applications</h3>
+            <p>
+                Need multiple UUIDs at once? Our bulk UUID generator creates up to 1000 unique identifiers simultaneously, perfect for database seeding, distributed system initialization, or batch processing. Each UUID is independently generated with true randomization, ensuring zero collision probability across your entire application.</p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "UUID Generator",
+        "description": "Generate random UUID v4 identifiers instantly with customizable format options.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/uuid-generator.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a UUID?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A UUID (Universally Unique Identifier) is a 128-bit identifier that is practically guaranteed to be unique. Version 4 UUIDs are randomly generated and used in databases, APIs, and distributed systems."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are UUIDs truly unique?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While not mathematically guaranteed, the probability of generating two identical v4 UUIDs is approximately 1 in 5.3 × 10^36. For practical purposes, they are unique."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What format does a UUID use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A UUID follows the format xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx, where x is a random hexadecimal digit and 4 indicates version 4. Example: 550e8400-e29b-41d4-a716-446655440000."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "UUID Generator"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "UUID Generator — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/uuid-generator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Generate random UUIDs (v4) in bulk."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const quantityInput = document.getElementById('quantity');
+        const uppercaseCheckbox = document.getElementById('uppercase');
+        const hyphensCheckbox = document.getElementById('hyphens');
+        const generateBtn = document.getElementById('generate-btn');
+        const outputBox = document.getElementById('output-box');
+        const copyAllBtn = document.getElementById('copy-all-btn');
+        const outputCount = document.getElementById('output-count');
+
+        function generateUUID() {
+            let uuid = '';
+            for (let i = 0; i < 32; i++) {
+                const randomByte = Math.floor(Math.random() * 16);
+                uuid += randomByte.toString(16);
+
+                // Insert hyphens at the correct positions (8, 12, 16, 20)
+                if (i === 7 || i === 11 || i === 15 || i === 19) {
+                    uuid += '-';
+                }
+            }
+
+            // Set version (4) and variant bits
+            let uuidArray = uuid.replace(/-/g, '').split('');
+            uuidArray[12] = '4';
+            uuidArray[16] = (parseInt(uuidArray[16], 16) & 0x3 | 0x8).toString(16);
+            uuid = uuidArray.slice(0, 8).join('') + '-' +
+                   uuidArray.slice(8, 12).join('') + '-' +
+                   uuidArray.slice(12, 16).join('') + '-' +
+                   uuidArray.slice(16, 20).join('') + '-' +
+                   uuidArray.slice(20, 32).join('');
+
+            return uuid;
+        }
+
+        function formatUUID(uuid) {
+            const uppercase = uppercaseCheckbox.checked;
+            const withHyphens = hyphensCheckbox.checked;
+
+            let formatted = uppercase ? uuid.toUpperCase() : uuid.toLowerCase();
+
+            if (!withHyphens) {
+                formatted = formatted.replace(/-/g, '');
+            }
+
+            return formatted;
+        }
+
+        function generate() {
+            const quantity = Math.max(1, Math.min(1000, parseInt(quantityInput.value) || 1));
+            const uuids = [];
+
+            for (let i = 0; i < quantity; i++) {
+                uuids.push(generateUUID());
+            }
+
+            renderUUIDs(uuids);
+            outputCount.textContent = `${quantity} UUID${quantity !== 1 ? 's' : ''}`;
+        }
+
+        function renderUUIDs(uuids) {
+            if (uuids.length === 0) {
+                outputBox.innerHTML = '<div class="empty-state">Click "Generate UUIDs" to create new identifiers</div>';
+                copyAllBtn.style.display = 'none';
+                return;
+            }
+
+            outputBox.innerHTML = uuids.map((uuid, index) => {
+                const formatted = formatUUID(uuid);
+                return `
+                    <div class="uuid-item" data-index="${index}">
+                        <span class="uuid-value">${formatted}</span>
+                        <button class="uuid-copy-btn" data-uuid="${formatted}">Copy</button>
+                    </div>
+                `;
+            }).join('');
+
+            copyAllBtn.style.display = 'inline-block';
+
+            // Add copy event listeners to individual buttons
+            document.querySelectorAll('.uuid-copy-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const uuid = btn.dataset.uuid;
+                    navigator.clipboard.writeText(uuid).then(() => {
+                        btn.textContent = 'Copied!';
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            btn.textContent = 'Copy';
+                            btn.classList.remove('copied');
+                        }, 1500);
+                    });
+                });
+            });
+        }
+
+        function copyAll() {
+            const uuids = Array.from(document.querySelectorAll('.uuid-value'))
+                .map(el => el.textContent)
+                .join('\n');
+
+            navigator.clipboard.writeText(uuids).then(() => {
+                const notification = document.createElement('div');
+                notification.className = 'copy-notification';
+                notification.textContent = `Copied ${quantityInput.value} UUIDs to clipboard`;
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 2000);
+
+                copyAllBtn.textContent = 'Copied!';
+                copyAllBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyAllBtn.textContent = 'Copy All to Clipboard';
+                    copyAllBtn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        generateBtn.addEventListener('click', generate);
+        copyAllBtn.addEventListener('click', copyAll);
+
+        // Regenerate when format options change
+        uppercaseCheckbox.addEventListener('change', () => {
+            const currentUUIDs = Array.from(document.querySelectorAll('.uuid-value'))
+                .map(el => el.textContent.replace(/-/g, ''));
+            if (currentUUIDs.length > 0) {
+                renderUUIDs(currentUUIDs);
+            }
+        });
+
+        hyphensCheckbox.addEventListener('change', () => {
+            const currentUUIDs = Array.from(document.querySelectorAll('.uuid-value'))
+                .map(el => el.textContent.replace(/-/g, ''));
+            if (currentUUIDs.length > 0) {
+                renderUUIDs(currentUUIDs);
+            }
+        });
+
+        // Initial generation
+        generate();
+    </script>
+</body>
+</html>

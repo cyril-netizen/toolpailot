@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online word counter tool. Count words, characters, sentences, paragraphs, and reading time in real-time. Perfect for writers, students, and content creators.">
+    <meta name="keywords" content="word counter, character counter, word count, text counter, writing tool, reading time">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/word-counter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/word-counter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/word-counter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Word Counter — Count Words, Characters & Sentences | ToolPilot">
+    <meta property="og:description" content="Free online word counter. Track words, characters, sentences, paragraphs, and estimate reading time in real-time.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/word-counter">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Word Counter — Count Words, Characters & Sentences">
+    <meta name="twitter:description" content="Track word count, character count, and reading time instantly.">
+
+    <title>Word Counter — Count Words, Characters & Sentences | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .tool-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 48px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textarea-container {
+            margin-bottom: 32px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 2px 8px rgba(245, 87, 108, 0.2);
+        }
+
+        .stat-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 2px 8px rgba(79, 172, 254, 0.2);
+        }
+
+        .stat-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            box-shadow: 0 2px 8px rgba(67, 233, 123, 0.2);
+        }
+
+        .stat-card:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            box-shadow: 0 2px 8px rgba(250, 112, 154, 0.2);
+        }
+
+        .stat-card:nth-child(6) {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            box-shadow: 0 2px 8px rgba(48, 207, 208, 0.2);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+            border-color: #d0d0d0;
+        }
+
+        .seo-content {
+            background-color: #f9f9f9;
+            padding: 48px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .seo-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .tool-card {
+                padding: 20px;
+            }
+
+            textarea {
+                min-height: 300px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .seo-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <span>Tools</span>
+            <span>/</span>
+            <span>Word Counter</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; color: #222;">Word Counter</h1>
+        <p style="font-size: 18px; color: #666; margin-bottom: 32px;">Count words, characters, sentences, and paragraphs in real-time</p>
+
+        <div class="tool-card">
+            <div class="textarea-container">
+                <textarea id="textInput" placeholder="Paste or type your text here..."></textarea>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="wordCount">0</div>
+                    <div class="stat-label">Words</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="charCount">0</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="charCountNoSpace">0</div>
+                    <div class="stat-label">Chars (No Space)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="sentenceCount">0</div>
+                    <div class="stat-label">Sentences</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="paragraphCount">0</div>
+                    <div class="stat-label">Paragraphs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="readingTime">0m</div>
+                    <div class="stat-label">Reading Time</div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn-primary" onclick="copyStats()">Copy Stats</button>
+                <button class="btn-secondary" onclick="clearText()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="case-converter.html" class="card tool-card">
+                    <span class="icon">Aa</span>
+                    <h3>Case Converter</h3>
+                    <p>Convert text between uppercase, lowercase, title case & more.</p>
+                </a>
+                <a href="lorem-ipsum.html" class="card tool-card">
+                    <span class="icon">📝</span>
+                    <h3>Lorem Ipsum Generator</h3>
+                    <p>Generate placeholder text for your designs.</p>
+                </a>
+                <a href="line-tools.html" class="card tool-card">
+                    <span class="icon">📋</span>
+                    <h3>Line Tools</h3>
+                    <p>Sort, deduplicate, reverse & count lines of text.</p>
+                </a>
+                <a href="slug-generator.html" class="card tool-card">
+                    <span class="icon">🔗</span>
+                    <h3>Slug Generator</h3>
+                    <p>Generate SEO-friendly URL slugs from text.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About Word Counter</h2>
+            <p>Our free online word counter is a powerful tool designed for writers, students, content creators, and professionals who need accurate text statistics. Whether you're working on an essay, article, blog post, or social media content, our word counter provides instant, real-time analytics about your text.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Word Count:</strong> Accurate count of all words in your text</li>
+                <li><strong>Character Count:</strong> Total character count including spaces</li>
+                <li><strong>Character Count (No Spaces):</strong> Character count excluding whitespace</li>
+                <li><strong>Sentence Count:</strong> Automatic detection of sentences</li>
+                <li><strong>Paragraph Count:</strong> Count of distinct paragraphs</li>
+                <li><strong>Reading Time:</strong> Estimated time to read the text (based on 200 words per minute)</li>
+                <li><strong>Real-Time Updates:</strong> Statistics update instantly as you type or paste</li>
+                <li><strong>Copy Stats:</strong> Export all statistics with one click</li>
+            </ul>
+
+            <h3>Why Use a Word Counter?</h3>
+            <p>Word counters are essential for anyone who writes. Academic institutions often require specific word counts for essays and papers. Content creators need to ensure their articles meet SEO guidelines. Social media managers track character limits. Journalists work within space constraints. Our word counter helps you meet all these requirements with precision and speed.</p>
+
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Tracking essay and paper length for academic submissions</li>
+                <li>Meeting content requirements for blogs and articles</li>
+                <li>Optimizing content for SEO word count targets</li>
+                <li>Calculating reading time for audience expectations</li>
+                <li>Monitoring social media post length</li>
+                <li>Analyzing text density and composition</li>
+                <li>Preparing content for copywriting projects</li>
+            </ul>
+
+            <h3>How Reading Time is Calculated</h3>
+            <p>Our tool estimates reading time based on an average reading speed of 200 words per minute, which is the standard average for adult readers. This metric is widely used by content platforms like Medium, WordPress, and many online publications to help readers understand how long it will take to consume your content.</p>
+
+            <h3>Word Counter Tool for Content Creators</h3>
+            <p>Our free word counter online is essential for bloggers, content creators, and marketers who need to optimize content length. It instantly displays word count as you type or paste, helping you meet SEO requirements and publication guidelines. The character counter tracks both characters with and without spaces, giving you precise metrics for social media posts with character limits.</p>
+
+            <h3>Character Counter and Reading Time Calculator</h3>
+            <p>Beyond word counting, our tool functions as a complete text analysis suite. The character counter provides two measurements: total characters including spaces and characters excluding spaces. The integrated reading time calculator helps you understand content consumption time, making it perfect for estimating how long your articles will take readers to complete.</p>
+
+            <h3>Count Words Instantly with Advanced Metrics</h3>
+            <p>Get comprehensive text statistics in real-time with our advanced word count tool. Track multiple metrics simultaneously: total words, character count, sentence count, and paragraph count. These metrics help writers understand content structure and complexity. The tool updates dynamically as you type, paste, or edit text, giving you instant feedback on your content metrics.</p>
+        </div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Word Counter",
+        "description": "Free online word counter tool to count words, characters, sentences, paragraphs, and reading time",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/word-counter",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I count words in a text?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Paste your text into a word counter tool for an instant count. ToolPilot also shows characters, sentences, paragraphs, and estimated reading time."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many words is a 5 minute speech?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A 5-minute speech is typically around 750-1000 words, based on an average speaking pace of 150-200 words per minute."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the average reading time per word?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The average adult reads about 200-250 words per minute. ToolPilot calculates reading time based on 200 WPM for a conservative estimate."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Word Counter"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Word Counter — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/word-counter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Count words, characters, sentences & reading time."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const textInput = document.getElementById('textInput');
+
+        textInput.addEventListener('input', updateStats);
+
+        function updateStats() {
+            const text = textInput.value;
+
+            // Count words
+            const words = countWords(text);
+            document.getElementById('wordCount').textContent = words;
+
+            // Count characters
+            const chars = text.length;
+            document.getElementById('charCount').textContent = chars;
+
+            // Count characters without spaces
+            const charsNoSpace = text.replace(/\s/g, '').length;
+            document.getElementById('charCountNoSpace').textContent = charsNoSpace;
+
+            // Count sentences
+            const sentences = countSentences(text);
+            document.getElementById('sentenceCount').textContent = sentences;
+
+            // Count paragraphs
+            const paragraphs = countParagraphs(text);
+            document.getElementById('paragraphCount').textContent = paragraphs;
+
+            // Calculate reading time
+            const readingTime = calculateReadingTime(words);
+            document.getElementById('readingTime').textContent = readingTime;
+        }
+
+        function countWords(text) {
+            if (!text.trim()) return 0;
+            return text.trim().split(/\s+/).length;
+        }
+
+        function countSentences(text) {
+            if (!text.trim()) return 0;
+            // Match sentences ending with . ! or ?
+            const sentences = text.match(/[.!?]+/g);
+            return sentences ? sentences.length : 0;
+        }
+
+        function countParagraphs(text) {
+            if (!text.trim()) return 0;
+            // Split by double line breaks or more
+            const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+            return paragraphs.length;
+        }
+
+        function calculateReadingTime(wordCount) {
+            const wordsPerMinute = 200;
+            const minutes = Math.ceil(wordCount / wordsPerMinute);
+
+            if (minutes === 0) return '0m';
+            if (minutes === 1) return '1m';
+            return minutes + 'm';
+        }
+
+        function copyStats() {
+            const stats = `Word Count: ${document.getElementById('wordCount').textContent}
+Characters: ${document.getElementById('charCount').textContent}
+Characters (No Spaces): ${document.getElementById('charCountNoSpace').textContent}
+Sentences: ${document.getElementById('sentenceCount').textContent}
+Paragraphs: ${document.getElementById('paragraphCount').textContent}
+Reading Time: ${document.getElementById('readingTime').textContent}`;
+
+            navigator.clipboard.writeText(stats).then(() => {
+                showCopyMessage();
+            });
+        }
+
+        function clearText() {
+            textInput.value = '';
+            updateStats();
+        }
+
+        function showCopyMessage() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.style.backgroundColor = '#43e97b';
+            button.style.color = 'white';
+
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.backgroundColor = '';
+                button.style.color = '';
+            }, 2000);
+        }
+
+        // Initialize stats on page load
+        updateStats();
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Générateur de balises META gratuit. Générez facilement les balises META pour votre site web, OpenGraph et Twitter Cards pour optimiser votre SEO.">
+    <meta name="keywords" content="générateur meta tags, générateur opengraph, twitter card generator, meta tag tool, seo tool">
+    <meta name="author" content="ToolPilot">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/meta-tag-generator.html">
+    <title>Générateur de Balises META — Outil SEO Gratuit | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-input); color: var(--text); font-family: inherit; }
+        textarea { min-height: 120px; resize: vertical; }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+        .button-group { display: flex; gap: 12px; margin-bottom: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all var(--transition); }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .output-section { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; margin-top: 30px; }
+        .output-section h2 { font-size: 20px; margin-bottom: 16px; color: var(--text); }
+        .meta-output { background: var(--bg-input); padding: 16px; border-radius: 6px; font-family: monospace; font-size: 13px; color: var(--text-muted); overflow-x: auto; margin-bottom: 12px; }
+        .copy-btn { padding: 8px 16px; font-size: 12px; background: var(--bg-input); color: var(--primary); border: 1px solid var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur de Balises META</h1>
+        <p style="color: var(--text-muted); margin-bottom: 32px;">Générez les balises META SEO pour votre site web</p>
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 32px; border-radius: 8px;">
+            <div class="form-group">
+                <label>Titre du Page</label>
+                <input id="pageTitle" placeholder="Titre de votre page" />
+            </div>
+
+            <div class="form-group">
+                <label>Description META</label>
+                <textarea id="metaDesc" placeholder="Description courte pour les moteurs de recherche"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Mots-clés</label>
+                <input id="keywords" placeholder="Mots-clés séparés par des virgules" />
+            </div>
+
+            <div class="form-group">
+                <label>URL Canonique</label>
+                <input id="canonicalUrl" placeholder="https://example.com/page" />
+            </div>
+
+            <div class="form-group">
+                <label>Titre OpenGraph</label>
+                <input id="ogTitle" placeholder="Titre pour les partages réseaux sociaux" />
+            </div>
+
+            <div class="form-group">
+                <label>Description OpenGraph</label>
+                <textarea id="ogDesc" placeholder="Description pour les partages réseaux sociaux"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Image OpenGraph (URL)</label>
+                <input id="ogImage" placeholder="https://example.com/image.jpg" />
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="generateMeta()">Générer les Balises</button>
+                <button onclick="clearForm()">Effacer</button>
+            </div>
+        </div>
+
+        <div class="output-section" id="output" style="display: none;">
+            <h2>Balises META Générées</h2>
+            <div class="meta-output" id="metaOutput"></div>
+            <button class="copy-btn" onclick="copyOutput()">Copier le Code</button>
+        </div>
+    </div>
+
+    <script src="../../common.js"></script>
+    <script>
+        function generateMeta() {
+            const title = document.getElementById('pageTitle').value || 'Ma Page';
+            const desc = document.getElementById('metaDesc').value;
+            const keywords = document.getElementById('keywords').value;
+            const canonical = document.getElementById('canonicalUrl').value;
+            const ogTitle = document.getElementById('ogTitle').value || title;
+            const ogDesc = document.getElementById('ogDesc').value || desc;
+            const ogImage = document.getElementById('ogImage').value;
+
+            let html = `&lt;meta name="description" content="${desc}" /&gt;\n`;
+            if (keywords) html += `&lt;meta name="keywords" content="${keywords}" /&gt;\n`;
+            if (canonical) html += `&lt;link rel="canonical" href="${canonical}" /&gt;\n`;
+            html += `&lt;meta property="og:title" content="${ogTitle}" /&gt;\n`;
+            html += `&lt;meta property="og:description" content="${ogDesc}" /&gt;\n`;
+            if (ogImage) html += `&lt;meta property="og:image" content="${ogImage}" /&gt;\n`;
+            html += `&lt;meta name="twitter:title" content="${ogTitle}" /&gt;\n`;
+
+            document.getElementById('metaOutput').textContent = html;
+            document.getElementById('output').style.display = 'block';
+        }
+
+        function copyOutput() {
+            const text = document.getElementById('metaOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => alert('Copié !'));
+        }
+
+        function clearForm() {
+            document.querySelectorAll('input, textarea').forEach(el => el.value = '');
+            document.getElementById('output').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

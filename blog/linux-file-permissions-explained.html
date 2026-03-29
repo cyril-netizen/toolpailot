@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Linux file permissions and chmod command. Complete guide to understanding and setting file permissions on Linux systems.">
+    <meta name="keywords" content="linux permissions explained, chmod guide, file permissions linux">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Linux File Permissions Explained (chmod Guide)">
+    <meta property="og:description" content="Master Linux file permissions, chmod command, and permission best practices. Complete guide with examples for all skill levels.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/linux-file-permissions-explained.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Linux File Permissions Explained (chmod Guide)">
+    <meta name="twitter:description" content="Learn Linux file permissions, chmod command, and practical permission management.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/linux-file-permissions-explained.html">
+
+    <title>Linux File Permissions Guide | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .tip-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .code-example {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .recommended-tools {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .recommended-tools h3 {
+            color: var(--text);
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .recommended-tools ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recommended-tools li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .recommended-tools li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recommended-tools a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .recommended-tools a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .recommended-tools .tool-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        .disclaimer {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>Linux File Permissions</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">Linux File Permissions Explained (chmod Guide)</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-04-17">April 17, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 7 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>Linux file permissions are fundamental to system security and proper operation. Understanding permissions prevents accidental data loss, ensures proper application function, and protects your system from unauthorized access. Despite their importance, many developers struggle with permission concepts and the chmod command. This comprehensive guide explains how Linux file permissions work, how to read permission notation, and how to use chmod to set permissions correctly. By mastering this essential skill, you'll manage files confidently on any Linux system.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>Understanding the Permission Model</h2>
+
+                <p>Linux permissions control who can do what with files and directories. Three permission types apply: read (r), write (w), and execute (x). Three categories of users have separate permissions: owner (the file creator), group (users in the file's group), and others (everyone else). Permissions for each category are represented by three bits, allowing independent control for each user type.</p>
+
+                <h2>Reading Permission Notation</h2>
+
+                <h3>The ls -l Output</h3>
+
+                <p>When you run "ls -l", you see permissions as a string like "-rwxr-xr--". The first character is the file type (- for regular file, d for directory). The next nine characters represent permissions in three groups of three.</p>
+
+                <div class="code-example">
+-rwxr-xr--
+^          file type (- = regular file)
+ ^^^       owner permissions (read, write, execute)
+    ^^^    group permissions (read, write, execute)
+       ^^^ other permissions (read, write, execute)
+                </div>
+
+                <p>For each group, r means read permission, w means write permission, x means execute permission, and - means no permission. So "rwx" means full permissions, "r--" means only read, and "r-x" means read and execute but not write.</p>
+
+                <h3>Numeric Notation</h3>
+
+                <p>Permissions can also be expressed numerically. Each permission has a value: read = 4, write = 2, execute = 1. Each group's permissions are added together: 7 (4+2+1) = rwx, 5 (4+1) = r-x, 4 = r--. A complete permission like 755 means owner gets 7 (rwx), group gets 5 (r-x), others get 5 (r-x).</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Using chmod to Change Permissions</h2>
+
+                <h3>Symbolic Method</h3>
+
+                <p>The symbolic method uses letters to specify what changes. "u" refers to user (owner), "g" refers to group, "o" refers to others, "a" refers to all. Use + to add permissions, - to remove, = to set exact permissions.</p>
+
+                <div class="code-example">
+chmod u+rwx file.txt     # Add read, write, execute for owner
+chmod g-w file.txt       # Remove write for group
+chmod o=r file.txt       # Set others to read-only
+chmod a+x script.sh      # Add execute for everyone
+                </div>
+
+                <h3>Numeric Method</h3>
+
+                <p>The numeric method directly specifies the permission number for each group. "chmod 755 file" sets owner to 7, group to 5, others to 5.</p>
+
+                <div class="code-example">
+chmod 755 script.sh      # Owner rwx, group r-x, others r-x
+chmod 644 file.txt       # Owner rw-, group r--, others r--
+chmod 700 secret.txt     # Owner rwx, group ---, others ---
+chmod 777 public.txt     # Everyone rwx (generally not recommended)
+                </div>
+
+                <h2>Understanding Execute Permission</h2>
+
+                <p>Execute permission has different meanings for files and directories. For regular files, execute permission allows the file to run as a program. For directories, execute permission allows you to enter the directory and access its contents. A directory with read but no execute permission means you can't cd into it, even if you can see its contents with ls.</p>
+
+                <h2>Common Permission Patterns</h2>
+
+                <h3>644 for Regular Files</h3>
+
+                <p>Read and write for owner, read-only for everyone else. Standard permission for documents, code, and most files.</p>
+
+                <h3>755 for Directories and Scripts</h3>
+
+                <p>Owner has full permissions, group and others can read and execute. Typical for directories and executable scripts.</p>
+
+                <h3>700 for Sensitive Files</h3>
+
+                <p>Only owner can read, write, and execute. Use for private SSH keys, configuration with secrets, and sensitive data.</p>
+
+                <h3>600 for Private Files</h3>
+
+                <p>Owner can read and write, group and others have no access. Use for sensitive files you don't want to execute.</p>
+
+                <div class="tip-box">
+                    <strong>Pro Tip:</strong> Use <a href="../tools/chmod-calculator.html">ToolPilot's chmod Calculator</a> to visually understand permissions and generate chmod commands before running them.
+                </div>
+
+                <h2>Recursive Permissions with -R</h2>
+
+                <p>The "-R" flag applies permissions recursively to directories and all contents. "chmod -R 755 mydir" changes permissions on the directory and everything inside. Be careful with recursive operations—they can affect many files at once.</p>
+
+                <h2>Permission Best Practices</h2>
+
+                <p>Follow the principle of least privilege—grant minimum permissions needed for functionality. Never use 777 (world-writable) unless absolutely necessary. Protect SSH keys and certificates with 600 permissions. Web server files typically use 755 for directories, 644 for files. Executable scripts need execute permission for the owner at minimum. Regularly audit permissions on sensitive files and directories.</p>
+
+                <h2>Troubleshooting Permission Issues</h2>
+
+                <p>Permission denied errors mean you lack necessary permissions. Use "ls -l" to check current permissions. Scripts that won't run need execute permission. Can't enter directories? Check if you have execute permission on the directory itself, not just read. Can't modify files? Ensure you have write permission on both the file and its parent directory.</p>
+
+                <div class="cta-box">
+                    <h3>Calculate File Permissions Easily</h3>
+                    <p>Use ToolPilot's chmod Calculator to understand and generate permission values visually.</p>
+                    <a href="../tools/chmod-calculator.html" class="cta-button">Calculate Permissions</a>
+                </div>
+
+                <div class="recommended-tools">
+                    <h3>Permission Management Tools</h3>
+                    <ul>
+                        <li>
+                            <a href="../tools/chmod-calculator.html">ToolPilot chmod Calculator</a>
+                            <div class="tool-desc">Visual permission calculator that explains each bit and generates chmod commands.</div>
+                        </li>
+                        <li>
+                            <a href="https://en.wikipedia.org/wiki/Chmod" target="_blank" rel="noopener noreferrer">Chmod Wikipedia</a>
+                            <div class="tool-desc">Comprehensive reference on file permissions and chmod command syntax.</div>
+                        </li>
+                        <li>
+                            <a href="https://linux.die.net/man/1/chmod" target="_blank" rel="noopener noreferrer">chmod Manual</a>
+                            <div class="tool-desc">Official chmod command manual with complete options and examples.</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="disclaimer">
+                    Disclaimer: Some links in this article may be affiliate links. We earn a small commission if you choose to use these services, at no cost to you. Our recommendations are based on product quality and value.
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What's the difference between chmod and chown?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">chmod changes permissions (who can do what). chown changes ownership (who owns the file). You need sudo or root for chown, but you can use chmod on your own files. chmod controls access, chown controls ownership.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Can I undo a chmod command?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">chmod doesn't delete files or data—it just changes permissions. You can always run chmod again with different permissions to fix it. However, if you remove execute permission from a directory, you can't access its contents even as root without first restoring execute permission.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What about umask?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">umask is a system setting that determines default permissions for newly created files. It works by removing permissions from the default. Most systems use umask 0022, which creates files with 644 and directories with 755 by default. You can check your umask with the umask command.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="cron-expressions-guide.html" class="related-link">
+                        <strong>Cron Expressions Guide</strong>
+                        <p>Learn about scheduling and running scripts with proper permissions.</p>
+                    </a>
+                    <a href="best-free-developer-tools-2026.html" class="related-link">
+                        <strong>Best Free Developer Tools 2026</strong>
+                        <p>Discover tools for managing files and permissions efficiently.</p>
+                    </a>
+                    <a href="yaml-vs-json-vs-toml.html" class="related-link">
+                        <strong>Configuration Formats</strong>
+                        <p>Learn about configuration files that often need specific permissions.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-04-17">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+    <script src="../common.js"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Linux File Permissions Explained (chmod Guide)",
+        "description": "Master Linux file permissions and the chmod command. Learn to read permissions, use chmod correctly, and follow security best practices.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-04-17T08:00:00Z",
+        "dateModified": "2026-04-17T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+</body>
+</html>

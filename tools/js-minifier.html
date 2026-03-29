@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minify and beautify JavaScript online instantly. Reduce JS file size by removing whitespace, comments, and unnecessary characters. Free JavaScript minifier tool.">
+    <meta name="keywords" content="javascript minifier, minify js, js minifier, javascript beautifier, js beautifier, compress javascript">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/js-minifier.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/js-minifier.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/js-minifier.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="JavaScript Minifier & Beautifier — Optimize JS Online | ToolPilot">
+    <meta property="og:description" content="Free online JavaScript minifier and beautifier. Compress JS files to reduce size or beautify minified code. Instant optimization with statistics.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/js-minifier.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaScript Minifier & Beautifier — Optimize JS Online | ToolPilot">
+    <meta name="twitter:description" content="Free online JavaScript minifier and beautifier. Compress JS files or format minified code.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>JavaScript Minifier & Beautifier — Optimize JS Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        .textarea-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .textarea-wrapper label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 250px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            background: #fff;
+            color: #333;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #0052a3;
+        }
+
+        .action-btn.secondary {
+            background: #6c757d;
+        }
+
+        .action-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        .output-section {
+            margin-bottom: 2rem;
+        }
+
+        .output-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .output-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 150px;
+            max-height: 400px;
+            overflow-y: auto;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .output-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+        }
+
+        .copy-btn.copied {
+            background: #1e7e34;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            padding: 1rem;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .stat-secondary {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / JS Minifier
+    </div>
+
+    <main class="tool-container">
+        <h1>JavaScript Minifier & Beautifier</h1>
+        <p class="subtitle">Reduce JavaScript file size and optimize your scripts</p>
+
+        <div class="input-section">
+            <div class="textarea-wrapper">
+                <label for="js-input">Enter your JavaScript:</label>
+                <textarea id="js-input" placeholder="Paste your JavaScript code here...
+
+// Example JavaScript
+function calculateSum(arr) {
+    let total = 0;
+    for (let i = 0; i < arr.length; i++) {
+        total += arr[i];
+    }
+    return total;
+}
+
+const numbers = [1, 2, 3, 4, 5];
+console.log(calculateSum(numbers));"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button class="action-btn" id="minify-btn">Minify JavaScript</button>
+                <button class="action-btn secondary" id="beautify-btn">Beautify JavaScript</button>
+                <button class="action-btn secondary" id="clear-btn">Clear</button>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section" id="stats-section" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-label">Original Size</div>
+                <div class="stat-value" id="original-size">0</div>
+                <div class="stat-secondary">bytes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Output Size</div>
+                <div class="stat-value" id="output-size">0</div>
+                <div class="stat-secondary">bytes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Reduction</div>
+                <div class="stat-value" id="reduction">0</div>
+                <div class="stat-secondary">%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Saved</div>
+                <div class="stat-value" id="saved">0</div>
+                <div class="stat-secondary">bytes</div>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="output-section" id="output-section" style="display: none;">
+            <div class="output-label">Output JavaScript:</div>
+            <div class="output-box" id="output-box"></div>
+            <div class="output-actions">
+                <button class="copy-btn" id="copy-btn">Copy Output</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="css-minifier.html" class="card tool-card">
+                    <span class="icon">🎯</span>
+                    <h3>CSS Minifier</h3>
+                    <p>Minify and beautify CSS code instantly.</p>
+                </a>
+                <a href="diff-checker.html" class="card tool-card">
+                    <span class="icon">↔️</span>
+                    <h3>Diff Checker</h3>
+                    <p>Compare two texts and highlight differences.</p>
+                </a>
+                <a href="json-formatter.html" class="card tool-card">
+                    <span class="icon">{ }</span>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate & minify JSON data instantly.</p>
+                </a>
+                <a href="html-entities.html" class="card tool-card">
+                    <span class="icon">&amp;lt;</span>
+                    <h3>HTML Entities</h3>
+                    <p>Encode and decode HTML entities and special characters.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About JavaScript Minifier Tool</h2>
+            <p>
+                Our JavaScript Minifier tool reduces your JS file sizes by removing unnecessary characters without changing functionality. This includes removing whitespace, comments, and shortening variable names when possible. Smaller JavaScript files load faster, improving website performance and user experience.
+            </p>
+
+            <h3>How JavaScript Minification Works</h3>
+            <p>
+                JavaScript minification removes all comments, unnecessary whitespace, line breaks, and semicolons that aren't essential. The resulting code is smaller but functions identically to the original. Typical minification reduces JS file size by 30-60% depending on the original code style and comment density.
+            </p>
+
+            <h3>Free Online JavaScript Minifier</h3>
+            <p>
+                Use our free JavaScript minifier to compress and optimize your code instantly. Simply paste your JS code and click Minify. The tool automatically calculates size reduction percentages and shows exact bytes saved. No registration required and all processing happens in your browser for privacy and speed.
+            </p>
+
+            <h3>JavaScript Beautifier for Code Formatting</h3>
+            <p>
+                The beautify function reverses minification by adding proper indentation, line breaks, and formatting to minified JavaScript. Use this when you need to read or edit minified code. Beautified JavaScript includes clear formatting that makes the code structure and logic much easier to understand.
+            </p>
+
+            <h3>Website Performance Optimization with JS Minification</h3>
+            <p>
+                JavaScript is a major component of modern web applications. Larger JS files mean slower page loads, especially for mobile users. By minifying your JavaScript, you reduce bandwidth usage and improve page load times. Combined with gzip compression and code splitting, minification is essential for optimal website performance.
+            </p>
+
+            <h3>Why Minify JavaScript?</h3>
+            <p>
+                Every kilobyte counts for website performance. Minified JavaScript loads faster, reducing time-to-interactive for users. Search engines factor page speed into rankings, making JS minification important for SEO. Use our free tool to minify your JavaScript and get instant statistics on compression ratio and bytes saved.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JavaScript Minifier & Beautifier",
+        "description": "Free online JavaScript minifier and beautifier. Reduce JS file size by removing whitespace and comments, or beautify minified JavaScript for readability.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/js-minifier.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much can JavaScript minification reduce file size?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "JavaScript minification typically reduces file size by 30-60%, depending on the original code style, comment density, and whitespace. The exact reduction varies for each script. Use our tool to see the specific savings for your JavaScript."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does minified JavaScript work the same as original JavaScript?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, minified JavaScript is functionally identical to the original code. Minification only removes unnecessary characters and whitespace. Your scripts will execute with exactly the same behavior and results."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I understand minified JavaScript after beautifying it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our beautify function adds proper formatting and indentation to minified code, making it much more readable. While variable names may still be shortened, the code structure and logic become clear again."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this JavaScript minifier free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our JavaScript minifier is completely free with no registration or limits. All processing happens in your browser for maximum privacy and speed. Minify unlimited JavaScript files at no cost."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "JS Minifier"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "JS Minifier — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/js-minifier.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Minify and beautify JavaScript code instantly."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const jsInput = document.getElementById('js-input');
+        const outputBox = document.getElementById('output-box');
+        const minifyBtn = document.getElementById('minify-btn');
+        const beautifyBtn = document.getElementById('beautify-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const statsSection = document.getElementById('stats-section');
+        const outputSection = document.getElementById('output-section');
+        const originalSizeEl = document.getElementById('original-size');
+        const outputSizeEl = document.getElementById('output-size');
+        const reductionEl = document.getElementById('reduction');
+        const savedEl = document.getElementById('saved');
+
+        function minifyJavaScript(js) {
+            let result = '';
+            let inString = false;
+            let stringChar = '';
+            let inRegex = false;
+
+            // Remove single-line comments
+            js = js.replace(/\/\/.*$/gm, '');
+
+            // Remove multi-line comments
+            js = js.replace(/\/\*[\s\S]*?\*\//g, '');
+
+            // Process character by character to handle strings properly
+            for (let i = 0; i < js.length; i++) {
+                const char = js[i];
+                const nextChar = js[i + 1] || '';
+                const prevChar = i > 0 ? js[i - 1] : '';
+
+                // Handle strings
+                if ((char === '"' || char === "'" || char === '`') && prevChar !== '\\') {
+                    if (!inString) {
+                        inString = true;
+                        stringChar = char;
+                    } else if (char === stringChar) {
+                        inString = false;
+                    }
+                    result += char;
+                } else if (inString) {
+                    result += char;
+                } else if (char === ' ' || char === '\t' || char === '\n' || char === '\r') {
+                    // Skip unnecessary whitespace, but keep space between tokens
+                    if (result && result[result.length - 1] !== ' ' && result[result.length - 1] !== '{' && result[result.length - 1] !== '(' && nextChar !== ';' && nextChar !== ',' && nextChar !== '}' && nextChar !== ')' && nextChar !== '{') {
+                        const lastChar = result[result.length - 1];
+                        const isIdentifierChar = /[a-zA-Z0-9_$]/.test(lastChar);
+                        const isNextIdentifierChar = /[a-zA-Z0-9_$]/.test(nextChar);
+                        if (isIdentifierChar && isNextIdentifierChar) {
+                            result += ' ';
+                        }
+                    }
+                } else {
+                    result += char;
+                }
+            }
+
+            // Remove spaces around operators and brackets
+            result = result.replace(/\s*([{};:,()=+\-*/<>!&|?])\s*/g, (match, op) => {
+                if (op === '{' || op === '}' || op === ';') {
+                    return op;
+                }
+                return op;
+            });
+
+            // Remove unnecessary semicolons
+            result = result.replace(/;(?=})/g, '');
+
+            // Clean up multiple spaces
+            result = result.replace(/  +/g, ' ');
+
+            return result.trim();
+        }
+
+        function beautifyJavaScript(js) {
+            let result = '';
+            let indentLevel = 0;
+            const indentStr = '  '; // 2 spaces
+            let inString = false;
+            let stringChar = '';
+
+            for (let i = 0; i < js.length; i++) {
+                const char = js[i];
+                const nextChar = js[i + 1] || '';
+                const prevChar = i > 0 ? js[i - 1] : '';
+
+                // Track strings
+                if ((char === '"' || char === "'" || char === '`') && prevChar !== '\\') {
+                    if (!inString) {
+                        inString = true;
+                        stringChar = char;
+                    } else if (char === stringChar) {
+                        inString = false;
+                    }
+                }
+
+                if (inString) {
+                    result += char;
+                } else {
+                    if (char === '{') {
+                        result += ' {\n';
+                        indentLevel++;
+                        result += indentStr.repeat(indentLevel);
+                    } else if (char === '}') {
+                        indentLevel = Math.max(0, indentLevel - 1);
+                        result = result.replace(/\s+$/, '');
+                        result += '\n' + indentStr.repeat(indentLevel) + '}\n';
+                        result += indentStr.repeat(indentLevel);
+                    } else if (char === ';') {
+                        result += ';\n' + indentStr.repeat(indentLevel);
+                    } else if (char === ',') {
+                        result += ', ';
+                    } else if (char === ' ' && result[result.length - 1] === ' ') {
+                        // Skip multiple spaces
+                        continue;
+                    } else {
+                        result += char;
+                    }
+                }
+            }
+
+            // Clean up result
+            result = result.replace(/\n\s*\n/g, '\n');
+            result = result.replace(/^\s+/gm, (match) => {
+                return indentStr.repeat(Math.floor(match.length / 2));
+            });
+
+            return result.trim();
+        }
+
+        function updateStats(input, output) {
+            const originalSize = input.length;
+            const outputSize = output.length;
+            const saved = originalSize - outputSize;
+            const reduction = originalSize > 0 ? Math.round((saved / originalSize) * 100) : 0;
+
+            originalSizeEl.textContent = originalSize;
+            outputSizeEl.textContent = outputSize;
+            reductionEl.textContent = reduction;
+            savedEl.textContent = saved;
+
+            statsSection.style.display = 'grid';
+            outputSection.style.display = 'block';
+        }
+
+        minifyBtn.addEventListener('click', () => {
+            const input = jsInput.value;
+            if (!input.trim()) {
+                alert('Please enter JavaScript code');
+                return;
+            }
+
+            const minified = minifyJavaScript(input);
+            outputBox.textContent = minified;
+            updateStats(input, minified);
+        });
+
+        beautifyBtn.addEventListener('click', () => {
+            const input = jsInput.value;
+            if (!input.trim()) {
+                alert('Please enter JavaScript code');
+                return;
+            }
+
+            const beautified = beautifyJavaScript(input);
+            outputBox.textContent = beautified;
+            updateStats(input, beautified);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            jsInput.value = '';
+            outputBox.textContent = '';
+            statsSection.style.display = 'none';
+            outputSection.style.display = 'none';
+        });
+
+        copyBtn.addEventListener('click', () => {
+            const text = outputBox.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Output';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

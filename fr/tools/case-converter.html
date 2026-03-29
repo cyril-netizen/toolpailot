@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Convertisseur de Casse | ToolPilot</title>
+    <meta name="description" content="Convertissez le texte en différentes casses: MAJUSCULES, minuscules, Titre, camelCase, snake_case, kebab-case avec notre outil en ligne.">
+    <meta name="keywords" content="convertisseur de casse, convertisseur de texte, majuscules, minuscules, camelCase, snake_case, kebab-case">
+    <meta property="og:title" content="Convertisseur de Casse | ToolPilot">
+    <meta property="og:description" content="Convertissez facilement le texte en différentes casses.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertisseur de Casse | ToolPilot">
+    <meta name="twitter:description" content="Convertissez facilement le texte en différentes casses.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/case-converter.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Convertisseur de Casse",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Convertisseur de Casse",
+        "description": "Convertissez le texte en différentes casses",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/case-converter.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que camelCase?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "camelCase est une convention de nommage où chaque mot commence par une majuscule sauf le premier, sans espaces ni caractères spéciaux. Exemple: monNomVariable"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que snake_case?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "snake_case est une convention où les mots sont séparés par des traits de soulignement et tous en minuscules. Exemple: mon_nom_variable"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce que kebab-case?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "kebab-case est une convention où les mots sont séparés par des tirets et tous en minuscules. Exemple: mon-nom-variable"
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Convertisseur de Casse</span>
+            </nav>
+
+            <h1>Convertisseur de Casse</h1>
+            <p class="tool-subtitle">Convertissez votre texte en différentes formats de casse</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="text-input">Texte d'entrée</label>
+                    <textarea id="text-input" placeholder="Entrez votre texte ici..."></textarea>
+                </div>
+
+                <div class="case-buttons">
+                    <button class="case-btn" data-case="uppercase">MAJUSCULES</button>
+                    <button class="case-btn" data-case="lowercase">minuscules</button>
+                    <button class="case-btn" data-case="titlecase">Titre</button>
+                    <button class="case-btn" data-case="sentencecase">Phrase</button>
+                    <button class="case-btn" data-case="camelcase">camelCase</button>
+                    <button class="case-btn" data-case="snakecase">snake_case</button>
+                    <button class="case-btn" data-case="kebabcase">kebab-case</button>
+                    <button class="case-btn" data-case="invert">Inverser</button>
+                </div>
+
+                <div class="output-section">
+                    <label for="text-output">Résultat</label>
+                    <textarea id="text-output" placeholder="Résultat..." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copy-btn" class="btn btn-primary">Copier</button>
+                        <button id="clear-btn" class="btn btn-secondary">Tout effacer</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+
+            <section class="seo-content">
+                <h2>À propos de ce convertisseur</h2>
+                <p>Notre <strong>Convertisseur de Casse</strong> est un outil pratique qui vous permet de convertir rapidement votre texte en différentes formats de casse. Que vous soyez développeur, rédacteur ou simplement quelqu'un qui a besoin de modifier la casse de son texte, cet outil vous fera gagner du temps et de l'effort.</p>
+                <p>Vous pouvez convertir votre texte en MAJUSCULES, minuscules, Titre, camelCase, snake_case, kebab-case et bien d'autres formats. Chaque format de casse est utile dans différents contextes: camelCase et snake_case sont courants en programmation, tandis que le Titre est utile pour les titres et les en-têtes.</p>
+                <p>L'outil fonctionne entièrement en ligne sans enregistrement nécessaire. Vos données ne sont jamais stockées ou partagées, garantissant votre confidentialité totale.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="word-counter.html" class="tool-card">
+                        <h3>Compteur de Mots</h3>
+                        <p>Comptez les mots et caractères</p>
+                    </a>
+                    <a href="slug-generator.html" class="tool-card">
+                        <h3>Générateur de Slug</h3>
+                        <p>Créez des slugs URL</p>
+                    </a>
+                    <a href="line-tools.html" class="tool-card">
+                        <h3>Outils de Lignes</h3>
+                        <p>Manipulez les lignes de texte</p>
+                    </a>
+                    <a href="html-entities.html" class="tool-card">
+                        <h3>Encodeur HTML</h3>
+                        <p>Encodez du texte en HTML</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const textInput = document.getElementById('text-input');
+        const textOutput = document.getElementById('text-output');
+        const caseButtons = document.querySelectorAll('.case-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        function convertCase(text, caseType) {
+            switch (caseType) {
+                case 'uppercase':
+                    return text.toUpperCase();
+                case 'lowercase':
+                    return text.toLowerCase();
+                case 'titlecase':
+                    return text.replace(/\b\w/g, l => l.toUpperCase());
+                case 'sentencecase':
+                    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+                case 'camelcase':
+                    return text.split(/[\s_-]+/).map((word, i) => i === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join('');
+                case 'snakecase':
+                    return text.replace(/\s+|([a-z])([A-Z])/g, (m, a, b) => a ? a + '_' + b : '_').toLowerCase().replace(/^_+/, '');
+                case 'kebabcase':
+                    return text.replace(/\s+|([a-z])([A-Z])/g, (m, a, b) => a ? a + '-' + b : '-').toLowerCase().replace(/^-+/, '');
+                case 'invert':
+                    return text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+                default:
+                    return text;
+            }
+        }
+
+        caseButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const caseType = btn.getAttribute('data-case');
+                const result = convertCase(textInput.value, caseType);
+                textOutput.value = result;
+                statusMessage.textContent = 'Conversion réussie!';
+                statusMessage.className = 'status-message success';
+                setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+            });
+        });
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(textOutput.value).then(() => {
+                statusMessage.textContent = 'Copié dans le presse-papiers!';
+                statusMessage.className = 'status-message success';
+                setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+            });
+        });
+
+        clearBtn.addEventListener('click', () => {
+            textInput.value = '';
+            textOutput.value = '';
+        });
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

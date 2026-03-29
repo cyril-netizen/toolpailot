@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free CSS gradient generator. Create linear, radial, and conic gradients with visual preview. Get instant CSS code.">
+    <meta name="keywords" content="css gradient generator, gradient maker, css gradient tool, color gradient, linear gradient">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-gradient-generator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CSS Gradient Generator — Free Online Tool | ToolPilot">
+    <meta property="og:description" content="Create beautiful CSS gradients with visual preview and instant code generation.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CSS Gradient Generator — Free Online Tool">
+    <meta name="twitter:description" content="Create CSS gradients with visual editor.">
+
+    <title>CSS Gradient Generator — Free Online Tool | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .gradient-preview {
+            width: 100%;
+            height: 300px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .controls-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        select, input[type="range"], input[type="color"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-input);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color var(--transition);
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        input[type="range"] {
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .color-stops {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .color-stop {
+            display: grid;
+            grid-template-columns: 1fr 80px auto;
+            gap: 8px;
+            align-items: center;
+            background: var(--bg-input);
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .color-stop input[type="color"] {
+            width: 100%;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .color-stop input[type="number"] {
+            width: 100%;
+            text-align: center;
+        }
+
+        .color-stop button {
+            padding: 6px 8px;
+            background: var(--error);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all var(--transition);
+        }
+
+        .color-stop button:hover {
+            background: #cc0000;
+        }
+
+        button.btn-add {
+            padding: 10px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        button.btn-add:hover {
+            background: var(--primary-dark);
+        }
+
+        .code-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .code-output {
+            background: var(--bg-input);
+            padding: 16px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--primary);
+            line-height: 1.6;
+            word-break: break-all;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .seo-content {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: var(--radius);
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .seo-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .ad-slot {
+            background: var(--bg-input);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .color-stop {
+                grid-template-columns: 1fr auto;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .seo-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <span>Tools</span>
+            <span>/</span>
+            <span>CSS Gradient Generator</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px;">CSS Gradient Generator</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 32px;">Create beautiful CSS gradients with visual preview and instant code generation</p>
+
+        <div class="tool-container">
+            <div class="panel">
+                <div class="panel-title">Gradient Preview</div>
+                <div id="gradientPreview" class="gradient-preview"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Gradient Settings</div>
+                <div class="controls-section">
+                    <div class="control-group">
+                        <label for="gradientType">Gradient Type</label>
+                        <select id="gradientType" onchange="updateGradient()">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                            <option value="conic">Conic</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group" id="angleControl">
+                        <label for="gradientAngle">Angle: <span id="angleValue">90</span>°</label>
+                        <input type="range" id="gradientAngle" min="0" max="360" value="90" onchange="updateGradient()">
+                    </div>
+
+                    <div class="control-group">
+                        <label>Color Stops</label>
+                        <div class="color-stops" id="colorStops"></div>
+                        <button class="btn-add" onclick="addColorStop()">+ Add Color Stop</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" style="margin-bottom: 32px;">
+            <div class="panel-title">CSS Code</div>
+            <div class="code-section">
+                <div id="codeOutput" class="code-output">background: linear-gradient(90deg, #ff0000, #00ff00);</div>
+                <div class="controls">
+                    <button class="btn-primary" onclick="copyCode()">Copy CSS</button>
+                    <button class="btn-secondary" onclick="downloadCSS()">Download</button>
+                </div>
+                <div id="message" class="message"></div>
+            </div>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- Related Tools -->
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 24px; margin-bottom: 16px;">Related Tools</h2>
+            <div class="tool-grid">
+                <a href="color-picker.html" class="card tool-card">
+                    <span class="icon">🎨</span>
+                    <h3>Color Picker</h3>
+                    <p>Pick and convert colors to various formats.</p>
+                </a>
+                <a href="qr-code-generator.html" class="card tool-card">
+                    <span class="icon">📱</span>
+                    <h3>QR Code Generator</h3>
+                    <p>Create custom QR codes instantly.</p>
+                </a>
+                <a href="json-formatter.html" class="card tool-card">
+                    <span class="icon">{ }</span>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate, and minify JSON data.</p>
+                </a>
+                <a href="hash-generator.html" class="card tool-card">
+                    <span class="icon">🔒</span>
+                    <h3>Hash Generator</h3>
+                    <p>Generate MD5, SHA-1, SHA-256 & SHA-512 hashes.</p>
+                </a>
+            </div>
+        </section>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About CSS Gradient Generator</h2>
+            <p>Our free CSS gradient generator helps designers and developers create beautiful color gradients with live visual preview. Generate linear, radial, and conic gradients with custom colors and get instant CSS code ready to use in your projects.</p>
+
+            <h3>What are CSS Gradients?</h3>
+            <p>CSS gradients are a powerful way to create smooth color transitions in web design. Unlike traditional background images, CSS gradients are lightweight, scalable, and fully customizable. They render smoothly at any resolution and can be animated for dynamic effects.</p>
+
+            <h3>Types of CSS Gradients</h3>
+            <ul>
+                <li><strong>Linear Gradient:</strong> Colors blend in a straight line from one direction to another</li>
+                <li><strong>Radial Gradient:</strong> Colors blend from the center outward in a circular or elliptical pattern</li>
+                <li><strong>Conic Gradient:</strong> Colors blend around a center point like colors on a color wheel</li>
+            </ul>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Visual Preview:</strong> See gradient changes in real-time as you adjust colors</li>
+                <li><strong>Multiple Gradient Types:</strong> Create linear, radial, and conic gradients</li>
+                <li><strong>Custom Color Stops:</strong> Add unlimited color stops at custom positions</li>
+                <li><strong>Angle Control:</strong> Adjust direction for linear gradients with a slider</li>
+                <li><strong>Instant CSS Code:</strong> Copy-ready CSS for immediate use</li>
+                <li><strong>100% Private:</strong> All generation happens in your browser</li>
+            </ul>
+
+            <h3>How to Use the Gradient Generator</h3>
+            <p>Select your gradient type (linear, radial, or conic), then adjust the color stops by clicking the color inputs. For linear gradients, use the angle slider to change the direction. The preview updates instantly as you make changes. Copy the generated CSS code and paste it directly into your stylesheets.</p>
+
+            <h3>CSS Gradient Syntax</h3>
+            <p>Linear gradient syntax: <code style="background: var(--bg-input); padding: 2px 6px;">background: linear-gradient(angle, color1, color2, ...);</code></p>
+            <p>Radial gradient syntax: <code style="background: var(--bg-input); padding: 2px 6px;">background: radial-gradient(shape, color1, color2, ...);</code></p>
+            <p>Conic gradient syntax: <code style="background: var(--bg-input); padding: 2px 6px;">background: conic-gradient(from angle, color1, color2, ...);</code></p>
+
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Website hero sections and background images</li>
+                <li>Button and call-to-action hover effects</li>
+                <li>Card design and layered effects</li>
+                <li>Text shadow and text-fill effects</li>
+                <li>Loading bars and progress indicators</li>
+                <li>Background color combinations</li>
+            </ul>
+
+            <h3>Tips for Beautiful Gradients</h3>
+            <ul>
+                <li>Use complementary colors for high visual impact</li>
+                <li>Limit gradients to 2-4 colors for clean designs</li>
+                <li>Consider color harmony and contrast</li>
+                <li>Test gradients across different screen sizes</li>
+                <li>Use gradients subtly in backgrounds for professionalism</li>
+            </ul>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- FAQ -->
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Frequently Asked Questions</h2>
+            <div style="display: grid; gap: 16px;">
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Can I use gradients on text?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Yes! Use the <code style="background: var(--bg-input); padding: 2px 4px;">-webkit-background-clip: text</code> property to apply gradients to text in modern browsers.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Are CSS gradients supported in older browsers?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">CSS gradients are supported in all modern browsers. For older versions, include prefixed versions like -webkit-gradient and -moz-linear-gradient.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Can I animate CSS gradients?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Yes, CSS gradients can be animated using CSS transitions and animations. However, direct background animation has limitations in some browsers.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">What percentage position means in gradients?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">The percentage indicates where along the gradient line that color should reach 100%. For example, 50% means the color fully appears halfway through the gradient.</p>
+                </details>
+            </div>
+        </section>
+    </div>
+
+    <!-- Schemas -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "CSS Gradient Generator",
+        "description": "Free CSS gradient generator with visual preview and instant code generation",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/css-gradient-generator.html",
+        "applicationCategory": "DeveloperTool",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "CSS Gradient Generator"}
+        ]
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const defaultColors = ['#ff0000', '#00ff00', '#0000ff'];
+        let colorStops = defaultColors.map((color, index) => ({
+            color: color,
+            position: Math.round((index / (defaultColors.length - 1)) * 100)
+        }));
+
+        function initializeColorStops() {
+            renderColorStops();
+            updateGradient();
+        }
+
+        function renderColorStops() {
+            const container = document.getElementById('colorStops');
+            container.innerHTML = '';
+
+            colorStops.forEach((stop, index) => {
+                const div = document.createElement('div');
+                div.className = 'color-stop';
+                div.innerHTML = `
+                    <input type="color" value="${stop.color}" onchange="updateColorStop(${index}, 'color', this.value)">
+                    <input type="number" min="0" max="100" value="${stop.position}" onchange="updateColorStop(${index}, 'position', this.value)">
+                    <button onclick="removeColorStop(${index})">Remove</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateColorStop(index, field, value) {
+            if (field === 'position') {
+                value = Math.max(0, Math.min(100, parseInt(value)));
+            }
+            colorStops[index][field] = value;
+            renderColorStops();
+            updateGradient();
+        }
+
+        function addColorStop() {
+            colorStops.push({
+                color: '#ffffff',
+                position: 50
+            });
+            renderColorStops();
+            updateGradient();
+        }
+
+        function removeColorStop(index) {
+            if (colorStops.length > 2) {
+                colorStops.splice(index, 1);
+                renderColorStops();
+                updateGradient();
+            }
+        }
+
+        function updateGradient() {
+            const type = document.getElementById('gradientType').value;
+            const angle = document.getElementById('gradientAngle').value;
+            const angleControl = document.getElementById('angleControl');
+
+            // Show/hide angle control for linear gradients only
+            angleControl.style.display = type === 'linear' ? 'flex' : 'none';
+
+            // Update angle display
+            if (type === 'linear') {
+                document.getElementById('angleValue').textContent = angle;
+            }
+
+            // Generate CSS
+            let gradientCSS = '';
+            const colorStopsCSS = colorStops
+                .sort((a, b) => a.position - b.position)
+                .map(stop => `${stop.color} ${stop.position}%`)
+                .join(', ');
+
+            if (type === 'linear') {
+                gradientCSS = `linear-gradient(${angle}deg, ${colorStopsCSS})`;
+            } else if (type === 'radial') {
+                gradientCSS = `radial-gradient(circle, ${colorStopsCSS})`;
+            } else if (type === 'conic') {
+                gradientCSS = `conic-gradient(from 0deg, ${colorStopsCSS})`;
+            }
+
+            // Update preview
+            document.getElementById('gradientPreview').style.background = gradientCSS;
+
+            // Update code output
+            document.getElementById('codeOutput').textContent = `background: ${gradientCSS};`;
+        }
+
+        function copyCode() {
+            const code = document.getElementById('codeOutput').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                showMessage('CSS copied to clipboard!', 'success');
+            }).catch(() => {
+                showMessage('Failed to copy', 'error');
+            });
+        }
+
+        function downloadCSS() {
+            const code = document.getElementById('codeOutput').textContent;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code));
+            element.setAttribute('download', 'gradient.css');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            showMessage('CSS file downloaded!', 'success');
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', initializeColorStops);
+    </script>
+</body>
+</html>

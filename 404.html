@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+  <title>Page Not Found — ToolPilot</title>
+  <meta name="description" content="Sorry, the page you're looking for doesn't exist. Check out ToolPilot's free online tools instead!">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .not-found-container {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+    .not-found-icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .not-found-number {
+      font-size: 7rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .not-found-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .not-found-desc {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .popular-tools {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .popular-tools h2 {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="container not-found-container">
+      <span class="not-found-icon">🔍</span>
+      <div class="not-found-number">404</div>
+      <h1 class="not-found-title">Oops, this page doesn't exist</h1>
+      <p class="not-found-desc">The page may have moved or the URL might be incorrect. But don't worry — our tools are still here!</p>
+
+      <div class="cta-row">
+        <a href="/" class="btn btn-primary">← Back Home</a>
+        <a href="/#tools" class="btn btn-secondary">Browse All Tools</a>
+      </div>
+
+      <section class="popular-tools">
+        <h2>Popular Tools</h2>
+        <div class="tool-grid">
+          <a href="/tools/json-formatter.html" class="card tool-card">
+            <span class="icon">{ }</span>
+            <h3>JSON Formatter</h3>
+            <p>Format, validate & minify JSON data instantly.</p>
+          </a>
+          <a href="/tools/password-generator.html" class="card tool-card">
+            <span class="icon">🔐</span>
+            <h3>Password Generator</h3>
+            <p>Generate strong, random passwords with custom rules.</p>
+          </a>
+          <a href="/tools/regex-tester.html" class="card tool-card">
+            <span class="icon">.*</span>
+            <h3>Regex Tester</h3>
+            <p>Test and debug regular expressions with real-time highlighting.</p>
+          </a>
+          <a href="/tools/hash-generator.html" class="card tool-card">
+            <span class="icon">🔒</span>
+            <h3>Hash Generator</h3>
+            <p>Generate MD5, SHA-1, SHA-256 & SHA-512 hashes.</p>
+          </a>
+          <a href="/tools/diff-checker.html" class="card tool-card">
+            <span class="icon">↔️</span>
+            <h3>Diff Checker</h3>
+            <p>Compare two texts and highlight differences.</p>
+          </a>
+          <a href="/tools/base64-converter.html" class="card tool-card">
+            <span class="icon">🔄</span>
+            <h3>Base64 Converter</h3>
+            <p>Encode and decode Base64 strings instantly.</p>
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/common.js"></script>
+</body>
+</html>

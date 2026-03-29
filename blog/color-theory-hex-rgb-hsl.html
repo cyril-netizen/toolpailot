@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understanding color models: Hex, RGB, HSL explained. Learn how different color formats work and when to use each in web design and development.">
+    <meta name="keywords" content="hex vs rgb vs hsl, color models explained, hex rgb conversion, hsl color model, web colors">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Understanding Color Models: Hex, RGB, HSL Explained">
+    <meta property="og:description" content="Complete guide to color formats. Learn hex, RGB, and HSL color models, conversions, and when to use each.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/color-theory-hex-rgb-hsl.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Color Models: Hex, RGB, HSL Explained">
+    <meta name="twitter:description" content="Understand different color formats and when to use them in web design.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/color-theory-hex-rgb-hsl.html">
+
+    <title>Color Models Explained | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .code-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: var(--bg-input);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: var(--text-muted);
+        }
+
+        .color-demo {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin: 0 0.5rem;
+            vertical-align: middle;
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>Color Models Explained</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">Understanding Color Models: Hex, RGB, HSL Explained</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-05-22">May 22, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 7 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>Colors on the web can be represented in multiple formats: hexadecimal, RGB, HSL, and others. Each format has different purposes and advantages. Web designers often use hex colors, developers work with RGB, and designers creating dynamic color systems prefer HSL. Understanding these formats helps you work more effectively with color, debug color issues, and make informed decisions about which format to use. This guide explains the three most important color models and when to use each.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>Hexadecimal Color Format (Hex)</h2>
+
+                <p>Hex colors are the most common format in web design. A hex color consists of a hash symbol (#) followed by six hexadecimal digits (0-9, A-F). #FF0000 represents pure red, #00FF00 is green, and #0000FF is blue. The format divides into three pairs: the first two digits control red intensity, the next two control green, and the last two control blue.</p>
+
+                <p>Each pair represents a value from 0-255 in decimal, or 00-FF in hexadecimal. FF (255 in decimal) means maximum intensity. 00 means no intensity. #808080 is medium gray because equal amounts of red (80 hex = 128 decimal), green, and blue create neutral gray.</p>
+
+                <p>Hex colors can be shortened if both digits in each pair are identical. #FF0000 shortens to #F00. #FFFFFF shortens to #FFF. This shorthand doesn't work if digits differ (like #F10000 can't be shortened). Hex colors are popular because they're concise and fit well in code, but the format isn't intuitive for humans to understand or manipulate.</p>
+
+                <div class="code-example">
+#FF0000 = Red (F=255 red, 0=0 green, 0=0 blue)
+#00FF00 = Green
+#0000FF = Blue
+#FFFF00 = Yellow (red + green)
+#FF00FF = Magenta (red + blue)
+#00FFFF = Cyan (green + blue)
+#FFFFFF = White (all colors at max)
+#000000 = Black (no colors)
+#808080 = Gray (equal mix)
+                </div>
+
+                <h2>RGB Color Format</h2>
+
+                <p>RGB stands for Red, Green, Blue. The format is rgb(red, green, blue) where each value ranges from 0 to 255. rgb(255, 0, 0) is red, rgb(0, 255, 0) is green, rgb(0, 0, 255) is blue. You can also use percentages: rgb(100%, 0%, 0%) is red.</p>
+
+                <p>RGB is more intuitive than hex because the numbers are decimal (0-255) instead of hexadecimal. You can easily see that rgb(255, 128, 0) is orange because it has maximum red, medium green, and no blue. CSS supports both RGB and RGBA formats. RGBA adds an alpha channel (transparency) as a fourth value: rgba(255, 0, 0, 0.5) is semi-transparent red with 50% opacity.</p>
+
+                <p>RGB matches how computer screens actually work. Screens emit light through red, green, and blue subpixels. Mixing different intensities creates all visible colors. However, RGB isn't intuitive for designers working with actual colors. You can't easily make a color "10% more saturated" or "20% lighter" using RGB values.</p>
+
+                <div class="code-example">
+rgb(255, 0, 0) = Red
+rgb(0, 255, 0) = Green
+rgb(0, 0, 255) = Blue
+rgb(255, 128, 0) = Orange
+rgba(255, 0, 0, 0.5) = Semi-transparent red
+rgb(128, 128, 128) = Gray
+                </div>
+
+                <h2>HSL Color Format</h2>
+
+                <p>HSL stands for Hue, Saturation, Lightness. This format is far more intuitive for designers because it maps to how humans perceive color. Hue ranges from 0-360 degrees on the color wheel. 0° is red, 60° is yellow, 120° is green, 180° is cyan, 240° is blue, 300° is magenta, and 360° is red again. Saturation ranges from 0-100%, where 0% is completely desaturated (gray) and 100% is fully saturated color. Lightness ranges from 0-100%, where 0% is black, 50% is normal color, and 100% is white.</p>
+
+                <p>The format is hsl(hue, saturation%, lightness%). hsl(0, 100%, 50%) is pure red. hsl(0, 100%, 25%) is dark red. hsl(0, 100%, 75%) is light red (pink). hsl(0, 50%, 50%) is desaturated red (muted red). HSL makes it obvious how to create color variations. You can increase lightness for lighter shades, decrease saturation for muted versions, and change hue to get different colors entirely.</p>
+
+                <p>HSL also supports alpha transparency: hsla(0, 100%, 50%, 0.5) is semi-transparent red. HSL is perfect for design systems and dynamic color generation. You can programmatically adjust colors by modifying saturation or lightness without understanding the underlying RGB mixing.</p>
+
+                <div class="code-example">
+hsl(0, 100%, 50%) = Red
+hsl(120, 100%, 50%) = Green
+hsl(240, 100%, 50%) = Blue
+hsl(30, 100%, 50%) = Orange
+hsl(0, 50%, 50%) = Desaturated red
+hsl(0, 100%, 25%) = Dark red
+hsl(0, 100%, 75%) = Light red
+hsla(0, 100%, 50%, 0.5) = Semi-transparent red
+                </div>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Comparing the Three Formats</h2>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Hex</th>
+                        <th>RGB</th>
+                        <th>HSL</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Format</strong></td>
+                        <td>#RRGGBB</td>
+                        <td>rgb(r, g, b)</td>
+                        <td>hsl(h, s%, l%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Intuitiveness</strong></td>
+                        <td>Not intuitive</td>
+                        <td>Moderate</td>
+                        <td>Most intuitive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best Use</strong></td>
+                        <td>Code, stylesheets</td>
+                        <td>Canvas, WebGL</td>
+                        <td>Design systems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transparency</strong></td>
+                        <td>#RRGGBBAA (newer)</td>
+                        <td>rgba()</td>
+                        <td>hsla()</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shorthand</strong></td>
+                        <td>#RGB possible</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+
+                <h2>Converting Between Formats</h2>
+
+                <p>Hex to RGB conversion is straightforward. The first two hex digits convert to decimal for red. The next two convert to decimal for green. The last two convert to decimal for blue. #FF0000 is F=15, F=15 in the first pair, which equals 15×16+15=255 for red, then 00=0 for green, 00=0 for blue. Result: rgb(255, 0, 0).</p>
+
+                <p>RGB to HSL conversion is more complex mathematically but easily handled by code. Find the maximum and minimum of the RGB values, calculate hue based on which is max, saturation based on the range, and lightness based on the average. Fortunately, all modern languages and online tools handle these conversions automatically. You rarely need to calculate manually.</p>
+
+                <div class="cta-box">
+                    <h3>Convert Colors Between Formats Instantly</h3>
+                    <p>Use ToolPilot's color converter to experiment with different color formats.</p>
+                    <a href="../tools/hex-rgb-converter.html" class="cta-button">Use Color Converter</a>
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Which color format should I use in CSS?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">All three formats work in modern CSS. Hex is most common in stylesheets for brevity. HSL is increasingly popular because it makes color manipulation easier. RGB is less common but still valid. Choose based on context. For color variables and dynamic colors, HSL is best. For static colors in stylesheets, hex is common. All three render identically.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Why does CSS support three different color formats?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Historical reasons and different use cases. Hex colors were standard in early web design. RGB matched how programmers thought about colors (computer hardware uses RGB). HSL was added later to support designer workflows. Modern CSS supports all three because they serve different purposes and developers prefer different formats.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Is #F00 the same as #FF0000?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Yes, they're identical. #F00 is shorthand for #FF0000. When both digits in each pair are the same, you can use just one digit. #FFF is white, #000 is black, #888 is gray. This shorthand doesn't work if digits differ, like #F10000 can't be shortened because F and 1 are different.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">Can I use HSL colors in JavaScript?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Yes. Modern browsers support HSL in the Canvas API and WebGL. You can pass hsl() colors to CSS properties from JavaScript. However, if you're working with pixel data in Canvas, you'll need RGB values instead. HSL is primarily useful for CSS manipulation and color system design rather than low-level graphics programming.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="css-minification-guide.html" class="related-link">
+                        <strong>Complete Guide to CSS Minification</strong>
+                        <p>Learn how CSS is optimized, including how color representation is simplified during minification.</p>
+                    </a>
+                    <a href="understanding-base64-encoding.html" class="related-link">
+                        <strong>Understanding Base64 Encoding</strong>
+                        <p>Colors are sometimes Base64 encoded in data URLs. Learn encoding techniques.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-05-22">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Understanding Color Models: Hex, RGB, HSL Explained",
+        "description": "Complete guide to color formats. Learn hex, RGB, and HSL color models, conversions, and when to use each.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-05-22T08:00:00Z",
+        "dateModified": "2026-05-22T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+    <script src="../common.js"></script>
+</body>
+</html>

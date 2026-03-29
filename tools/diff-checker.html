@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare text online with our free diff checker tool. Highlight differences between original and modified text with color-coded additions and deletions.">
+    <meta name="keywords" content="diff checker, text comparison tool, text diff, compare text, text compare online, diff viewer">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/diff-checker.html">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Diff Checker — Compare Text Online | ToolPilot">
+    <meta property="og:description" content="Free online text comparison tool. Find differences between two texts with highlighted additions and deletions. Perfect for code and document comparison.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="cyril-netizen.github.io/toolpailot/tools/diff-checker.html">
+    <meta property="og:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Diff Checker — Compare Text Online | ToolPilot">
+    <meta name="twitter:description" content="Free online text comparison tool. Find differences between two texts with highlighted additions and deletions.">
+    <meta name="twitter:image" content="cyril-netizen.github.io/toolpailot/og-image.png">
+
+    <title>Diff Checker — Compare Text Online | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tool-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .two-panel-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .two-panel-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .textarea-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            resize: vertical;
+            background: #fff;
+            color: #333;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+
+        .compare-btn {
+            padding: 0.75rem 1.5rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .compare-btn:hover {
+            background: #0052a3;
+        }
+
+        .compare-btn:active {
+            transform: scale(0.98);
+        }
+
+        .diff-output {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .diff-output h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .diff-output-content {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            background: #fff;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .diff-line {
+            margin: 0.25rem 0;
+            padding: 0 0.5rem;
+        }
+
+        .diff-added {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .diff-deleted {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .diff-unchanged {
+            background: #fff;
+            color: #666;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-card {
+            padding: 1rem;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .seo-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .seo-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section h3 {
+            color: #444;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumb-nav">
+        <a href="../">Home</a> / <a href="../tools/">Tools</a> / Diff Checker
+    </div>
+
+    <main class="tool-container">
+        <h1>Diff Checker</h1>
+        <p class="subtitle">Compare two texts and see differences highlighted in real-time</p>
+
+        <div class="two-panel-layout">
+            <div class="panel">
+                <div class="panel-header">Original Text</div>
+                <div class="textarea-wrapper">
+                    <textarea id="original-text" placeholder="Paste the original text here..."></textarea>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">Modified Text</div>
+                <div class="textarea-wrapper">
+                    <textarea id="modified-text" placeholder="Paste the modified text here..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="compare-btn" id="compare-btn">Compare Texts</button>
+        </div>
+
+        <!-- Diff Output Section -->
+        <div id="diff-container" style="display: none;">
+            <div class="diff-output">
+                <h3>Text Differences</h3>
+                <div class="diff-output-content" id="diff-output"></div>
+            </div>
+
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-label">Original Length</div>
+                    <div class="stat-value" id="original-length">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Modified Length</div>
+                    <div class="stat-value" id="modified-length">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Added Characters</div>
+                    <div class="stat-value" id="added-chars">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Deleted Characters</div>
+                    <div class="stat-value" id="deleted-chars">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="json-formatter.html" class="card tool-card">
+                    <span class="icon">{ }</span>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate & minify JSON data instantly.</p>
+                </a>
+                <a href="css-minifier.html" class="card tool-card">
+                    <span class="icon">🎯</span>
+                    <h3>CSS Minifier</h3>
+                    <p>Minify and beautify CSS code instantly.</p>
+                </a>
+                <a href="js-minifier.html" class="card tool-card">
+                    <span class="icon">⚡</span>
+                    <h3>JS Minifier</h3>
+                    <p>Minify and beautify JavaScript code instantly.</p>
+                </a>
+                <a href="regex-tester.html" class="card tool-card">
+                    <span class="icon">.*</span>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with real-time highlighting.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-section">
+            <h2>About Diff Checker Tool</h2>
+            <p>
+                Our Diff Checker tool allows you to compare two texts side-by-side and instantly see the differences between them. Perfect for code reviews, document comparisons, and identifying changes in text content. Additions are highlighted in green while deletions are highlighted in red.
+            </p>
+
+            <h3>How Text Comparison Works</h3>
+            <p>
+                Simply paste your original text in the left panel and your modified text in the right panel. Click the Compare button and our tool will analyze both texts line-by-line and highlight all additions, deletions, and unchanged content. The comparison includes word-level and character-level differences.
+            </p>
+
+            <h3>Free Online Text Diff Checker Tool</h3>
+            <p>
+                Use our free online text diff checker to compare documents, code snippets, and text content instantly. No registration required and no file upload limits. All text comparison is performed on your device for maximum privacy. Perfect for developers comparing code versions, writers tracking document changes, and teams collaborating on text content.
+            </p>
+
+            <h3>Color-Coded Diff Output for Easy Reading</h3>
+            <p>
+                Our diff tool uses intuitive color-coding to make differences immediately obvious. Green highlighting shows added text and lines, red highlighting shows deleted content, and white shows unchanged portions. This visual approach makes it easy to spot exactly what changed between the original and modified versions.
+            </p>
+
+            <h3>Detailed Statistics on Text Changes</h3>
+            <p>
+                Beyond visual highlighting, the diff checker provides comprehensive statistics including original text length, modified text length, total characters added, and total characters deleted. These metrics help you understand the scope of changes at a glance.
+            </p>
+
+            <h3>Compare Code, Documents, and Documents Online</h3>
+            <p>
+                Whether you need to compare source code for debugging, track changes in documents, compare configuration files, or identify modifications in any text content, our diff checker handles all types of text comparison. It's ideal for code reviews, version control visualization, document change tracking, and collaborative editing workflows.
+            </p>
+        </section>
+    </main>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Diff Checker",
+        "description": "Free online text comparison tool. Compare two texts and see differences highlighted with additions in green and deletions in red.",
+        "url": "cyril-netizen.github.io/toolpailot/tools/diff-checker.html",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a diff checker and how does it work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A diff checker compares two texts to identify differences. Paste your original text and modified text, click Compare, and the tool highlights additions in green and deletions in red to show exactly what changed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I compare large documents with the diff checker?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our diff checker can handle large documents. Simply paste the texts into the panels and compare. The tool performs the comparison entirely in your browser for fast, private text analysis."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What does the color coding mean in the diff output?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Green highlighting shows added text or lines, red highlighting shows deleted content, and white background shows unchanged text. This color-coding makes it easy to spot differences at a glance."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the text comparison tool free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our diff checker is completely free with no registration required. All text comparison happens privately on your device. No limits on file size or number of comparisons."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Diff Checker"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Diff Checker — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/diff-checker.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Compare two texts and highlight differences."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        const originalText = document.getElementById('original-text');
+        const modifiedText = document.getElementById('modified-text');
+        const compareBtn = document.getElementById('compare-btn');
+        const diffContainer = document.getElementById('diff-container');
+        const diffOutput = document.getElementById('diff-output');
+        const originalLengthEl = document.getElementById('original-length');
+        const modifiedLengthEl = document.getElementById('modified-length');
+        const addedCharsEl = document.getElementById('added-chars');
+        const deletedCharsEl = document.getElementById('deleted-chars');
+
+        // Simple diff algorithm
+        function computeDiff(original, modified) {
+            const origLines = original.split('\n');
+            const modLines = modified.split('\n');
+            const diff = [];
+
+            const maxLines = Math.max(origLines.length, modLines.length);
+            let addedCount = 0;
+            let deletedCount = 0;
+
+            for (let i = 0; i < maxLines; i++) {
+                const origLine = origLines[i] || '';
+                const modLine = modLines[i] || '';
+
+                if (origLine === modLine) {
+                    diff.push({ type: 'unchanged', content: origLine });
+                } else {
+                    if (origLine) {
+                        diff.push({ type: 'deleted', content: origLine });
+                        deletedCount += origLine.length;
+                    }
+                    if (modLine) {
+                        diff.push({ type: 'added', content: modLine });
+                        addedCount += modLine.length;
+                    }
+                }
+            }
+
+            return { diff, addedCount, deletedCount };
+        }
+
+        function displayDiff(original, modified) {
+            const { diff, addedCount, deletedCount } = computeDiff(original, modified);
+
+            diffOutput.innerHTML = '';
+            diff.forEach((item) => {
+                const line = document.createElement('div');
+                line.className = `diff-line diff-${item.type}`;
+
+                let prefix = '';
+                if (item.type === 'added') {
+                    prefix = '+ ';
+                } else if (item.type === 'deleted') {
+                    prefix = '- ';
+                } else {
+                    prefix = '  ';
+                }
+
+                line.textContent = prefix + item.content;
+                diffOutput.appendChild(line);
+            });
+
+            // Update stats
+            originalLengthEl.textContent = original.length;
+            modifiedLengthEl.textContent = modified.length;
+            addedCharsEl.textContent = addedCount;
+            deletedCharsEl.textContent = deletedCount;
+
+            diffContainer.style.display = 'block';
+        }
+
+        compareBtn.addEventListener('click', () => {
+            const orig = originalText.value;
+            const mod = modifiedText.value;
+
+            if (!orig.trim() && !mod.trim()) {
+                alert('Please enter text in both panels to compare');
+                return;
+            }
+
+            displayDiff(orig, mod);
+        });
+
+        // Allow comparing with Enter key
+        [originalText, modifiedText].forEach(el => {
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                    compareBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

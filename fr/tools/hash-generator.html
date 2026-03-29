@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Générateur de Hash | ToolPilot</title>
+    <meta name="description" content="Générez des hashs MD5, SHA1, SHA256, SHA512 en ligne. Hashez votre texte avec notre outil gratuit.">
+    <meta name="keywords" content="générateur de hash, MD5, SHA1, SHA256, SHA512, hash en ligne, hasheur de texte">
+    <meta property="og:title" content="Générateur de Hash | ToolPilot">
+    <meta property="og:description" content="Générez des hashs de texte en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Générateur de Hash | ToolPilot">
+    <meta name="twitter:description" content="Générez des hashs de texte en ligne.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Générateur de Hash",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Générateur de Hash",
+        "description": "Générez des hashs de texte en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Qu'est-ce qu'un hash?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Un hash est une fonction cryptographique qui convertit n'importe quelle entrée en une chaîne de caractères unique de longueur fixe. Les mêmes données produisent toujours le même hash."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quelle est la différence entre MD5 et SHA256?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "MD5 produit un hash de 128 bits et est considéré comme non sûr. SHA256 produit un hash de 256 bits et est beaucoup plus sécurisé pour les applications modernes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Puis-je inverser un hash?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Non, les hashs sont des fonctions à sens unique. Il est impossible d'inverser un hash pour retrouver l'entrée originale."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Générateur de Hash</span>
+            </nav>
+
+            <h1>Générateur de Hash</h1>
+            <p class="tool-subtitle">Générez des hashs sécurisés en ligne</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="text-input">Texte à hasher</label>
+                    <textarea id="text-input" placeholder="Entrez le texte à hasher..."></textarea>
+                </div>
+
+                <div class="option-section">
+                    <label for="algorithm">Algorithme</label>
+                    <select id="algorithm">
+                        <option value="SHA-1">SHA-1</option>
+                        <option value="SHA-256" selected>SHA-256</option>
+                        <option value="SHA-384">SHA-384</option>
+                        <option value="SHA-512">SHA-512</option>
+                    </select>
+                </div>
+
+                <button id="hash-btn" class="btn btn-primary">Générer le Hash</button>
+            </div>
+
+            <div class="results-section">
+                <div class="status-message" id="status-message"></div>
+                <label for="hash-output">Résultat</label>
+                <textarea id="hash-output" placeholder="Le hash apparaîtra ici..." readonly></textarea>
+                <div class="button-group">
+                    <button id="copy-btn" class="btn btn-primary">Copier le hash</button>
+                    <button id="clear-btn" class="btn btn-secondary">Tout effacer</button>
+                </div>
+            </div>
+
+            <section class="seo-content">
+                <h2>À propos de ce générateur</h2>
+                <p>Notre <strong>Générateur de Hash</strong> vous permet de créer des hashs cryptographiques sécurisés de vos textes. Les hashs sont des fonctions cryptographiques essentielles utilisées dans la sécurité informatique, le stockage de mots de passe, la vérification d'intégrité des fichiers et bien d'autres applications.</p>
+                <p>Cet outil supporte plusieurs algorithmes de hachage: SHA-1, SHA-256, SHA-384 et SHA-512. SHA-256 est l'algorithme le plus courant et offre un bon équilibre entre sécurité et performance. Pour une sécurité maximale, SHA-512 est recommandé.</p>
+                <p>Tous les hashs sont générés localement dans votre navigateur en utilisant l'API Web Crypto native. Vos données ne sont jamais envoyées à nos serveurs, garantissant votre confidentialité et votre sécurité.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="base64-converter.html" class="tool-card">
+                        <h3>Convertisseur Base64</h3>
+                        <p>Encodez et décodez du Base64</p>
+                    </a>
+                    <a href="uuid-generator.html" class="tool-card">
+                        <h3>Générateur UUID</h3>
+                        <p>Créez des UUIDs uniques</p>
+                    </a>
+                    <a href="password-generator.html" class="tool-card">
+                        <h3>Générateur de Mots de Passe</h3>
+                        <p>Générez des mots de passe forts</p>
+                    </a>
+                    <a href="regex-tester.html" class="tool-card">
+                        <h3>Testeur de Regex</h3>
+                        <p>Testez des expressions régulières</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const textInput = document.getElementById('text-input');
+        const algorithm = document.getElementById('algorithm');
+        const hashBtn = document.getElementById('hash-btn');
+        const hashOutput = document.getElementById('hash-output');
+        const copyBtn = document.getElementById('copy-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        async function generateHash() {
+            try {
+                const text = textInput.value;
+                const algo = algorithm.value;
+
+                const encoder = new TextEncoder();
+                const data = encoder.encode(text);
+                const hashBuffer = await crypto.subtle.digest(algo, data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                hashOutput.value = hashHex;
+                statusMessage.textContent = 'Hash généré avec succès!';
+                statusMessage.className = 'status-message success';
+                setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+            } catch (error) {
+                statusMessage.textContent = `Erreur: ${error.message}`;
+                statusMessage.className = 'status-message error';
+            }
+        }
+
+        hashBtn.addEventListener('click', generateHash);
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(hashOutput.value).then(() => {
+                statusMessage.textContent = 'Copié dans le presse-papiers!';
+                statusMessage.className = 'status-message success';
+                setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+            });
+        });
+
+        clearBtn.addEventListener('click', () => {
+            textInput.value = '';
+            hashOutput.value = '';
+        });
+
+        // Auto-hash on input
+        textInput.addEventListener('input', () => {
+            if (textInput.value) {
+                setTimeout(generateHash, 300);
+            }
+        });
+
+        algorithm.addEventListener('change', () => {
+            if (textInput.value) {
+                generateHash();
+            }
+        });
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

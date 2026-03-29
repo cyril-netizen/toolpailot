@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Générateur de dégradés CSS gratuit. Créez des dégradés CSS linéaires et radiales avec aperçu en direct et code exportable.">
+    <meta name="keywords" content="générateur gradient css, css gradient, linear gradient, radial gradient, gradient maker">
+    <meta name="author" content="ToolPilot">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-gradient-generator.html">
+    <title>Générateur de Dégradés CSS — Outil Gratuit | ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+        .card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 8px; }
+        .preview { width: 100%; height: 300px; border-radius: 8px; border: 1px solid var(--border); }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); font-size: 14px; }
+        select, input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-input); color: var(--text); font-family: inherit; }
+        select:focus, input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
+        .color-input { width: 100%; height: 40px; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+        .button-group { display: flex; gap: 12px; margin: 12px 0; }
+        button { padding: 10px 16px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .code-output { background: var(--bg-input); padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; color: var(--text-muted); overflow-x: auto; margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur de Dégradés CSS</h1>
+        <p style="color: var(--text-muted); margin-bottom: 32px;">Créez des dégradés CSS linéaires et radiales avec aperçu en direct</p>
+
+        <div class="grid">
+            <div class="card">
+                <div class="form-group">
+                    <label>Type de Dégradé</label>
+                    <select id="gradientType" onchange="updateGradient()">
+                        <option value="linear">Linéaire</option>
+                        <option value="radial">Radial</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Direction</label>
+                    <select id="direction" onchange="updateGradient()">
+                        <option value="to right">De gauche à droite</option>
+                        <option value="to bottom">De haut en bas</option>
+                        <option value="to bottom right">Diagonal</option>
+                        <option value="45deg">45 degrés</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Couleur 1</label>
+                    <input type="color" id="color1" value="#ff0000" onchange="updateGradient()" />
+                </div>
+
+                <div class="form-group">
+                    <label>Couleur 2</label>
+                    <input type="color" id="color2" value="#0000ff" onchange="updateGradient()" />
+                </div>
+
+                <button class="btn-primary" onclick="addColor()">Ajouter une Couleur</button>
+            </div>
+
+            <div class="card">
+                <label>Aperçu</label>
+                <div id="gradientPreview" class="preview"></div>
+                <div class="form-group">
+                    <label>Code CSS</label>
+                    <div class="code-output" id="cssCode"></div>
+                </div>
+                <button class="btn-primary" onclick="copyCss()">Copier le Code</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../common.js"></script>
+    <script>
+        function updateGradient() {
+            const type = document.getElementById('gradientType').value;
+            const direction = document.getElementById('direction').value;
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+
+            let css;
+            if (type === 'linear') {
+                css = `linear-gradient(${direction}, ${color1}, ${color2})`;
+            } else {
+                css = `radial-gradient(circle, ${color1}, ${color2})`;
+            }
+
+            document.getElementById('gradientPreview').style.background = css;
+            document.getElementById('cssCode').textContent = `background: ${css};`;
+        }
+
+        function copyCss() {
+            const code = document.getElementById('cssCode').textContent;
+            navigator.clipboard.writeText(code).then(() => alert('Copié !'));
+        }
+
+        function addColor() {
+            alert('Fonction de couleur supplémentaire - Utilisez le code CSS directement');
+        }
+
+        updateGradient();
+    </script>
+</body>
+</html>

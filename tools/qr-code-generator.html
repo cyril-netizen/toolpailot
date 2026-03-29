@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free QR code generator. Create QR codes instantly from text or URLs. Customizable size and colors. No data upload required.">
+    <meta name="keywords" content="qr code generator, qr code maker, create qr code, free qr code, online qr generator">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/qr-code-generator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="QR Code Generator — Free Online Tool | ToolPilot">
+    <meta property="og:description" content="Create QR codes instantly from text or URLs with customizable size and colors.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QR Code Generator — Free Online Tool">
+    <meta name="twitter:description" content="Create QR codes instantly with custom colors and sizes.">
+
+    <title>QR Code Generator — Free Online Tool | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .controls-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .control-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-item label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        input[type="range"],
+        input[type="color"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-input);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color var(--transition);
+        }
+
+        input[type="text"]:focus,
+        input[type="color"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        input[type="range"] {
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .size-display {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .qr-preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+            gap: 16px;
+        }
+
+        #qrCanvas {
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 8px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--bg-card);
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+            margin-top: 8px;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+
+        .seo-content {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: var(--radius);
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .seo-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        .ad-slot {
+            background: var(--bg-input);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 24px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .seo-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <span>Tools</span>
+            <span>/</span>
+            <span>QR Code Generator</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px;">QR Code Generator</h1>
+        <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 32px;">Create custom QR codes from text or URLs instantly with adjustable size and colors</p>
+
+        <div class="tool-container">
+            <div class="panel">
+                <div class="panel-title">QR Code Settings</div>
+                <div class="controls-group">
+                    <div class="control-item">
+                        <label for="qrInput">Text or URL</label>
+                        <input type="text" id="qrInput" placeholder="Enter text or URL to encode..." value="https://cyril-netizen.github.io/toolpailot">
+                    </div>
+
+                    <div class="control-item">
+                        <label for="qrSize">Size: <span id="sizeValue">300</span>px</label>
+                        <input type="range" id="qrSize" min="128" max="512" value="300" step="4">
+                        <div class="size-display">Range: 128px - 512px</div>
+                    </div>
+
+                    <div class="control-item">
+                        <label for="qrFgColor">Foreground Color</label>
+                        <input type="color" id="qrFgColor" value="#000000">
+                    </div>
+
+                    <div class="control-item">
+                        <label for="qrBgColor">Background Color</label>
+                        <input type="color" id="qrBgColor" value="#ffffff">
+                    </div>
+
+                    <button class="btn-primary" onclick="generateQRCode()">Generate QR Code</button>
+                    <div id="message" class="message"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Preview</div>
+                <div class="qr-preview">
+                    <canvas id="qrCanvas" width="300" height="300"></canvas>
+                </div>
+                <div class="buttons">
+                    <button class="btn-secondary" onclick="downloadQR()">Download PNG</button>
+                    <button class="btn-secondary" onclick="copyQRToClipboard()">Copy Image</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- Related Tools -->
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 24px; margin-bottom: 16px;">Related Tools</h2>
+            <div class="tool-grid" style="margin-top: 1rem;">
+                <a href="barcode-generator.html" class="card tool-card">
+                    <span class="icon">📊</span>
+                    <h3>Barcode Generator</h3>
+                    <p>Generate barcodes in multiple formats.</p>
+                </a>
+                <a href="hash-generator.html" class="card tool-card">
+                    <span class="icon">🔒</span>
+                    <h3>Hash Generator</h3>
+                    <p>Generate MD5, SHA-1, SHA-256 & SHA-512 hashes.</p>
+                </a>
+                <a href="base64-converter.html" class="card tool-card">
+                    <span class="icon">🔄</span>
+                    <h3>Base64 Converter</h3>
+                    <p>Encode and decode Base64 strings instantly.</p>
+                </a>
+                <a href="json-formatter.html" class="card tool-card">
+                    <span class="icon">{ }</span>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate, and minify JSON data.</p>
+                </a>
+            </div>
+        </section>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About QR Code Generator</h2>
+            <p>Our free QR code generator allows you to create custom QR codes instantly from any text or URL. With adjustable size and color options, you can generate QR codes that match your brand or needs. All processing happens in your browser—no data is uploaded to any server.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Instant Generation:</strong> Create QR codes with a single click</li>
+                <li><strong>Custom Size:</strong> Adjust QR code size from 128px to 512px</li>
+                <li><strong>Custom Colors:</strong> Choose foreground and background colors to match your design</li>
+                <li><strong>Download as PNG:</strong> Export QR codes as high-quality PNG images</li>
+                <li><strong>Copy to Clipboard:</strong> Quickly copy QR code images for sharing</li>
+                <li><strong>100% Private:</strong> All generation happens locally in your browser</li>
+            </ul>
+
+            <h3>What is a QR Code?</h3>
+            <p>QR codes (Quick Response codes) are two-dimensional barcodes that can store text, URLs, contact information, and more. They can be scanned by smartphones and other devices to quickly access information. QR codes are widely used in marketing, event tickets, product packaging, and business cards.</p>
+
+            <h3>How to Use the QR Code Generator</h3>
+            <p>Simply enter the text or URL you want to encode, adjust the size and colors if desired, and click "Generate QR Code." Your QR code will appear instantly in the preview area. You can then download it as a PNG image or copy it to your clipboard for use in documents, emails, or web pages.</p>
+
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Creating QR codes for website URLs</li>
+                <li>Generating contact information codes for business cards</li>
+                <li>Creating event tickets and admission codes</li>
+                <li>Adding QR codes to product packaging</li>
+                <li>Marketing and promotional materials</li>
+                <li>WiFi sharing and network credentials</li>
+            </ul>
+
+            <h3>Best QR Code Generator Online</h3>
+            <p>Unlike other QR code generators that upload your data to remote servers, our tool processes everything locally in your browser. This means your data stays private, the tool works offline, and QR codes are generated instantly. Whether you need a simple text QR code or a custom-colored code for branding purposes, our free generator delivers fast, reliable results.</p>
+        </div>
+
+        <div class="ad-slot">Ad Space</div>
+
+        <!-- FAQ -->
+        <section style="margin-top: 2rem;">
+            <h2 style="font-size: 24px; margin-bottom: 24px;">Frequently Asked Questions</h2>
+            <div style="display: grid; gap: 16px;">
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Can I use generated QR codes commercially?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Yes, absolutely. QR codes are freely generated and can be used for any purpose, commercial or personal. No licensing or attribution is required.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">What data can QR codes store?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">QR codes can store URLs, plain text, contact information (vCard), WiFi credentials, email addresses, phone numbers, and more. Our tool supports any text up to 4,296 characters.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">Is my data safe with this QR code generator?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Yes, all processing happens entirely in your browser. No data is sent to any server. Your information remains completely private and secure.</p>
+                </details>
+
+                <details style="background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: var(--radius); cursor: pointer;">
+                    <summary style="font-weight: 600; color: var(--text);">What image formats can I download?</summary>
+                    <p style="margin-top: 12px; color: var(--text-muted); font-size: 15px;">Currently, QR codes are exported as PNG images, which offer lossless compression and transparency support. PNG is ideal for both digital and print use.</p>
+                </details>
+            </div>
+        </section>
+    </div>
+
+    <!-- Schemas -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "QR Code Generator",
+        "description": "Free online QR code generator with custom colors and sizes",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/qr-code-generator.html",
+        "applicationCategory": "DeveloperTool",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "operatingSystem": "Any (Web Browser)"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "QR Code Generator"}
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Can I use generated QR codes commercially?",
+                "acceptedAnswer": {"@type": "Answer", "text": "Yes, absolutely. QR codes are freely generated and can be used for any purpose, commercial or personal."}
+            },
+            {
+                "@type": "Question",
+                "name": "What data can QR codes store?",
+                "acceptedAnswer": {"@type": "Answer", "text": "QR codes can store URLs, plain text, contact information, WiFi credentials, and more."}
+            },
+            {
+                "@type": "Question",
+                "name": "Is my data safe with this QR code generator?",
+                "acceptedAnswer": {"@type": "Answer", "text": "Yes, all processing happens in your browser. No data is sent to servers."}
+            }
+        ]
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        let qrInstance = null;
+
+        // Update size display
+        document.getElementById('qrSize').addEventListener('input', (e) => {
+            document.getElementById('sizeValue').textContent = e.target.value;
+        });
+
+        function generateQRCode() {
+            const input = document.getElementById('qrInput').value.trim();
+            const size = parseInt(document.getElementById('qrSize').value);
+            const fgColor = document.getElementById('qrFgColor').value;
+            const bgColor = document.getElementById('qrBgColor').value;
+            const message = document.getElementById('message');
+
+            if (!input) {
+                showMessage('Please enter text or URL', 'error');
+                return;
+            }
+
+            try {
+                // Clear previous QR code
+                const canvas = document.getElementById('qrCanvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = size;
+                canvas.height = size;
+                ctx.clearRect(0, 0, size, size);
+
+                // Generate new QR code using QRCode.js
+                // We'll create the QR code on the canvas using a simple approach
+                qrInstance = new QRCode({
+                    text: input,
+                    width: size,
+                    height: size,
+                    colorDark: fgColor,
+                    colorLight: bgColor,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+                // Get the image from the generated QR code and draw it on canvas
+                const tempContainer = document.createElement('div');
+                tempContainer.style.display = 'none';
+                document.body.appendChild(tempContainer);
+
+                const tempQr = new QRCode({
+                    text: input,
+                    width: size,
+                    height: size,
+                    colorDark: fgColor,
+                    colorLight: bgColor,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                tempContainer.appendChild(tempQr._el);
+
+                setTimeout(() => {
+                    const img = tempContainer.querySelector('canvas');
+                    if (img) {
+                        ctx.drawImage(img, 0, 0);
+                    }
+                    document.body.removeChild(tempContainer);
+                    showMessage('QR code generated successfully!', 'success');
+                }, 100);
+
+            } catch (e) {
+                showMessage('Error generating QR code: ' + e.message, 'error');
+            }
+        }
+
+        function downloadQR() {
+            const canvas = document.getElementById('qrCanvas');
+            if (canvas.width === 0) {
+                showMessage('Generate a QR code first', 'error');
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'qr-code.png';
+            link.click();
+            showMessage('QR code downloaded!', 'success');
+        }
+
+        function copyQRToClipboard() {
+            const canvas = document.getElementById('qrCanvas');
+            if (canvas.width === 0) {
+                showMessage('Generate a QR code first', 'error');
+                return;
+            }
+
+            canvas.toBlob((blob) => {
+                const item = new ClipboardItem({'image/png': blob});
+                navigator.clipboard.write([item]).then(() => {
+                    showMessage('QR code copied to clipboard!', 'success');
+                }).catch(() => {
+                    showMessage('Failed to copy image', 'error');
+                });
+            });
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Generate initial QR code on load
+        window.addEventListener('load', () => {
+            setTimeout(generateQRCode, 100);
+        });
+    </script>
+</body>
+</html>

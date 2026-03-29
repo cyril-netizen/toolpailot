@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Regular expressions cheat sheet for 2026. Comprehensive reference for regex syntax, character classes, quantifiers, and advanced patterns.">
+    <meta name="keywords" content="regex cheat sheet, regular expressions reference, regex syntax guide, regex pattern reference">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Regular Expressions Cheat Sheet 2026">
+    <meta property="og:description" content="Complete regex reference with syntax, character classes, quantifiers, and advanced patterns for pattern matching.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/blog/regex-cheat-sheet.html">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Regular Expressions Cheat Sheet">
+    <meta name="twitter:description" content="Quick reference guide for regex syntax and patterns.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/regex-cheat-sheet.html">
+
+    <title>Regex Cheat Sheet | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .article-meta a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .article-meta a:hover {
+            text-decoration: underline;
+        }
+
+        .article-content {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.6rem;
+        }
+
+        .code-example {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ad-slot {
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.95rem;
+        }
+
+        .reference-table th,
+        .reference-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .reference-table th {
+            background: var(--bg-input);
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .reference-table td {
+            color: var(--text-muted);
+        }
+
+        .reference-table code {
+            background: rgba(79,70,229,0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+
+        .related-articles {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .related-link {
+            display: block;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .related-link:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .faq-section {
+            margin: 2rem 0;
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .reference-table {
+                font-size: 0.85rem;
+            }
+
+            .reference-table th,
+            .reference-table td {
+                padding: 0.6rem;
+            }
+
+            .related-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="..">Home</a>
+            <span>›</span>
+            <a href=".">Blog</a>
+            <span>›</span>
+            <span>Regex Cheat Sheet</span>
+        </div>
+
+        <article itemscope itemtype="https://schema.org/Article">
+            <div class="article-header">
+                <h1 itemprop="headline">Regular Expressions Cheat Sheet 2026</h1>
+                <div class="article-meta">
+                    <span>📅 <time itemprop="datePublished" datetime="2026-05-19">May 19, 2026</time></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>⏱️ 6 min read</span>
+                </div>
+            </div>
+
+            <div class="article-content" itemprop="articleBody">
+                <p>Regular expressions are incredibly powerful but notoriously difficult to remember. Even experienced developers need to look up syntax frequently. This comprehensive cheat sheet covers all the most important regex patterns, from basic character classes to advanced lookahead assertions. Keep this guide open while learning regex, bookmark it for quick reference, and use it with ToolPilot's regex tester for hands-on practice.</p>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 1
+                </div>
+
+                <h2>Character Classes</h2>
+
+                <table class="reference-table">
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>.</code></td>
+                        <td>Any character except newline</td>
+                        <td>a.c matches abc, adc, a1c</td>
+                    </tr>
+                    <tr>
+                        <td><code>\d</code></td>
+                        <td>Digit (0-9)</td>
+                        <td>\d{3} matches 123</td>
+                    </tr>
+                    <tr>
+                        <td><code>\D</code></td>
+                        <td>Non-digit</td>
+                        <td>\D+ matches abc</td>
+                    </tr>
+                    <tr>
+                        <td><code>\w</code></td>
+                        <td>Word character [a-zA-Z0-9_]</td>
+                        <td>\w+ matches hello_world</td>
+                    </tr>
+                    <tr>
+                        <td><code>\W</code></td>
+                        <td>Non-word character</td>
+                        <td>\W matches !, @, #</td>
+                    </tr>
+                    <tr>
+                        <td><code>\s</code></td>
+                        <td>Whitespace</td>
+                        <td>\s+ matches spaces, tabs</td>
+                    </tr>
+                    <tr>
+                        <td><code>\S</code></td>
+                        <td>Non-whitespace</td>
+                        <td>\S+ matches hello</td>
+                    </tr>
+                    <tr>
+                        <td><code>[abc]</code></td>
+                        <td>Character set</td>
+                        <td>[abc] matches a, b, or c</td>
+                    </tr>
+                    <tr>
+                        <td><code>[^abc]</code></td>
+                        <td>Negated set</td>
+                        <td>[^abc] matches any char except a, b, c</td>
+                    </tr>
+                    <tr>
+                        <td><code>[a-z]</code></td>
+                        <td>Range</td>
+                        <td>[a-z] matches lowercase letters</td>
+                    </tr>
+                </table>
+
+                <h2>Quantifiers</h2>
+
+                <table class="reference-table">
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Zero or more</td>
+                        <td>a*b matches b, ab, aab</td>
+                    </tr>
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>One or more</td>
+                        <td>a+b matches ab, aab (not b)</td>
+                    </tr>
+                    <tr>
+                        <td><code>?</code></td>
+                        <td>Zero or one (optional)</td>
+                        <td>a?b matches b, ab</td>
+                    </tr>
+                    <tr>
+                        <td><code>{n}</code></td>
+                        <td>Exactly n times</td>
+                        <td>a{3} matches aaa</td>
+                    </tr>
+                    <tr>
+                        <td><code>{n,}</code></td>
+                        <td>n or more times</td>
+                        <td>a{2,} matches aa, aaa</td>
+                    </tr>
+                    <tr>
+                        <td><code>{n,m}</code></td>
+                        <td>Between n and m times</td>
+                        <td>a{2,4} matches aa, aaa, aaaa</td>
+                    </tr>
+                </table>
+
+                <h2>Anchors and Assertions</h2>
+
+                <table class="reference-table">
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>^</code></td>
+                        <td>Start of string/line</td>
+                        <td>^hello matches hello at start</td>
+                    </tr>
+                    <tr>
+                        <td><code>$</code></td>
+                        <td>End of string/line</td>
+                        <td>world$ matches world at end</td>
+                    </tr>
+                    <tr>
+                        <td><code>\b</code></td>
+                        <td>Word boundary</td>
+                        <td>\bword\b matches word (not sword)</td>
+                    </tr>
+                    <tr>
+                        <td><code>\B</code></td>
+                        <td>Non-word boundary</td>
+                        <td>\Bword matches sword</td>
+                    </tr>
+                </table>
+
+                <div class="ad-slot">
+                    Ad space - Advertisement placement 2
+                </div>
+
+                <h2>Groups and Capture</h2>
+
+                <table class="reference-table">
+                    <tr>
+                        <th>Pattern</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td><code>(abc)</code></td>
+                        <td>Capture group</td>
+                        <td>(\d{3}) captures 123</td>
+                    </tr>
+                    <tr>
+                        <td><code>(?:abc)</code></td>
+                        <td>Non-capturing group</td>
+                        <td>(?:foo|bar) without capture</td>
+                    </tr>
+                    <tr>
+                        <td><code>(?=...)</code></td>
+                        <td>Positive lookahead</td>
+                        <td>foo(?=bar) matches foo only if followed by bar</td>
+                    </tr>
+                    <tr>
+                        <td><code>(?!...)</code></td>
+                        <td>Negative lookahead</td>
+                        <td>foo(?!bar) matches foo not followed by bar</td>
+                    </tr>
+                    <tr>
+                        <td><code>(?&lt;=...)</code></td>
+                        <td>Positive lookbehind</td>
+                        <td>(?&lt;=foo)bar matches bar only if preceded by foo</td>
+                    </tr>
+                    <tr>
+                        <td><code>(?&lt;!...)</code></td>
+                        <td>Negative lookbehind</td>
+                        <td>(?&lt;!foo)bar matches bar not preceded by foo</td>
+                    </tr>
+                </table>
+
+                <h2>Alternation</h2>
+
+                <p>Use the pipe symbol (|) for alternation—matching one of several options. The pattern cat|dog matches either cat or dog. In groups: (foo|bar|baz) matches any of the three options. Alternation is tried left-to-right, so order matters in some cases.</p>
+
+                <div class="code-example">
+cat|dog matches "cat" or "dog"
+(jpg|png|gif) matches any image format
+colou?r matches "color" or "colour"
+                </div>
+
+                <h2>Common Patterns</h2>
+
+                <table class="reference-table">
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Pattern</th>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><code>[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}</code></td>
+                    </tr>
+                    <tr>
+                        <td>URL</td>
+                        <td><code>https?://[^\s]+</code></td>
+                    </tr>
+                    <tr>
+                        <td>Phone (US)</td>
+                        <td><code>\d{3}-\d{3}-\d{4}</code></td>
+                    </tr>
+                    <tr>
+                        <td>IP Address</td>
+                        <td><code>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}</code></td>
+                    </tr>
+                    <tr>
+                        <td>Hex Color</td>
+                        <td><code>#[0-9a-fA-F]{6}</code></td>
+                    </tr>
+                    <tr>
+                        <td>Date (YYYY-MM-DD)</td>
+                        <td><code>\d{4}-\d{2}-\d{2}</code></td>
+                    </tr>
+                    <tr>
+                        <td>Positive Integer</td>
+                        <td><code>[1-9]\d*</code></td>
+                    </tr>
+                    <tr>
+                        <td>Negative Integer</td>
+                        <td><code>-[1-9]\d*</code></td>
+                    </tr>
+                </table>
+
+                <h2>Flags</h2>
+
+                <p>Regex flags modify matching behavior. The 'i' flag enables case-insensitive matching so /hello/i matches HELLO. The 'g' flag enables global matching, finding all matches instead of just the first. The 'm' flag enables multiline mode where ^ and $ match line boundaries not just string boundaries. The 's' flag makes . match newlines. Different languages support different flags.</p>
+
+                <div class="cta-box">
+                    <h3>Test Regex Patterns Instantly</h3>
+                    <p>Use ToolPilot's regex tester to experiment with patterns and see instant feedback.</p>
+                    <a href="../tools/regex-tester.html" class="cta-button">Use Regex Tester</a>
+                </div>
+            </div>
+
+            <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+                <h2>Frequently Asked Questions</h2>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What's the difference between \d and [0-9]?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Both match digits, but \d is more portable across different regex engines. In JavaScript and most modern languages, they're equivalent. However, in some regex flavors, \d includes Unicode digit characters while [0-9] matches only ASCII digits 0-9. For portability, use [0-9] when you specifically want ASCII digits.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">When should I use (group) vs (?:group)?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Use capturing groups (group) when you need to extract the matched content. Use non-capturing groups (?:group) when you just need grouping for alternation or quantifiers without extracting the result. Non-capturing groups are slightly more efficient since the regex engine doesn't store the match.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">How do I match a literal period or question mark?</div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Escape special characters with a backslash. \. matches a literal period. \? matches a literal question mark. \* matches a literal asterisk. Any special character can be matched literally by preceding it with a backslash. In character classes [.?*], special meaning is removed so escaping isn't needed.</span>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-item">
+                    <div class="faq-question" itemprop="name">What's the difference between * and *??div>
+                    <div class="faq-answer" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">Both match zero or more occurrences, but they differ in greediness. * is greedy—it matches as much as possible. *? is lazy—it matches as little as possible. For example, a.*b on "axxxb" with greedy * matches the entire string. With lazy *?, it matches just "axxxb" but stops at the first b. Lazy quantifiers are useful when matching between delimiters.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-links">
+                    <a href="best-regex-testers-online.html" class="related-link">
+                        <strong>Best Online Regex Testers and Debuggers</strong>
+                        <p>Use these tools to test the patterns from this cheat sheet in action.</p>
+                    </a>
+                    <a href="developer-tools-every-web-dev-needs.html" class="related-link">
+                        <strong>Developer Tools Every Web Dev Needs</strong>
+                        <p>Regex testers are essential development tools. Discover other utilities that boost productivity.</p>
+                    </a>
+                </div>
+            </section>
+
+            <meta itemprop="dateModified" content="2026-05-19">
+            <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
+            <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+            <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+        </article>
+    </main>
+
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Regular Expressions Cheat Sheet 2026",
+        "description": "Comprehensive regex reference with syntax, character classes, quantifiers, and advanced patterns for pattern matching.",
+        "image": "https://cyril-netizen.github.io/toolpailot/og-image.png",
+        "datePublished": "2026-05-19T08:00:00Z",
+        "dateModified": "2026-05-19T08:00:00Z",
+        "author": {
+            "@type": "Organization",
+            "name": "ToolPilot"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToolPilot",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://cyril-netizen.github.io/toolpailot/logo.png"
+            }
+        }
+    }
+    </script>
+    <script src="../common.js"></script>
+</body>
+</html>

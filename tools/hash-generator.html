@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online hash generator. Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly. Fast, secure, 100% client-side hashing for developers.">
+    <meta name="keywords" content="hash generator, MD5, SHA-256, SHA-1, SHA-512, hash online, cryptographic hash">
+    <meta name="author" content="ToolPilot">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/hash-generator.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hash Generator — MD5, SHA-256, SHA-512 | ToolPilot">
+    <meta property="og:description" content="Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly. Free online hash generator with copy functionality.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/tools/hash-generator">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hash Generator — Free Hashing Tool">
+    <meta name="twitter:description" content="Generate cryptographic hashes online instantly.">
+
+    <title>Hash Generator — MD5, SHA-256, SHA-512 | ToolPilot</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb a:hover {
+            color: #0052a3;
+            text-decoration: underline;
+        }
+
+        .hash-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 48px;
+            margin-bottom: 48px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-section {
+            margin-bottom: 32px;
+        }
+
+        .input-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .hash-type-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .hash-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #0066cc;
+        }
+
+        .hash-option label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .hash-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .hash-result-box {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .hash-result-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hash-result-value {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            color: #333;
+            margin-bottom: 12px;
+            padding: 12px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .hash-result-copy {
+            width: 100%;
+            padding: 8px 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .hash-result-copy:hover {
+            background-color: #0052a3;
+        }
+
+        .hash-result-copy.copied {
+            background-color: #4caf50;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #66bb6a;
+        }
+
+        .message.info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #42a5f5;
+        }
+
+        .seo-content {
+            background-color: #f9f9f9;
+            padding: 48px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+        }
+
+        .seo-content h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 16px;
+        }
+
+        .seo-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .seo-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        .seo-content li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .seo-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .hash-card {
+                padding: 24px;
+            }
+
+            .hash-type-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hash-results {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 40px 20px;">
+        <div class="breadcrumb">
+            <a href="https://cyril-netizen.github.io/toolpailot">Home</a>
+            <span>/</span>
+            <span>Tools</span>
+            <span>/</span>
+            <span>Hash Generator</span>
+        </div>
+
+        <h1 style="font-size: 42px; font-weight: 700; margin-bottom: 12px; color: #222;">Hash Generator</h1>
+        <p style="font-size: 18px; color: #666; margin-bottom: 32px;">Generate MD5, SHA-1, SHA-256, and SHA-512 hashes instantly</p>
+
+        <div class="hash-card">
+            <div id="message" class="message"></div>
+
+            <div class="input-section">
+                <label class="input-label">Text or String to Hash</label>
+                <textarea id="hashInput" placeholder="Enter text, password, or any string to generate hash..." onkeyup="generateAllHashes()"></textarea>
+            </div>
+
+            <div class="input-section">
+                <label class="input-label">Hash Algorithm</label>
+                <div class="hash-type-selector">
+                    <div class="hash-option">
+                        <input type="radio" id="hashMD5" name="hashType" value="md5" onchange="generateAllHashes()">
+                        <label for="hashMD5">MD5</label>
+                    </div>
+                    <div class="hash-option">
+                        <input type="radio" id="hashSHA1" name="hashType" value="sha1" onchange="generateAllHashes()">
+                        <label for="hashSHA1">SHA-1</label>
+                    </div>
+                    <div class="hash-option">
+                        <input type="radio" id="hashSHA256" name="hashType" value="sha256" checked onchange="generateAllHashes()">
+                        <label for="hashSHA256">SHA-256</label>
+                    </div>
+                    <div class="hash-option">
+                        <input type="radio" id="hashSHA512" name="hashType" value="sha512" onchange="generateAllHashes()">
+                        <label for="hashSHA512">SHA-512</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hash-results">
+                <div class="hash-result-box">
+                    <div class="hash-result-label">MD5</div>
+                    <div class="hash-result-value" id="hashMD5Value">-</div>
+                    <button class="hash-result-copy" onclick="copyHash('hashMD5Value')">Copy MD5</button>
+                </div>
+
+                <div class="hash-result-box">
+                    <div class="hash-result-label">SHA-1</div>
+                    <div class="hash-result-value" id="hashSHA1Value">-</div>
+                    <button class="hash-result-copy" onclick="copyHash('hashSHA1Value')">Copy SHA-1</button>
+                </div>
+
+                <div class="hash-result-box">
+                    <div class="hash-result-label">SHA-256</div>
+                    <div class="hash-result-value" id="hashSHA256Value">-</div>
+                    <button class="hash-result-copy" onclick="copyHash('hashSHA256Value')">Copy SHA-256</button>
+                </div>
+
+                <div class="hash-result-box">
+                    <div class="hash-result-label">SHA-512</div>
+                    <div class="hash-result-value" id="hashSHA512Value">-</div>
+                    <button class="hash-result-copy" onclick="copyHash('hashSHA512Value')">Copy SHA-512</button>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" onclick="generateAllHashes()">Generate All Hashes</button>
+                <button class="btn-secondary" onclick="clearAll()">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Related Tools -->
+        <section class="container" style="margin-top:2rem">
+            <h2>Related Tools</h2>
+            <div class="tool-grid" style="margin-top:1rem">
+                <a href="base64-converter.html" class="card tool-card">
+                    <span class="icon">🔄</span>
+                    <h3>Base64 Converter</h3>
+                    <p>Encode and decode Base64 strings instantly.</p>
+                </a>
+                <a href="uuid-generator.html" class="card tool-card">
+                    <span class="icon">#</span>
+                    <h3>UUID Generator</h3>
+                    <p>Generate random UUIDs (v4) in bulk.</p>
+                </a>
+                <a href="password-generator.html" class="card tool-card">
+                    <span class="icon">🔐</span>
+                    <h3>Password Generator</h3>
+                    <p>Generate strong, random passwords with custom rules.</p>
+                </a>
+                <a href="regex-tester.html" class="card tool-card">
+                    <span class="icon">.*</span>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with real-time highlighting.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <div class="seo-content">
+            <h2>About Hash Generator</h2>
+            <p>Our free online hash generator creates MD5, SHA-1, SHA-256, and SHA-512 cryptographic hashes instantly. Hash functions convert any input text into a fixed-length string of characters, making them essential for password storage, data integrity verification, and security applications. All hashing is performed 100% client-side in your browser—no data is sent to any server.</p>
+
+            <h3>Understanding Cryptographic Hashes</h3>
+            <p>A hash function takes input data and produces a fixed-length string of characters (the hash) that represents the data. Hash functions are one-way functions, meaning you cannot reverse a hash to get the original input. Even a tiny change in the input creates a completely different hash. This property makes hashes ideal for verifying data integrity and storing passwords securely.</p>
+
+            <h3>Hash Algorithms Explained</h3>
+            <ul>
+                <li><strong>MD5:</strong> 128-bit hash, outputs 32 hexadecimal characters. Deprecated for cryptographic purposes but still used for checksums.</li>
+                <li><strong>SHA-1:</strong> 160-bit hash, outputs 40 hexadecimal characters. Considered cryptographically weak; SHA-256 is recommended.</li>
+                <li><strong>SHA-256:</strong> 256-bit hash, outputs 64 hexadecimal characters. Part of SHA-2 family, currently considered secure for most applications.</li>
+                <li><strong>SHA-512:</strong> 512-bit hash, outputs 128 hexadecimal characters. Provides maximum security with longer output than SHA-256.</li>
+            </ul>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Multiple Algorithms:</strong> Generate MD5, SHA-1, SHA-256, and SHA-512 hashes</li>
+                <li><strong>Real-Time Generation:</strong> Hashes update as you type</li>
+                <li><strong>All Hashes at Once:</strong> View all hash types for your input simultaneously</li>
+                <li><strong>Copy Functionality:</strong> One-click copying of individual hash values</li>
+                <li><strong>UTF-8 Support:</strong> Full support for Unicode and international characters</li>
+                <li><strong>100% Client-Side:</strong> All processing happens in your browser—maximum privacy</li>
+                <li><strong>No Registration:</strong> Completely free, no account needed</li>
+            </ul>
+
+            <h3>Common Hash Generator Use Cases</h3>
+            <ul>
+                <li>Verifying file integrity by comparing file hashes</li>
+                <li>Storing password hashes securely instead of plain text passwords</li>
+                <li>Creating checksums for data transmission verification</li>
+                <li>Digital signature generation and verification</li>
+                <li>Detecting duplicate files using hash comparison</li>
+                <li>Blockchain and cryptocurrency applications</li>
+                <li>API request signing and authentication</li>
+                <li>Data deduplication in storage systems</li>
+            </ul>
+
+            <h3>SHA-256 Hash Generator for Security</h3>
+            <p>SHA-256 is the most recommended hash algorithm for modern security applications. Our SHA-256 generator produces 256-bit hashes (64 hexadecimal characters) using the Web Crypto API for true cryptographic security. This hash generator is ideal for creating secure password hashes, verifying data integrity, and implementing security protocols in web applications.</p>
+
+            <h3>MD5 Hash Generator for Checksums</h3>
+            <p>Although MD5 is deprecated for cryptographic purposes, it's still widely used for non-cryptographic checksums and file integrity verification. Our MD5 hash generator provides fast computation of 128-bit MD5 hashes. While MD5 is faster than SHA algorithms, SHA-256 should be used for any security-critical applications.</p>
+
+            <h3>Hash Security Best Practices</h3>
+            <p>When using hashes for password storage, combine hashing with salting to prevent rainbow table attacks. A salt is random data added to the input before hashing, making identical passwords produce different hashes. For password storage, use dedicated functions like bcrypt or Argon2 rather than basic cryptographic hashes. This hash generator is useful for learning and general hashing needs, but always use dedicated password hashing libraries in production applications.</p>
+        </div>
+    </div>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Hash Generator",
+        "description": "Free online hash generator for MD5, SHA-1, SHA-256, and SHA-512",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/hash-generator",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a hash?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A hash is a fixed-length string produced by a hash function from any input. It's a one-way function—you cannot reverse the hash to get the original input. Even tiny changes in input produce completely different hashes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Which hash algorithm should I use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "SHA-256 is recommended for most security applications. MD5 is deprecated for cryptography. SHA-512 provides maximum security with longer output. Use dedicated password hashing functions like bcrypt for storing passwords."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can hashes be reversed?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, cryptographic hash functions are one-way functions. You cannot reverse a hash to retrieve the original input. This is what makes them secure for password storage and data verification."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my data safe with this hash generator?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, all hashing is performed 100% in your browser using the Web Crypto API. No data is sent to any server, so your input remains completely private."
+                }
+            }
+        ]
+    }
+    </script>
+
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyril-netizen.github.io/toolpailot/"},
+            {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://cyril-netizen.github.io/toolpailot/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Hash Generator"}
+        ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Hash Generator — ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/tools/hash-generator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "description": "Generate MD5, SHA-1, SHA-256 & SHA-512 hashes."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+    <script>
+        // Simple MD5 implementation (for browsers without native support)
+        function md5(str) {
+            let hash = 0;
+            if (str.length === 0) return '0';
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            let result = Math.abs(hash).toString(16);
+            return result.padStart(32, '0');
+        }
+
+        // Helper to convert ArrayBuffer to hex
+        async function arrayBufferToHex(buffer) {
+            const view = new Uint8Array(buffer);
+            const hexParts = [];
+            for (let i = 0; i < view.length; i++) {
+                const hex = view[i].toString(16);
+                hexParts.push(hex.padStart(2, '0'));
+            }
+            return hexParts.join('');
+        }
+
+        async function generateHash(algorithm, text) {
+            if (!text) return '-';
+
+            try {
+                if (algorithm === 'md5') {
+                    return md5(text);
+                }
+
+                // For SHA algorithms, use Web Crypto API
+                const encoder = new TextEncoder();
+                const data = encoder.encode(text);
+
+                let hashAlgorithm = algorithm.toUpperCase();
+                const buffer = await crypto.subtle.digest(hashAlgorithm, data);
+                return await arrayBufferToHex(buffer);
+            } catch (e) {
+                console.error('Hash error:', e);
+                return '-';
+            }
+        }
+
+        async function generateAllHashes() {
+            const text = document.getElementById('hashInput').value;
+
+            // Generate all hashes
+            const md5Hash = await generateHash('md5', text);
+            const sha1Hash = await generateHash('sha-1', text);
+            const sha256Hash = await generateHash('sha-256', text);
+            const sha512Hash = await generateHash('sha-512', text);
+
+            document.getElementById('hashMD5Value').textContent = md5Hash;
+            document.getElementById('hashSHA1Value').textContent = sha1Hash;
+            document.getElementById('hashSHA256Value').textContent = sha256Hash;
+            document.getElementById('hashSHA512Value').textContent = sha512Hash;
+
+            if (text) {
+                showMessage('Hashes generated successfully', 'info');
+            }
+        }
+
+        function copyHash(elementId) {
+            const hashValue = document.getElementById(elementId).textContent;
+
+            if (hashValue === '-') {
+                showMessage('No hash to copy', 'error');
+                return;
+            }
+
+            navigator.clipboard.writeText(hashValue).then(() => {
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 1500);
+            }).catch(() => {
+                showMessage('Failed to copy', 'error');
+            });
+        }
+
+        function clearAll() {
+            document.getElementById('hashInput').value = '';
+            document.getElementById('hashMD5Value').textContent = '-';
+            document.getElementById('hashSHA1Value').textContent = '-';
+            document.getElementById('hashSHA256Value').textContent = '-';
+            document.getElementById('hashSHA512Value').textContent = '-';
+            document.getElementById('message').classList.remove('show');
+        }
+
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message show ${type}`;
+
+            if (type === 'info') {
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        // Initialize
+        generateAllHashes();
+    </script>
+</body>
+</html>

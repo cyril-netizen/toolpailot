@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <title>Encodeur/Décodeur URL | ToolPilot</title>
+    <meta name="description" content="Encodez et décodez des URL en ligne. Convertissez des caractères spéciaux en caractères URL-safe avec notre outil gratuit.">
+    <meta name="keywords" content="encodeur URL, décodeur URL, URL encode, URL decode, encoder URL en ligne, caractères URL">
+    <meta property="og:title" content="Encodeur/Décodeur URL | ToolPilot">
+    <meta property="og:description" content="Encodez et décodez des URL en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Encodeur/Décodeur URL | ToolPilot">
+    <meta name="twitter:description" content="Encodez et décodez des URL en ligne.">
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/tools/url-encoder.html">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html">
+    <link rel="stylesheet" href="../../style.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Outils",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/#tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Encodeur/Décodeur URL",
+                "item": "https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Encodeur/Décodeur URL",
+        "description": "Encodez et décodez des URL en ligne",
+        "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/url-encoder.html",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Pourquoi coder les URL?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Certains caractères comme les espaces et les caractères spéciaux ne sont pas autorisés dans les URL. L'encodage URL les convertit en une forme sûre pour le transport sur le web."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quel encodage URL est utilisé?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "L'encodage URL standard, aussi appelé percent-encoding, remplace les caractères spéciaux par un signe % suivi de son code hexadécimal."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Comment encoder un espace en URL?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Un espace est encodé en %20 dans l'encodage URL standard, ou parfois en + dans les formulaires."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../">Accueil</a> >
+                <a href="../#tools">Outils</a> >
+                <span>Encodeur/Décodeur URL</span>
+            </nav>
+
+            <h1>Encodeur/Décodeur URL</h1>
+            <p class="tool-subtitle">Encodez et décodez des textes pour les rendre URL-safe</p>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="text-input">Texte</label>
+                    <textarea id="text-input" placeholder="Entrez du texte à encoder..."></textarea>
+                    <div class="button-group">
+                        <button id="encode-btn" class="btn btn-primary">Encoder</button>
+                        <button id="clear-text-btn" class="btn btn-light">Effacer</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <label for="url-output">URL Encodée</label>
+                    <textarea id="url-output" placeholder="Résultat encodé..." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copy-url-btn" class="btn btn-primary">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <div class="tool-container">
+                <div class="input-section">
+                    <label for="url-input">URL Encodée</label>
+                    <textarea id="url-input" placeholder="Collez une URL encodée à décoder..."></textarea>
+                    <div class="button-group">
+                        <button id="decode-btn" class="btn btn-primary">Décoder</button>
+                        <button id="clear-url-btn" class="btn btn-light">Effacer</button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <label for="text-output">Texte</label>
+                    <textarea id="text-output" placeholder="Résultat décodé..." readonly></textarea>
+                    <div class="button-group">
+                        <button id="copy-text-btn" class="btn btn-primary">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+
+            <section class="seo-content">
+                <h2>À propos de ce convertisseur</h2>
+                <p>Notre <strong>Encodeur/Décodeur URL</strong> vous permet de convertir facilement du texte en URL-safe et vice-versa. Certains caractères comme les espaces, les caractères accentués et les symboles spéciaux ne peuvent pas être utilisés directement dans les URL. Cet outil les convertit en une forme sûre appelée "percent encoding" ou "URL encoding".</p>
+                <p>L'encodage URL remplace les caractères spéciaux par un signe % suivi de leur code hexadécimal. Par exemple, un espace devient %20, et "é" devient %C3%A9. Cet outil est essentiel pour les développeurs web qui travaillent avec des paramètres URL, des requêtes API et des formulaires.</p>
+                <p>Utilisez cet outil pour encoder des paramètres de requête, décoder des URLs reçues, ou préparer du texte pour être utilisé dans une URL. Tous les calculs se font dans votre navigateur sans envoyer vos données à nos serveurs.</p>
+            </section>
+
+            <section class="related-tools">
+                <h2>Outils connexes</h2>
+                <div class="tools-grid">
+                    <a href="base64-converter.html" class="tool-card">
+                        <h3>Convertisseur Base64</h3>
+                        <p>Encodez et décodez du Base64</p>
+                    </a>
+                    <a href="html-entities.html" class="tool-card">
+                        <h3>Encodeur HTML</h3>
+                        <p>Encodez du texte en HTML</p>
+                    </a>
+                    <a href="slug-generator.html" class="tool-card">
+                        <h3>Générateur de Slug</h3>
+                        <p>Créez des slugs URL</p>
+                    </a>
+                    <a href="hash-generator.html" class="tool-card">
+                        <h3>Générateur de Hash</h3>
+                        <p>Générez des hashs sécurisés</p>
+                    </a>
+                </div>
+            </section>
+
+            <div class="ad-slot" id="ad-slot-1"></div>
+        </div>
+    </main>
+
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        const isDark = localStorage.getItem('theme') === 'dark';
+        if (isDark) htmlElement.setAttribute('data-theme', 'dark');
+        themeToggle.addEventListener('click', () => {
+            const isDarkMode = htmlElement.getAttribute('data-theme') === 'dark';
+            htmlElement.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+            localStorage.setItem('theme', isDarkMode ? 'light' : 'dark');
+        });
+
+        const textInput = document.getElementById('text-input');
+        const urlOutput = document.getElementById('url-output');
+        const urlInput = document.getElementById('url-input');
+        const textOutput = document.getElementById('text-output');
+        const encodeBtn = document.getElementById('encode-btn');
+        const decodeBtn = document.getElementById('decode-btn');
+        const clearTextBtn = document.getElementById('clear-text-btn');
+        const clearUrlBtn = document.getElementById('clear-url-btn');
+        const copyUrlBtn = document.getElementById('copy-url-btn');
+        const copyTextBtn = document.getElementById('copy-text-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'status-message ' + type;
+            setTimeout(() => { statusMessage.textContent = ''; }, 2000);
+        }
+
+        encodeBtn.addEventListener('click', () => {
+            try {
+                const text = textInput.value;
+                const encoded = encodeURIComponent(text);
+                urlOutput.value = encoded;
+                showStatus('Encodé avec succès!', 'success');
+            } catch (error) {
+                showStatus('Erreur d\'encodage: ' + error.message, 'error');
+            }
+        });
+
+        decodeBtn.addEventListener('click', () => {
+            try {
+                const url = urlInput.value;
+                const decoded = decodeURIComponent(url);
+                textOutput.value = decoded;
+                showStatus('Décodé avec succès!', 'success');
+            } catch (error) {
+                showStatus('Erreur de décodage: ' + error.message, 'error');
+            }
+        });
+
+        clearTextBtn.addEventListener('click', () => {
+            textInput.value = '';
+            urlOutput.value = '';
+        });
+
+        clearUrlBtn.addEventListener('click', () => {
+            urlInput.value = '';
+            textOutput.value = '';
+        });
+
+        copyUrlBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(urlOutput.value).then(() => {
+                showStatus('Copié dans le presse-papiers!', 'success');
+            });
+        });
+
+        copyTextBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(textOutput.value).then(() => {
+                showStatus('Copié dans le presse-papiers!', 'success');
+            });
+        });
+
+        // Auto-encode on input
+        textInput.addEventListener('input', () => {
+            if (textInput.value) {
+                setTimeout(() => encodeBtn.click(), 100);
+            }
+        });
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>

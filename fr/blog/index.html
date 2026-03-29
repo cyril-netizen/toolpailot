@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog ToolPilot - Guides essentiels sur le formatage JSON, la sécurité des mots de passe, les outils développeur, l'encodage Base64 et les timestamps Unix. Apprenez à utiliser les outils en ligne efficacement.">
+    <meta name="keywords" content="blog, outils développeur, formateur json, générateur de mots de passe, Base64, timestamp Unix, développement web">
+    <meta name="author" content="ToolPilot">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog ToolPilot - Guides et Tutoriels">
+    <meta property="og:description" content="Découvrez des guides pratiques sur les outils de développement web, les meilleures pratiques de sécurité et les utilitaires en ligne.">
+    <meta property="og:url" content="https://cyril-netizen.github.io/toolpailot/fr/blog/">
+    <meta property="og:site_name" content="ToolPilot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog ToolPilot - Guides et Tutoriels">
+    <meta name="twitter:description" content="Découvrez des guides pratiques sur les outils de développement et les meilleures pratiques.">
+
+    <!-- Canonical et hreflang -->
+    <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/blog/">
+    <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/blog/">
+    <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/blog/">
+
+    <title>Blog | ToolPilot - Guides et Tutoriels Gratuits</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            color: var(--text-muted);
+            margin: 0 0.25rem;
+        }
+
+        .blog-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .blog-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .blog-card-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .blog-card-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+
+        .blog-card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .blog-excerpt {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .blog-card-footer {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="../..">Accueil</a>
+            <span>›</span>
+            <span>Blog</span>
+        </div>
+
+        <div class="blog-header">
+            <h1>Blog ToolPilot</h1>
+            <p>Guides experts sur les outils développeur, les meilleures pratiques de sécurité et les conseils de développement web pour améliorer votre productivité</p>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Article 1 -->
+            <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="blog-card-header">
+                    <h3 itemprop="headline">Meilleurs Formateurs JSON en 2026</h3>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <span>📅 Mars 2026</span>
+                        <span>⏱️ 5 min de lecture</span>
+                    </div>
+                    <p class="blog-excerpt" itemprop="description">Comparez les meilleurs outils de formatage JSON disponibles en ligne. Découvrez ce qui rend un excellent formateur JSON et comment choisir le bon pour votre flux de travail.</p>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="/blog/best-json-formatters-2026.html" class="read-more">Lire l'article →</a>
+                </div>
+                <meta itemprop="datePublished" content="2026-03-27">
+                <meta itemprop="author" content="ToolPilot">
+            </article>
+
+            <!-- Article 2 -->
+            <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="blog-card-header">
+                    <h3 itemprop="headline">Comment Créer des Mots de Passe Forts</h3>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <span>📅 Mars 2026</span>
+                        <span>⏱️ 5 min de lecture</span>
+                    </div>
+                    <p class="blog-excerpt" itemprop="description">Maîtrisez la sécurité des mots de passe avec des conseils pratiques et les meilleures pratiques. Découvrez les stratégies essentielles pour créer et gérer des mots de passe forts en 2026.</p>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="/blog/how-to-create-strong-passwords.html" class="read-more">Lire l'article →</a>
+                </div>
+                <meta itemprop="datePublished" content="2026-03-27">
+                <meta itemprop="author" content="ToolPilot">
+            </article>
+
+            <!-- Article 3 -->
+            <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="blog-card-header">
+                    <h3 itemprop="headline">Outils Développeur que Tout Dev Web Doit Avoir</h3>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <span>📅 Mars 2026</span>
+                        <span>⏱️ 6 min de lecture</span>
+                    </div>
+                    <p class="blog-excerpt" itemprop="description">Explorez les outils développeur essentiels que tout développeur web devrait avoir dans sa boîte à outils. Du formatage JSON aux tests regex, nous couvrons tout.</p>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="/blog/developer-tools-every-web-dev-needs.html" class="read-more">Lire l'article →</a>
+                </div>
+                <meta itemprop="datePublished" content="2026-03-27">
+                <meta itemprop="author" content="ToolPilot">
+            </article>
+
+            <!-- Article 4 -->
+            <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="blog-card-header">
+                    <h3 itemprop="headline">Comprendre l'Encodage Base64</h3>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <span>📅 Mars 2026</span>
+                        <span>⏱️ 5 min de lecture</span>
+                    </div>
+                    <p class="blog-excerpt" itemprop="description">Découvrez ce qu'est l'encodage Base64, comment il fonctionne et pourquoi c'est important. Ce guide adapté aux débutants explique les fondamentaux de l'encodage de données.</p>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="/blog/understanding-base64-encoding.html" class="read-more">Lire l'article →</a>
+                </div>
+                <meta itemprop="datePublished" content="2026-03-27">
+                <meta itemprop="author" content="ToolPilot">
+            </article>
+
+            <!-- Article 5 -->
+            <article class="blog-card" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="blog-card-header">
+                    <h3 itemprop="headline">Timestamps Unix Expliqués: Guide Complet</h3>
+                </div>
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <span>📅 Mars 2026</span>
+                        <span>⏱️ 5 min de lecture</span>
+                    </div>
+                    <p class="blog-excerpt" itemprop="description">Comprendre les timestamps Unix et le temps d'époque. Découvrez comment convertir entre les dates lisibles et les timestamps Unix en secondes.</p>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="/blog/unix-timestamp-guide.html" class="read-more">Lire l'article →</a>
+                </div>
+                <meta itemprop="datePublished" content="2026-03-27">
+                <meta itemprop="author" content="ToolPilot">
+            </article>
+        </div>
+    </main>
+
+
+    <script src="../../common.js"></script>
+    <script>
+        // JSON-LD Schema for Blog Collection
+        const blogSchema = {
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Blog ToolPilot",
+            "description": "Guides experts sur les outils développeur, les meilleures pratiques de sécurité et les conseils de développement web",
+            "url": "https://cyril-netizen.github.io/toolpailot/fr/blog/",
+            "inLanguage": "fr",
+            "publisher": {
+                "@type": "Organization",
+                "name": "ToolPilot"
+            }
+        };
+        document.head.appendChild(Object.assign(document.createElement('script'), {
+            type: 'application/ld+json',
+            textContent: JSON.stringify(blogSchema)
+        }));
+    </script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convertisseur Hex/RGB/HSL - Convertissez les couleurs entre les formats Hex, RGB et HSL instantanément.">
+    <meta name="keywords" content="convertisseur couleur, hex rgb hsl, conversion couleur, format couleur">
+    <meta name="google-site-verification" content="OV1vmVeK-91BLfRiYpR871Qf8WSgxUoGPPdWabWSw-I" />
+    <meta property="og:title" content="Convertisseur Hex/RGB/HSL">
+    <meta property="og:description" content="Convertissez les couleurs entre Hex, RGB et HSL.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolpilot.netlify.app/fr/tools/hex-rgb-converter.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Convertisseur Hex/RGB/HSL">
+    <meta name="twitter:description" content="Convertissez les formats de couleur.">
+    <link rel="canonical" href="https://toolpilot.netlify.app/fr/tools/hex-rgb-converter.html">
+    <link rel="alternate" hreflang="en" href="https://toolpilot.netlify.app/tools/hex-rgb-converter.html">
+    <link rel="alternate" hreflang="fr" href="https://toolpilot.netlify.app/fr/tools/hex-rgb-converter.html">
+    <title>Convertisseur Hex/RGB/HSL - ToolPilot</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        .converter-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .format-box {
+            background: #f5f5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .format-box h3 {
+            margin-top: 0;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .input-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        input[type="number"] {
+            max-width: 100%;
+        }
+        input[type="color"] {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .color-preview {
+            width: 100%;
+            height: 120px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            margin: 1rem 0;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .btn-secondary {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        .info-box {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 2rem 0;
+        }
+        @media (max-width: 768px) {
+            .converter-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="../..">Accueil</a> > <a href="../../fr/tools">Outils</a> > <span>Convertisseur Hex/RGB/HSL</span>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Convertisseur Hex/RGB/HSL</h1>
+        <p>Convertissez facilement les couleurs entre les formats Hex, RGB et HSL. Obtenez un aperçu immédiat de la couleur.</p>
+
+        <div class="color-preview" id="colorPreview"></div>
+
+        <div class="converter-container">
+            <div class="format-box">
+                <h3>Hex</h3>
+                <div class="input-group">
+                    <label class="input-label">Valeur Hex:</label>
+                    <input type="text" id="hexInput" placeholder="#FF5733" maxlength="7">
+                </div>
+                <input type="color" id="colorPicker">
+                <button class="btn btn-secondary" onclick="copyHex()">Copier</button>
+            </div>
+
+            <div class="format-box">
+                <h3>RGB</h3>
+                <div class="input-group">
+                    <label class="input-label">Rouge (0-255):</label>
+                    <input type="number" id="redInput" min="0" max="255" value="255">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Vert (0-255):</label>
+                    <input type="number" id="greenInput" min="0" max="255" value="87">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Bleu (0-255):</label>
+                    <input type="number" id="blueInput" min="0" max="255" value="51">
+                </div>
+                <button class="btn btn-secondary" onclick="copyRGB()">Copier</button>
+            </div>
+
+            <div class="format-box">
+                <h3>HSL</h3>
+                <div class="input-group">
+                    <label class="input-label">Teinte (0-360):</label>
+                    <input type="number" id="hueInput" min="0" max="360" value="0">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Saturation (0-100%):</label>
+                    <input type="number" id="saturationInput" min="0" max="100" value="0">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Luminosité (0-100%):</label>
+                    <input type="number" id="lightnessInput" min="0" max="100" value="0">
+                </div>
+                <button class="btn btn-secondary" onclick="copyHSL()">Copier</button>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <strong>Formats de couleur:</strong><br>
+            <strong>Hex:</strong> Format hexadécimal à 6 chiffres (#RRGGBB) - format standard pour le web<br>
+            <strong>RGB:</strong> Format trichromique Rouge-Vert-Bleu avec valeurs de 0 à 255<br>
+            <strong>HSL:</strong> Format Teinte-Saturation-Luminosité pour une sélection plus intuitive
+        </div>
+
+        <!-- Ad Space -->
+        <div class="ad-space" style="margin: 2rem 0; padding: 1rem; background: #f5f5f5; border-radius: 4px; text-align: center; color: #999; min-height: 100px;">
+            Espace publicitaire
+        </div>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h3>Outils Connexes</h3>
+            <div class="tools-grid">
+                <a href="color-palette.html" class="tool-card">Palette de Couleurs</a>
+                <a href="css-minifier.html" class="tool-card">Minifieur CSS</a>
+                <a href="slug-generator.html" class="tool-card">Générateur de Slug</a>
+                <a href="html-entities.html" class="tool-card">Entités HTML</a>
+            </div>
+        </section>
+
+        <!-- FAQ Schema -->
+        <section class="faq">
+            <h2>Questions Fréquemment Posées</h2>
+            <div class="faq-item">
+                <h3>Quel format de couleur devrais-je utiliser?</h3>
+                <p>Le format Hex (#RRGGBB) est le plus courant pour le web et CSS. RGB est utile pour les images numériques. HSL est idéal pour la sélection intuitive de couleurs similaires.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Pourquoi les conversions donnent-elles des résultats légèrement différents?</h3>
+                <p>Cela est dû à l'arrondi des valeurs décimales. Les conversions entre formats peuvent entraîner des différences mineures. L'aperçu visuel reste identique.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Comment puis-je trouver le code couleur d'une couleur que j'aime?</h3>
+                <p>Utilisez la pipette du navigateur ou un outil de capture. Vous pouvez aussi utiliser le sélecteur de couleur HTML intégré (cliquez sur le carré de couleur).</p>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="seo-content">
+            <h2>À Propos du Convertisseur Hex/RGB/HSL</h2>
+            <p>Les couleurs peuvent être représentées de plusieurs façons en informatique. Le format Hex est le standard web, RGB est utilisé en imagerie numérique, et HSL offre une interface intuitive pour la sélection de couleurs.</p>
+            <p>Notre convertisseur simplifie le passage entre ces trois formats. Modifiez une valeur dans n'importe quel format et voyez les autres se mettre à jour automatiquement. L'aperçu en direct vous montre exactement quelle est la couleur.</p>
+            <p>Que vous travailliez sur un design web, une application ou toute autre création nécessitant des couleurs, cet outil vous permet de gérer facilement les représentations de couleurs.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Convertisseur Hex/RGB/HSL",
+        "description": "Convertissez les couleurs entre Hex, RGB et HSL formats",
+        "url": "https://toolpilot.netlify.app/fr/tools/hex-rgb-converter.html",
+        "applicationCategory": "DesktopApplication",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <script>
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+
+        function hslToRgb(h, s, l) {
+            h /= 360;
+            s /= 100;
+            l /= 100;
+            let r, g, b;
+
+            if (s === 0) {
+                r = g = b = l;
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                r = hue2rgb(p, q, h + 1/3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1/3);
+            }
+
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255)
+            };
+        }
+
+        function updateAll() {
+            let r = parseInt(document.getElementById('redInput').value) || 0;
+            let g = parseInt(document.getElementById('greenInput').value) || 0;
+            let b = parseInt(document.getElementById('blueInput').value) || 0;
+
+            const hex = rgbToHex(r, g, b);
+            const hsl = rgbToHsl(r, g, b);
+
+            document.getElementById('hexInput').value = hex;
+            document.getElementById('colorPicker').value = hex;
+            document.getElementById('hueInput').value = hsl.h;
+            document.getElementById('saturationInput').value = hsl.s;
+            document.getElementById('lightnessInput').value = hsl.l;
+
+            document.getElementById('colorPreview').style.backgroundColor = hex;
+        }
+
+        function updateFromHex() {
+            let hex = document.getElementById('hexInput').value;
+            if (!hex.startsWith('#')) hex = '#' + hex;
+            if (hex.length !== 7 || !/^#[0-9A-F]{6}$/i.test(hex)) return;
+
+            const rgb = hexToRgb(hex);
+            document.getElementById('redInput').value = rgb.r;
+            document.getElementById('greenInput').value = rgb.g;
+            document.getElementById('blueInput').value = rgb.b;
+            updateAll();
+        }
+
+        function updateFromHsl() {
+            const h = parseInt(document.getElementById('hueInput').value) || 0;
+            const s = parseInt(document.getElementById('saturationInput').value) || 0;
+            const l = parseInt(document.getElementById('lightnessInput').value) || 0;
+
+            const rgb = hslToRgb(h, s, l);
+            document.getElementById('redInput').value = rgb.r;
+            document.getElementById('greenInput').value = rgb.g;
+            document.getElementById('blueInput').value = rgb.b;
+            updateAll();
+        }
+
+        function copyHex() {
+            navigator.clipboard.writeText(document.getElementById('hexInput').value);
+            alert('Hex copié!');
+        }
+
+        function copyRGB() {
+            const r = document.getElementById('redInput').value;
+            const g = document.getElementById('greenInput').value;
+            const b = document.getElementById('blueInput').value;
+            navigator.clipboard.writeText(`rgb(${r}, ${g}, ${b})`);
+            alert('RGB copié!');
+        }
+
+        function copyHSL() {
+            const h = document.getElementById('hueInput').value;
+            const s = document.getElementById('saturationInput').value;
+            const l = document.getElementById('lightnessInput').value;
+            navigator.clipboard.writeText(`hsl(${h}, ${s}%, ${l}%)`);
+            alert('HSL copié!');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        document.getElementById('redInput').addEventListener('input', updateAll);
+        document.getElementById('greenInput').addEventListener('input', updateAll);
+        document.getElementById('blueInput').addEventListener('input', updateAll);
+        document.getElementById('hexInput').addEventListener('input', updateFromHex);
+        document.getElementById('colorPicker').addEventListener('input', () => {
+            document.getElementById('hexInput').value = document.getElementById('colorPicker').value;
+            updateFromHex();
+        });
+        document.getElementById('hueInput').addEventListener('input', updateFromHsl);
+        document.getElementById('saturationInput').addEventListener('input', updateFromHsl);
+        document.getElementById('lightnessInput').addEventListener('input', updateFromHsl);
+
+        updateAll();
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+    <script src="../../common.js"></script>
+</body>
+</html>
