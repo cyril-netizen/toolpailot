@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn Linux file permissions and chmod command. Complete guide to understanding and setting file permissions on Linux systems.">
     <meta name="keywords" content="linux permissions explained, chmod guide, file permissions linux">
-    <meta name="author" content="ToolPilot">
+    <meta name="author" content="Alex Devane">
     <meta name="google-site-verification" content="GQmwr9DX4vcNUR99i1BEnWOjiALL7UrETKVnMYLJ_R8" />
 
     <!-- Open Graph -->
@@ -344,7 +344,7 @@
                 <h1 itemprop="headline">Linux File Permissions Explained (chmod Guide)</h1>
                 <div class="article-meta">
                     <span>📅 <time itemprop="datePublished" datetime="2026-04-17">April 17, 2026</time></span>
-                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="../about.html" itemprop="url"><span itemprop="name">Alex Devane</span></a></span></span>
                     <span>⏱️ 7 min read</span>
                 </div>
             </div>
@@ -352,9 +352,10 @@
             <div class="article-content" itemprop="articleBody">
                 <p>Linux file permissions are fundamental to system security and proper operation. Understanding permissions prevents accidental data loss, ensures proper application function, and protects your system from unauthorized access. Despite their importance, many developers struggle with permission concepts and the chmod command. This comprehensive guide explains how Linux file permissions work, how to read permission notation, and how to use chmod to set permissions correctly. By mastering this essential skill, you'll manage files confidently on any Linux system.</p>
 
-                <div class="ad-slot">
-                    Ad space - Advertisement placement 1
-                </div>
+                <p style="background:var(--bg-input);border-left:3px solid var(--primary);padding:1rem 1.2rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:1.5rem;font-style:italic;color:var(--text);">chmod 777 — we've all done it out of frustration at some point. But understanding Linux permissions properly is a security fundamental. Here's the guide I give to every junior dev on my team.</p>
+
+
+                <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8551172612233720" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
                 <h2>Understanding the Permission Model</h2>
 
@@ -380,9 +381,7 @@
 
                 <p>Permissions can also be expressed numerically. Each permission has a value: read = 4, write = 2, execute = 1. Each group's permissions are added together: 7 (4+2+1) = rwx, 5 (4+1) = r-x, 4 = r--. A complete permission like 755 means owner gets 7 (rwx), group gets 5 (r-x), others get 5 (r-x).</p>
 
-                <div class="ad-slot">
-                    Ad space - Advertisement placement 2
-                </div>
+                <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8551172612233720" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
                 <h2>Using chmod to Change Permissions</h2>
 
@@ -522,6 +521,14 @@ chmod 777 public.txt     # Everyone rwx (generally not recommended)
             <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
             <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
             <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+
+            <div class="author-box" style="display:flex;gap:1.5rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:2.5rem;">
+                <div style="flex-shrink:0;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:white;font-weight:700;">AD</div>
+                <div>
+                    <div style="font-weight:600;color:var(--text);margin-bottom:0.3rem;"><a href="../about.html" style="color:var(--text);text-decoration:none;">Alex Devane</a></div>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.6;margin:0;">Full-stack developer with 8+ years of experience. I built ToolPilot because I was tired of bloated tool websites that track you. All our tools run 100%% client-side — your data never leaves your browser. <a href="../about.html">Learn more about me &rarr;</a></p>
+                </div>
+            </div>
         </article>
     </main>
 
@@ -537,8 +544,9 @@ chmod 777 public.txt     # Everyone rwx (generally not recommended)
         "datePublished": "2026-04-17T08:00:00Z",
         "dateModified": "2026-04-17T08:00:00Z",
         "author": {
-            "@type": "Organization",
-            "name": "ToolPilot"
+            "@type": "Person",
+            "name": "Alex Devane",
+            "url": "https://cyril-netizen.github.io/toolpailot/about.html"
         },
         "publisher": {
             "@type": "Organization",

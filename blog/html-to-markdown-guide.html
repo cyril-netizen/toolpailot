@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="How to convert HTML to Markdown: methods, tools, and best practices. Learn conversion techniques and tools for your projects.">
     <meta name="keywords" content="html to markdown conversion, convert html to md, html markdown tools, pandoc turndown">
-    <meta name="author" content="ToolPilot">
+    <meta name="author" content="Alex Devane">
     <meta name="google-site-verification" content="GQmwr9DX4vcNUR99i1BEnWOjiALL7UrETKVnMYLJ_R8" />
 
     <!-- Open Graph -->
@@ -301,7 +301,7 @@
                 <h1 itemprop="headline">How to Convert HTML to Markdown: Methods and Tools</h1>
                 <div class="article-meta">
                     <span>📅 <time itemprop="datePublished" datetime="2026-06-02">June 2, 2026</time></span>
-                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="../about.html" itemprop="url"><span itemprop="name">Alex Devane</span></a></span></span>
                     <span>⏱️ 7 min read</span>
                 </div>
             </div>
@@ -309,9 +309,10 @@
             <div class="article-content" itemprop="articleBody">
                 <p>Converting HTML to Markdown is common in content migration, documentation projects, and web scraping. HTML is verbose and structure-heavy. Markdown is clean, human-readable, and version-control friendly. Whether migrating a website, converting documentation, or processing content programmatically, understanding conversion methods is valuable. Multiple approaches exist, from simple online tools to sophisticated libraries, each with different trade-offs. This guide covers conversion techniques, compares tools, and shows when to use each approach.</p>
 
-                <div class="ad-slot">
-                    Ad space - Advertisement placement 1
-                </div>
+                <p style="background:var(--bg-input);border-left:3px solid var(--primary);padding:1rem 1.2rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:1.5rem;font-style:italic;color:var(--text);">I write everything in Markdown now — docs, READMEs, even blog posts. But when migrating old content, HTML-to-Markdown conversion becomes essential. Here's what I've learned.</p>
+
+
+                <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8551172612233720" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
                 <h2>Why Convert HTML to Markdown?</h2>
 
@@ -425,9 +426,7 @@ output = pypandoc.convert_text(html_content, 'md', format='html')
 
                 <p>For complex HTML, you have options. Accept some loss of formatting in exchange for readable Markdown. Use extended Markdown flavors like GitHub Flavored Markdown or Pandoc's Markdown which support additional syntax. Manually post-process converted Markdown to fix issues. Choose the approach based on your content and requirements.</p>
 
-                <div class="ad-slot">
-                    Ad space - Advertisement placement 2
-                </div>
+                <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8551172612233720" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
                 <h2>Best Practices for Conversion</h2>
 
@@ -494,6 +493,14 @@ output = pypandoc.convert_text(html_content, 'md', format='html')
             <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
             <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
             <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+
+            <div class="author-box" style="display:flex;gap:1.5rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:2.5rem;">
+                <div style="flex-shrink:0;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:white;font-weight:700;">AD</div>
+                <div>
+                    <div style="font-weight:600;color:var(--text);margin-bottom:0.3rem;"><a href="../about.html" style="color:var(--text);text-decoration:none;">Alex Devane</a></div>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.6;margin:0;">Full-stack developer with 8+ years of experience. I built ToolPilot because I was tired of bloated tool websites that track you. All our tools run 100%% client-side — your data never leaves your browser. <a href="../about.html">Learn more about me &rarr;</a></p>
+                </div>
+            </div>
         </article>
     </main>
 
@@ -508,8 +515,9 @@ output = pypandoc.convert_text(html_content, 'md', format='html')
         "datePublished": "2026-06-02T08:00:00Z",
         "dateModified": "2026-06-02T08:00:00Z",
         "author": {
-            "@type": "Organization",
-            "name": "ToolPilot"
+            "@type": "Person",
+            "name": "Alex Devane",
+            "url": "https://cyril-netizen.github.io/toolpailot/about.html"
         },
         "publisher": {
             "@type": "Organization",

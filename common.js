@@ -106,6 +106,7 @@ function injectFooter() {
         <a href="${base}/">Home</a>
         <a href="${base}/#tools">All Tools</a>
         <a href="${base}/blog/">Blog</a>
+        <a href="${base}/about.html">About</a>
         <a href="${base}/privacy.html">Privacy</a>
         <a href="https://buymeacoffee.com/toolpailot" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
       </div>

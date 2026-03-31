@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn what Base64 encoding is and how it works. Understand the fundamentals of data encoding and why it's essential in web development.">
     <meta name="keywords" content="what is base64 encoding, base64 explained, how base64 works, base64 encoding tutorial">
-    <meta name="author" content="ToolPilot">
+    <meta name="author" content="Alex Devane">
     <meta name="google-site-verification" content="GQmwr9DX4vcNUR99i1BEnWOjiALL7UrETKVnMYLJ_R8" />
 
     <!-- Open Graph -->
@@ -279,7 +279,7 @@
                 <h1 itemprop="headline">Understanding Base64 Encoding: A Complete Beginner's Guide</h1>
                 <div class="article-meta">
                     <span>📅 <time itemprop="datePublished" datetime="2026-03-14">March 14, 2026</time></span>
-                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">ToolPilot</span></span></span>
+                    <span>✏️ <span itemprop="author" itemscope itemtype="https://schema.org/Person"><a href="../about.html" itemprop="url"><span itemprop="name">Alex Devane</span></a></span></span>
                     <span>⏱️ 5 min read</span>
                 </div>
             </div>
@@ -287,9 +287,10 @@
             <div class="article-content" itemprop="articleBody">
                 <p>Base64 encoding is one of the most fundamental concepts in web development and data transmission. Despite its prevalence in modern applications, many developers don't fully understand how it works or why it's necessary. If you've ever encountered Base64-encoded data in APIs, emails, or web applications, you've witnessed this encoding in action. This comprehensive guide demystifies Base64, explaining what it is, how it works, and where you'll encounter it in real-world development.</p>
 
-                <div class="ad-slot">
-                    Ad space - Advertisement placement 1
-                </div>
+                <p style="background:var(--bg-input);border-left:3px solid var(--primary);padding:1rem 1.2rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:1.5rem;font-style:italic;color:var(--text);">Base64 is everywhere — emails, data URIs, API payloads — yet most devs treat it as a black box. I was the same until I needed to debug a corrupted image payload at 2am. Let me break it down so you don't have to learn the hard way.</p>
+
+
+                <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8551172612233720" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
                 <h2>What Exactly Is Base64 Encoding?</h2>
 
@@ -354,9 +355,7 @@ Result: QUJD
 
                 <p>Base64 is often confused with encryption, but they're fundamentally different. Encoding is a transformation that converts data from one format to another. Base64 is completely reversible and provides no security whatsoever. Anyone with the Base64 string can instantly decode it. Encryption, by contrast, transforms data in a way that requires a key to reverse it. Without the key, the data remains secure. Never use Base64 for sensitive data protection—use encryption instead.</p>
 
-                <div class="ad-slot">
-                    Ad space - Advertisement placement 2
-                </div>
+                <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8551172612233720" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
 
                 <h2>Working with Base64 in Code</h2>
 
@@ -437,6 +436,14 @@ Result: QUJD
             <meta itemprop="image" content="https://cyril-netizen.github.io/toolpailot/og-image.png">
             <meta itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
             <meta itemprop="publisher" content='{"@type":"Organization","name":"ToolPilot"}'>
+
+            <div class="author-box" style="display:flex;gap:1.5rem;align-items:flex-start;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:2.5rem;">
+                <div style="flex-shrink:0;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:white;font-weight:700;">AD</div>
+                <div>
+                    <div style="font-weight:600;color:var(--text);margin-bottom:0.3rem;"><a href="../about.html" style="color:var(--text);text-decoration:none;">Alex Devane</a></div>
+                    <p style="color:var(--text-muted);font-size:0.9rem;line-height:1.6;margin:0;">Full-stack developer with 8+ years of experience. I built ToolPilot because I was tired of bloated tool websites that track you. All our tools run 100%% client-side — your data never leaves your browser. <a href="../about.html">Learn more about me &rarr;</a></p>
+                </div>
+            </div>
         </article>
     </main>
 
@@ -451,8 +458,9 @@ Result: QUJD
         "datePublished": "2026-03-14T08:00:00Z",
         "dateModified": "2026-03-14T08:00:00Z",
         "author": {
-            "@type": "Organization",
-            "name": "ToolPilot"
+            "@type": "Person",
+            "name": "Alex Devane",
+            "url": "https://cyril-netizen.github.io/toolpailot/about.html"
         },
         "publisher": {
             "@type": "Organization",

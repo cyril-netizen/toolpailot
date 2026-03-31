@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="GQmwr9DX4vcNUR99i1BEnWOjiALL7UrETKVnMYLJ_R8" />
+    <title>À Propos de ToolPilot - Outils pour Développeurs</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .author-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .author-header {
+            margin-bottom: 2rem;
+        }
+
+        .author-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-role {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .author-bio {
+            margin-bottom: 2rem;
+        }
+
+        .author-bio p {
+            margin-bottom: 1.2rem;
+            color: var(--text);
+        }
+
+        .author-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .author-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .author-links a:hover {
+            opacity: 0.9;
+        }
+
+        .contact-section {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .contact-section p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p strong {
+            color: var(--text);
+        }
+
+        .contact-email {
+            color: var(--primary);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .author-card,
+            .contact-section {
+                padding: 1.5rem;
+            }
+
+            .author-links {
+                gap: 1rem;
+            }
+
+            .author-links a {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Accueil</a>
+            <span>></span>
+            <span>À Propos</span>
+        </div>
+
+        <h1>À Propos de ToolPilot</h1>
+
+        <div class="author-card">
+            <div class="author-header">
+                <div class="author-name">Alex Devane</div>
+                <div class="author-role">Développeur Full-Stack & Créateur de ToolPilot</div>
+            </div>
+
+            <div class="author-bio">
+                <p>
+                    ToolPilot est né d'une frustration. Après des années à naviguer entre des sites d'outils surchargés qui exigent des inscriptions, tracent chacun de vos mouvements et ralentissent à cause des scripts de suivi, j'ai décidé que c'était assez. Je voulais créer un espace où les développeurs pourraient accéder à des outils utiles sans les inconvénients — pas d'inscription, pas de suivi, juste de la pure fonctionnalité.
+                </p>
+
+                <p>
+                    Avec plus de 8 ans d'expérience dans la création d'applications web et la contribution à des projets open-source, j'ai toujours cru que les excellents logiciels n'ont pas besoin d'être compliqués ou invasifs. ToolPilot incarne une philosophie axée sur la vie privée : tout s'exécute dans votre navigateur, rien n'est envoyé aux serveurs, et il n'y a zéro collecte de données. Vous possédiez entièrement votre travail.
+                </p>
+
+                <p>
+                    Mon parcours couvre le développement full-stack dans diverses industries — des startups aux grandes entreprises d'Europe. J'ai vu comment des outils de développement de qualité peuvent vous faire gagner d'innombrables heures, et comment des outils médiocres peuvent drainer votre productivité. Cette expérience a façonné la conception de ToolPilot : rapide, intuitif et respectueux de votre temps et de votre vie privée.
+                </p>
+
+                <p>
+                    La mission est simple : garder ToolPilot gratuit, rapide et précieux. Il est soutenu par des publicités discrètes, non pas en vendant vos données ou en verrouillant des fonctionnalités derrière des paywalls. Si vous trouvez ToolPilot utile, pensez à soutenir le projet — il faut du temps et de la passion pour maintenir des outils de qualité pour la communauté.
+                </p>
+            </div>
+
+            <div class="author-links">
+                <a href="https://github.com/cyril-netizen" target="_blank" rel="noopener noreferrer">
+                    ↗ GitHub
+                </a>
+                <a href="https://buymeacoffee.com/toolpailot" target="_blank" rel="noopener noreferrer">
+                    ☕ Soutenir ToolPilot
+                </a>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Nous Contacter</h2>
+            <p>
+                Des questions, des rapports de bugs ou des suggestions de fonctionnalités ? J'aimerais avoir de vos nouvelles. N'hésitez pas à me contacter pour des demandes commerciales ou juste pour dire bonjour.
+            </p>
+            <p>
+                <strong>Email :</strong> <a href="mailto:hello@toolpilot.dev" class="contact-email">hello@toolpilot.dev</a>
+            </p>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alex Devane",
+        "jobTitle": "Développeur Full-Stack & Créateur de ToolPilot",
+        "url": "https://cyril-netizen.github.io/toolpailot/",
+        "sameAs": [
+            "https://github.com/cyril-netizen"
+        ],
+        "description": "Créateur de ToolPilot, une collection d'outils pour développeurs axée sur la vie privée qui respecte vos données et votre temps."
+    }
+    </script>
+
+    <script src="../common.js"></script>
+</body>
+</html>
