@@ -8,8 +8,7 @@
   <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/privacy.html">
   <link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/privacy.html">
   <link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/privacy.html">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./fonts/inter.css">
   <link rel="stylesheet" href="style.css">
   <style>
     .policy-content { margin: 2rem 0; line-height: 1.7; }
@@ -62,23 +61,24 @@
         </ul>
 
         <h3>Google AdSense Cookies</h3>
-        <p>ToolPilot displays advertisements through Google AdSense. Google uses cookies and similar technologies to:</p>
+        <p>ToolPilot displays advertisements through Google AdSense. <strong>These cookies are only loaded after you give your explicit consent</strong> via the cookie banner displayed on your first visit. If you refuse, no advertising cookies are set and no ads are shown.</p>
+        <p>If you accept, Google uses cookies and similar technologies to:</p>
         <ul>
           <li>Deliver targeted advertisements</li>
           <li>Measure ad performance</li>
           <li>Prevent ad fraud</li>
         </ul>
-        <p>These cookies are managed by Google and are subject to <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>. You can opt out of personalized ads through <a href="https://adssettings.google.com" target="_blank">Google Ad Settings</a>.</p>
+        <p>These cookies are managed by Google and are subject to <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>. You can opt out of personalized ads through <a href="https://adssettings.google.com" target="_blank">Google Ad Settings</a>. You can also change your consent at any time by clearing your browser's localStorage for this site.</p>
 
         <h2>3. Third-Party Services</h2>
         <h3>Google AdSense</h3>
         <p>We use Google AdSense to monetize the site. Google may collect information about your browsing activity to serve relevant ads. This is governed by Google's privacy policies, not ours.</p>
 
-        <h3>Google Fonts</h3>
-        <p>We use Google Fonts to display typography. Loading fonts from Google's CDN may result in a request to Google's servers. No personally identifiable information is transmitted.</p>
+        <h3>Fonts</h3>
+        <p>ToolPilot uses the Inter font, which is hosted locally on our servers. <strong>No request is made to Google or any third-party CDN</strong> to load fonts, ensuring your IP address is not shared with font providers.</p>
 
-        <h3>Netlify (Hosting Provider)</h3>
-        <p>The ToolPilot website is hosted on Netlify. Netlify may collect standard web server logs including IP addresses and page requests. See <a href="https://www.netlify.com/privacy/" target="_blank">Netlify's Privacy Policy</a> for details.</p>
+        <h3>GitHub Pages (Hosting Provider)</h3>
+        <p>The ToolPilot website is hosted on GitHub Pages. GitHub may collect standard web server logs including IP addresses and page requests. See <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection" target="_blank">GitHub Pages data collection</a> for details.</p>
 
         <h2>4. No Analytics or Tracking</h2>
         <p>ToolPilot does <strong>not</strong> use:</p>
@@ -91,13 +91,29 @@
         </ul>
         <p>We do not track how you use the tools, which features you access, or how long you spend on the site.</p>
 
-        <h2>5. GDPR Compliance</h2>
-        <p>Even though all processing occurs on your device, ToolPilot respects GDPR and privacy regulations worldwide:</p>
+        <h2>5. GDPR Compliance (EU Regulation 2016/679)</h2>
+        <p>ToolPilot fully complies with the General Data Protection Regulation (GDPR) and the ePrivacy Directive:</p>
         <ul>
-          <li><strong>Data Minimization:</strong> We collect minimal data. The only information stored on your device is your theme preference.</li>
-          <li><strong>No Personal Data Processing:</strong> We do not process personal data from your tool usage.</li>
-          <li><strong>Your Rights:</strong> Since we don't collect personal information about you, typical GDPR requests (access, deletion, portability) don't apply. However, you can always delete the ToolPilot localStorage data from your browser settings.</li>
-          <li><strong>Third-Party Data:</strong> Google's use of cookies is governed by their privacy policies. You have rights regarding Google's data collection.</li>
+          <li><strong>Consent Before Cookies:</strong> No advertising or tracking cookies are set before you give your explicit consent via our cookie banner (Article 6(1)(a) GDPR, Article 5(3) ePrivacy Directive).</li>
+          <li><strong>Data Minimization:</strong> We collect minimal data. The only information stored on your device is your theme preference and your cookie consent choice.</li>
+          <li><strong>No Personal Data Processing:</strong> We do not process personal data from your tool usage. All tool processing happens in your browser.</li>
+          <li><strong>Your Rights:</strong> Under the GDPR, you have the right to:
+            <ul>
+              <li><strong>Access</strong> (Art. 15) — Request what data we hold about you.</li>
+              <li><strong>Rectification</strong> (Art. 16) — Request correction of inaccurate data.</li>
+              <li><strong>Erasure</strong> (Art. 17) — Request deletion of your data.</li>
+              <li><strong>Restriction</strong> (Art. 18) — Request limitation of data processing.</li>
+              <li><strong>Portability</strong> (Art. 20) — Receive your data in a portable format.</li>
+              <li><strong>Objection</strong> (Art. 21) — Object to data processing.</li>
+              <li><strong>Withdraw consent</strong> (Art. 7(3)) — Withdraw cookie consent at any time by clearing your browser's localStorage for this site.</li>
+            </ul>
+          Since ToolPilot does not collect personal data beyond localStorage preferences, most of these rights are satisfied by default. You can delete ToolPilot data at any time via your browser settings.</li>
+          <li><strong>Third-Party Data:</strong> If you accept advertising cookies, Google processes data under their own privacy policies. You can exercise your rights regarding Google's data collection through <a href="https://adssettings.google.com" target="_blank">Google Ad Settings</a> and <a href="https://myaccount.google.com/data-and-personalization" target="_blank">Google Account settings</a>.</li>
+        </ul>
+        <h3>Legal Basis for Processing</h3>
+        <ul>
+          <li><strong>Essential cookies</strong> (theme preference, consent choice): Legitimate interest (Art. 6(1)(f)) — required for site functionality.</li>
+          <li><strong>Advertising cookies</strong> (Google AdSense): Consent (Art. 6(1)(a)) — only activated after explicit user consent.</li>
         </ul>
 
         <h2>6. Contact & Data Requests</h2>
@@ -148,8 +164,9 @@
           <li>All tools run on your device, not on our servers</li>
           <li>We don't collect or store your tool data</li>
           <li>We don't track your activity or behavior</li>
-          <li>Only your theme preference is stored locally</li>
-          <li>Google AdSense is our only third-party service (for monetization)</li>
+          <li>Advertising cookies require your explicit consent before loading</li>
+          <li>Fonts are hosted locally — no third-party font CDN requests</li>
+          <li>Only your theme preference and cookie consent choice are stored locally</li>
         </ul>
         <p>Your data is your data. ToolPilot simply provides the tools—the processing stays on your device.</p>
       </div>

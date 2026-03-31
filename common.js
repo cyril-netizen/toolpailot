@@ -174,14 +174,61 @@ function renderToolCards(containerId) {
   `).join('');
 }
 
-/* ---- AdSense ---- */
-function injectAdSense() {
-  if (document.querySelector('script[src*="adsbygoogle"]')) return; // already loaded
+/* ---- Cookie Consent (GDPR) ---- */
+function getCookieConsent() {
+  return localStorage.getItem('tp-cookie-consent'); // 'accepted' | 'refused' | null
+}
+
+function setCookieConsent(value) {
+  localStorage.setItem('tp-cookie-consent', value);
+}
+
+function injectCookieBanner() {
+  if (getCookieConsent()) return; // already answered
+
+  const isFr = isFrenchPage();
+  const banner = document.createElement('div');
+  banner.id = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', isFr ? 'Consentement cookies' : 'Cookie consent');
+  banner.innerHTML = `
+    <div class="cookie-inner">
+      <p>${isFr
+        ? 'Ce site utilise des cookies publicitaires via Google AdSense. Aucune donnée personnelle n\'est collectée par nos outils (tout est traité dans votre navigateur).'
+        : 'This site uses advertising cookies via Google AdSense. No personal data is collected by our tools (everything is processed in your browser).'
+      } <a href="${getBaseUrl()}/privacy.html" style="color:inherit;text-decoration:underline">${isFr ? 'Politique de confidentialité' : 'Privacy Policy'}</a></p>
+      <div class="cookie-buttons">
+        <button id="cookie-accept" class="cookie-btn cookie-btn-accept">${isFr ? 'Accepter' : 'Accept'}</button>
+        <button id="cookie-refuse" class="cookie-btn cookie-btn-refuse">${isFr ? 'Refuser' : 'Refuse'}</button>
+      </div>
+    </div>`;
+  document.body.appendChild(banner);
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    setCookieConsent('accepted');
+    banner.remove();
+    loadAdSense();
+  });
+  document.getElementById('cookie-refuse').addEventListener('click', () => {
+    setCookieConsent('refused');
+    banner.remove();
+    hideAdSlots();
+  });
+}
+
+function hideAdSlots() {
+  document.querySelectorAll('.ad-slot').forEach(el => { el.style.display = 'none'; });
+}
+
+/* ---- AdSense (loaded only after consent) ---- */
+function loadAdSense() {
+  if (document.querySelector('script[src*="adsbygoogle"]')) return;
   const s = document.createElement('script');
   s.async = true;
   s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8551172612233720';
   s.crossOrigin = 'anonymous';
   document.head.appendChild(s);
+  setTimeout(initAdSlots, 1000);
 }
 
 function initAdSlots() {
@@ -194,9 +241,15 @@ function initAdSlots() {
 
 /* ---- Init ---- */
 document.addEventListener('DOMContentLoaded', () => {
-  injectAdSense();
   injectHeader();
   injectFooter();
-  // Initialize ad slots after a short delay to let AdSense script load
-  setTimeout(initAdSlots, 1000);
+
+  const consent = getCookieConsent();
+  if (consent === 'accepted') {
+    loadAdSense();
+  } else if (consent === 'refused') {
+    hideAdSlots();
+  }
+  // Show banner if no choice made yet (blocks AdSense until consent)
+  injectCookieBanner();
 });
