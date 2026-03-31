@@ -118,13 +118,18 @@ function injectAdSlot(target, id) {
   const slot = document.createElement('div');
   slot.className = 'ad-slot';
   slot.id = id || 'ad-' + Math.random().toString(36).slice(2, 8);
-  slot.innerHTML = '<!-- Ad Slot: Replace with AdSense code --><span>Ad Space</span>';
+  slot.innerHTML = `<ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-8551172612233720"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>`;
   if (typeof target === 'string') {
     const el = document.querySelector(target);
     if (el) el.appendChild(slot);
   } else if (target) {
     target.appendChild(slot);
   }
+  try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
   return slot;
 }
 
@@ -178,9 +183,19 @@ function injectAdSense() {
   document.head.appendChild(s);
 }
 
+function initAdSlots() {
+  document.querySelectorAll('ins.adsbygoogle').forEach(ins => {
+    if (!ins.dataset.adsbygoogleStatus) {
+      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+    }
+  });
+}
+
 /* ---- Init ---- */
 document.addEventListener('DOMContentLoaded', () => {
   injectAdSense();
   injectHeader();
   injectFooter();
+  // Initialize ad slots after a short delay to let AdSense script load
+  setTimeout(initAdSlots, 1000);
 });
