@@ -261,6 +261,24 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- EN About -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/about.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- FR About -->
+  <url>
+    <loc>https://cyril-netizen.github.io/toolpailot/fr/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyril-netizen.github.io/toolpailot/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyril-netizen.github.io/toolpailot/about.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- EN Blog -->
   <url>
     <loc>https://cyril-netizen.github.io/toolpailot/blog/</loc>
