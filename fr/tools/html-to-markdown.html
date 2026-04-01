@@ -26,7 +26,8 @@
 
     <title>Convertisseur HTML vers Markdown — Convertir HTML vers MD en Ligne | ToolPilot</title>
     <link rel="stylesheet" href="../../style.css">
-<link rel="stylesheet" href="../../fonts/inter.css">
+<link rel="preload" href="../../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../fonts/inter.css">
 
     <style>
         .breadcrumb { display: flex; gap: 8px; margin-bottom: 32px; font-size: 14px; color: var(--text-muted); }
@@ -131,7 +132,7 @@
     {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Convertisseur HTML vers Markdown", "description": "Convertisseur gratuit en ligne HTML vers Markdown", "url": "https://cyril-netizen.github.io/toolpailot/fr/tools/html-to-markdown.html", "applicationCategory": "UtilityApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
     </script>
 
-    <script src="../../common.js"></script>
+    <script defer src="../../common.js"></script>
     <script>
         function convertHtmlToMarkdown() {
             const htmlInput = document.getElementById('htmlInput').value;

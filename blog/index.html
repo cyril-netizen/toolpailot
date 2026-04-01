@@ -18,7 +18,8 @@
     <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/blog/">
     <link rel="alternate" type="application/rss+xml" title="ToolPilot Blog RSS" href="https://cyril-netizen.github.io/toolpailot/blog/feed.xml">
     <title>Blog | ToolPilot — Free Developer Tools & Guides</title>
-<link rel="stylesheet" href="../fonts/inter.css">
+<link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../fonts/inter.css">
     <link rel="stylesheet" href="../style.css">
     <style>
         .breadcrumb { display:flex; align-items:center; gap:.5rem; margin-bottom:2rem; font-size:.95rem; color:var(--text-muted); }
@@ -128,6 +129,6 @@
     };
     document.head.appendChild(Object.assign(document.createElement('script'),{type:'application/ld+json',textContent:JSON.stringify(blogSchema)}));
     </script>
-    <script src="../common.js"></script>
+    <script defer src="../common.js"></script>
 </body>
 </html>

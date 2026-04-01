@@ -9,7 +9,8 @@
     <link rel="canonical" href="https://cyril-netizen.github.io/toolpailot/fr/tools/css-gradient-generator.html">
     <title>Générateur de Dégradés CSS — Outil Gratuit | ToolPilot</title>
     <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="../../fonts/inter.css">
+    <link rel="preload" href="../../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../fonts/inter.css">
     <style>
         body { padding: 40px 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -80,7 +81,7 @@
         </div>
     </div>
 
-    <script src="../../common.js"></script>
+    <script defer src="../../common.js"></script>
     <script>
         function updateGradient() {
             const type = document.getElementById('gradientType').value;

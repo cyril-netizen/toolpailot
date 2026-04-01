@@ -26,7 +26,8 @@
 
     <title>Chmod Calculator — Linux File Permissions | ToolPilot</title>
     <link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../fonts/inter.css">
+<link rel="preload" href="../fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../fonts/inter.css">
 
     <style>
         .breadcrumb {
@@ -580,7 +581,7 @@
     }
     </script>
 
-    <script src="../common.js"></script>
+    <script defer src="../common.js"></script>
     <script>
         function updateChmod() {
             const checks = {

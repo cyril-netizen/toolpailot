@@ -19,7 +19,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ToolPilot — 30 Free Online Tools">
   <meta name="twitter:description" content="Fast, free, privacy-first online tools. Everything runs in your browser.">
-<link rel="stylesheet" href="./fonts/inter.css">
+<link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./fonts/inter.css">
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <style>
@@ -125,7 +126,7 @@
     </section>
   </main>
 
-  <script src="common.js"></script>
+  <script defer src="common.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => renderToolCards('tool-list'));
     // Register Service Worker

@@ -7,7 +7,8 @@
   <title>Page Not Found — ToolPilot</title>
   <meta name="description" content="Sorry, the page you're looking for doesn't exist. Check out ToolPilot's free online tools instead!">
   <meta name="robots" content="noindex, follow">
-<link rel="stylesheet" href="./fonts/inter.css">
+<link rel="preload" href="./fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./fonts/inter.css">
   <link rel="stylesheet" href="style.css">
   <style>
     .not-found-container {
@@ -116,6 +117,6 @@
     </section>
   </main>
 
-  <script src="common.js"></script>
+  <script defer src="common.js"></script>
 </body>
 </html>
