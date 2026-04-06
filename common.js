@@ -208,6 +208,7 @@ function injectCookieBanner() {
     setCookieConsent('accepted');
     banner.remove();
     loadAdSense();
+    loadGA4();
   });
   document.getElementById('cookie-refuse').addEventListener('click', () => {
     setCookieConsent('refused');
@@ -218,6 +219,22 @@ function injectCookieBanner() {
 
 function hideAdSlots() {
   document.querySelectorAll('.ad-slot').forEach(el => { el.style.display = 'none'; });
+}
+
+/* ---- Google Analytics 4 (loaded only after consent) ---- */
+function loadGA4() {
+  if (document.querySelector('script[src*="googletagmanager.com/gtag"]')) return;
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0V85LF9GWM';
+  document.head.appendChild(s);
+  s.onload = () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-0V85LF9GWM');
+  };
 }
 
 /* ---- AdSense (loaded only after consent) ---- */
@@ -247,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const consent = getCookieConsent();
   if (consent === 'accepted') {
     loadAdSense();
+    loadGA4();
   } else if (consent === 'refused') {
     hideAdSlots();
   }
