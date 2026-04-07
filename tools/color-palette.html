@@ -34,11 +34,11 @@
         }
 
         .controls-section {
-            background: #f9f9f9;
+            background: var(--bg-input);
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 2rem;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border);
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
@@ -60,7 +60,7 @@
 
         .mode-selector select {
             padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 1rem;
             cursor: pointer;
@@ -73,7 +73,7 @@
 
         .btn {
             padding: 0.75rem 1.5rem;
-            background: #0066cc;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 6px;
@@ -83,7 +83,7 @@
         }
 
         .btn:hover {
-            background: #0052a3;
+            background: var(--primary-hover);
         }
 
         .btn:active {
@@ -97,7 +97,7 @@
         .palette-label {
             font-weight: 600;
             margin-bottom: 1.5rem;
-            color: #333;
+            color: var(--text);
         }
 
         .palette-grid {
@@ -108,8 +108,8 @@
         }
 
         .color-card {
-            background: white;
-            border: 1px solid #ddd;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
@@ -136,7 +136,7 @@
             top: 8px;
             right: 8px;
             background: rgba(255, 255, 255, 0.8);
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             border-radius: 4px;
             width: 28px;
             height: 28px;
@@ -153,9 +153,9 @@
         }
 
         .lock-btn.locked {
-            background: #0066cc;
+            background: var(--primary);
             color: white;
-            border-color: #0066cc;
+            border-color: var(--primary);
         }
 
         .color-info {
@@ -172,7 +172,7 @@
 
         .color-formats {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--text-muted);
             line-height: 1.5;
         }
 
@@ -185,7 +185,7 @@
 
         .format-label {
             font-weight: 500;
-            color: #555;
+            color: var(--text-muted);
         }
 
         .format-value {
@@ -221,18 +221,18 @@
         .seo-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
         .seo-section h2 {
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
         .seo-section h3 {
-            color: #444;
+            color: var(--text);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }

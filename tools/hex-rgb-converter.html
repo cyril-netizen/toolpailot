@@ -47,15 +47,15 @@
         }
 
         .input-section {
-            background: #f9f9f9;
+            background: var(--bg-input);
             padding: 1.5rem;
             border-radius: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
         }
 
         .input-section h3 {
             margin-top: 0;
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
@@ -67,7 +67,7 @@
             display: block;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: var(--text);
             font-size: 0.9rem;
         }
 
@@ -76,7 +76,7 @@
         input[type="range"] {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             border-radius: 6px;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
@@ -86,7 +86,7 @@
         input[type="text"]:focus,
         input[type="number"]:focus {
             outline: none;
-            border-color: #0066cc;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
         }
 
@@ -121,14 +121,14 @@
             width: 50px;
             text-align: center;
             font-weight: 500;
-            color: #666;
+            color: var(--text-muted);
         }
 
         .preview-section {
-            background: white;
+            background: var(--bg-card);
             padding: 1.5rem;
             border-radius: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             text-align: center;
         }
 
@@ -136,14 +136,14 @@
             width: 100%;
             height: 150px;
             border-radius: 8px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--border);
             margin-bottom: 1rem;
             transition: background-color 0.2s;
         }
 
         .preview-label {
             font-weight: 600;
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
@@ -154,10 +154,10 @@
         }
 
         .output-item {
-            background: #f9f9f9;
+            background: var(--bg-input);
             padding: 0.75rem;
             border-radius: 6px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -165,27 +165,27 @@
 
         .output-label {
             font-weight: 600;
-            color: #666;
+            color: var(--text-muted);
             font-size: 0.85rem;
         }
 
         .output-value {
             font-family: 'Courier New', monospace;
-            color: #333;
+            color: var(--text);
             font-weight: 500;
             word-break: break-all;
         }
 
         .copy-icon {
             cursor: pointer;
-            color: #0066cc;
+            color: var(--primary);
             font-weight: bold;
             padding: 0.25rem 0.5rem;
             transition: all 0.2s;
         }
 
         .copy-icon:hover {
-            color: #0052a3;
+            color: var(--primary-hover);
         }
 
         .copy-icon.copied {
@@ -195,24 +195,24 @@
         .opacity-group {
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid var(--border);
         }
 
         .seo-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
         .seo-section h2 {
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
         .seo-section h3 {
-            color: #444;
+            color: var(--text);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
@@ -225,29 +225,29 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
-            background: white;
+            background: var(--bg-card);
             border-radius: 8px;
             overflow: hidden;
         }
 
         .color-table thead {
-            background: #f0f0f0;
+            background: var(--bg-input);
         }
 
         .color-table th,
         .color-table td {
             padding: 0.75rem;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--border);
         }
 
         .color-table th {
             font-weight: 600;
-            color: #333;
+            color: var(--text);
         }
 
         .color-table tr:hover {
-            background: #f9f9f9;
+            background: var(--bg-input);
         }
 
         .color-swatch {
@@ -255,7 +255,7 @@
             width: 30px;
             height: 30px;
             border-radius: 4px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             vertical-align: middle;
             margin-right: 0.5rem;
         }

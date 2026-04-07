@@ -45,7 +45,7 @@
             width: 100%;
             min-height: 150px;
             padding: 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             border-radius: 8px;
             font-family: inherit;
             font-size: 1rem;
@@ -54,7 +54,7 @@
 
         textarea:focus {
             outline: none;
-            border-color: #0066cc;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
         }
 
@@ -67,8 +67,8 @@
 
         .case-btn {
             padding: 0.75rem 1rem;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
             border-radius: 6px;
             cursor: pointer;
             font-weight: 500;
@@ -76,8 +76,8 @@
         }
 
         .case-btn:hover {
-            background: #e0e0e0;
-            border-color: #999;
+            background: var(--border);
+            border-color: var(--text-muted);
         }
 
         .case-btn:active {
@@ -91,12 +91,12 @@
         .output-label {
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: var(--text);
         }
 
         .output-box {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1rem;
             min-height: 100px;
@@ -115,7 +115,7 @@
 
         .copy-btn {
             padding: 0.75rem 1.5rem;
-            background: #0066cc;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 6px;
@@ -125,7 +125,7 @@
         }
 
         .copy-btn:hover {
-            background: #0052a3;
+            background: var(--primary-hover);
         }
 
         .copy-btn:active {
@@ -139,18 +139,18 @@
         .seo-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
         .seo-section h2 {
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
         .seo-section h3 {
-            color: #444;
+            color: var(--text);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }

@@ -54,12 +54,12 @@
         .panel-header {
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: var(--text);
         }
 
         .panel-content {
             flex: 1;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
             display: flex;
@@ -74,20 +74,20 @@
             font-family: 'Courier New', monospace;
             font-size: 0.95rem;
             resize: none;
-            background: #fff;
-            color: #333;
+            background: var(--bg-card);
+            color: var(--text);
         }
 
         .markdown-input:focus {
             outline: none;
-            box-shadow: inset 0 0 0 2px #0066cc;
+            box-shadow: inset 0 0 0 2px var(--primary);
         }
 
         .preview-content {
             flex: 1;
             padding: 1rem;
             overflow-y: auto;
-            background: #f9f9f9;
+            background: var(--bg-input);
             font-size: 0.95rem;
             line-height: 1.6;
         }
@@ -125,7 +125,7 @@
         }
 
         .preview-content code {
-            background: #e8e8e8;
+            background: var(--bg-input);
             padding: 0.2em 0.4em;
             border-radius: 3px;
             font-family: 'Courier New', monospace;
@@ -148,7 +148,7 @@
         }
 
         .preview-content a {
-            color: #0066cc;
+            color: var(--primary);
             text-decoration: none;
         }
 
@@ -166,16 +166,16 @@
         }
 
         .preview-content blockquote {
-            border-left: 4px solid #0066cc;
+            border-left: 4px solid var(--primary);
             padding-left: 1rem;
             margin: 1rem 0;
-            color: #666;
+            color: var(--text-muted);
             font-style: italic;
         }
 
         .preview-content hr {
             border: none;
-            border-top: 2px solid #ddd;
+            border-top: 2px solid var(--border);
             margin: 1.5rem 0;
         }
 
@@ -194,7 +194,7 @@
 
         .copy-btn {
             padding: 0.75rem 1.5rem;
-            background: #0066cc;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 6px;
@@ -204,7 +204,7 @@
         }
 
         .copy-btn:hover {
-            background: #0052a3;
+            background: var(--primary-hover);
         }
 
         .copy-btn.copied {
@@ -214,18 +214,18 @@
         .seo-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
         .seo-section h2 {
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
         .seo-section h3 {
-            color: #444;
+            color: var(--text);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }

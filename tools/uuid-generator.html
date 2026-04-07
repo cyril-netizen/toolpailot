@@ -34,11 +34,11 @@
         }
 
         .controls-section {
-            background: #f9f9f9;
+            background: var(--bg-input);
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 2rem;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border);
         }
 
         .control-row {
@@ -61,12 +61,12 @@
 
         label {
             font-weight: 600;
-            color: #333;
+            color: var(--text);
         }
 
         input[type="number"] {
             padding: 0.5rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border);
             border-radius: 6px;
             font-size: 1rem;
             width: 120px;
@@ -98,7 +98,7 @@
 
         .btn {
             padding: 0.75rem 1.5rem;
-            background: #0066cc;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 6px;
@@ -108,7 +108,7 @@
         }
 
         .btn:hover {
-            background: #0052a3;
+            background: var(--primary-hover);
         }
 
         .btn:active {
@@ -122,7 +122,7 @@
         .output-label {
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #333;
+            color: var(--text);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -130,13 +130,13 @@
 
         .output-count {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--text-muted);
             font-weight: normal;
         }
 
         .output-box {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1rem;
             min-height: 200px;
@@ -150,8 +150,8 @@
             justify-content: space-between;
             padding: 0.75rem;
             margin-bottom: 0.5rem;
-            background: white;
-            border: 1px solid #e0e0e0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 6px;
             font-family: 'Courier New', monospace;
             font-size: 0.9rem;
@@ -159,8 +159,8 @@
         }
 
         .uuid-item:hover {
-            border-color: #0066cc;
-            background: #f0f5ff;
+            border-color: var(--primary);
+            background: var(--bg-input);
         }
 
         .uuid-value {
@@ -171,7 +171,7 @@
 
         .uuid-copy-btn {
             padding: 0.4rem 0.8rem;
-            background: #e0e0e0;
+            background: var(--border);
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -183,7 +183,7 @@
         }
 
         .uuid-copy-btn:hover {
-            background: #0066cc;
+            background: var(--primary);
             color: white;
         }
 
@@ -248,24 +248,24 @@
         .empty-state {
             text-align: center;
             padding: 2rem;
-            color: #999;
+            color: var(--text-muted);
         }
 
         .seo-section {
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid #ddd;
-            color: #666;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
             line-height: 1.8;
         }
 
         .seo-section h2 {
-            color: #333;
+            color: var(--text);
             margin-bottom: 1rem;
         }
 
         .seo-section h3 {
-            color: #444;
+            color: var(--text);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }

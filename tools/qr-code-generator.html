@@ -508,23 +508,12 @@
                 canvas.height = size;
                 ctx.clearRect(0, 0, size, size);
 
-                // Generate new QR code using QRCode.js
-                // We'll create the QR code on the canvas using a simple approach
-                qrInstance = new QRCode({
-                    text: input,
-                    width: size,
-                    height: size,
-                    colorDark: fgColor,
-                    colorLight: bgColor,
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-
-                // Get the image from the generated QR code and draw it on canvas
+                // Generate QR code using QRCode.js into a hidden container
                 const tempContainer = document.createElement('div');
-                tempContainer.style.display = 'none';
+                tempContainer.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
                 document.body.appendChild(tempContainer);
 
-                const tempQr = new QRCode({
+                qrInstance = new QRCode(tempContainer, {
                     text: input,
                     width: size,
                     height: size,
@@ -532,16 +521,15 @@
                     colorLight: bgColor,
                     correctLevel: QRCode.CorrectLevel.H
                 });
-                tempContainer.appendChild(tempQr._el);
 
                 setTimeout(() => {
-                    const img = tempContainer.querySelector('canvas');
+                    const img = tempContainer.querySelector('canvas') || tempContainer.querySelector('img');
                     if (img) {
-                        ctx.drawImage(img, 0, 0);
+                        ctx.drawImage(img, 0, 0, size, size);
                     }
                     document.body.removeChild(tempContainer);
                     showMessage('QR code generated successfully!', 'success');
-                }, 100);
+                }, 200);
 
             } catch (e) {
                 showMessage('Error generating QR code: ' + e.message, 'error');

@@ -35,17 +35,17 @@
             gap: 8px;
             margin-bottom: 32px;
             font-size: 14px;
-            color: #666;
+            color: var(--text-muted);
         }
 
         .breadcrumb a {
-            color: #0066cc;
+            color: var(--primary);
             text-decoration: none;
             transition: color 0.2s;
         }
 
         .breadcrumb a:hover {
-            color: #0052a3;
+            color: var(--primary-dark);
             text-decoration: underline;
         }
 
@@ -65,14 +65,14 @@
         .panel-title {
             font-size: 16px;
             font-weight: 600;
-            color: #333;
+            color: var(--text);
         }
 
         textarea {
             flex: 1;
             min-height: 300px;
             padding: 16px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border);
             border-radius: 8px;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 13px;
@@ -83,8 +83,8 @@
 
         textarea:focus {
             outline: none;
-            border-color: #0066cc;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
         }
 
         .regex-input-group {
@@ -103,12 +103,12 @@
         .input-label {
             font-size: 14px;
             font-weight: 600;
-            color: #333;
+            color: var(--text);
         }
 
         input[type="text"] {
             padding: 12px 16px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border);
             border-radius: 6px;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 13px;
@@ -117,8 +117,8 @@
 
         input[type="text"]:focus {
             outline: none;
-            border-color: #0066cc;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
         }
 
         .flags-group {
@@ -136,13 +136,13 @@
             width: 18px;
             height: 18px;
             cursor: pointer;
-            accent-color: #0066cc;
+            accent-color: var(--primary);
         }
 
         .flag-checkbox label {
             cursor: pointer;
             font-size: 13px;
-            color: #666;
+            color: var(--text-muted);
             user-select: none;
         }
 
@@ -170,25 +170,25 @@
         }
 
         .btn-primary {
-            background-color: #0066cc;
+            background-color: var(--primary);
             color: white;
         }
 
         .btn-primary:hover {
-            background-color: #0052a3;
+            background-color: var(--primary-dark);
             transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
         }
 
         .btn-secondary {
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #e0e0e0;
+            background-color: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background-color: #e8e8e8;
-            border-color: #d0d0d0;
+            background-color: var(--bg-card);
+            border-color: var(--primary);
         }
 
         .message {
@@ -222,8 +222,8 @@
         }
 
         .results-panel {
-            background-color: #f9f9f9;
-            border: 1px solid #e0e0e0;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 24px;
@@ -232,7 +232,7 @@
         .results-title {
             font-size: 14px;
             font-weight: 600;
-            color: #333;
+            color: var(--text);
             margin-bottom: 12px;
         }
 
@@ -244,8 +244,8 @@
         }
 
         .stat-box {
-            background-color: white;
-            border: 1px solid #e0e0e0;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 6px;
             padding: 12px;
             text-align: center;
@@ -253,14 +253,14 @@
 
         .stat-label {
             font-size: 12px;
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 4px;
         }
 
         .stat-value {
             font-size: 24px;
             font-weight: 700;
-            color: #0066cc;
+            color: var(--primary);
         }
 
         .matches-list {
@@ -272,8 +272,8 @@
         }
 
         .match-item {
-            background-color: white;
-            border: 1px solid #e0e0e0;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 4px;
             padding: 10px 12px;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -281,7 +281,7 @@
         }
 
         .match-item.header {
-            background-color: #0066cc;
+            background-color: var(--primary);
             color: white;
             border: none;
             font-weight: 600;
@@ -296,8 +296,8 @@
 
         .quick-pattern-btn {
             padding: 8px 12px;
-            background-color: #f0f0f0;
-            border: 1px solid #e0e0e0;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border);
             border-radius: 4px;
             font-size: 12px;
             cursor: pointer;
@@ -306,12 +306,12 @@
         }
 
         .quick-pattern-btn:hover {
-            background-color: #e8e8e8;
-            border-color: #0066cc;
+            background-color: var(--bg-card);
+            border-color: var(--primary);
         }
 
         .seo-content {
-            background-color: #f9f9f9;
+            background-color: var(--bg-input);
             padding: 48px;
             border-radius: 8px;
             margin-bottom: 32px;
@@ -320,14 +320,14 @@
         .seo-content h2 {
             font-size: 28px;
             font-weight: 700;
-            color: #222;
+            color: var(--text);
             margin-bottom: 16px;
         }
 
         .seo-content p {
             font-size: 16px;
             line-height: 1.7;
-            color: #555;
+            color: var(--text-muted);
             margin-bottom: 12px;
         }
 
@@ -338,14 +338,14 @@
 
         .seo-content li {
             margin-bottom: 8px;
-            color: #555;
+            color: var(--text-muted);
             font-size: 16px;
         }
 
         .seo-content h3 {
             font-size: 20px;
             font-weight: 600;
-            color: #333;
+            color: var(--text);
             margin-top: 24px;
             margin-bottom: 12px;
         }
