@@ -597,7 +597,7 @@
             event.target.classList.add('active');
         }
 
-        function previewSVG() {
+        async function previewSVG() {
             const svgInput = document.getElementById('svgInput').value;
 
             if (!svgInput.trim()) {
@@ -621,8 +621,8 @@
                     return;
                 }
 
-                // Convert to canvas
-                const canvas = convertSvgToCanvas(svgInput);
+                // Convert to canvas (async — returns a Promise)
+                const canvas = await convertSvgToCanvas(svgInput);
                 pngDataUrl = canvas.toDataURL('image/png');
 
                 // Display preview

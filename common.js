@@ -38,6 +38,44 @@ const SITE = {
   ]
 };
 
+/* ---- French translations for tool cards ---- */
+const SITE_FR = {
+  tools: {
+    'json-formatter': { name: 'Formateur JSON', desc: 'Formatez, validez et minifiez vos données JSON instantanément.' },
+    'password-generator': { name: 'Générateur de mots de passe', desc: 'Générez des mots de passe forts et aléatoires.' },
+    'word-counter': { name: 'Compteur de mots', desc: 'Comptez mots, caractères, phrases et temps de lecture.' },
+    'base64-converter': { name: 'Convertisseur Base64', desc: 'Encodez et décodez des chaînes Base64 instantanément.' },
+    'case-converter': { name: 'Convertisseur de casse', desc: 'Convertissez entre majuscules, minuscules, titre et plus.' },
+    'lorem-ipsum': { name: 'Générateur Lorem Ipsum', desc: 'Générez du texte de remplissage pour vos maquettes.' },
+    'color-palette': { name: 'Palette de couleurs', desc: 'Générez de belles palettes de couleurs pour vos projets.' },
+    'uuid-generator': { name: 'Générateur UUID', desc: 'Générez des UUIDs aléatoires (v4) en masse.' },
+    'regex-tester': { name: "Testeur d'expressions régulières", desc: 'Testez et déboguez vos regex avec surlignage en temps réel.' },
+    'url-encoder': { name: 'Encodeur/Décodeur URL', desc: 'Encodez et décodez les URLs instantanément.' },
+    'hash-generator': { name: 'Générateur de hash', desc: 'Générez des hash MD5, SHA-1, SHA-256 et SHA-512.' },
+    'timestamp-converter': { name: 'Convertisseur de timestamp', desc: 'Convertissez entre timestamps Unix et dates lisibles.' },
+    'markdown-preview': { name: 'Aperçu Markdown', desc: 'Prévisualisez le Markdown en HTML en temps réel.' },
+    'diff-checker': { name: 'Comparateur de texte', desc: 'Comparez deux textes et surlignez les différences.' },
+    'css-minifier': { name: 'Minifieur CSS', desc: 'Minifiez et embellissez du code CSS instantanément.' },
+    'js-minifier': { name: 'Minifieur JS', desc: 'Minifiez et embellissez du code JavaScript instantanément.' },
+    'html-entities': { name: 'Entités HTML', desc: 'Encodez et décodez les entités HTML et caractères spéciaux.' },
+    'slug-generator': { name: 'Générateur de slug', desc: 'Générez des slugs URL optimisés pour le SEO.' },
+    'hex-rgb-converter': { name: 'Convertisseur Hex/RGB', desc: 'Convertissez entre les formats Hex, RGB et HSL.' },
+    'line-tools': { name: 'Outils de lignes', desc: 'Triez, dédupliquez, inversez et comptez les lignes de texte.' },
+    'qr-code-generator': { name: 'Générateur de QR code', desc: 'Générez des QR codes pour vos URLs et textes instantanément.' },
+    'json-csv-converter': { name: 'Convertisseur JSON/CSV', desc: 'Convertissez entre les formats JSON et CSV instantanément.' },
+    'jwt-decoder': { name: 'Décodeur JWT', desc: 'Décodez et inspectez les tokens JWT instantanément.' },
+    'cron-generator': { name: 'Générateur Cron', desc: 'Créez et décodez des expressions cron visuellement.' },
+    'css-gradient-generator': { name: 'Générateur de dégradés CSS', desc: 'Créez de beaux dégradés CSS avec aperçu en direct.' },
+    'yaml-json-converter': { name: 'Convertisseur YAML/JSON', desc: 'Convertissez entre les formats YAML et JSON.' },
+    'html-to-markdown': { name: 'HTML vers Markdown', desc: 'Convertissez du code HTML en Markdown propre.' },
+    'meta-tag-generator': { name: 'Générateur de balises meta', desc: 'Générez des balises meta SEO pour vos pages web.' },
+    'chmod-calculator': { name: 'Calculateur Chmod', desc: 'Calculez les permissions de fichiers Linux visuellement.' },
+    'svg-to-png': { name: 'SVG vers PNG', desc: 'Convertissez des images SVG au format PNG.' },
+  },
+  nav: { allTools: 'Tous les outils', blog: 'Blog', home: 'Accueil', about: 'À propos', privacy: 'Confidentialité' },
+  footer: 'Outils en ligne gratuits. Tout le traitement se fait dans votre navigateur.'
+};
+
 /* ---- Theme ---- */
 function initTheme() {
   const saved = localStorage.getItem('tp-theme');
@@ -81,36 +119,45 @@ function injectHeader() {
   const base = getBaseUrl();
   const theme = initTheme();
   const lang = getLangSwitchLink();
+  const isFr = isFrenchPage();
+  const t = isFr ? SITE_FR.nav : { allTools: 'All Tools', blog: 'Blog' };
   const header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = `
+    <a href="#main-content" class="skip-link">${isFr ? 'Aller au contenu' : 'Skip to content'}</a>
     <div class="container">
       <a href="${base}/" class="logo">⚡ <span>Tool</span>Pilot</a>
       <div class="header-actions">
-        <a href="${base}/#tools" style="font-size:.9rem;color:var(--text-muted)">All Tools</a>
-        <a href="${base}/blog/" style="font-size:.9rem;color:var(--text-muted)">Blog</a>
+        <a href="${base}/#tools" style="font-size:.9rem;color:var(--text-muted)">${t.allTools}</a>
+        <a href="${base}/blog/" style="font-size:.9rem;color:var(--text-muted)">${t.blog}</a>
         <a href="${lang.href}" style="font-size:.9rem;color:var(--text-muted)" title="${lang.title}">${lang.label}</a>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">${theme === 'dark' ? '☀️' : '🌙'}</button>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="${isFr ? 'Changer le thème' : 'Toggle theme'}">${theme === 'dark' ? '☀️' : '🌙'}</button>
       </div>
     </div>`;
   document.body.prepend(header);
+  // Add main-content id to <main> element for skip-link
+  const mainEl = document.querySelector('main');
+  if (mainEl && !mainEl.id) mainEl.id = 'main-content';
 }
 
 function injectFooter() {
   const base = getBaseUrl();
+  const isFr = isFrenchPage();
+  const t = isFr ? SITE_FR.nav : { home: 'Home', allTools: 'All Tools', blog: 'Blog', about: 'About', privacy: 'Privacy' };
+  const tagline = isFr ? SITE_FR.footer : 'Free online tools. All processing happens in your browser.';
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML = `
     <div class="container">
       <div class="footer-links">
-        <a href="${base}/">Home</a>
-        <a href="${base}/#tools">All Tools</a>
-        <a href="${base}/blog/">Blog</a>
-        <a href="${base}/about.html">About</a>
-        <a href="${base}/privacy.html">Privacy</a>
+        <a href="${base}/">${t.home}</a>
+        <a href="${base}/#tools">${t.allTools}</a>
+        <a href="${base}/blog/">${t.blog}</a>
+        <a href="${base}/about.html">${t.about}</a>
+        <a href="${base}/privacy.html">${t.privacy}</a>
         <a href="https://buymeacoffee.com/toolpailot" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
       </div>
-      <p>&copy; ${new Date().getFullYear()} ToolPilot — Free online tools. All processing happens in your browser.</p>
+      <p>&copy; ${new Date().getFullYear()} ToolPilot — ${tagline}</p>
     </div>`;
   document.body.append(footer);
 }
@@ -158,20 +205,27 @@ function showToast(msg) {
   toast.classList.add('show');
   clearTimeout(toast._timeout);
   toast._timeout = setTimeout(() => toast.classList.remove('show'), 2000);
+  // Announce to screen readers
+  const ariaStatus = document.getElementById('aria-status');
+  if (ariaStatus) ariaStatus.textContent = msg;
 }
 
 function renderToolCards(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   const base = getBaseUrl();
-  const toolsPath = base === '.' ? 'tools/' : 'tools/';
-  container.innerHTML = SITE.tools.map(t => `
+  const isFr = isFrenchPage();
+  container.innerHTML = SITE.tools.map(t => {
+    const fr = isFr && SITE_FR.tools[t.slug];
+    const name = fr ? fr.name : t.name;
+    const desc = fr ? fr.desc : t.desc;
+    return `
     <a href="${base === '.' ? '' : '../'}tools/${t.slug}.html" class="card tool-card">
       <span class="icon">${t.icon}</span>
-      <h3>${t.name}</h3>
-      <p>${t.desc}</p>
-    </a>
-  `).join('');
+      <h3>${name}</h3>
+      <p>${desc}</p>
+    </a>`;
+  }).join('');
 }
 
 /* ---- Cookie Consent (GDPR) ---- */
@@ -260,6 +314,16 @@ function initAdSlots() {
 document.addEventListener('DOMContentLoaded', () => {
   injectHeader();
   injectFooter();
+
+  // Inject global aria-live region for dynamic status messages
+  if (!document.getElementById('aria-status')) {
+    const liveRegion = document.createElement('div');
+    liveRegion.id = 'aria-status';
+    liveRegion.setAttribute('role', 'status');
+    liveRegion.setAttribute('aria-live', 'polite');
+    liveRegion.className = 'sr-only';
+    document.body.appendChild(liveRegion);
+  }
 
   const consent = getCookieConsent();
   if (consent === 'accepted') {
