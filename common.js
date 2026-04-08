@@ -77,206 +77,239 @@ const SITE_FR = {
 };
 
 /* ---- Monetization: Affiliate & Pro-Tier Config ---- */
+/* AFFILIATE IDs — Replace 'AFFILIATE_ID' with your real IDs after signup:
+ *  Hostinger:    https://www.hostinger.com/affiliates       → 40-60% per sale
+ *  NordVPN:      https://nordvpn.com/affiliate/              → 40-100% + 30% recurring
+ *  NordPass:     included with NordVPN affiliate signup
+ *  Grammarly:    https://www.grammarly.com/affiliates        → $0.20/free + $20/premium
+ *  SEMrush:      https://www.semrush.com/lp/affiliate-program → $200 per sale
+ *  Surfshark:    https://surfshark.com/affiliate              → 40%+ per sale
+ *  Canva:        https://www.canva.com/help/canva-affiliate-marketing-program → ~$36/annual
+ *  Webflow:      https://webflow.com/solutions/affiliates     → 50% first year
+ *  DigitalOcean: https://www.digitalocean.com/affiliates (CJ) → 10% recurring 12mo
+ */
+const AFF = {
+  hostinger:    'https://www.hostinger.com/?ref=toolpilot',   // ← replace with your link
+  nordvpn:      'https://nordvpn.com/?ref=toolpilot',         // ← replace with your link
+  nordpass:     'https://nordpass.com/?ref=toolpilot',         // ← replace with your link
+  grammarly:    'https://www.grammarly.com/?ref=toolpilot',   // ← replace with your link
+  semrush:      'https://www.semrush.com/?ref=toolpilot',     // ← replace with your link
+  surfshark:    'https://surfshark.com/?ref=toolpilot',       // ← replace with your link
+  canva:        'https://www.canva.com/?ref=toolpilot',       // ← replace with your link
+  webflow:      'https://webflow.com/?ref=toolpilot',         // ← replace with your link
+  digitalocean: 'https://www.digitalocean.com/?ref=toolpilot' // ← replace with your link
+};
+
 const TOOL_MONETIZATION = {
   'json-formatter': {
     affiliates: [
-      { name: 'JetBrains IDEs', desc: 'Professional IDE with built-in JSON tools', url: 'https://www.jetbrains.com/?ref=toolpilot', icon: '🛠️' },
-      { name: 'Postman', desc: 'API testing platform with advanced JSON support', url: 'https://www.postman.com/', icon: '📮' }
+      { name: 'Hostinger', desc: 'Deploy your app — hosting from €2.99/mo, free domain', url: AFF.hostinger, icon: '🌐' },
+      { name: 'SEMrush', desc: 'All-in-one SEO & dev toolkit — audit any site', url: AFF.semrush, icon: '📈' }
     ],
-    pro: { text: 'Need real-time API testing & validation?', cta: 'Try Postman for free', url: 'https://www.postman.com/' }
+    pro: { text: 'Need a complete SEO & site audit toolkit?', cta: 'Try SEMrush — free trial', url: AFF.semrush }
   },
   'password-generator': {
     affiliates: [
-      { name: 'Bitwarden', desc: 'Open-source password manager — free tier available', url: 'https://bitwarden.com/', icon: '🔐' },
-      { name: 'NordPass', desc: 'Premium password manager by NordVPN', url: 'https://nordpass.com/', icon: '🛡️' }
+      { name: 'NordPass', desc: 'Premium password manager by NordVPN', url: AFF.nordpass, icon: '🔐' },
+      { name: 'NordVPN', desc: 'Encrypt your connection — 30-day money back', url: AFF.nordvpn, icon: '🛡️' }
     ],
-    pro: { text: 'Need to securely store & share passwords?', cta: 'Try Bitwarden — free', url: 'https://bitwarden.com/' }
+    pro: { text: 'Need to securely store & sync all your passwords?', cta: 'Try NordPass', url: AFF.nordpass }
   },
   'word-counter': {
     affiliates: [
-      { name: 'Grammarly', desc: 'AI writing assistant — grammar, tone & clarity', url: 'https://www.grammarly.com/', icon: '✍️' },
-      { name: 'Hemingway Editor', desc: 'Make your writing bold and clear', url: 'https://hemingwayapp.com/', icon: '📖' }
+      { name: 'Grammarly', desc: 'AI writing assistant — grammar, tone & clarity', url: AFF.grammarly, icon: '✍️' },
+      { name: 'SEMrush', desc: 'SEO writing assistant — optimize content for Google', url: AFF.semrush, icon: '📈' }
     ],
-    pro: { text: 'Need advanced grammar & readability checks?', cta: 'Try Grammarly for free', url: 'https://www.grammarly.com/' }
+    pro: { text: 'Need advanced grammar & readability checks?', cta: 'Try Grammarly — free', url: AFF.grammarly }
   },
   'base64-converter': {
     affiliates: [
-      { name: 'Insomnia', desc: 'API client for REST & GraphQL', url: 'https://insomnia.rest/', icon: '🌙' },
-      { name: 'Hoppscotch', desc: 'Open-source API development ecosystem', url: 'https://hoppscotch.io/', icon: '🦅' }
+      { name: 'Hostinger', desc: 'Deploy your app — hosting from €2.99/mo, free domain', url: AFF.hostinger, icon: '🌐' },
+      { name: 'NordVPN', desc: 'Secure your dev traffic — 30-day money back', url: AFF.nordvpn, icon: '🛡️' }
     ],
     pro: null
   },
   'case-converter': {
     affiliates: [
-      { name: 'Grammarly', desc: 'AI writing assistant — grammar, tone & clarity', url: 'https://www.grammarly.com/', icon: '✍️' },
-      { name: 'Notion', desc: 'All-in-one workspace for notes & docs', url: 'https://www.notion.so/', icon: '📓' }
+      { name: 'Grammarly', desc: 'AI writing assistant — grammar, tone & clarity', url: AFF.grammarly, icon: '✍️' },
+      { name: 'Canva', desc: 'Design templates with perfect typography', url: AFF.canva, icon: '🖌️' }
     ],
-    pro: null
+    pro: { text: 'Need AI-powered writing correction?', cta: 'Try Grammarly — free', url: AFF.grammarly }
   },
   'lorem-ipsum': {
     affiliates: [
-      { name: 'Figma', desc: 'Collaborative design tool — free tier available', url: 'https://www.figma.com/', icon: '🎨' },
-      { name: 'Canva', desc: 'Design anything — templates, presentations & more', url: 'https://www.canva.com/', icon: '🖌️' }
+      { name: 'Canva', desc: 'Design anything — templates, mockups & more', url: AFF.canva, icon: '🖌️' },
+      { name: 'Webflow', desc: 'Visual website builder — no code needed', url: AFF.webflow, icon: '🌊' }
     ],
-    pro: null
+    pro: { text: 'Need a visual website builder with real content?', cta: 'Try Webflow — free tier', url: AFF.webflow }
   },
   'color-palette': {
     affiliates: [
-      { name: 'Figma', desc: 'Collaborative design tool — free tier available', url: 'https://www.figma.com/', icon: '🎨' },
-      { name: 'Coolors Pro', desc: 'Advanced palette generation & export', url: 'https://coolors.co/pricing', icon: '🌈' }
+      { name: 'Canva', desc: 'Apply your palette to real designs instantly', url: AFF.canva, icon: '🖌️' },
+      { name: 'Webflow', desc: 'Build websites with custom color systems', url: AFF.webflow, icon: '🌊' }
     ],
-    pro: { text: 'Need export to Figma, Adobe & unlimited palettes?', cta: 'Try Coolors Pro', url: 'https://coolors.co/pricing' }
+    pro: { text: 'Need to apply palettes to real designs?', cta: 'Try Canva — free', url: AFF.canva }
   },
   'uuid-generator': {
     affiliates: [
-      { name: 'Postman', desc: 'API testing with auto-generated UUIDs', url: 'https://www.postman.com/', icon: '📮' }
+      { name: 'DigitalOcean', desc: 'Cloud servers from $4/mo — deploy in seconds', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'Web hosting from €2.99/mo — free domain included', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'regex-tester': {
     affiliates: [
-      { name: 'JetBrains IDEs', desc: 'Built-in regex support with find & replace', url: 'https://www.jetbrains.com/?ref=toolpilot', icon: '🛠️' },
-      { name: 'RegexBuddy', desc: 'Dedicated regex development tool', url: 'https://www.regexbuddy.com/', icon: '🧩' }
+      { name: 'SEMrush', desc: 'Full SEO toolkit — regex-powered site crawling', url: AFF.semrush, icon: '📈' },
+      { name: 'Hostinger', desc: 'Host your app — .htaccess regex made easy', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: { text: 'Need regex debugging across languages?', cta: 'Try RegexBuddy', url: 'https://www.regexbuddy.com/' }
+    pro: { text: 'Need SEO site crawling with regex filters?', cta: 'Try SEMrush — free trial', url: AFF.semrush }
   },
   'url-encoder': {
     affiliates: [
-      { name: 'Postman', desc: 'API platform with URL encoding built-in', url: 'https://www.postman.com/', icon: '📮' }
+      { name: 'SEMrush', desc: 'Audit & fix URL issues across your site', url: AFF.semrush, icon: '📈' },
+      { name: 'Hostinger', desc: 'Web hosting from €2.99/mo — free SSL included', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'hash-generator': {
     affiliates: [
-      { name: 'NordVPN', desc: 'Encrypt your connection — 30-day money back', url: 'https://nordvpn.com/', icon: '🛡️' },
-      { name: 'Bitwarden', desc: 'Secure password manager with hash verification', url: 'https://bitwarden.com/', icon: '🔐' }
+      { name: 'NordVPN', desc: 'Encrypt your connection — 30-day money back', url: AFF.nordvpn, icon: '🛡️' },
+      { name: 'Surfshark', desc: 'VPN + antivirus + data breach alerts', url: AFF.surfshark, icon: '🦈' }
     ],
-    pro: null
+    pro: { text: 'Need full encryption beyond hashing?', cta: 'Try NordVPN', url: AFF.nordvpn }
   },
   'timestamp-converter': {
     affiliates: [
-      { name: 'Toggl Track', desc: 'Simple time tracking for teams', url: 'https://toggl.com/track/', icon: '⏱️' }
+      { name: 'DigitalOcean', desc: 'Cloud servers from $4/mo — cron jobs built-in', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'VPS hosting with scheduled tasks support', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'markdown-preview': {
     affiliates: [
-      { name: 'Notion', desc: 'All-in-one Markdown-friendly workspace', url: 'https://www.notion.so/', icon: '📓' },
-      { name: 'Obsidian', desc: 'Knowledge base with Markdown & backlinks', url: 'https://obsidian.md/', icon: '💎' }
+      { name: 'Hostinger', desc: 'Host your blog — WordPress from €2.99/mo', url: AFF.hostinger, icon: '🌐' },
+      { name: 'Grammarly', desc: 'Perfect your writing before publishing', url: AFF.grammarly, icon: '✍️' }
     ],
-    pro: { text: 'Need a full Markdown workspace with backlinks?', cta: 'Try Obsidian — free', url: 'https://obsidian.md/' }
+    pro: { text: 'Need to publish your Markdown as a blog?', cta: 'Try Hostinger — from €2.99/mo', url: AFF.hostinger }
   },
   'diff-checker': {
     affiliates: [
-      { name: 'Beyond Compare', desc: 'Professional file & folder comparison tool', url: 'https://www.scootersoftware.com/', icon: '📊' },
-      { name: 'GitHub', desc: 'Code hosting with built-in diff & review', url: 'https://github.com/', icon: '🐙' }
+      { name: 'DigitalOcean', desc: 'Git-friendly cloud hosting with CI/CD', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'Host your projects — free domain included', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: { text: 'Need folder comparison & 3-way merge?', cta: 'Try Beyond Compare', url: 'https://www.scootersoftware.com/' }
+    pro: null
   },
   'css-minifier': {
     affiliates: [
-      { name: 'Cloudflare', desc: 'Free CDN with auto CSS minification', url: 'https://www.cloudflare.com/', icon: '☁️' },
-      { name: 'Hostinger', desc: 'Fast hosting from €2.99/mo — free domain included', url: 'https://www.hostinger.com/', icon: '🌐' }
+      { name: 'Hostinger', desc: 'Fast hosting with LiteSpeed cache & auto-optimize', url: AFF.hostinger, icon: '🌐' },
+      { name: 'Webflow', desc: 'Visual builder with auto CSS optimization', url: AFF.webflow, icon: '🌊' }
     ],
-    pro: { text: 'Need automatic minification on deploy?', cta: 'Try Cloudflare — free tier', url: 'https://www.cloudflare.com/' }
+    pro: { text: 'Need automatic CSS optimization on deploy?', cta: 'Try Hostinger — LiteSpeed built-in', url: AFF.hostinger }
   },
   'js-minifier': {
     affiliates: [
-      { name: 'Cloudflare', desc: 'Free CDN with auto JS minification', url: 'https://www.cloudflare.com/', icon: '☁️' },
-      { name: 'Vercel', desc: 'Deploy frontend apps with auto optimization', url: 'https://vercel.com/', icon: '▲' }
+      { name: 'Hostinger', desc: 'Fast hosting with auto JS optimization', url: AFF.hostinger, icon: '🌐' },
+      { name: 'DigitalOcean', desc: 'App Platform with CI/CD — auto build & optimize', url: AFF.digitalocean, icon: '🌊' }
     ],
-    pro: { text: 'Need auto-minification in your CI/CD pipeline?', cta: 'Try Vercel — free tier', url: 'https://vercel.com/' }
+    pro: { text: 'Need auto-minification in your deploy pipeline?', cta: 'Try DigitalOcean App Platform', url: AFF.digitalocean }
   },
   'html-entities': {
     affiliates: [
-      { name: 'VS Code', desc: 'Free code editor with HTML entity support', url: 'https://code.visualstudio.com/', icon: '💻' }
+      { name: 'Hostinger', desc: 'Web hosting from €2.99/mo — free domain included', url: AFF.hostinger, icon: '🌐' },
+      { name: 'Grammarly', desc: 'Write cleaner content — AI-powered', url: AFF.grammarly, icon: '✍️' }
     ],
     pro: null
   },
   'slug-generator': {
     affiliates: [
-      { name: 'Ahrefs', desc: 'SEO toolset — keyword research & site audit', url: 'https://ahrefs.com/', icon: '📈' },
-      { name: 'Hostinger', desc: 'Fast hosting from €2.99/mo — free domain included', url: 'https://www.hostinger.com/', icon: '🌐' }
+      { name: 'SEMrush', desc: 'Full SEO toolkit — keyword research & site audit', url: AFF.semrush, icon: '📈' },
+      { name: 'Hostinger', desc: 'SEO-friendly hosting — from €2.99/mo', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: { text: 'Need full SEO audit & keyword research?', cta: 'Try Ahrefs', url: 'https://ahrefs.com/' }
+    pro: { text: 'Need full SEO audit & keyword research?', cta: 'Try SEMrush — free trial', url: AFF.semrush }
   },
   'hex-rgb-converter': {
     affiliates: [
-      { name: 'Figma', desc: 'Collaborative design tool — free tier available', url: 'https://www.figma.com/', icon: '🎨' }
+      { name: 'Canva', desc: 'Design with any color — templates & export', url: AFF.canva, icon: '🖌️' },
+      { name: 'Webflow', desc: 'Build sites with custom color variables', url: AFF.webflow, icon: '🌊' }
     ],
     pro: null
   },
   'line-tools': {
     affiliates: [
-      { name: 'Sublime Text', desc: 'Sophisticated text editor for code & markup', url: 'https://www.sublimetext.com/', icon: '📝' }
+      { name: 'Grammarly', desc: 'Clean up your text with AI assistance', url: AFF.grammarly, icon: '✍️' },
+      { name: 'Hostinger', desc: 'Host your scripts & tools online', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'qr-code-generator': {
     affiliates: [
-      { name: 'QR Code Monkey', desc: 'Custom QR codes with logos & colors — free', url: 'https://www.qrcode-monkey.com/', icon: '🐵' },
-      { name: 'Beaconstac', desc: 'Dynamic QR codes with analytics & tracking', url: 'https://www.beaconstac.com/', icon: '📊' }
+      { name: 'Canva', desc: 'Design branded materials with QR codes', url: AFF.canva, icon: '🖌️' },
+      { name: 'Hostinger', desc: 'Host your landing page — from €2.99/mo', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: { text: 'Need trackable QR codes with analytics?', cta: 'Try Beaconstac', url: 'https://www.beaconstac.com/' }
+    pro: { text: 'Need branded QR codes in marketing materials?', cta: 'Try Canva — free', url: AFF.canva }
   },
   'json-csv-converter': {
     affiliates: [
-      { name: 'Airtable', desc: 'Spreadsheet-database hybrid — free tier', url: 'https://airtable.com/', icon: '📊' }
+      { name: 'DigitalOcean', desc: 'Managed databases for your data pipelines', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'Host your data apps — from €2.99/mo', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'jwt-decoder': {
     affiliates: [
-      { name: 'Auth0', desc: 'Identity platform — free up to 7,500 users', url: 'https://auth0.com/', icon: '🔑' },
-      { name: 'Postman', desc: 'API testing with JWT auto-handling', url: 'https://www.postman.com/', icon: '📮' }
+      { name: 'NordVPN', desc: 'Secure your API traffic — 30-day money back', url: AFF.nordvpn, icon: '🛡️' },
+      { name: 'DigitalOcean', desc: 'Deploy auth services — App Platform from $5/mo', url: AFF.digitalocean, icon: '🌊' }
     ],
-    pro: { text: 'Need full JWT auth management?', cta: 'Try Auth0 — free tier', url: 'https://auth0.com/' }
+    pro: { text: 'Need to secure your API traffic end-to-end?', cta: 'Try NordVPN', url: AFF.nordvpn }
   },
   'cron-generator': {
     affiliates: [
-      { name: 'Cronitor', desc: 'Cron job monitoring & alerting', url: 'https://cronitor.io/', icon: '📟' }
+      { name: 'DigitalOcean', desc: 'Cloud servers with native cron support', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'VPS hosting with cron job scheduler', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: { text: 'Need cron monitoring & failure alerts?', cta: 'Try Cronitor', url: 'https://cronitor.io/' }
+    pro: { text: 'Need a server to run your cron jobs?', cta: 'Try DigitalOcean — from $4/mo', url: AFF.digitalocean }
   },
   'css-gradient-generator': {
     affiliates: [
-      { name: 'Figma', desc: 'Design tool with advanced gradient editor', url: 'https://www.figma.com/', icon: '🎨' },
-      { name: 'Webflow', desc: 'Visual website builder — no code needed', url: 'https://webflow.com/', icon: '🌊' }
+      { name: 'Webflow', desc: 'Visual website builder with gradient editor', url: AFF.webflow, icon: '🌊' },
+      { name: 'Canva', desc: 'Apply gradients to designs & social posts', url: AFF.canva, icon: '🖌️' }
     ],
-    pro: null
+    pro: { text: 'Need to build full websites visually?', cta: 'Try Webflow — free tier', url: AFF.webflow }
   },
   'yaml-json-converter': {
     affiliates: [
-      { name: 'JetBrains IDEs', desc: 'Built-in YAML/JSON support & validation', url: 'https://www.jetbrains.com/?ref=toolpilot', icon: '🛠️' }
+      { name: 'DigitalOcean', desc: 'Deploy with Kubernetes YAML configs', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'Host your apps — from €2.99/mo', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'html-to-markdown': {
     affiliates: [
-      { name: 'Notion', desc: 'All-in-one workspace with Markdown import', url: 'https://www.notion.so/', icon: '📓' },
-      { name: 'Obsidian', desc: 'Knowledge base built on Markdown files', url: 'https://obsidian.md/', icon: '💎' }
+      { name: 'Grammarly', desc: 'Perfect your content before converting', url: AFF.grammarly, icon: '✍️' },
+      { name: 'Hostinger', desc: 'Host your Markdown blog — from €2.99/mo', url: AFF.hostinger, icon: '🌐' }
     ],
     pro: null
   },
   'meta-tag-generator': {
     affiliates: [
-      { name: 'Ahrefs', desc: 'SEO toolset — site audit & keyword research', url: 'https://ahrefs.com/', icon: '📈' },
-      { name: 'Hostinger', desc: 'Fast hosting from €2.99/mo — free domain included', url: 'https://www.hostinger.com/', icon: '🌐' }
+      { name: 'SEMrush', desc: 'Full SEO toolkit — audit meta tags at scale', url: AFF.semrush, icon: '📈' },
+      { name: 'Hostinger', desc: 'SEO-friendly hosting — from €2.99/mo', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: { text: 'Need full SEO audit & competitor analysis?', cta: 'Try Ahrefs', url: 'https://ahrefs.com/' }
+    pro: { text: 'Need to audit meta tags across your whole site?', cta: 'Try SEMrush — free trial', url: AFF.semrush }
   },
   'chmod-calculator': {
     affiliates: [
-      { name: 'DigitalOcean', desc: 'Cloud servers from $4/mo — developer friendly', url: 'https://www.digitalocean.com/', icon: '🌊' }
+      { name: 'DigitalOcean', desc: 'Linux cloud servers from $4/mo', url: AFF.digitalocean, icon: '🌊' },
+      { name: 'Hostinger', desc: 'VPS hosting with full root access', url: AFF.hostinger, icon: '🌐' }
     ],
-    pro: null
+    pro: { text: 'Need a Linux server to manage?', cta: 'Try DigitalOcean — from $4/mo', url: AFF.digitalocean }
   },
   'svg-to-png': {
     affiliates: [
-      { name: 'Figma', desc: 'Design & export in any format — free tier', url: 'https://www.figma.com/', icon: '🎨' },
-      { name: 'Canva', desc: 'Design anything — easy image export', url: 'https://www.canva.com/', icon: '🖌️' }
+      { name: 'Canva', desc: 'Design & export in any format — PNG, SVG, PDF', url: AFF.canva, icon: '🖌️' },
+      { name: 'Webflow', desc: 'Build sites with optimized image handling', url: AFF.webflow, icon: '🌊' }
     ],
-    pro: null
+    pro: { text: 'Need a full design tool with export options?', cta: 'Try Canva — free', url: AFF.canva }
   }
 };
 
@@ -285,22 +318,26 @@ const MONETIZATION_FR = {
   sectionTitle: 'Aller plus loin',
   proLabel: 'Besoin de plus ?',
   affiliateDisclosure: 'Liens partenaires — nous pouvons percevoir une commission.',
-  // Pro-tier French overrides
   pro: {
-    'json-formatter': { text: 'Besoin de tests API en temps réel ?', cta: 'Essayer Postman gratuitement' },
-    'password-generator': { text: 'Besoin de stocker et partager vos mots de passe ?', cta: 'Essayer Bitwarden — gratuit' },
-    'word-counter': { text: 'Besoin de correction grammaticale avancée ?', cta: 'Essayer Grammarly gratuitement' },
-    'color-palette': { text: 'Besoin d\'export Figma, Adobe et palettes illimitées ?', cta: 'Essayer Coolors Pro' },
-    'regex-tester': { text: 'Besoin de déboguer des regex multi-langages ?', cta: 'Essayer RegexBuddy' },
-    'markdown-preview': { text: 'Besoin d\'un espace Markdown complet avec backlinks ?', cta: 'Essayer Obsidian — gratuit' },
-    'diff-checker': { text: 'Besoin de comparaison de dossiers et fusion 3 voies ?', cta: 'Essayer Beyond Compare' },
-    'css-minifier': { text: 'Besoin de minification automatique au déploiement ?', cta: 'Essayer Cloudflare — gratuit' },
-    'js-minifier': { text: 'Besoin de minification auto dans votre CI/CD ?', cta: 'Essayer Vercel — gratuit' },
-    'slug-generator': { text: 'Besoin d\'un audit SEO complet ?', cta: 'Essayer Ahrefs' },
-    'qr-code-generator': { text: 'Besoin de QR codes traçables avec analytics ?', cta: 'Essayer Beaconstac' },
-    'jwt-decoder': { text: 'Besoin d\'une gestion complète de l\'authentification JWT ?', cta: 'Essayer Auth0 — gratuit' },
-    'cron-generator': { text: 'Besoin de monitoring et alertes pour vos crons ?', cta: 'Essayer Cronitor' },
-    'meta-tag-generator': { text: 'Besoin d\'un audit SEO et analyse concurrentielle ?', cta: 'Essayer Ahrefs' }
+    'json-formatter': { text: 'Besoin d\'un toolkit SEO complet ?', cta: 'Essayer SEMrush — essai gratuit' },
+    'password-generator': { text: 'Besoin de stocker et synchroniser vos mots de passe ?', cta: 'Essayer NordPass' },
+    'word-counter': { text: 'Besoin de correction grammaticale avancée ?', cta: 'Essayer Grammarly — gratuit' },
+    'case-converter': { text: 'Besoin de correction d\'écriture par IA ?', cta: 'Essayer Grammarly — gratuit' },
+    'lorem-ipsum': { text: 'Besoin d\'un constructeur de site visuel ?', cta: 'Essayer Webflow — gratuit' },
+    'color-palette': { text: 'Besoin d\'appliquer vos palettes à de vrais designs ?', cta: 'Essayer Canva — gratuit' },
+    'regex-tester': { text: 'Besoin d\'audit SEO avec filtres regex ?', cta: 'Essayer SEMrush — essai gratuit' },
+    'hash-generator': { text: 'Besoin d\'un chiffrement complet ?', cta: 'Essayer NordVPN' },
+    'markdown-preview': { text: 'Besoin de publier votre Markdown en blog ?', cta: 'Essayer Hostinger — dès 2,99€/mois' },
+    'css-minifier': { text: 'Besoin d\'optimisation CSS automatique ?', cta: 'Essayer Hostinger — LiteSpeed inclus' },
+    'js-minifier': { text: 'Besoin de minification auto au déploiement ?', cta: 'Essayer DigitalOcean App Platform' },
+    'slug-generator': { text: 'Besoin d\'un audit SEO complet ?', cta: 'Essayer SEMrush — essai gratuit' },
+    'qr-code-generator': { text: 'Besoin de QR codes dans vos supports marketing ?', cta: 'Essayer Canva — gratuit' },
+    'jwt-decoder': { text: 'Besoin de sécuriser votre trafic API ?', cta: 'Essayer NordVPN' },
+    'cron-generator': { text: 'Besoin d\'un serveur pour vos tâches cron ?', cta: 'Essayer DigitalOcean — dès 4$/mois' },
+    'css-gradient-generator': { text: 'Besoin de construire des sites visuellement ?', cta: 'Essayer Webflow — gratuit' },
+    'chmod-calculator': { text: 'Besoin d\'un serveur Linux à administrer ?', cta: 'Essayer DigitalOcean — dès 4$/mois' },
+    'meta-tag-generator': { text: 'Besoin d\'auditer les meta tags de tout votre site ?', cta: 'Essayer SEMrush — essai gratuit' },
+    'svg-to-png': { text: 'Besoin d\'un outil de design complet ?', cta: 'Essayer Canva — gratuit' }
   }
 };
 
