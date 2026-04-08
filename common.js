@@ -76,6 +76,234 @@ const SITE_FR = {
   footer: 'Outils en ligne gratuits. Tout le traitement se fait dans votre navigateur.'
 };
 
+/* ---- Monetization: Affiliate & Pro-Tier Config ---- */
+const TOOL_MONETIZATION = {
+  'json-formatter': {
+    affiliates: [
+      { name: 'JetBrains IDEs', desc: 'Professional IDE with built-in JSON tools', url: 'https://www.jetbrains.com/?ref=toolpilot', icon: '🛠️' },
+      { name: 'Postman', desc: 'API testing platform with advanced JSON support', url: 'https://www.postman.com/', icon: '📮' }
+    ],
+    pro: { text: 'Need real-time API testing & validation?', cta: 'Try Postman for free', url: 'https://www.postman.com/' }
+  },
+  'password-generator': {
+    affiliates: [
+      { name: 'Bitwarden', desc: 'Open-source password manager — free tier available', url: 'https://bitwarden.com/', icon: '🔐' },
+      { name: 'NordPass', desc: 'Premium password manager by NordVPN', url: 'https://nordpass.com/', icon: '🛡️' }
+    ],
+    pro: { text: 'Need to securely store & share passwords?', cta: 'Try Bitwarden — free', url: 'https://bitwarden.com/' }
+  },
+  'word-counter': {
+    affiliates: [
+      { name: 'Grammarly', desc: 'AI writing assistant — grammar, tone & clarity', url: 'https://www.grammarly.com/', icon: '✍️' },
+      { name: 'Hemingway Editor', desc: 'Make your writing bold and clear', url: 'https://hemingwayapp.com/', icon: '📖' }
+    ],
+    pro: { text: 'Need advanced grammar & readability checks?', cta: 'Try Grammarly for free', url: 'https://www.grammarly.com/' }
+  },
+  'base64-converter': {
+    affiliates: [
+      { name: 'Insomnia', desc: 'API client for REST & GraphQL', url: 'https://insomnia.rest/', icon: '🌙' },
+      { name: 'Hoppscotch', desc: 'Open-source API development ecosystem', url: 'https://hoppscotch.io/', icon: '🦅' }
+    ],
+    pro: null
+  },
+  'case-converter': {
+    affiliates: [
+      { name: 'Grammarly', desc: 'AI writing assistant — grammar, tone & clarity', url: 'https://www.grammarly.com/', icon: '✍️' },
+      { name: 'Notion', desc: 'All-in-one workspace for notes & docs', url: 'https://www.notion.so/', icon: '📓' }
+    ],
+    pro: null
+  },
+  'lorem-ipsum': {
+    affiliates: [
+      { name: 'Figma', desc: 'Collaborative design tool — free tier available', url: 'https://www.figma.com/', icon: '🎨' },
+      { name: 'Canva', desc: 'Design anything — templates, presentations & more', url: 'https://www.canva.com/', icon: '🖌️' }
+    ],
+    pro: null
+  },
+  'color-palette': {
+    affiliates: [
+      { name: 'Figma', desc: 'Collaborative design tool — free tier available', url: 'https://www.figma.com/', icon: '🎨' },
+      { name: 'Coolors Pro', desc: 'Advanced palette generation & export', url: 'https://coolors.co/pricing', icon: '🌈' }
+    ],
+    pro: { text: 'Need export to Figma, Adobe & unlimited palettes?', cta: 'Try Coolors Pro', url: 'https://coolors.co/pricing' }
+  },
+  'uuid-generator': {
+    affiliates: [
+      { name: 'Postman', desc: 'API testing with auto-generated UUIDs', url: 'https://www.postman.com/', icon: '📮' }
+    ],
+    pro: null
+  },
+  'regex-tester': {
+    affiliates: [
+      { name: 'JetBrains IDEs', desc: 'Built-in regex support with find & replace', url: 'https://www.jetbrains.com/?ref=toolpilot', icon: '🛠️' },
+      { name: 'RegexBuddy', desc: 'Dedicated regex development tool', url: 'https://www.regexbuddy.com/', icon: '🧩' }
+    ],
+    pro: { text: 'Need regex debugging across languages?', cta: 'Try RegexBuddy', url: 'https://www.regexbuddy.com/' }
+  },
+  'url-encoder': {
+    affiliates: [
+      { name: 'Postman', desc: 'API platform with URL encoding built-in', url: 'https://www.postman.com/', icon: '📮' }
+    ],
+    pro: null
+  },
+  'hash-generator': {
+    affiliates: [
+      { name: 'NordVPN', desc: 'Encrypt your connection — 30-day money back', url: 'https://nordvpn.com/', icon: '🛡️' },
+      { name: 'Bitwarden', desc: 'Secure password manager with hash verification', url: 'https://bitwarden.com/', icon: '🔐' }
+    ],
+    pro: null
+  },
+  'timestamp-converter': {
+    affiliates: [
+      { name: 'Toggl Track', desc: 'Simple time tracking for teams', url: 'https://toggl.com/track/', icon: '⏱️' }
+    ],
+    pro: null
+  },
+  'markdown-preview': {
+    affiliates: [
+      { name: 'Notion', desc: 'All-in-one Markdown-friendly workspace', url: 'https://www.notion.so/', icon: '📓' },
+      { name: 'Obsidian', desc: 'Knowledge base with Markdown & backlinks', url: 'https://obsidian.md/', icon: '💎' }
+    ],
+    pro: { text: 'Need a full Markdown workspace with backlinks?', cta: 'Try Obsidian — free', url: 'https://obsidian.md/' }
+  },
+  'diff-checker': {
+    affiliates: [
+      { name: 'Beyond Compare', desc: 'Professional file & folder comparison tool', url: 'https://www.scootersoftware.com/', icon: '📊' },
+      { name: 'GitHub', desc: 'Code hosting with built-in diff & review', url: 'https://github.com/', icon: '🐙' }
+    ],
+    pro: { text: 'Need folder comparison & 3-way merge?', cta: 'Try Beyond Compare', url: 'https://www.scootersoftware.com/' }
+  },
+  'css-minifier': {
+    affiliates: [
+      { name: 'Cloudflare', desc: 'Free CDN with auto CSS minification', url: 'https://www.cloudflare.com/', icon: '☁️' },
+      { name: 'Hostinger', desc: 'Fast hosting from €2.99/mo — free domain included', url: 'https://www.hostinger.com/', icon: '🌐' }
+    ],
+    pro: { text: 'Need automatic minification on deploy?', cta: 'Try Cloudflare — free tier', url: 'https://www.cloudflare.com/' }
+  },
+  'js-minifier': {
+    affiliates: [
+      { name: 'Cloudflare', desc: 'Free CDN with auto JS minification', url: 'https://www.cloudflare.com/', icon: '☁️' },
+      { name: 'Vercel', desc: 'Deploy frontend apps with auto optimization', url: 'https://vercel.com/', icon: '▲' }
+    ],
+    pro: { text: 'Need auto-minification in your CI/CD pipeline?', cta: 'Try Vercel — free tier', url: 'https://vercel.com/' }
+  },
+  'html-entities': {
+    affiliates: [
+      { name: 'VS Code', desc: 'Free code editor with HTML entity support', url: 'https://code.visualstudio.com/', icon: '💻' }
+    ],
+    pro: null
+  },
+  'slug-generator': {
+    affiliates: [
+      { name: 'Ahrefs', desc: 'SEO toolset — keyword research & site audit', url: 'https://ahrefs.com/', icon: '📈' },
+      { name: 'Hostinger', desc: 'Fast hosting from €2.99/mo — free domain included', url: 'https://www.hostinger.com/', icon: '🌐' }
+    ],
+    pro: { text: 'Need full SEO audit & keyword research?', cta: 'Try Ahrefs', url: 'https://ahrefs.com/' }
+  },
+  'hex-rgb-converter': {
+    affiliates: [
+      { name: 'Figma', desc: 'Collaborative design tool — free tier available', url: 'https://www.figma.com/', icon: '🎨' }
+    ],
+    pro: null
+  },
+  'line-tools': {
+    affiliates: [
+      { name: 'Sublime Text', desc: 'Sophisticated text editor for code & markup', url: 'https://www.sublimetext.com/', icon: '📝' }
+    ],
+    pro: null
+  },
+  'qr-code-generator': {
+    affiliates: [
+      { name: 'QR Code Monkey', desc: 'Custom QR codes with logos & colors — free', url: 'https://www.qrcode-monkey.com/', icon: '🐵' },
+      { name: 'Beaconstac', desc: 'Dynamic QR codes with analytics & tracking', url: 'https://www.beaconstac.com/', icon: '📊' }
+    ],
+    pro: { text: 'Need trackable QR codes with analytics?', cta: 'Try Beaconstac', url: 'https://www.beaconstac.com/' }
+  },
+  'json-csv-converter': {
+    affiliates: [
+      { name: 'Airtable', desc: 'Spreadsheet-database hybrid — free tier', url: 'https://airtable.com/', icon: '📊' }
+    ],
+    pro: null
+  },
+  'jwt-decoder': {
+    affiliates: [
+      { name: 'Auth0', desc: 'Identity platform — free up to 7,500 users', url: 'https://auth0.com/', icon: '🔑' },
+      { name: 'Postman', desc: 'API testing with JWT auto-handling', url: 'https://www.postman.com/', icon: '📮' }
+    ],
+    pro: { text: 'Need full JWT auth management?', cta: 'Try Auth0 — free tier', url: 'https://auth0.com/' }
+  },
+  'cron-generator': {
+    affiliates: [
+      { name: 'Cronitor', desc: 'Cron job monitoring & alerting', url: 'https://cronitor.io/', icon: '📟' }
+    ],
+    pro: { text: 'Need cron monitoring & failure alerts?', cta: 'Try Cronitor', url: 'https://cronitor.io/' }
+  },
+  'css-gradient-generator': {
+    affiliates: [
+      { name: 'Figma', desc: 'Design tool with advanced gradient editor', url: 'https://www.figma.com/', icon: '🎨' },
+      { name: 'Webflow', desc: 'Visual website builder — no code needed', url: 'https://webflow.com/', icon: '🌊' }
+    ],
+    pro: null
+  },
+  'yaml-json-converter': {
+    affiliates: [
+      { name: 'JetBrains IDEs', desc: 'Built-in YAML/JSON support & validation', url: 'https://www.jetbrains.com/?ref=toolpilot', icon: '🛠️' }
+    ],
+    pro: null
+  },
+  'html-to-markdown': {
+    affiliates: [
+      { name: 'Notion', desc: 'All-in-one workspace with Markdown import', url: 'https://www.notion.so/', icon: '📓' },
+      { name: 'Obsidian', desc: 'Knowledge base built on Markdown files', url: 'https://obsidian.md/', icon: '💎' }
+    ],
+    pro: null
+  },
+  'meta-tag-generator': {
+    affiliates: [
+      { name: 'Ahrefs', desc: 'SEO toolset — site audit & keyword research', url: 'https://ahrefs.com/', icon: '📈' },
+      { name: 'Hostinger', desc: 'Fast hosting from €2.99/mo — free domain included', url: 'https://www.hostinger.com/', icon: '🌐' }
+    ],
+    pro: { text: 'Need full SEO audit & competitor analysis?', cta: 'Try Ahrefs', url: 'https://ahrefs.com/' }
+  },
+  'chmod-calculator': {
+    affiliates: [
+      { name: 'DigitalOcean', desc: 'Cloud servers from $4/mo — developer friendly', url: 'https://www.digitalocean.com/', icon: '🌊' }
+    ],
+    pro: null
+  },
+  'svg-to-png': {
+    affiliates: [
+      { name: 'Figma', desc: 'Design & export in any format — free tier', url: 'https://www.figma.com/', icon: '🎨' },
+      { name: 'Canva', desc: 'Design anything — easy image export', url: 'https://www.canva.com/', icon: '🖌️' }
+    ],
+    pro: null
+  }
+};
+
+/* ---- French labels for monetization ---- */
+const MONETIZATION_FR = {
+  sectionTitle: 'Aller plus loin',
+  proLabel: 'Besoin de plus ?',
+  affiliateDisclosure: 'Liens partenaires — nous pouvons percevoir une commission.',
+  // Pro-tier French overrides
+  pro: {
+    'json-formatter': { text: 'Besoin de tests API en temps réel ?', cta: 'Essayer Postman gratuitement' },
+    'password-generator': { text: 'Besoin de stocker et partager vos mots de passe ?', cta: 'Essayer Bitwarden — gratuit' },
+    'word-counter': { text: 'Besoin de correction grammaticale avancée ?', cta: 'Essayer Grammarly gratuitement' },
+    'color-palette': { text: 'Besoin d\'export Figma, Adobe et palettes illimitées ?', cta: 'Essayer Coolors Pro' },
+    'regex-tester': { text: 'Besoin de déboguer des regex multi-langages ?', cta: 'Essayer RegexBuddy' },
+    'markdown-preview': { text: 'Besoin d\'un espace Markdown complet avec backlinks ?', cta: 'Essayer Obsidian — gratuit' },
+    'diff-checker': { text: 'Besoin de comparaison de dossiers et fusion 3 voies ?', cta: 'Essayer Beyond Compare' },
+    'css-minifier': { text: 'Besoin de minification automatique au déploiement ?', cta: 'Essayer Cloudflare — gratuit' },
+    'js-minifier': { text: 'Besoin de minification auto dans votre CI/CD ?', cta: 'Essayer Vercel — gratuit' },
+    'slug-generator': { text: 'Besoin d\'un audit SEO complet ?', cta: 'Essayer Ahrefs' },
+    'qr-code-generator': { text: 'Besoin de QR codes traçables avec analytics ?', cta: 'Essayer Beaconstac' },
+    'jwt-decoder': { text: 'Besoin d\'une gestion complète de l\'authentification JWT ?', cta: 'Essayer Auth0 — gratuit' },
+    'cron-generator': { text: 'Besoin de monitoring et alertes pour vos crons ?', cta: 'Essayer Cronitor' },
+    'meta-tag-generator': { text: 'Besoin d\'un audit SEO et analyse concurrentielle ?', cta: 'Essayer Ahrefs' }
+  }
+};
+
 /* ---- Theme ---- */
 function initTheme() {
   const saved = localStorage.getItem('tp-theme');
@@ -310,10 +538,84 @@ function initAdSlots() {
   });
 }
 
+/* ---- Monetization Injection ---- */
+function getCurrentToolSlug() {
+  const path = window.location.pathname;
+  const match = path.match(/tools\/([a-z0-9-]+)\.html/);
+  return match ? match[1] : null;
+}
+
+function injectMonetization() {
+  const slug = getCurrentToolSlug();
+  if (!slug) return; // not a tool page
+  const config = TOOL_MONETIZATION[slug];
+  if (!config) return;
+
+  const isFr = isFrenchPage();
+  const sectionTitle = isFr ? MONETIZATION_FR.sectionTitle : 'Go Further';
+  const disclosure = isFr ? MONETIZATION_FR.affiliateDisclosure : 'Partner links — we may earn a commission.';
+
+  // Build HTML
+  let html = '';
+
+  // Pro-tier banner (if exists)
+  if (config.pro) {
+    const proText = isFr && MONETIZATION_FR.pro[slug] ? MONETIZATION_FR.pro[slug].text : config.pro.text;
+    const proCta = isFr && MONETIZATION_FR.pro[slug] ? MONETIZATION_FR.pro[slug].cta : config.pro.cta;
+    html += `
+      <div class="pro-banner">
+        <span class="pro-banner-icon">⚡</span>
+        <div class="pro-banner-content">
+          <span class="pro-banner-text">${proText}</span>
+          <a href="${config.pro.url}" target="_blank" rel="noopener sponsored" class="pro-banner-cta">${proCta} →</a>
+        </div>
+      </div>`;
+  }
+
+  // Affiliate cards
+  if (config.affiliates && config.affiliates.length) {
+    html += `<div class="affiliate-grid">`;
+    config.affiliates.forEach(a => {
+      html += `
+        <a href="${a.url}" target="_blank" rel="noopener sponsored" class="affiliate-card">
+          <span class="affiliate-icon">${a.icon}</span>
+          <div>
+            <strong>${a.name}</strong>
+            <p>${a.desc}</p>
+          </div>
+          <span class="affiliate-arrow">→</span>
+        </a>`;
+    });
+    html += `</div>`;
+    html += `<p class="affiliate-disclosure">${disclosure}</p>`;
+  }
+
+  if (!html) return;
+
+  // Find insertion point: before "Related Tools" section or before footer
+  const section = document.createElement('section');
+  section.className = 'monetization-section container';
+  section.innerHTML = `<h2>${sectionTitle}</h2>${html}`;
+
+  // Insert before Related Tools or before footer
+  const relatedSection = document.querySelector('section:has(.tool-grid)') ||
+    Array.from(document.querySelectorAll('section')).find(s => s.querySelector('.tool-card'));
+  const footer = document.querySelector('.site-footer');
+
+  if (relatedSection) {
+    relatedSection.parentNode.insertBefore(section, relatedSection);
+  } else if (footer) {
+    footer.parentNode.insertBefore(section, footer);
+  } else {
+    document.body.appendChild(section);
+  }
+}
+
 /* ---- Init ---- */
 document.addEventListener('DOMContentLoaded', () => {
   injectHeader();
   injectFooter();
+  injectMonetization();
 
   // Inject global aria-live region for dynamic status messages
   if (!document.getElementById('aria-status')) {
